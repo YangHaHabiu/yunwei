@@ -1,0 +1,102 @@
+syntax = "v1"
+
+info(
+	title: "内网装服计划信息"
+	desc: "内网装服计划信息"
+	author: "acool"
+)
+
+type (
+	FilterList {
+		Label    string        `json:"label,omitempty"`
+		Value    string        `json:"value,omitempty"`
+		Types    string        `json:"types,omitempty"`
+		Children []*FilterList `json:"children,omitempty"`
+	}
+	AddInsideInstallPlanReq {
+		*InsideInstallPlanCommon
+	}
+
+	UpdateInsideInstallPlanReq {
+		*InsideInstallPlanCommon
+	}
+
+	DeleteInsideInstallPlanReq {
+		InsideInstallPlanId int64 `path:"InsideInstallPlanId"`
+	}
+
+    GetInsideInstallPlanReq {
+		InsideInstallPlanId int64 `path:"InsideInstallPlanId"`
+	}
+
+	InsideInstallPlanCommon {
+        Id int64 `json:"id,optional"` 
+        ProjectId int64 `json:"projectId,optional"` 
+        ClusterId int64 `json:"clusterId,optional"` 
+        FeatureType string `json:"featureType,optional"`
+        Sid int64 `json:"sid,optional"` 
+        ServerTitle string `json:"serverTitle,optional"` 
+        InstallStatus string `json:"installStatus,optional"`
+        DelFlag int64 `json:"delFlag,optional"` 
+	}
+
+	ListInsideInstallPlanReq {
+		Current  int64  `form:"current,default=1"`
+		PageSize int64  `form:"pageSize,default=15"`
+	}
+	ListInsideInstallPlanResp {
+		Rows   []*ListInsideInstallPlanData `json:"rows"`
+		Total  int64            `json:"total"`
+		Filter []*FilterList    `json:"filter"`
+	}
+	ListInsideInstallPlanData {
+        Id int64 `json:"id"` 
+        ProjectId int64 `json:"projectId"` 
+        ClusterId int64 `json:"clusterId"`
+		FeatureType string `json:"featureType"`
+        Sid int64 `json:"sid"` 
+        ServerTitle string `json:"serverTitle"` 
+        InstallStatus string `json:"installStatus"`
+        DelFlag int64 `json:"delFlag"`
+		ProjectCn      string `json:"projectCn"`       // 项目cn
+		ClusterCn      string `json:"clusterCn"`       // 集群cn
+	}
+
+
+
+)
+
+@server(
+	group: insideInstallPlan
+	prefix: /intranet/insideInstallPlan
+)
+service intranet {
+
+	@doc(
+		summary:"内网装服计划新增"
+	)
+	@handler InsideInstallPlanAdd
+	post /add (AddInsideInstallPlanReq) returns()
+	@doc(
+		summary:"内网装服计划列表"
+	)
+	@handler InsideInstallPlanList
+	get /list (ListInsideInstallPlanReq) returns (ListInsideInstallPlanResp)
+	@doc(
+		summary:"内网装服计划更新"
+	)
+	@handler InsideInstallPlanUpdate
+	put /update (UpdateInsideInstallPlanReq) returns ()
+	@doc(
+		summary:"内网装服计划删除"
+	)
+	@handler InsideInstallPlanDelete
+	delete /delete/:InsideInstallPlanId (DeleteInsideInstallPlanReq) returns ()
+
+	@doc(
+		summary:"内网装服计划获取"
+	)
+	@handler InsideInstallPlanGet
+	get /get/:InsideInstallPlanId (GetInsideInstallPlanReq) returns (ListInsideInstallPlanData)
+
+}

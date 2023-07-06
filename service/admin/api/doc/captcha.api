@@ -1,0 +1,47 @@
+info(
+	desc: "滑动验证码"
+)
+
+type (
+	GetCaptchaResp {
+		OriginalImageBase64 string `json:"originalImageBase64"`
+		JigsawImageBase64   string `json:"jigsawImageBase64"`
+		SecretKey           string `json:"secretKey"`
+		ClientUid           string `json:"clientUid"`
+	}
+
+	CheckCaptchaReq {
+		CaptchaType string `json:"captchaType"`
+		ClientUid   string `json:"clientUid"`
+		PointJson   string `json:"pointJson"`
+	}
+
+	GetWordCaptchaResp {
+		OriginalImageBase64 string   `json:"originalImageBase64"`
+		WordList            []string `json:"wordList"`
+		SecretKey           string   `json:"secretKey"`
+		ClientUid           string   `json:"clientUid"`
+	}
+)
+
+@server(
+	group: captcha
+	prefix: /admin/captcha
+)
+service admin {
+	@doc(
+		summary:"获取图形验证码"
+	)
+	@handler GetCaptcha
+	post /getCaptcha () returns (GetCaptchaResp)
+	@doc(
+		summary:"获取文字验证码"
+	)
+	@handler GetWordCaptcha
+	post /getWordCaptcha () returns (GetWordCaptchaResp)
+	@doc(
+		summary:"校验验证码"
+	)
+	@handler CheckCaptcha
+	post /checkCaptcha (CheckCaptchaReq) returns ()
+}

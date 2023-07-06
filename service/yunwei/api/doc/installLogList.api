@@ -1,0 +1,35 @@
+syntax = "v1"
+
+info(
+    title: "游戏服信息"
+    desc: "游戏服信息"
+)
+
+
+type (
+    ListInstallLogListReq {
+        GameName string `form:"gameName"`
+    }
+    ListInstallLogListResp {
+        Rows   []*ListInstallLogListData `json:"rows"`
+    }
+    ListInstallLogListData {
+        Name string `json:"name"`
+    }
+
+)
+
+
+@server(
+    group: installLogList
+    prefix: /taskMng/installLogList
+)
+service yunwei {
+
+    @doc(
+        summary:"装服日志列表"
+    )
+    @handler GetInstallLogList
+    get /getInstallLogList (ListInstallLogListReq) returns (ListInstallLogListResp)
+
+}

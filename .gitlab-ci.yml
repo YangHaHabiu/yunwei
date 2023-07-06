@@ -1,0 +1,105 @@
+image: 10.10.88.229:8077/library/golang_base:v2
+variables:
+  #重点如下
+  #DOCKER_HOST: tcp://10.10.88.132:2375
+  #DOCKER_DRIVER: overlay2
+  #DOCKER_TLS_CERTDIR: ""
+  #ZERO_VERSION: v3
+  DOCKER_AUTH_CONFIG: '{"auths": {"10.10.88.229:8077": {"auth": "ozc4pIl1QySaU0Mo63aJiMiXm9fQqQta"}}}'
+
+stages:
+  - build_test
+  - build_stable
+
+deploy_stable:
+  stage: build_stable
+  #cache:
+  #  untracked: true
+  #  paths:
+  #    - /go/pkg
+  #    - go.mod
+  #    - go.sum
+
+  tags:
+    - build
+  script:
+    - echo $PWD
+    - go mod download
+    - mkdir -p {ywadminv3/admin/{api,rpc},ywadminv3/identity/rpc,ywadminv3/yunwei/{api,rpc},ywadminv3/ws/api}
+    - go build -ldflags="-s -w" -o ywadminv3/admin/api/admin-api service/admin/api/admin.go
+    - go build -ldflags="-s -w" -o ywadminv3/admin/rpc/admin-rpc service/admin/rpc/admin.go
+    - go build -ldflags="-s -w" -o ywadminv3/identity/rpc/identity-rpc service/identity/rpc/identity.go
+    - go build -ldflags="-s -w" -o ywadminv3/yunwei/api/yunwei-api service/yunwei/api/yunwei.go
+    - go build -ldflags="-s -w" -o ywadminv3/yunwei/rpc/yunwei-rpc service/yunwei/rpc/yunwei.go
+    - go build -ldflags="-s -w" -o ywadminv3/ws/api/ws-api service/ws/api/ws.go
+    - go build -ldflags="-s -w" -o ywadminv3/qqGroupv3/api/qqGroupv3-api service/qqGroupv3/api/qqgroupv3.go
+    - go build -ldflags="-s -w" -o ywadminv3/monitor/api/monitor-api service/monitor/api/monitor.go
+    - go build -ldflags="-s -w" -o ywadminv3/monitor/rpc/monitor-rpc service/monitor/rpc/monitor.go
+    - go build -ldflags="-s -w" -o ywadminv3/sendMsg/api/sendMsg-api service/sendMsg/api/sendmsg.go
+    - cp -r service/admin/api/etc ywadminv3/admin/api/
+    - cp -r service/admin/rpc/etc ywadminv3/admin/rpc/
+    - cp -r service/identity/rpc/etc ywadminv3/identity/rpc/
+    - cp -r service/yunwei/api/etc ywadminv3/yunwei/api/
+    - cp -r service/yunwei/rpc/etc ywadminv3/yunwei/rpc/
+    - cp -r service/ws/api/etc ywadminv3/ws/api/
+    - cp -r service/qqGroupv3/api/etc ywadminv3/qqGroupv3/api/
+    - cp -r service/monitor/api/etc ywadminv3/monitor/api/
+    - cp -r service/monitor/rpc/etc ywadminv3/monitor/rpc/
+    - cp -r service/sendMsg/api/etc ywadminv3/sendMsg/api/
+    - cp -r run.sh exclude.list ywadminv3/
+    - echo "$RSA_KEY" > ./id_rsa
+    - chmod 600 ./id_rsa
+    - rsync -avzP --delete -e "ssh -o StrictHostKeyChecking=no -p 22 -i ./id_rsa" {service/admin/api/admin.json,service/yunwei/api/yunwei.json,service/monitor/api/monitor.json,service/sendMsg/api/sendMsg.json} root@10.10.88.215:/data/compose/data/swagger/
+    - rsync -avzP --delete -e "ssh -o StrictHostKeyChecking=no -p 22 -i ./id_rsa" ywadminv3 root@10.10.88.229:/data/tmp_data/
+    - ssh -o StrictHostKeyChecking=no -p 22 -i ./id_rsa root@10.10.88.229 "cd /data/gonivinck/service && sh run.sh update"
+    #tf
+    - rsync -avzP --delete -e "ssh -o StrictHostKeyChecking=no -p 12580 -i ./id_rsa" ywadminv3 43.139.13.148:/data/tmp_data/
+    - ssh -o StrictHostKeyChecking=no -p 12580 -i ./id_rsa root@43.139.13.148 "cd /data/ywadminv3 && sh run.sh update"
+    #mzf
+    - rsync -avzP --delete -e "ssh -o StrictHostKeyChecking=no -p 22 -i ./id_rsa" ywadminv3 43.138.128.218:/data/tmp_data/
+    - ssh -o StrictHostKeyChecking=no -p 22 -i ./id_rsa root@43.138.128.218 "cd /data/ywadminv3 && sh run.sh update"
+    #hs
+    - rsync -avzP --delete -e "ssh -o StrictHostKeyChecking=no -p 12580 -i ./id_rsa" ywadminv3 106.54.168.56:/data/tmp_data/
+    - ssh -o StrictHostKeyChecking=no -p 12580 -i ./id_rsa root@106.54.168.56 "cd /data/ywadminv3 && sh run.sh update"
+  rules:
+    - if: "$CI_COMMIT_TAG && $CI_COMMIT_TAG !~ /^t/"
+
+deploy_test:
+  stage: build_test
+  tags:
+    - build
+  script:
+    - echo $PWD
+    - go mod download
+    - mkdir -p {ywadminv3/admin/{api,rpc},ywadminv3/identity/rpc,ywadminv3/yunwei/{api,rpc},ywadminv3/ws/api}
+    - go build -ldflags="-s -w" -o ywadminv3/admin/api/admin-api service/admin/api/admin.go
+    - go build -ldflags="-s -w" -o ywadminv3/admin/rpc/admin-rpc service/admin/rpc/admin.go
+    - go build -ldflags="-s -w" -o ywadminv3/identity/rpc/identity-rpc service/identity/rpc/identity.go
+    - go build -ldflags="-s -w" -o ywadminv3/yunwei/api/yunwei-api service/yunwei/api/yunwei.go
+    - go build -ldflags="-s -w" -o ywadminv3/yunwei/rpc/yunwei-rpc service/yunwei/rpc/yunwei.go
+    - go build -ldflags="-s -w" -o ywadminv3/ws/api/ws-api service/ws/api/ws.go
+    - go build -ldflags="-s -w" -o ywadminv3/inws/api/inws-api service/inws/api/inws.go
+    - go build -ldflags="-s -w" -o ywadminv3/intranet/api/intranet-api service/intranet/api/intranet.go
+    - go build -ldflags="-s -w" -o ywadminv3/intranet/rpc/intranet-rpc service/intranet/rpc/intranet.go
+    - go build -ldflags="-s -w" -o ywadminv3/monitor/api/monitor-api service/monitor/api/monitor.go
+    - go build -ldflags="-s -w" -o ywadminv3/monitor/rpc/monitor-rpc service/monitor/rpc/monitor.go
+    - go build -ldflags="-s -w" -o ywadminv3/sendMsg/api/sendMsg-api service/sendMsg/api/sendmsg.go
+    - cp -r service/admin/api/etc ywadminv3/admin/api/
+    - cp -r service/admin/rpc/etc ywadminv3/admin/rpc/
+    - cp -r service/identity/rpc/etc ywadminv3/identity/rpc/
+    - cp -r service/yunwei/api/etc ywadminv3/yunwei/api/
+    - cp -r service/yunwei/rpc/etc ywadminv3/yunwei/rpc/
+    - cp -r service/ws/api/etc ywadminv3/ws/api/
+    - cp -r service/inws/api/etc ywadminv3/inws/api/
+    - cp -r service/intranet/api/etc ywadminv3/intranet/api/
+    - cp -r service/intranet/rpc/etc ywadminv3/intranet/rpc/
+    - cp -r service/monitor/api/etc ywadminv3/monitor/api/
+    - cp -r service/monitor/rpc/etc ywadminv3/monitor/rpc/
+    - cp -r service/sendMsg/api/etc ywadminv3/sendMsg/api/
+    - echo "$RSA_KEY" > ./id_rsa
+    - chmod 600 ./id_rsa
+    - rsync -avzP --delete -e "ssh -o StrictHostKeyChecking=no -p 22 -i ./id_rsa" {service/admin/api/admin.json,service/yunwei/api/yunwei.json,service/intranet/api/intranet.json,service/monitor/api/monitor.json} root@10.10.88.215:/data/compose/data/swagger/
+    - rsync -avzP --delete -e "ssh -o StrictHostKeyChecking=no -p 22 -i ./id_rsa" ywadminv3 root@10.10.88.229:/data/tmp_data/
+    - ssh -o StrictHostKeyChecking=no -p 22 -i ./id_rsa root@10.10.88.229 "cd /data/gonivinck/service && sh run.sh update"
+  rules:
+    - if: "$CI_COMMIT_TAG && $CI_COMMIT_TAG =~ /^t/"

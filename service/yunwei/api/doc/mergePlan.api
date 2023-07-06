@@ -1,0 +1,150 @@
+syntax = "v1"
+
+info(
+	title: "合服计划信息"
+	desc: "合服计划信息"
+	author: "acool"
+)
+
+type (
+
+	AddMergePlanReq {
+		MergePlanData	[]*MergePlanCommon `json:"mergePlanData"`
+	}
+
+	UpdateMergePlanReq {
+		*MergePlanCommon
+	}
+
+	DeleteMergePlanReq {
+		Id int64 `path:"id"`
+
+	}
+
+    GetMergePlanReq {
+		Id int64 `path:"id"`
+
+	}
+
+	MergeCheckServerRangeReq{
+		*MergePlanCommon
+	}
+	MergeCheckServerRangeResp{
+		CombineRange string `json:"combineRange"`
+	}
+
+	MergePlanCommon {
+
+        Id int64 `json:"id,optional"`
+        ProjectId int64 `json:"projectId,optional"`
+        PlatformId int64 `json:"platformId,optional"`
+        ServerId int64 `json:"serverId,optional"`
+		InputRange string `json:"inputRange,optional"`
+        CombineRange string `json:"combineRange,optional"`
+        StartTime string `json:"startTime,optional"`
+        EndTime string `json:"endTime,optional"`
+        MergeStatus int64 `json:"mergeStatus,optional"`
+        MergeOperator string `json:"mergeOperator,optional"`
+		AllRange []int64 `json:"allRange,optional"`
+
+	}
+
+	ListMergePlanReq {
+		Current  int64  `json:"current,default=1"`
+		PageSize int64  `json:"pageSize,default=15"`
+		ProjectIds string `json:"projectIds,optional"`
+		DateRange string `json:"dateRange,optional"`
+		PlatformIds string `json:"platformIds,optional"`
+		MergeStatus string `json:"mergeStatus,optional"`
+		SortFields []*SortFieldData `json:"sortFields,optional"`
+		PlatformType string `json:"platformType,optional"`
+	}
+	ListMergePlanResp {
+		Rows   []*ListMergePlanData `json:"rows"`
+		Total  int64            `json:"total"`
+		Filter []*FilterList    `json:"filter"`
+	}
+	ListMergePlanData {
+        
+        Id int64 `json:"id"`
+        ProjectId int64 `json:"projectId"`
+        PlatformId int64 `json:"platformId"`
+        ServerId int64 `json:"serverId"`
+		InputRange string `json:"inputRange"`
+		CombineRange string `json:"combineRange"`
+        StartTime string `json:"startTime"`
+        EndTime string `json:"endTime"`
+        MergeStatus int64 `json:"mergeStatus"`
+        MergeOperator string `json:"mergeOperator"`
+		PlatformCn string `json:"platformCn"`
+		PlatformEn string `json:"platformEn"`
+		ProjectCn string `json:"projectCn"`
+	}
+	//常规的前端树形结构
+	VueTree {
+		Value       string     `json:"value"`
+		Label       string     `json:"label"`
+		Total       string     `json:"total,omitempty"`
+		Level       string     `json:"level,omitempty"`
+		Platform    string     `json:"platform,omitempty"`
+		Ips    		string     `json:"ips,omitempty"`
+		NewPlatform string     `json:"new_platform,omitempty"`
+		Children    []*VueTree `json:"children,omitempty"`
+	}
+	GetMergeListTreeByPlatIdAndProIdReq{
+		ProjectId int64 `form:"projectId"`
+		PlatformId int64 `form:"platformId"`
+	}
+	GetMergeListTreeByPlatIdAndProIdResp{
+		MeRangeTreeData []*VueTree `json:"meRangeTreeData"`
+	}
+
+
+)
+
+@server(
+	group: mergePlan
+	prefix: /yunying/mergePlan
+)
+service yunwei {
+
+	@doc(
+		summary:"合服计划新增"
+	)
+	@handler MergePlanAdd
+	post /add (AddMergePlanReq) returns()
+	@doc(
+		summary:"合服计划列表"
+	)
+	@handler MergePlanList
+	post /list (ListMergePlanReq) returns (ListMergePlanResp)
+	@doc(
+		summary:"合服计划更新"
+	)
+	@handler MergePlanUpdate
+	put /update (UpdateMergePlanReq) returns ()
+	@doc(
+		summary:"合服计划删除"
+	)
+	@handler MergePlanDelete
+	delete /delete/:id (DeleteMergePlanReq) returns ()
+
+	@doc(
+		summary:"合服计划获取"
+	)
+	@handler MergePlanGet
+	get /get/:id (GetMergePlanReq) returns (ListMergePlanData)
+
+	@doc(
+		summary:"获取合服范围"
+	)
+	@handler MergePlanRangeList
+	get /mergePlanRangeList (GetMergeListTreeByPlatIdAndProIdReq) returns (GetMergeListTreeByPlatIdAndProIdResp)
+
+	@doc(
+		summary:"验证合服范围"
+	)
+	@handler MergeCheckServerRange
+	post /mergeCheckServerRange (MergeCheckServerRangeReq) returns (MergeCheckServerRangeResp)
+
+}

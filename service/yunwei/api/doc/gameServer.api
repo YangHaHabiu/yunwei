@@ -1,0 +1,66 @@
+syntax = "v1"
+
+info(
+    title: "游戏服信息"
+    desc: "游戏服信息"
+)
+
+
+type (
+    ListGameServerReq {
+        Current  int64  `form:"current,default=1"`
+        PageSize int64  `form:"pageSize,default=15"`
+        ServerStatus string `form:"serverStatus,optional"`
+        ProjectIds string `form:"projectIds,optional"`
+        NewPlatformInfo string `form:"newPlatformInfo,optional"`
+        Ip string `form:"ip,optional"`
+        GameServerTitle string `form:"gameServerTitle,optional"`
+        ServerStatusX string `form:"serverStatusX,optional"`
+        OpenTime string `form:"openTime,optional"`
+        PlatformType string `form:"platformType,optional"`
+    }
+    ListGameServerResp {
+        Rows   []*ListGameServerData `json:"rows"`
+        Total  int64            `json:"total"`
+        Filter []*FilterList    `json:"filter"`
+
+    }
+    ListGameServerData {
+        Id              string `json:"id"`
+        ProjectId       string `json:"projectId"`
+        PlatformId      string `json:"platformId"`
+        ServerId        string `json:"serverId"`
+        ServerAlias     string `json:"serverAlias"`
+        OpenTime        string `json:"openTime"`
+        AssetId         string `json:"assetId"`
+        ServerStatus    string `json:"serverStatus"`
+        CombineRemark   string `json:"combineRemark"`
+        OperateInfo     string `json:"operateInfo"`
+        DelFlag         string `json:"delFlag"`
+        ProjectCn       string `json:"projectCn"`
+        OuterIp         string `json:"outerIp"`
+        InnerIp         string `json:"innerIp"`
+        PlatformCn      string `json:"platformCn"`
+        PlatformEn      string `json:"platformEn"`
+        Ip              string `json:"ip"`
+        NewPlatformInfo string `json:"newPlatformInfo"`
+        GameServerTitle string `json:"gameServerTitle"`
+
+    }
+
+)
+
+
+@server(
+    group: gameServer
+    prefix: /yunwei/gameServer
+)
+service yunwei {
+
+    @doc(
+        summary:"游戏服列表"
+    )
+    @handler GameServerList
+    get /list (ListGameServerReq) returns (ListGameServerResp)
+
+}

@@ -1,0 +1,136 @@
+syntax = "v1"
+
+info(
+	title: "内网任务信息"
+	desc: "内网任务信息"
+	author: "acool"
+)
+
+type (
+
+	AddInsideTasksReq {
+		*InsideTasksCommon
+	}
+
+	UpdateInsideTasksReq {
+		*InsideTasksCommon
+	}
+
+	DeleteInsideTasksReq {
+		InsideTasksId int64 `path:"InsideTasksId"`
+	}
+
+    GetInsideTasksReq {
+		InsideTasksId int64 `path:"InsideTasksId"`
+	}
+
+	InsideTasksCommon {
+        Id int64 `json:"id,optional"` 
+        ProjectId int64 `json:"projectId,optional"` 
+        ClusterId int64 `json:"clusterId,optional"`
+		ServerId int64 `json:"serverId,optional"`
+		VersionId int64 `json:"versionId,optional"`
+		OperationId int64 `json:"operationId,optional"`
+		TasksType string `json:"tasksType,optional"`
+		Version string `json:"version,optional"`
+		Cmd string `json:"cmd,optional"`
+        StartTime int64 `json:"startTime,optional"` 
+        EndTime int64 `json:"endTime,optional"`
+        Status string `json:"status,optional"`
+        CreateBy int64 `json:"createBy,optional"` 
+        DelFlag int64 `json:"delFlag,optional"` 
+	}
+
+	ListInsideTasksReq {
+		Current  int64  `form:"current,default=1"`
+		PageSize int64  `form:"pageSize,default=15"`
+		ProjectId int64 `form:"projectId,optional"`
+		ClusterId int64 `form:"clusterId,optional"`
+		ServerId int64 `form:"serverId,optional"`
+		VersionId int64 `form:"versionId,optional"`
+		TasksType string `form:"tasksType,optional"`
+		ProjectIds string `form:"projectIds,optional"`
+		RecentSubmit string `form:"recentSubmit,optional"`
+		Status string `form:"status,optional"`
+		StartTime string `form:"startTime,optional"`
+	}
+	ListInsideTasksResp {
+		Rows   []*ListInsideTasksData `json:"rows"`
+		Total  int64            `json:"total"`
+		Filter []*FilterList    `json:"filter"`
+	}
+	ListInsideTasksData {
+        Id int64 `json:"id"` 
+        ProjectId int64 `json:"projectId"` 
+        ClusterId int64 `json:"clusterId"`
+		ServerId int64 `json:"serverId"`
+		VersionId int64 `json:"versionId"`
+		OperationId int64 `json:"operationId,optional"`
+		TasksType string `json:"tasksType"`
+        Cmd string `json:"cmd"` 
+        StartTime int64 `json:"startTime"` 
+        ExcuteTime int64 `json:"excuteTime"` 
+        EndTime int64 `json:"endTime"` 
+        Status string `json:"status"`
+        CreateBy int64 `json:"createBy"` 
+        DelFlag int64 `json:"delFlag"`
+		Version string `json:"version"`
+		ProjectCn      string `json:"projectCn"`       // 项目cn
+		ClusterCn      string `json:"clusterCn"`       // 集群cn
+		ServerTitle    string `json:"serverTitle"`     // 服务器名
+		ServerPath     string `json:"serverPath"`      // 服务器地址信息
+		ServerDescDb   string `json:"serverDescDb"`   // 服务器目标库
+		VersionName    string `json:"versionName"`     // 版本名称
+		VersionData    string `json:"versionData"`     // 版本数据
+		VersionConf    string `json:"versionConf"`     // 版本配置
+		VersionType    string `json:"versionType"`     // 版本类型 1：svn 2：git
+		OperCn         string `json:"operCn"`          // 操作内容
+		OperEn         string `json:"operEn"`          // 操作内容
+		OperType       string `json:"operType"`        // 操作类型 1：server 2：client
+		NickName       string `json:"nickName"`
+	}
+
+	OperationInsideTasksReq{
+		TasksId int64  `form:"tasksId"`
+		OperationType string `form:"operationType,options=getlog|stop"`
+	}
+	OperationInsideTasksResp{
+		Row string  `json:"row"`
+	}
+
+)
+
+@server(
+	group: insideTasks
+	prefix: /intranet/insideTasks
+)
+service intranet {
+
+	@doc(
+		summary:"内网任务新增"
+	)
+	@handler InsideTasksAdd
+	post /add (AddInsideTasksReq) returns()
+	@doc(
+		summary:"内网任务列表"
+	)
+	@handler InsideTasksList
+	get /list (ListInsideTasksReq) returns (ListInsideTasksResp)
+	@doc(
+		summary:"内网任务删除"
+	)
+	@handler InsideTasksDelete
+	delete /delete/:InsideTasksId (DeleteInsideTasksReq) returns ()
+
+	@doc(
+		summary:"内网任务获取"
+	)
+	@handler InsideTasksGet
+	get /get/:InsideTasksId (GetInsideTasksReq) returns (ListInsideTasksData)
+
+	@doc(
+		summary:"内网任务操作"
+	)
+	@handler InsideTasksOperation
+	get /operationInsideTasks (OperationInsideTasksReq) returns (OperationInsideTasksResp)
+}

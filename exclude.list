@@ -1,0 +1,12 @@
+run.sh
+admin/api/etc
+admin/rpc/etc
+identity/api/etc
+identity/rpc/etc
+yunwei/api/etc
+yunwei/rpc/etc
+ws/api/etc
+qqGroupv3/api/etc
+monitor/api/etc
+monitor/rpc/etc
+sendMsg/api/etc

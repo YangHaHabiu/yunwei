@@ -1,0 +1,138 @@
+info(
+    desc: "角色信息"
+
+)
+
+type (
+
+    AddRoleReq  {
+        Name string `json:"name"`                                  // 角色名称
+        Remark string `json:"remark"`                              // 备注
+    }
+
+    ListRoleReq  {
+        Current int64 `form:"current,default=1"`
+        PageSize int64 `form:"pageSize,default=15"`
+        Name string `form:"name,optional "`
+    }
+    ListRoleData  {
+        Id int64 `json:"id"`                                // 编号
+        Name string `json:"name"`                           // 角色名称
+        Remark string `json:"remark"`                       // 备注
+        CreateBy string `json:"createBy"`                   // 创建人
+        CreateTime string `json:"createTime"`               // 创建时间
+        LastUpdateBy string `json:"lastUpdateBy"`           // 更新人
+        LastUpdateTime string `json:"lastUpdateTime"`       // 更新时间
+        Label string `json:"label"`                         // 编号
+        Value string `json:"value"`                         // 角色名称
+    }
+    ListRoleResp  {
+        Rows []*ListRoleData `json:"rows"`
+        Total int64 `json:"total"`
+    }
+    UpdateRoleReq  {
+        Id int64 `json:"id"`                               // 编号
+        Name string `json:"name"`                          // 角色名称
+        Remark string `json:"remark"`                      // 备注
+    }
+
+    DeleteRoleReq  {
+        RoleId int64 `path:"roleId"`
+    }
+
+
+    UpdateRoleMenuReq  {
+        RoleId int64 `json:"roleId"`
+        MenuIds []int64 `json:"menuIds"`
+    }
+
+
+    ListMenuData  {
+        Key string `json:"key"`                              // 菜单名称
+        Title string `json:"title"`                          // 菜单名称
+        ParentId int64 `json:"parentId"`                     // 父菜单ID，一级菜单为0
+        Id int64 `json:"id"`                                 // 父菜单ID，一级菜单为0
+        Label string `json:"label"`                          // 父菜单ID，一级菜单为0
+    }
+
+    RoleMenuReq  {
+        RoleId int64 `path:"roleId"`
+    }
+    RoleMenuResp  {
+        AllData []*ListMenuData `json:"allData"`
+        RoleData []int64 `json:"userData"`
+
+    }
+
+    GetRoleAssignmentUserReq{
+        RoleId int64 `path:"roleId"`
+    }
+
+    GetRoleAssignmentUserResp{
+        UserChecked []int64 `json:"userChecked"`
+        UserAllData []*ListUserData `json:"userAllData"`
+    }
+
+    RoleAssignmentUserReq{
+        RoleId int64 `json:"roleId"`
+        UserChecked string `json:"userChecked"`
+    }
+
+)
+
+@server(
+
+    group: role
+    prefix: /admin/role
+
+)
+service admin {
+    @doc(
+        summary:"角色新增"
+    )
+    @handler RoleAdd
+    post /add (AddRoleReq) returns ()
+    @doc(
+        summary:"角色列表"
+    )
+    @handler RoleList
+    get /list (ListRoleReq) returns (ListRoleResp)
+    @doc(
+        summary:"角色更新"
+    )
+    @handler RoleUpdate
+    put /update (UpdateRoleReq) returns ()
+    @doc(
+        summary:"角色删除"
+    )
+    @handler RoleDelete
+    delete /delete/:roleId (DeleteRoleReq) returns ()
+
+
+    @doc(
+        summary:"根据角色id查询菜单"
+    )
+    @handler QueryMenuByRoleId
+    get /queryMenuByRoleId/:roleId (RoleMenuReq) returns (RoleMenuResp)
+
+    @doc(
+        summary:"更新角色菜单"
+    )
+    @handler UpdateRoleMenu
+    put /updateRoleMenu (UpdateRoleMenuReq) returns ()
+
+    @doc (
+        summary :"获取角色分配用户"
+    )
+    @handler GetRoleAssignmentUser
+    get /getRoleAssignmentUser/:roleId(GetRoleAssignmentUserReq)  returns(GetRoleAssignmentUserResp)
+
+    @doc (
+        summary :"更新角色分配用户"
+    )
+    @handler RoleAssignmentUser
+    put /roleAssignmentUser(RoleAssignmentUserReq)  returns()
+
+
+
+}

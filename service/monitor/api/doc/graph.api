@@ -1,0 +1,33 @@
+syntax = "v1"
+
+info(
+    title: "monitor api"
+    desc: "monitor api"
+    author: "acool"
+)
+
+type(
+    ListGraphReq{
+        AssetId     int64  `form:"assetId"` //主机ID
+        Granularity string `form:"granularity,options=M|H"`                //粒度
+        StartTime   int64  `form:"startTime,optional"`                  //开始时间
+        EndTime     int64  `form:"endTime,optional"`                    //结束时间
+    }
+
+    ListGraphResp{
+        Rows map[string]interface{} `json:"rows"`
+    }
+
+)
+
+@server(
+    group: graph
+    prefix: /monitor/graph
+)
+service monitor {
+    @doc(
+        summary:"监控图形"
+    )
+    @handler GraphList
+    get /list (ListGraphReq) returns (ListGraphResp)
+}

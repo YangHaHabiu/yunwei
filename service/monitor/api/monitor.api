@@ -1,0 +1,12 @@
+syntax = "v1"
+
+info(
+	title: "监控模块"
+	desc: "监控模块"
+	author: "acool"
+)
+
+import (
+	"doc/report.api"
+	"doc/graph.api"
+)

@@ -1,0 +1,121 @@
+syntax = "v1"
+
+info(
+	title: "内网版本信息"
+	desc: "内网版本信息"
+	author: "acool"
+)
+
+type (
+
+	AddInsideVersionReq {
+		*InsideVersionCommon
+	}
+
+	UpdateInsideVersionReq {
+		*InsideVersionCommon
+	}
+
+	DeleteInsideVersionReq {
+		InsideVersionId int64 `path:"InsideVersionId"`
+	}
+
+    GetInsideVersionReq {
+		InsideVersionId int64 `path:"InsideVersionId"`
+	}
+
+	InsideVersionCommon {
+        Id int64 `json:"id,optional"` 
+        ProjectId int64 `json:"projectId,optional"` 
+        ClusterId int64 `json:"clusterId,optional"`
+		BuildType string `json:"buildType,optional"`
+        VersionName string `json:"versionName,optional"` 
+        VersionData string `json:"versionData,optional"` 
+        VersionConf string `json:"versionConf,optional"` 
+        VersionType string `json:"versionType,optional"`
+        SourceDb string `json:"sourceDb,optional"` 
+        Sort int64 `json:"sort,optional"` 
+        DelFlag int64 `json:"delFlag,optional"` 
+	}
+
+	ListInsideVersionReq {
+		Current  int64  `form:"current,default=1"`
+		PageSize int64  `form:"pageSize,default=15"`
+		ProjectId int64 `form:"projectId,optional"`
+		ClusterId int64 `form:"clusterId,optional"`
+		BuildType string `form:"buildType,optional"`
+	}
+	ListInsideVersionResp {
+		Rows   []*ListInsideVersionData `json:"rows"`
+		Total  int64            `json:"total"`
+		Filter []*FilterList    `json:"filter"`
+	}
+	ListInsideVersionData {
+        Id int64 `json:"id"` 
+        ProjectId int64 `json:"projectId"` 
+        ClusterId int64 `json:"clusterId"` 
+        VersionName string `json:"versionName"` 
+        VersionData string `json:"versionData"` 
+        VersionConf string `json:"versionConf"` 
+        VersionType string `json:"versionType"`
+		BuildType string `json:"buildType"`
+		SourceDb string `json:"sourceDb"`
+        Sort int64 `json:"sort"` 
+        DelFlag int64 `json:"delFlag"`
+		ProjectCn      string `json:"projectCn"`       // 项目cn
+		ClusterCn      string `json:"clusterCn"`       // 集群cn
+	}
+	GetVersionInfoReq{
+		VersionId int64 `form:"versionId"`
+	}
+	GetVersionInfoResp{
+		Rows []*GetVersionInfoData `json:"rows"`
+	}
+	GetVersionInfoData{
+		Message string `json:"message"`
+		Time string `json:"time"`
+		User string `json:"user"`
+		Ver string `json:"ver"`
+	}
+
+)
+
+@server(
+	group: insideVersion
+	prefix: /intranet/insideVersion
+)
+service intranet {
+
+	@doc(
+		summary:"内网版本新增"
+	)
+	@handler InsideVersionAdd
+	post /add (AddInsideVersionReq) returns()
+	@doc(
+		summary:"内网版本列表"
+	)
+	@handler InsideVersionList
+	get /list (ListInsideVersionReq) returns (ListInsideVersionResp)
+	@doc(
+		summary:"内网版本更新"
+	)
+	@handler InsideVersionUpdate
+	put /update (UpdateInsideVersionReq) returns ()
+	@doc(
+		summary:"内网版本删除"
+	)
+	@handler InsideVersionDelete
+	delete /delete/:InsideVersionId (DeleteInsideVersionReq) returns ()
+
+	@doc(
+		summary:"内网版本获取"
+	)
+	@handler InsideVersionGet
+	get /get/:InsideVersionId (GetInsideVersionReq) returns (ListInsideVersionData)
+
+	@doc(
+		summary:"内网版本历史获取"
+	)
+	@handler GetVersionInfo
+	get /getVersionInfo (GetVersionInfoReq) returns (GetVersionInfoResp)
+}

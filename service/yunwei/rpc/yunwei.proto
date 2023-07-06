@@ -1,0 +1,1676 @@
+syntax = "proto3";
+
+package yunweiclient;
+
+option go_package = "./yunweiclient";
+//Asset Start
+message AssetAddReq {
+  repeated AssetDatas assetdata = 1;
+}
+
+message AssetAddResp {
+  string pong = 1;
+}
+
+message AssetUpdateReq {
+  AssetDatas asset = 1;
+}
+
+message AssetUpdateResp {
+  string pong = 1;
+}
+
+message AssetDeleteReq {
+  int64 assetId = 1;
+}
+
+message AssetDeleteResp {
+  string pong = 1;
+}
+
+message AssetRecycleDeleteReq {
+  int64 recycleType = 1;
+  int64 assetId = 2;
+}
+
+message AssetRecycleDeleteResp {
+  string pong = 1;
+}
+
+
+
+message AssetListReq {
+  int64 current = 1;
+  int64 pageSize = 2;
+  int64 assetId =3;
+  string ips =4;
+  string projectIds=6;
+  int64 recycleType=7;
+  string ownershipCompanyIds=8;
+  string cleanType=10;
+  string initType=11;
+  string provider=12;
+  string label=13;
+  string hostRoleCn=14;
+
+}
+
+message AssetListResp {
+  int64 total = 1;
+  repeated  ViewAssets list = 2;
+}
+
+message ViewAssets {
+  int64 viewAssetId = 1;
+  string viewOuterIp = 2;
+  string viewInnerIp = 3;
+  string viewHostRoleId = 4;
+  string viewProviderId = 5;
+  string viewProviderNameEn = 6;
+  string viewProviderNameCn = 7;
+  string viewHardwareInfo = 8;
+  string viewSshPort = 9;
+  string viewInitType = 10;
+  string viewCleanType = 11;
+  string viewInitLoginInfo = 12;
+  string viewChangeStatusRemark = 13;
+  string viewRemark = 14;
+  string viewAssetCreateTime = 15;
+  string viewAssetUpdateTime = 16;
+  int64 viewAssetDelFlag = 17;
+  string viewPrId = 18;
+  int64 viewAssetOwnershipCompanyId = 19;
+  string viewAssetOwnershipCompanyCn = 20;
+  string viewAssetOwnershipCompanyEn = 21;
+  int64 viewAssetOwnershipCompanyDeleted = 22;
+  int64 viewServerAffiliationDeleted = 23;
+  int64 viewUserCompanyId = 24;
+  string viewUserCompanyCn = 25;
+  string viewUserCompanyEn = 26;
+  int64 viewUserCompanyDeleted = 27;
+  int64 viewUserProjectId = 28;
+  string viewUserProjectCn = 29;
+  string viewUserProjectEn = 30;
+  int64 viewUserProjectDeleted = 31;
+  string viewHostRoleCn = 32;
+  string viewRecycleType =33;
+  string labelNames = 34;
+  string viewAccelerateDomain=35;
+}
+
+
+
+message  AssetDatas {
+  int64     assetId=1;
+  string    outerIp=2;
+  string    innerIp=3;
+  string    hostRoleId=4;
+  string     providerId=5;
+  string    hardwareInfo=6;
+  string     sshPort=7;
+  string     initType=8;
+  string     cleanType=9;
+  string    initLoginInfo=10;
+  string    changeStatusRemark=11;
+  string    remark=12;
+  int64     companyId =13;
+  int64     projectId=14;
+  string    recycleType=15;
+  int64   userCompanyId=16;
+  string accelerateDomain=17;
+  int64 clusterId =18;
+}
+
+message GetWebSshReq {
+  string projectIds=1;
+}
+message GetWebSshResp{
+  repeated string data =1;
+}
+
+message BatchDistributeReq{
+  string assetIds=1;
+  string model=2;
+  string value=3;
+}
+message BatchDistributeResp{
+  string pong =1;
+}
+
+
+//Asset End
+
+//FeatureServer Start
+message AddFeatureServerReq {
+    FeatureServerDatas one =1;
+}
+
+message FeatureServerCommonResp{
+    string pong=1;
+}
+
+message UpdateFeatureServerReq {
+    FeatureServerDatas one=1;
+}
+
+message DeleteFeatureServerReq{
+  int64 featureServerId=1;
+}
+
+message FeatureServerDatas{
+    int64  featureServerId =1;
+    int64 projectId=2;
+    string featureServerInfo =3;
+    string remark=4;
+}
+
+message GetFeatureServerReq{
+  int64 FeatureServerId=1;
+}
+
+message ListFeatureServerReq{
+  int64 current=1;
+  int64 pageSize=2;
+  int64 featureServerId=3;
+  string ip =4;
+  string domain =5;
+  string feature =6;
+  string projectIds=7;
+  string remark=8;
+}
+message ListFeatureServerResp{
+  repeated ListFeatureServerData rows=1;
+  int64 total=2;
+}
+message ListFeatureServerData{
+  int64 featureServerId =1;
+  int64 projectId=2;
+  string featureServerInfo =3;
+  string remark=4;
+  string projectCn=5;
+  string projectEn=6;
+  int64 delFlag=7;
+}
+//FeatureServer End
+
+//Platform Start
+message AddPlatformReq {
+  PlatformCommon one =1;
+}
+
+message PlatformCommonResp{
+  string pong=1;
+}
+
+message UpdatePlatformReq {
+  PlatformCommon one=1;
+}
+
+message DeletePlatformReq{
+  int64 platformId=1;
+}
+
+message DetailPlatformReq{
+  int64 platformId=1;
+}
+
+message GetPlatformReq{
+  int64 platformId=1;
+}
+
+message DetailPlatformResp{
+  int64 viewPlatformAutoid=1;
+  int64 viewPlatformId=2;
+  string viewPlatformEn=3;
+  string viewPlatformCn=4;
+  int64 viewProjectId=5;
+  string viewProjectCn=6;
+  string viewProjectEn=7;
+  string viewPlatformRemark=8;
+  string viewLabels=9;
+  string viewFeatureInfo=10;
+
+}
+
+message PlatformCommon{
+
+  int64 id = 1;
+  int64 projectId = 2;
+  int64 platformId = 3;
+  string platformEn = 4;
+  string platformCn = 5;
+  string domainFormat = 6;
+  string remark = 7;
+  int64 delFlag = 8;
+  string platformFormat=9;
+
+}
+
+message ListPlatformReq{
+  int64 current=1;
+  int64 pageSize=2;
+  string projectIds =3;
+  string platformInfo=5;
+  int64 Id=4;
+  string types =6;
+  int64 del_flag = 7;
+  string label=8;
+  string platformType=9;
+}
+message ListPlatformResp{
+  repeated ListPlatformData rows=1;
+  int64 total=2;
+}
+message ListPlatformData{
+
+  int64 id = 1;
+  int64 projectId = 2;
+  int64 platformId = 3;
+  string platformEn = 4;
+  string platformCn = 5;
+  string domainFormat = 6;
+  string remark = 7;
+  int64 delFlag = 8;
+  string labelNames = 9;
+  string projectCn=10;
+  string platformFormat=11;
+
+}
+
+message ListClusterReq {
+  int64 current=1;
+  int64 pageSize=2;
+  int64 labelId = 3;
+  int64 projectId = 4;
+  string projectIds = 5;
+  string ClusterCn=6;
+}
+message ListClusterResp{
+  repeated ListClusterData rows=1;
+  int64 total=2;
+  repeated ListAssetInfoData assetRows=3;
+  repeated ListPlatformInfoData platformRows=4;
+}
+message ListClusterData{
+  int64 viewLabelId = 1;
+  string viewLabelName = 2;
+  string viewLabelValues = 3;
+  string viewLabelRemark = 4;
+  int64 viewProjectId = 5;
+  string viewProjectCn = 6;
+  string viewProjectEn = 7;
+  string viewClusterFeatureInfo = 8;
+  int64 viewFeatureServerDelFlag=9;
+}
+
+message ListAssetInfoData{
+
+  int64 labelId = 1;
+  string LabelName = 2;
+  string LabelValues = 3;
+  string LabelRemark = 4;
+  int64 ProjectId = 5;
+  string ProjectCn = 6;
+  string ProjectEn = 7;
+  string viewDataUrl=8;
+  string viewJsonId =9;
+  string assetIp=10;
+
+
+}
+message ListPlatformInfoData{
+
+  int64 labelId = 1;
+  string LabelName = 2;
+  string LabelValues = 3;
+  string LabelRemark = 4;
+  int64 ProjectId = 5;
+  string ProjectCn = 6;
+  string ProjectEn = 7;
+  string viewDataUrl=8;
+  string viewJsonId =9;
+  string platformInfo=10;
+
+}
+
+
+
+message ListLabelPlatformData{
+  int64 id =1;
+  int64 platformId=2;
+  string platformEn=3;
+  string platformCn=4;
+  int64 labelId=5;
+  string labelType=6;
+  string labelName=7;
+  string labelValues=8;
+  string labelRemark=9;
+  string createBy=10;
+  string createTime=11;
+  int64 delFlag=12;
+  int64 projectId=13;
+  string resourceEn=14;
+  int64 bindingId=15;
+  string featureServerInfo=16;
+  string viewResourceType=17;
+}
+
+
+message GetClusterByPlatformReq{
+  int64 project_id=2;
+  string platform_ens=1;
+}
+
+message GetClusterByPlatformResp{
+  repeated GetClusterByPlatformData data=1;
+}
+message GetClusterByPlatformData{
+  int64 project_id=1;
+  string project_en=5;
+  string platform_en=2;
+  string outer_ip=3;
+  string cluster_label_id=4;
+}
+
+
+
+//Platform End
+
+//KeyManage Start
+message AddKeyManageReq {
+  KeyManageCommon one =1;
+}
+
+message KeyManageCommonResp{
+  string pong=1;
+}
+
+message UpdateKeyManageReq {
+  KeyManageCommon one=1;
+}
+
+message DeleteKeyManageReq{
+  int64 KeyId=1;
+}
+
+message GetKeyManageReq{
+  int64 KeyId=1;
+}
+
+message KeyManageCommon{
+
+  int64 keyId = 1;
+  string keyName = 2;
+  string keyPath = 3;
+  string keyPass = 4;
+  string keyType = 5;
+  string publicKey = 6;
+  string remark = 7;
+}
+
+message ListKeyManageReq{
+  int64 current=1;
+  int64 pageSize=2;
+}
+message ListKeyManageResp{
+  repeated ListKeyManageData rows=1;
+  int64 total=2;
+}
+message ListKeyManageData{
+
+  int64 keyId = 1;
+  string keyName = 2;
+  string keyPath = 3;
+  string keyPass = 4;
+  string keyType = 5;
+  string publicKey = 6;
+  string remark = 7;
+
+}
+//KeyManage End
+//MaintainPlan Start
+message AddMaintainPlanReq {
+  MaintainPlanCommon one =1;
+}
+
+message MaintainPlanCommonResp{
+  string pong=1;
+}
+
+message UpdateMaintainPlanReq {
+  MaintainPlanCommon one=1;
+}
+
+message DeleteMaintainPlanReq{
+  int64 Id=1;
+}
+
+message GetMaintainPlanReq{
+  int64 Id=1;
+}
+
+message MaintainPlanCommon{
+
+  int64 id = 1;
+  int64 projectId = 2;
+  string maintainType = 3;
+  string startTime = 4;
+  string endTime = 5;
+  string maintainRange = 6;
+  string title = 7;
+  string content = 8;
+  string createBy = 9;
+  string createTime = 10;
+  string updateBy = 11;
+  string updateTime = 12;
+  string maintainOperator = 13;
+  int64 delFlag = 14;
+  string clusterId = 15;
+  int64 taskId = 16;
+
+}
+
+message ListMaintainPlanReq{
+  int64 current=1;
+  int64 pageSize=2;
+  int64  projectId=3;
+  int64 startTime=4;
+  string dateRange=5;
+  string maintainType=6;
+  string projectIds=7;
+  string title=8;
+  int64 taskId=9;
+  int64 MaintainId=11;
+  repeated SortFiledData SortFiledList=10;
+  int64 PlanStartTime=12;
+}
+
+message SortFiledData{
+  string field=1;
+  string order=2;
+}
+
+
+
+message ListMaintainPlanResp{
+  repeated ListMaintainPlanData rows=1;
+  int64 total=2;
+}
+message ListMaintainPlanData{
+
+  int64 id = 1;
+  int64 projectId = 2;
+  string maintainType = 3;
+  string startTime = 4;
+  string endTime = 5;
+  string maintainRange = 6;
+  string title = 7;
+  string content = 8;
+  string createBy = 9;
+  string createTime = 10;
+  string updateBy = 11;
+  string updateTime = 12;
+  string maintainOperator = 13;
+  int64 delFlag = 14;
+  string clusterId = 15;
+  int64 taskId = 16;
+  string projectCn=17;
+  string maintainTypeCn=18;
+  string createNameEn=19;
+  string createNameCn=20;
+  string updateNameEn=21;
+  string updateNameCn=22;
+
+}
+message GetMaintainPlanListTreeByClsIdAndProIdReq{
+  int64 projectId=1;
+  string clusterEn=2;
+
+}
+message GetMaintainPlanListTreeByClsIdAndProIdResp{
+  string data =1;
+}
+
+message MaintainGetClusterInfoReq{
+  int64 projectId=1;
+  string labelIds=2;
+}
+message MaintainGetClusterInfoResp{
+  repeated MaintainGetClusterInfoData ClusterInfoData=1;
+
+}
+
+message MaintainGetClusterInfoData{
+  int64 labelId=1;
+  string labelName=2;
+  string labelValues=3;
+  string labelRemark=4;
+  int64 projectId=5;
+  string labelx=6;
+  string outerIp=7;
+  string baseDir=8;
+}
+
+//MaintainPlan End
+//MergePlan Start
+message AddMergePlanReq {
+  repeated  MergePlanCommon mergePlanData =1;
+}
+
+message MergePlanCommonResp{
+  string pong=1;
+}
+
+message UpdateMergePlanReq {
+  MergePlanCommon one=1;
+}
+
+message DeleteMergePlanReq{
+  int64 Id=1;
+}
+
+message GetMergePlanReq{
+  int64 Id=1;
+}
+
+message MergeCheckServerRangeReq{
+  MergePlanCommon one=1;
+}
+message MergeCheckServerRangeResp{
+  string combineRange = 1;
+}
+
+
+
+message MergePlanCommon{
+
+  int64 id = 1;
+  int64 projectId = 2;
+  int64 platformId = 3;
+  int64 serverId = 4;
+  string inputRange = 12;
+  string combineRange = 5;
+  string startTime = 6;
+  string endTime = 7;
+  int64 mergeStatus = 8;
+  string mergeOperator = 9;
+  int64 delFlag = 10;
+  repeated int64 allRange=11;
+
+}
+
+message ListMergePlanReq{
+  int64 current=1;
+  int64 pageSize=2;
+  string projectIds=3;
+  string dateRange=4;
+  string platformIds=5;
+  string mergeStatus=6;
+  repeated SortFiledData SortFiledList=7;
+}
+message ListMergePlanResp{
+  repeated ListMergePlanData rows=1;
+  int64 total=2;
+}
+message ListMergePlanData{
+  int64 id = 1;
+  int64 projectId = 2;
+  int64 platformId = 3;
+  int64 serverId = 4;
+  string inputRange = 14;
+  string combineRange = 5;
+  string startTime = 6;
+  string endTime = 7;
+  int64 mergeStatus = 8;
+  string mergeOperator = 9;
+  int64 delFlag = 10;
+  string platformCn=11;
+  string platformEn=12;
+  string projectCn=13;
+
+}
+message  GetMergeListTreeByPlatIdAndProIdReq{
+   int64 projectId =1;
+   int64 platformId=2;
+}
+message  GetMergeListTreeByPlatIdAndProIdResp{
+  string data=1;
+}
+//MergePlan End
+//OpenPlan Start
+message AddOpenPlanReq {
+  repeated OpenPlanCommon openPlatData =1;
+}
+
+message OpenPlanCommonResp{
+  string pong=1;
+}
+
+message UpdateOpenPlanReq {
+  OpenPlanCommon one=1;
+}
+
+message DeleteOpenPlanReq{
+  int64 Id=1;
+}
+
+message GetOpenPlanReq{
+  int64 Id=1;
+}
+
+message OpenPlanCommon{
+
+  int64 id = 1;
+  int64 projectId = 2;
+  int64 platformId = 3;
+  int64 serverId = 4;
+  string gameserverTitle = 5;
+  string openTime = 6;
+  string installStatus = 7;
+  string installOperator = 8;
+  string initdbStatus = 9;
+  string initdbOperator = 10;
+  int64 delFlag = 11;
+  string remark=12;
+
+}
+
+message ListOpenPlanReq{
+  int64 current=1;
+  int64 pageSize=2;
+  string dateRange=3;
+  string title=4;
+  string platformIds=5;
+  string initdbStatus=6;
+  string installStatus=7;
+  string projectIds=8;
+  repeated SortFiledData SortFiledList=9;
+  string clusterName=10;
+  string gameType=11;
+
+}
+message ListOpenPlanResp{
+  repeated ListOpenPlanData rows=1;
+  int64 total=2;
+}
+message ListOpenPlanData{
+  int64 id = 1;
+  int64 projectId = 2;
+  int64 platformId = 3;
+  int64 serverId = 4;
+  string gameserverTitle = 5;
+  string openTime = 6;
+  string installStatus = 7;
+  string installOperator = 8;
+  string initdbStatus = 9;
+  string initdbOperator = 10;
+  int64 delFlag = 11;
+  string projectCn=12;
+  string platformCn = 13;
+  string platformEn = 14;
+  string remark=15;
+  string clusterName=16;
+
+}
+
+
+message OpenPlanBatchModifyOpenTimeReq{
+  repeated OpenPlanBatchModifyOpenTimeData data=1;
+}
+
+message OpenPlanBatchModifyOpenTimeResp{
+  string ping=1;
+}
+message OpenPlanBatchModifyOpenTimeData{
+  int64 id =1;
+  int64 openTime=2;
+}
+
+message BatchUpdateStatusReq{
+  string ids =1;
+  int64 status =2;
+}
+message BatchUpdateStatusResp{
+  string pong=1;
+}
+
+//OpenPlan End
+
+//Hosts Start
+message ListHostsReq{
+  int64 current=1;
+  int64 pageSize=2;
+  string viewHostRoleCn=3;
+  string projectIds=4;
+  string company=5;
+  string ips=6;
+  string sNames=7;
+  string provider=8;
+  string label=9;
+}
+message ListHostsResp{
+  repeated ListHostsData rows=1;
+  int64 total=2;
+}
+message ListHostsData{
+  string	ViewAssetId        =1;
+  string	ViewUserCompanyCn  =2;
+  string	ViewUserProjectCn  =3;
+  string	ViewOuterIp        =4;
+  string	ViewInnerIp        =5;
+  string	ViewHardwareInfo   =6;
+  string	ViewProviderNameCn =7;
+  string	ViewProviderNameEn =8;
+  string	ViewHostRoleCn     =9;
+  string	Installed          =10;
+  string	ServerName         =11;
+  string	LabelInfo          =12;
+}
+//Hosts End
+
+
+//GameServer Start
+message ListGameServerReq{
+  int64 current=1;
+  int64 pageSize=2;
+  string serverStatus=3;
+  string projectIds=4;
+  string newPlatformInfo=5;
+  string ip=6;
+  string gameServerTitle=7;
+  string OpenTime=8;
+  string serverStatusX=9;
+}
+message ListGameServerResp{
+  repeated ListGameServerData rows=1;
+  int64 total=2;
+}
+message ListGameServerData{
+  string	Id             =1;
+  string	ProjectId      =2;
+  string	PlatformId     =3;
+  string	ServerId       =4;
+  string	ServerAlias    =5;
+  string	OpenTime       =6;
+  string	AssetId        =7;
+  string	ServerStatus   =8;
+  string	CombineRemark  =9;
+  string	OperateInfo    =10;
+  string	DelFlag        =11;
+  string	ProjectCn      =12;
+  string	OuterIp        =13;
+  string	InnerIp        =14;
+  string	PlatformCn     =15;
+  string	PlatformEn     =16;
+  string	Ip             =17;
+  string	NewPlatformInfo=18;
+  string	GameServerTitle=19;
+
+}
+//GameServer End
+
+//Tasks Start
+message AddTasksReq {
+  string title=1;
+  int64  projectId=2;
+  string clusterId=3;
+  string startTime=4;
+  string content=5;
+  string  taskType=6;
+  string taskListForm=7;
+  string outerIp=8;
+  int64  maintainId=9;
+  string uid=10;
+}
+message TasksCommonResp{
+  string pong=1;
+}
+message UpdateTasksReq {
+  string title=1;
+  int64  projectId=2;
+  string clusterId=3;
+  string startTime=4;
+  string content=5;
+  string  taskType=6;
+  string taskListForm=7;
+  string outerIp=8;
+  int64  maintainId=9;
+  int64 id=10;
+  string errDifferenceSet=11;
+  string differenceSet =12;
+  int64 isEnable=13;
+
+}
+message DeleteTasksReq{
+  int64 id=1;
+}
+message GetTasksReq{
+  int64 id=1;
+}
+
+message StartTasksReq{
+  int64 id=1;
+}
+message StartTasksResp{
+  string pong=1;
+}
+
+message StopTasksReq{
+  int64 id=1;
+}
+message StopTasksResp{
+  string pong=1;
+}
+
+message GetTasksResp{
+  repeated ListTasksData rows=1;
+  repeated int64 allIdArr=2;
+  repeated int64 errArr=3;
+}
+
+message ListTasksReq{
+  int64 current=1;
+  int64 pageSize=2;
+  string projectIds=3;
+  string createTime=4;
+  string taskType=5;
+  int64 id=6;
+  string createBy = 7;
+}
+message ListTasksResp{
+  repeated ListTasksData rows=1;
+  int64 total=2;
+}
+message ListTasksData{
+  int64 id = 1;
+  int64 projectId = 2;
+  string clusterId = 3;
+  string taskType = 4;
+  int64 level = 5;
+  int64 maintainId = 6;
+  string name = 7;
+  string types = 8;
+  int64 pid = 9;
+  int64 taskStartTime = 10;
+  int64 taskEndTime = 11;
+  int64 taskExecTime = 12;
+  string cmd = 13;
+  string content = 14;
+  int64 taskStatus = 15;
+  int64 taskStep = 16;
+  string outerIp = 17;
+  string userName = 18;
+  string modifier = 19;
+  string exportFileName = 20;
+  string remark = 21;
+  string createNameEn=22;
+  string createNameCn=23;
+  string updateNameEn=24;
+  string updateNameCn=25;
+  string projectCn=26;
+  string taskTypeCn=27;
+  string taskStatusCn=28;
+  string projectEn=29;
+}
+message  TaskGetOperationReq{
+  int64  Uid =1;
+}
+message  TaskGetOperationResp{
+  repeated TaskGetOperationData list=1;
+}
+
+message  TaskGetOperationData{
+  int64 id=1;
+  string name=2;
+  string url=3;
+  int64 parentId=4;
+  int64 orderNum=5;
+  int64 tp=6;
+  int64 roleId=7;
+  int64 userId=8;
+}
+
+message GetHotLogHistoryReq{
+  int64 id=1;
+}
+
+message ListHotLogHistoryReq{
+  string ProjectIds=1;
+}
+
+message AddHotLogHistoryReq{
+    ListHotLogHistoryData data=1;
+    string uid=2;
+}
+message AddHotLogHistoryResp{
+  string pong=1;
+}
+
+
+message ListHotLogHistoryResp{
+  repeated ListHotLogHistoryData rows=1;
+}
+
+message ListHotLogHistoryData{
+  int64  id=1;
+  string hotTitle=2;
+  int64 projectId=3;
+  string operType=4;
+  string operContent=5;
+  int64 operStatus=6;
+  string createBy=7;
+  int64 createTime=8;
+}
+
+
+message TaskGetFormatJsonReq{
+  string game=1;
+  string content=2;
+  string uname =3;
+}
+
+
+
+message TaskGetFormatJsonResp{
+  repeated OperationListM OperationListM=1;
+}
+
+message OperationListM {
+  repeated TaskCommonJson OperationListForm =1;
+
+}
+
+message TaskCommonJson {
+  string operation=1;
+  string operationCn=2;
+  string stable=3;
+  string outerIp=4;
+  string dbUpdate=5;
+  string fileList=6;
+  string maintainRange=7;
+  string cmdList=8;
+  string dbType=9;
+  string platName=10;
+  string checkSt=11;
+  string SQLCmd=12;
+  string merge=13;
+  string exportFileName=14;
+  string initSetTime=15;
+  string executeSQL=16;
+  string executeFlag=17;
+  string addRestartGame=18;
+}
+
+message ListWaitInstallReq{
+  int64 current=1;
+  int64 pageSize=2;
+  repeated SortFiledData SortFiledList=3;
+  string projectIds=4;
+}
+message ListWaitInstallResp{
+  repeated ListWaitInstallData rows=1;
+  int64 Total=2;
+}
+
+message ListWaitInstallData{
+  int64 id=1;
+  int64 projectId=2;
+  string projectCn=3;
+  int64 platformId=4;
+  string platformCn=5;
+  string platformEn=6;
+  int64 serverId=7;
+  string gameserverTitle=8;
+  string openTime=9;
+  string installStatus=10;
+  string installOperator=11;
+  int64 initdbStatus=12;
+  string initdbOperator=13;
+  string remark=14;
+}
+
+message ListWaitMergeReq{
+  int64 current =1;
+  int64 pageSize=2;
+  repeated SortFiledData SortFiledList=3;
+  string projectIds=4;
+}
+
+message ListWaitMergeResp{
+  repeated ListWaitMergeData rows=1;
+  int64 total=2;
+}
+message ListWaitMergeData{
+  int64 id=1;
+  int64 projectId=2;
+  int64 platformId=3;
+  int64 serverId=4;
+  string inputRange=5;
+  string combineRange=6;
+  string startTime=7;
+  string endTime=8;
+  int64 mergeStatus=9;
+  string mergeOperator=10;
+  string platformCn=11;
+  string platformEn=12;
+  string projectCn=13;
+
+}
+
+message ListInstallLogListReq {
+  string gameName =1;
+}
+message ListInstallLogListResp{
+  repeated ListInstallLogListData data=1;
+}
+message ListInstallLogListData{
+  string name=1;
+}
+
+
+//Tasks End
+
+//TaskLogHistroy Start
+
+message ListTaskLogHistroyReq{
+  int64 taskId=1;
+}
+
+message ListTaskLogHistroyResp{
+  string data=1;
+}
+
+message DetailTaskLogHistroyReq{
+  int64 taskId=1;
+}
+
+message DetailTaskLogHistroyResp{
+  int64 id=1;
+  int64 tasksId=2;
+  string tasksLogs=3;
+  int64 tasksTime=4;
+}
+
+
+//TaskLogHistroy End
+//ConfigFile Start
+message AddConfigFileReq {
+  ConfigFileCommon one =1;
+}
+
+message ConfigFileCommonResp{
+  string pong=1;
+}
+
+message UpdateConfigFileReq {
+  ConfigFileCommon one=1;
+}
+
+message DeleteConfigFileReq{
+  int64 ConfigFileId=1;
+}
+
+message GetConfigFileReq{
+  int64 ConfigFileId=1;
+}
+
+message ConfigFileCommon{
+  int64 id = 1;
+  int64 projectId = 2;
+  string name = 3;
+  string destPath = 4;
+  int64 fileModTime = 5;
+
+}
+
+message ListConfigFileReq{
+  int64 current=1;
+  int64 pageSize=2;
+}
+message ListConfigFileResp{
+  repeated ListConfigFileData rows=1;
+  int64 total=2;
+}
+message ListConfigFileData{
+  int64 id = 1;
+  int64 projectId = 2;
+  string name = 3;
+  string destPath = 4;
+  int64 fileModTime = 5;
+  string projectCn=6;
+  string projectEn=7;
+  int64 assetCounts=8;
+
+}
+//ConfigFile End
+//ConfigFileDelivery Start
+message AddConfigFileDeliveryReq{
+  repeated AddConfigFileDeliveryDataList configFileData=1;
+}
+
+
+message AddConfigFileDeliveryDataList {
+  repeated AddConfigFileDeliveryData list=1;
+  string projectEn=2;
+}
+
+message AddConfigFileDeliveryData{
+  int64 projectId=1;
+  int64 configFileId=2;
+  int64 configTime=3;
+  int64 assetId=4;
+  string sshIp=5;
+  int64 sshPort=6;
+  string projectEn=7;
+  string configName=8;
+  string destPath=9;
+}
+message AddConfigFileDeliveryResp{
+  string pong=1;
+}
+
+message ListConfigFileDeliveryReq{
+  string projectIds=1;
+}
+
+message ListConfigFileDeliveryResp{
+  repeated ListConfigFileData rows=1;
+  repeated ListConfigFileDeliveryDataTree mergeRows=2;
+}
+
+
+message ListConfigFileDeliveryDataTree{
+  int64 projectId=1;
+  string totalList=2;
+  repeated string mouldFile=3;
+}
+
+message GetConfigFileDeliveryTreeReq{
+  int64 projectId=1;
+  int64 configFileId=2;
+}
+
+message GetConfigFileDeliveryTreeResp{
+  string rows=1;
+}
+
+message GetConfigFileDeliveryLogReq{
+  string pong =1;
+
+}
+message GetConfigFileDeliveryLogResp{
+  string pong=1;
+}
+
+
+message ConfigFileDeliveryGetFileContentReq{
+  string configName=1;
+  string option=2;
+  string projectEn=3;
+}
+
+message ConfigFileDeliveryGetFileContentResp{
+ string content=1;
+}
+
+message UpdateConfigFileDeliveryTemplateReq{
+ string configName=1;
+ string projectEn=2;
+ string content=3;
+ int64 projectId=4;
+}
+message UpdateConfigFileDeliveryTemplateResp{
+  string pong=1;
+}
+
+
+//ConfigFileDelivery End
+
+//Help Start
+message HelpListReq{
+  string gameName=1;
+}
+message HelpListResp{
+  repeated HelpListData rows=1;
+}
+message HelpListData{
+  string key=1;
+  string value=2;
+}
+
+//Help End
+
+//Dashboard Start
+message GetSumOfCurrentInfoListReq{
+  string projectIds=1;
+}
+
+message GetSumOfCurrentInfoListResp{
+  repeated GetSumOfCurrentInfoData rows=1;
+}
+message GetSumOfCurrentInfoData{
+  string projectEn=1;
+  string cluster=2;
+  int64 serverNum=3;
+  int64 gameNum=4;
+  string hostRole=5;
+}
+
+message GetTrendChartListReq{
+  string projectIds=1;
+  string types=2;
+}
+
+message GetTrendChartListResp{
+  repeated GetTrendChartData rows=1;
+}
+
+message GetTrendChartData{
+  string projectEn=1;
+  int64  counts=2;
+  string detail= 3;
+  int64 createTime=4;
+}
+//Dashboard End
+
+//AutoOpengameRule Start
+message AddAutoOpengameRuleReq {
+  AutoOpengameRuleCommon one =1;
+}
+
+message AutoOpengameRuleCommonResp{
+  string pong=1;
+}
+
+message UpdateAutoOpengameRuleReq {
+  AutoOpengameRuleCommon one=1;
+}
+
+message DeleteAutoOpengameRuleReq{
+  int64 AutoOpengameRuleId=1;
+}
+
+message GetAutoOpengameRuleReq{
+  int64 AutoOpengameRuleId=1;
+}
+
+message AutoOpengameRuleCommon{
+  int64 id = 1;
+  int64 projectId = 2;
+  int64 platformId = 3;
+  string startOpenTime = 4;
+  string endOpenTime = 5;
+  int64 intervalDay = 6;
+  int64 thresholdValue = 7;
+  int64 numberOfServer = 8;
+  string openTime = 9;
+  string startOpenMulti = 10;
+  string endOpenMulti = 11;
+  int64 state = 12;
+
+}
+
+message ListAutoOpengameRuleReq{
+  int64 current=1;
+  int64 pageSize=2;
+  string projectIds=3;
+}
+message ListAutoOpengameRuleResp{
+  repeated ListAutoOpengameRuleData rows=1;
+  int64 total=2;
+}
+message ListAutoOpengameRuleData{
+  int64 id = 1;
+  int64 projectId = 2;
+  int64 platformId = 3;
+  string startOpenTime = 4;
+  string endOpenTime = 5;
+  int64 intervalDay = 6;
+  int64 thresholdValue = 7;
+  int64 numberOfServer = 8;
+  string openTime = 9;
+  string startOpenMulti = 10;
+  string endOpenMulti = 11;
+  int64 state = 12;
+  string projectCn=13;
+  string platformEn=14;
+
+}
+//AutoOpengameRule End
+
+//SwitchEntranceGameserver Start
+message AddSwitchEntranceGameserverReq {
+  SwitchEntranceGameserverCommon one =1;
+}
+
+message SwitchEntranceGameserverCommonResp{
+  string pong=1;
+}
+
+message UpdateSwitchEntranceGameserverReq {
+  SwitchEntranceGameserverCommon one=1;
+}
+
+message DeleteSwitchEntranceGameserverReq{
+  string ids=1;
+  string operation=2;
+}
+
+message GetSwitchEntranceGameserverReq{
+  int64 SwitchEntranceGameserverId=1;
+}
+
+message SwitchEntranceGameserverCommon{
+  int64 id = 1;
+  int64 projectId = 2;
+  int64 platformId = 3;
+  string configJsonPath = 4;
+  int64 state = 5;
+
+}
+
+message ListSwitchEntranceGameserverReq{
+  int64 current=1;
+  int64 pageSize=2;
+  string projectIds=3;
+}
+message ListSwitchEntranceGameserverResp{
+  repeated ListSwitchEntranceGameserverData rows=1;
+  int64 total=2;
+}
+message ListSwitchEntranceGameserverData{
+  int64 id = 1;
+  int64 projectId = 2;
+  int64 platformId = 3;
+  string configJsonPath = 4;
+  int64 state = 5;
+  string projectCn =6;
+  string platformEn=7;
+
+}
+//SwitchEntranceGameserver End
+//AlarmThresholdManage Start
+message AddAlarmThresholdManageReq {
+  AlarmThresholdManageCommon one =1;
+}
+
+message AlarmThresholdManageCommonResp{
+  string pong=1;
+}
+
+message UpdateAlarmThresholdManageReq {
+  AlarmThresholdManageCommon one=1;
+}
+
+message DeleteAlarmThresholdManageReq{
+  int64 AlarmThresholdManageId=1;
+}
+
+message GetAlarmThresholdManageReq{
+  int64 AlarmThresholdManageId=1;
+  string AlarmThresholdManageTypes=2;
+}
+
+message AlarmThresholdManageCommon{
+  int64 id = 1;
+  string name = 2;
+  string config = 3;
+  int64 projectId = 4;
+  int64 gameServerId = 5;
+  int64 assetId = 6;
+  int64 level = 7;
+  int64 delFlag = 8;
+  string remark = 9;
+  string types=10;
+
+}
+
+message ListAlarmThresholdManageReq{
+  int64 current=1;
+  int64 pageSize=2;
+  string projectIds=3;
+  string ips=4;
+  string gameServerAlias=5;
+  string types=6;
+}
+message ListAlarmThresholdManageResp{
+  repeated ListAlarmThresholdManageData rows=1;
+  int64 total=2;
+}
+message ListAlarmThresholdManageData{
+  int64 id = 1;
+  string name = 2;
+  string config = 3;
+  int64 projectId = 4;
+  int64 gameServerId = 5;
+  int64 assetId = 6;
+  int64 level = 7;
+  int64 delFlag = 8;
+  string remark = 9;
+  string projectCn=10;
+  string ips=11;
+  string gameServerAlias=12;
+  string types=13;
+
+
+}
+//AlarmThresholdManage End
+
+
+//TasksScheduleQueue Start
+message AddTasksScheduleQueueReq {
+  TasksScheduleQueueCommon one =1;
+  string maps=2;
+}
+
+message TasksScheduleQueueCommonResp{
+  string pong=1;
+}
+
+message UpdateTasksScheduleQueueReq {
+  TasksScheduleQueueCommon one=1;
+}
+
+message DeleteTasksScheduleQueueReq{
+  int64 TasksScheduleQueueId=1;
+  string maps=2;
+}
+
+message GetTasksScheduleQueueReq{
+  int64 TasksScheduleQueueId=1;
+}
+
+message TasksScheduleQueueCommon{
+  int64 id = 1;
+  string scheduleTitle = 2;
+  int64 scheduleStartTime = 3;
+  int64 scheduleEndTime = 4;
+  string scheduleStatus = 5;
+  string scheduleType = 6;
+  string scheduleRangeIds = 7;
+  int64 schedulePid = 8;
+  string scheduleLogs = 9;
+  string scheduleRemark = 10;
+
+}
+
+message ListTasksScheduleQueueReq{
+  int64 current=1;
+  int64 pageSize=2;
+  string scheduleStatus = 3;
+  string scheduleType = 4;
+  string scheduleTitle=5;
+  string dateRange=6;
+
+}
+message ListTasksScheduleQueueResp{
+  repeated ListTasksScheduleQueueData rows=1;
+  int64 total=2;
+}
+message ListTasksScheduleQueueData{
+  int64 id = 1;
+  string scheduleTitle = 2;
+  int64 scheduleStartTime = 3;
+  int64 scheduleEndTime = 4;
+  string scheduleStatus = 5;
+  string scheduleType = 6;
+  string scheduleRangeIds = 7;
+  int64 schedulePid = 8;
+  string scheduleLogs = 9;
+  string scheduleRemark = 10;
+  string scheduleTypeMaps=11;
+  string scheduleCreateByName=12;
+
+}
+//TasksScheduleQueue End
+
+service YunWei {
+  //Asset Rpc Start
+  rpc AssetAdd(AssetAddReq) returns(AssetAddResp);
+  rpc AssetList(AssetListReq) returns(AssetListResp);
+  rpc AssetUpdate(AssetUpdateReq) returns(AssetUpdateResp);
+  rpc AssetDelete(AssetDeleteReq) returns(AssetDeleteResp);
+  rpc AssetRecycleDelete(AssetRecycleDeleteReq) returns(AssetRecycleDeleteResp);
+  rpc GetWebSshTree(GetWebSshReq)returns(GetWebSshResp);
+  rpc AssetBatchDistribute(BatchDistributeReq)returns(BatchDistributeResp);
+  //Asset Rpc End
+  //FeatureServer Rpc Start
+  rpc FeatureServerAdd(AddFeatureServerReq) returns(FeatureServerCommonResp);
+  rpc FeatureServerUpdate(UpdateFeatureServerReq) returns (FeatureServerCommonResp);
+  rpc FeatureServerDelete(DeleteFeatureServerReq) returns (FeatureServerCommonResp);
+  rpc FeatureServerInfoGet(GetFeatureServerReq) returns (ListFeatureServerData);
+  rpc FeatureServerList(ListFeatureServerReq) returns (ListFeatureServerResp);
+  //FeatureServer Rpc End
+  //Platform Rpc Start
+  rpc PlatformAdd(AddPlatformReq) returns(PlatformCommonResp);
+  rpc PlatformUpdate(UpdatePlatformReq) returns (PlatformCommonResp);
+  rpc PlatformDelete(DeletePlatformReq) returns (PlatformCommonResp);
+  rpc PlatformGet(GetPlatformReq) returns (ListPlatformData);
+  rpc PlatformDetail(DetailPlatformReq) returns (DetailPlatformResp);
+  rpc PlatformList(ListPlatformReq) returns (ListPlatformResp);
+  rpc PlatformGetClusterInfo(GetClusterByPlatformReq)returns(GetClusterByPlatformResp);
+  //Platform Rpc End
+  //Cluster Rpc Start
+  rpc ClusterList(ListClusterReq) returns (ListClusterResp);
+  //Cluster Rpc End
+
+  //KeyManage Rpc Start
+  rpc KeyManageAdd(AddKeyManageReq) returns(KeyManageCommonResp);
+  rpc KeyManageUpdate(UpdateKeyManageReq) returns (KeyManageCommonResp);
+  rpc KeyManageDelete(DeleteKeyManageReq) returns (KeyManageCommonResp);
+  rpc KeyManageGet(GetKeyManageReq) returns (ListKeyManageData);
+  rpc KeyManageList(ListKeyManageReq) returns (ListKeyManageResp);
+  //KeyManage Rpc End
+  //MaintainPlan Rpc Start
+  rpc MaintainPlanAdd(AddMaintainPlanReq) returns(MaintainPlanCommonResp);
+  rpc MaintainPlanUpdate(UpdateMaintainPlanReq) returns (MaintainPlanCommonResp);
+  rpc MaintainPlanDelete(DeleteMaintainPlanReq) returns (MaintainPlanCommonResp);
+  rpc MaintainPlanGet(GetMaintainPlanReq) returns (ListMaintainPlanData);
+  rpc MaintainPlanList(ListMaintainPlanReq) returns (ListMaintainPlanResp);
+  rpc MaintainPlanRangeList(GetMaintainPlanListTreeByClsIdAndProIdReq) returns (GetMaintainPlanListTreeByClsIdAndProIdResp);
+  rpc MaintainGetClusterInfo(MaintainGetClusterInfoReq)returns(MaintainGetClusterInfoResp);
+  //MaintainPlan Rpc End
+  //MergePlan Rpc Start
+  rpc MergePlanAdd(AddMergePlanReq) returns(MergePlanCommonResp);
+  rpc MergePlanUpdate(UpdateMergePlanReq) returns (MergePlanCommonResp);
+  rpc MergePlanDelete(DeleteMergePlanReq) returns (MergePlanCommonResp);
+  rpc MergePlanGet(GetMergePlanReq) returns (ListMergePlanData);
+  rpc MergePlanList(ListMergePlanReq) returns (ListMergePlanResp);
+  rpc MergePlanRangeList(GetMergeListTreeByPlatIdAndProIdReq) returns (GetMergeListTreeByPlatIdAndProIdResp);
+  rpc MergeCheckServerRange(MergeCheckServerRangeReq)returns(MergeCheckServerRangeResp);
+  //MergePlan Rpc End
+  //OpenPlan Rpc Start
+  rpc OpenPlanAdd(AddOpenPlanReq) returns(OpenPlanCommonResp);
+  rpc OpenPlanUpdate(UpdateOpenPlanReq) returns (OpenPlanCommonResp);
+  rpc OpenPlanDelete(DeleteOpenPlanReq) returns (OpenPlanCommonResp);
+  rpc OpenPlanGet(GetOpenPlanReq) returns (ListOpenPlanData);
+  rpc OpenPlanList(ListOpenPlanReq) returns (ListOpenPlanResp);
+  rpc OpenPlanBatchModifyOpenTime(OpenPlanBatchModifyOpenTimeReq) returns(OpenPlanBatchModifyOpenTimeResp);
+  rpc OpenplanBatchUpdateStatus(BatchUpdateStatusReq)returns(BatchUpdateStatusResp);
+  //OpenPlan Rpc End
+  //Hosts Rpc Start
+  rpc HostsList(ListHostsReq) returns (ListHostsResp);
+  //Hosts Rpc End
+  //ServerName Rpc Start
+  rpc GameServerList(ListGameServerReq) returns (ListGameServerResp);
+  //ServerName Rpc End
+  //Tasks Rpc Start
+  rpc TasksAdd(AddTasksReq) returns(TasksCommonResp);
+  rpc TasksUpdate(UpdateTasksReq) returns (TasksCommonResp);
+  rpc TasksDelete(DeleteTasksReq) returns (TasksCommonResp);
+  rpc TasksGet(GetTasksReq) returns (GetTasksResp);
+  rpc TasksGetOneById(GetTasksReq) returns (ListTasksData);
+  rpc TasksList(ListTasksReq) returns (ListTasksResp);
+  rpc TaskGetOperation(TaskGetOperationReq) returns (TaskGetOperationResp);
+  rpc TaskStart(StartTasksReq) returns(StartTasksResp);
+  rpc TaskStop(StopTasksReq) returns(StopTasksResp);
+  rpc HotLogHistoryAdd(AddHotLogHistoryReq)returns(AddHotLogHistoryResp);
+  rpc HotLogHistoryList(ListHotLogHistoryReq)returns(ListHotLogHistoryResp);
+  rpc HotLogHistoryGet(GetHotLogHistoryReq)returns(ListHotLogHistoryData);
+  rpc TaskGetFormatJson(TaskGetFormatJsonReq)returns(TaskGetFormatJsonResp);
+  rpc WaitMergeList(ListWaitMergeReq)returns(ListWaitMergeResp);
+  rpc WaitInstallList(ListWaitInstallReq)returns(ListWaitInstallResp);
+  rpc TaskGetInstallLogList(ListInstallLogListReq)returns(ListInstallLogListResp);
+
+  //Tasks Rpc End
+  //TaskLogHistroy Rpc Start
+  rpc TaskLogHistroyList(ListTaskLogHistroyReq)returns(ListTaskLogHistroyResp);
+  rpc TaskLogHistroyDetail(DetailTaskLogHistroyReq)returns(DetailTaskLogHistroyResp);
+  //TaskLogHistroy Rpc End
+  //ConfigFile Rpc Start
+  rpc ConfigFileAdd(AddConfigFileReq) returns(ConfigFileCommonResp);
+  rpc ConfigFileUpdate(UpdateConfigFileReq) returns (ConfigFileCommonResp);
+  rpc ConfigFileDelete(DeleteConfigFileReq) returns (ConfigFileCommonResp);
+  rpc ConfigFileGet(GetConfigFileReq) returns (ListConfigFileData);
+  rpc ConfigFileList(ListConfigFileReq) returns (ListConfigFileResp);
+  //ConfigFile Rpc End
+  //ConfigFileDelivery Rpc Start
+  rpc ConfigFileDeliveryAdd(AddConfigFileDeliveryReq)returns(AddConfigFileDeliveryResp);
+  rpc ConfigFileDeliveryList(ListConfigFileDeliveryReq)returns(ListConfigFileDeliveryResp);
+  rpc ConfigFileDeliveryGet(GetConfigFileDeliveryTreeReq)returns(GetConfigFileDeliveryTreeResp);
+  rpc ConfigFileDeliveryGetLog(GetConfigFileDeliveryLogReq)returns(GetConfigFileDeliveryLogResp);
+  rpc ConfigFileDeliveryGetFileContent(ConfigFileDeliveryGetFileContentReq)returns(ConfigFileDeliveryGetFileContentResp);
+  rpc ConfigFileDeliveryUpdateTemplate(UpdateConfigFileDeliveryTemplateReq)returns(UpdateConfigFileDeliveryTemplateResp);
+  //ConfigFileDelivery Rpc End
+  //Help Start
+  rpc HelpList(HelpListReq)returns(HelpListResp);
+  //Help End
+
+  //Dashboard Start
+  rpc GetSumOfCurrentInfo(GetSumOfCurrentInfoListReq)returns(GetSumOfCurrentInfoListResp);
+  rpc GetTrendChart(GetTrendChartListReq)returns(GetTrendChartListResp);
+  //Dashboard End
+
+
+  //AutoOpengameRule Rpc Start
+  rpc AutoOpengameRuleAdd(AddAutoOpengameRuleReq) returns(AutoOpengameRuleCommonResp);
+  rpc AutoOpengameRuleUpdate(UpdateAutoOpengameRuleReq) returns (AutoOpengameRuleCommonResp);
+  rpc AutoOpengameRuleDelete(DeleteAutoOpengameRuleReq) returns (AutoOpengameRuleCommonResp);
+  rpc AutoOpengameRuleGet(GetAutoOpengameRuleReq) returns (ListAutoOpengameRuleData);
+  rpc AutoOpengameRuleList(ListAutoOpengameRuleReq) returns (ListAutoOpengameRuleResp);
+  //AutoOpengameRule Rpc End
+
+  //SwitchEntranceGameserver Rpc Start
+  rpc SwitchEntranceGameserverAdd(AddSwitchEntranceGameserverReq) returns(SwitchEntranceGameserverCommonResp);
+  rpc SwitchEntranceGameserverUpdate(UpdateSwitchEntranceGameserverReq) returns (SwitchEntranceGameserverCommonResp);
+  rpc SwitchEntranceGameserverDelete(DeleteSwitchEntranceGameserverReq) returns (SwitchEntranceGameserverCommonResp);
+  rpc SwitchEntranceGameserverGet(GetSwitchEntranceGameserverReq) returns (ListSwitchEntranceGameserverData);
+  rpc SwitchEntranceGameserverList(ListSwitchEntranceGameserverReq) returns (ListSwitchEntranceGameserverResp);
+  //SwitchEntranceGameserver Rpc End
+
+  //AlarmThresholdManage Rpc Start
+  rpc AlarmThresholdManageAdd(AddAlarmThresholdManageReq) returns(AlarmThresholdManageCommonResp);
+  rpc AlarmThresholdManageUpdate(UpdateAlarmThresholdManageReq) returns (AlarmThresholdManageCommonResp);
+  rpc AlarmThresholdManageDelete(DeleteAlarmThresholdManageReq) returns (AlarmThresholdManageCommonResp);
+  rpc AlarmThresholdManageGet(GetAlarmThresholdManageReq) returns (ListAlarmThresholdManageData);
+  rpc AlarmThresholdManageList(ListAlarmThresholdManageReq) returns (ListAlarmThresholdManageResp);
+  //AlarmThresholdManage Rpc End
+
+  //TasksScheduleQueue Rpc Start
+  rpc TasksScheduleQueueAdd(AddTasksScheduleQueueReq) returns(TasksScheduleQueueCommonResp);
+  rpc TasksScheduleQueueUpdate(UpdateTasksScheduleQueueReq) returns (TasksScheduleQueueCommonResp);
+  rpc TasksScheduleQueueDelete(DeleteTasksScheduleQueueReq) returns (TasksScheduleQueueCommonResp);
+  rpc TasksScheduleQueueGet(GetTasksScheduleQueueReq) returns (ListTasksScheduleQueueData);
+  rpc TasksScheduleQueueList(ListTasksScheduleQueueReq) returns (ListTasksScheduleQueueResp);
+  //TasksScheduleQueue Rpc End
+}

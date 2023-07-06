@@ -1,0 +1,30 @@
+syntax = "v1"
+
+info(
+    title: "report api"
+    desc: "report api"
+    author: "acool"
+)
+
+
+type (
+    ReportAddReq{
+        ReportType string `json:"reportType,options=monitor|machine"`
+        Value string `json:"value"`
+        Sn string `json:"sn"`
+        Ts string `json:"ts"`
+    }
+)
+
+@server(
+    group: report
+    prefix: /monitor/report
+)
+service monitor {
+
+    @doc(
+        summary:"上报数据新增"
+    )
+    @handler ReportAdd
+    post /add (ReportAddReq) returns ()
+}

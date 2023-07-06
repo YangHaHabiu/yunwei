@@ -1,0 +1,80 @@
+syntax = "v1"
+
+info(
+    title: "首页"
+    desc: "首页"
+    author: "acool"
+)
+
+type (
+
+    GetSumOfCurrentInfoListReq {
+        ProjectIds string `form:"projectIds,optional"`
+    }
+    GetSumOfCurrentInfoListResp {
+        Rows []*GetSumOfCurrentInfoData `json:"rows"`
+    }
+
+    GetSumOfCurrentInfoData{
+        ProjectEn string `json:"projectEn"`
+        Cluster string `json:"cluster"`
+        HostRole string `json:"hostRole"`
+        ServerNum int64  `json:"serverNum"`
+        GameNum int64 `json:"gameNum"`
+    }
+
+    GetServerTrendChartListReq {
+        ProjectIds string `form:"projectIds,optional"`
+    }
+    GetServerTrendChartListResp {
+        Rows []*GetServerTrendChartData `json:"rows"`
+    }
+    GetServerTrendChartData{
+        ProjectEn string `json:"projectEn"`
+        Counts int64  `json:"counts"`
+        Detail string `json:"detail"`
+        CreateTime int64 `json:"createTime"`
+    }
+    GetGameTrendChartListReq{
+        ProjectIds string `form:"projectIds,optional"`
+    }
+    GetGameTrendChartListResp {
+        Rows []*GetGameTrendChartData `json:"rows"`
+    }
+
+    GetGameTrendChartData{
+        ProjectEn string `json:"projectEn"`
+        Counts int64  `json:"counts"`
+        Detail string `json:"detail"`
+        CreateTime int64 `json:"createTime"`
+    }
+
+)
+
+
+
+@server(
+    group: dashboard
+    prefix: /yunwei/dashboard
+)
+service yunwei {
+    @doc(
+        summary:"当前信息汇总"
+    )
+    @handler GetSumOfCurrentInfo
+    get /getSumOfCurrentInfor (GetSumOfCurrentInfoListReq) returns (GetSumOfCurrentInfoListResp)
+
+    @doc(
+        summary:"服务器趋势图"
+    )
+    @handler GetServerTrendChart
+    get /getServerTrendChart (GetServerTrendChartListReq) returns (GetServerTrendChartListResp)
+
+    @doc(
+        summary:"游戏服趋势图"
+    )
+    @handler GetGameTrendChart
+    get /getGameTrendChart (GetGameTrendChartListReq) returns (GetGameTrendChartListResp)
+
+
+}

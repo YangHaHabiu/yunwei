@@ -1,0 +1,95 @@
+syntax = "v1"
+
+info(
+	title: "机器信息信息"
+	desc: "机器信息信息"
+	author: "acool"
+)
+
+type (
+
+	AddInsideHostInfoReq {
+		*InsideHostInfoCommon
+	}
+
+	UpdateInsideHostInfoReq {
+		*InsideHostInfoCommon
+	}
+
+	DeleteInsideHostInfoReq {
+		InsideHostInfoId int64 `path:"InsideHostInfoId"`
+	}
+
+    GetInsideHostInfoReq {
+		InsideHostInfoId int64 `path:"InsideHostInfoId"`
+	}
+
+	InsideHostInfoCommon {
+        Id int64 `json:"id,optional"` 
+        HostName string `json:"hostName,optional"` 
+        HostIp string `json:"hostIp,optional"` 
+        HostPort int64 `json:"hostPort,optional"` 
+        DbUser string `json:"dbUser,optional"` 
+        DbPass string `json:"dbPass,optional"` 
+        DbPort int64 `json:"dbPort,optional"`
+		HostScriptPath string `json:"hostScriptPath,optional"`
+	}
+
+	ListInsideHostInfoReq {
+		Current  int64  `form:"current,default=1"`
+		PageSize int64  `form:"pageSize,default=15"`
+	}
+	ListInsideHostInfoResp {
+		Rows   []*ListInsideHostInfoData `json:"rows"`
+		Total  int64            `json:"total"`
+	}
+	ListInsideHostInfoData {
+        Id int64 `json:"id"` 
+        HostName string `json:"hostName"` 
+        HostIp string `json:"hostIp"` 
+        HostPort int64 `json:"hostPort"` 
+        DbUser string `json:"dbUser"` 
+        DbPass string `json:"dbPass"` 
+        DbPort int64 `json:"dbPort"`
+		HostScriptPath string `json:"hostScriptPath"`
+
+	}
+
+
+
+)
+
+@server(
+	group: insideHostInfo
+	prefix: /intranet/insideHostInfo
+)
+service intranet {
+
+	@doc(
+		summary:"机器信息新增"
+	)
+	@handler InsideHostInfoAdd
+	post /add (AddInsideHostInfoReq) returns()
+	@doc(
+		summary:"机器信息列表"
+	)
+	@handler InsideHostInfoList
+	get /list (ListInsideHostInfoReq) returns (ListInsideHostInfoResp)
+	@doc(
+		summary:"机器信息更新"
+	)
+	@handler InsideHostInfoUpdate
+	put /update (UpdateInsideHostInfoReq) returns ()
+	@doc(
+		summary:"机器信息删除"
+	)
+	@handler InsideHostInfoDelete
+	delete /delete/:InsideHostInfoId (DeleteInsideHostInfoReq) returns ()
+
+	@doc(
+		summary:"机器信息获取"
+	)
+	@handler InsideHostInfoGet
+	get /get/:InsideHostInfoId (GetInsideHostInfoReq) returns (ListInsideHostInfoData)
+
+}

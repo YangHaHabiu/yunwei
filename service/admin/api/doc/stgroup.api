@@ -1,0 +1,126 @@
+info(
+    desc: "策略组信息"
+
+)
+
+type (
+    addStgroupReq struct {
+        StName string `json:"stName"`
+        StJson string `json:"stJson"`
+        StRemark string `json:"stRemark"`
+    }
+
+    ListStgroupReq struct {
+        Current int64 `form:"current,default=1"`
+        PageSize int64 `form:"pageSize,default=15"`
+        StName string `form:"stName,optional"`
+    }
+    ListStgroupData struct {
+        Id int64 `json:"id"`                                // 编号
+        StName string `json:"stName"`                       // 策略组名称
+        StJson string `json:"stJson"`                       // 策略数据
+        StRemark string `json:"stRemark"`                   // 策略备注
+        CreateBy string `json:"createBy"`                   // 创建人
+        CreateTime string `json:"createTime"`               // 创建时间
+        LastUpdateBy string `json:"lastUpdateBy"`           // 更新人
+        LastUpdateTime string `json:"lastUpdateTime"`       // 更新时间
+    }
+     //关联用户或组
+    PolicyAssociatedUsersReq{
+        StgroupId int64 `json:"stgroupId"`
+        UserChecked      string    `json:"userChecked"`
+        UserGroupChecked string    `json:"userGroupChecked"`
+    }
+
+
+    ListStgroupResp  {
+        Rows []*ListStgroupData `json:"rows"`
+        Total int64 `json:"total"`
+    }
+    UpdateStgroupReq  {
+        Id int64 `json:"id"`
+        StName string `json:"stName"`
+        StJson string `json:"stJson"`
+        StRemark string `json:"stRemark"`
+    }
+
+    DeleteStgroupReq  {
+        StgroupId int64 `path:"stgroupId"`
+    }
+
+    GetDistributionConfigReq {
+        StgroupId int64  `path:"stgroupId"`
+    }
+    GetDistributionConfigResp {
+        UserChecked  []int64 `json:"userChecked"`
+        UserGroupChecked []int64 `json:"userGroupChecked"`
+        UserAllData []*NewUserData `json:"userAllData"`
+        UserGroupAllData []*NewUserData `json:"userGroupAllData"`
+    }
+
+    NewUserData {
+        Id int64 `json:"id"`
+        Name string `json:"label"`
+    }
+
+    GetStgrouInfoTreeReq{
+        StgroupId int64  `path:"stgroupId"`
+    }
+
+    GetStgrouInfoTreeResp {
+        Rows []*ListstrategyData `json:"rows"`
+        Datas *ListStgroupData `json:"datas"`
+
+    }
+
+
+
+
+)
+
+@server(
+
+    group: stgroup
+    prefix: /admin/stgroup
+
+)
+service admin {
+    @doc(
+        summary:"根据id获取策略组树形信息"
+    )
+    @handler GetStgrouInfoTree
+    get /edit/:stgroupId (GetStgrouInfoTreeReq) returns (GetStgrouInfoTreeResp)
+
+    @doc(
+        summary:"策略组新增"
+    )
+    @handler StgroupAdd
+    post /add (addStgroupReq) returns ()
+    @doc(
+        summary:"策略组列表"
+    )
+    @handler StgroupList
+    get /list (ListStgroupReq) returns (ListStgroupResp)
+    @doc(
+        summary:"策略组更新"
+    )
+    @handler StgroupUpdate
+    put /update (UpdateStgroupReq) returns ()
+    @doc(
+        summary:"策略组删除"
+    )
+    @handler StgroupDelete
+    delete /delete/:stgroupId (DeleteStgroupReq) returns ()
+
+    @doc(
+        summary:"策略关联用户或组提交"
+    )
+    @handler PolicyAssociatedUsers
+    post /policyAssociatedUsers (PolicyAssociatedUsersReq) returns ()
+
+    @doc (
+        summary:"获取策略相关信息根据id"
+    )
+    @handler GetDistributionConfig
+    get /getDistributionConfig/:stgroupId (GetDistributionConfigReq) returns(GetDistributionConfigResp)
+}

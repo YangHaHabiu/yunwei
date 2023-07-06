@@ -1,0 +1,117 @@
+syntax = "v1"
+
+info(
+    title: "标签资源"
+    author: "acool"
+)
+
+
+type (
+
+    AddResourceReq  {
+        ResourceData  []*CommonResourceData `json:"resourceData"`
+    }
+    CommonResourceData{
+        BindingId int64 `json:"bindingId"`
+        LabelId int64 `json:"labelId"`
+        ResourceEn string `json:"resourceEn"`
+        ProjectId int64 `json:"projectId"`
+    }
+
+    ListResourceReq  {
+        LabelType string `form:"labelType"`
+    }
+    ListResourceList {
+        Label string `json:"label"`
+        Value string `json:"value"`
+    }
+
+    ListResourceResp  {
+        Rows []*ListResourceList `json:"rows"`
+
+    }
+
+    ResourceObjectValueListReq{
+        Current int64 `form:"current,optional"`
+        PageSize int64 `form:"pageSize,optional"`
+        ResourceEn string `form:"resourceEn,optional"`
+        LabelType string `form:"labelType,optional"`
+        LabelId int64 `form:"labelId"`
+        ViewResourceEnName string `form:"viewResourceEnName,optional"`
+        ViewResourceValue string `form:"viewResourceValue,optional"`
+        viewRecycleType string `form:"viewRecycleType,optional"`
+
+    }
+    ResourceObjectValueListResp{
+        Rows []*ResourceObjectValueListData `json:"rows"`
+        BindRows []*ResourceObjectValueListData `json:"bindRows"`
+        allRows []*ResourceObjectValueListData `json:"allRows"`
+        Total int64  `json:"total"`
+        Filter   []*FilterList 	 `json:"filter"`
+    }
+    ResourceObjectValueListData{
+        ViewResourceCnName string `json:"viewResourceCnName,omitempty"`
+        ViewResourceEnName string `json:"viewResourceEnName,omitempty"`
+        ViewResourceRemark string `json:"viewResourceRemark,omitempty"`
+        ViewProjectId int64 `json:"viewProjectId,omitempty"`
+        ViewPrimaryKey string `json:"viewPrimaryKey,omitempty"`
+        ViewPrimaryKeyValue int64 `json:"viewPrimaryKeyValue,omitempty"`
+        ViewResourceType string `json:"viewResourceType,omitempty"`
+        ViewResourceValue string `json:"viewResourceValue,omitempty"`
+        ViewDataContent string `json:"viewDataContent,omitempty"`
+        ViewDataUrl string `json:"viewDataUrl,omitempty"`
+        ViewJsonId string `json:"viewJsonId,omitempty"`
+        ViewTableName string `json:"viewTableName,omitempty"`
+        ViewShowCluster int64 `json:"viewShowCluster,omitempty"`
+        ViewShowFeature int64 `json:"viewShowFeature,omitempty"`
+        ViewShowInstall int64 `json:"viewShowInstall,omitempty"`
+        ViewShowOther int64 `json:"viewShowOther,omitempty"`
+        ViewUniqueCluster int64 `json:"viewUniqueCluster,omitempty"`
+        ViewUniqueFeature int64 `json:"viewUniqueFeature,omitempty"`
+        ViewUniqueInstall int64 `json:"viewUniqueInstall,omitempty"`
+        ViewUniqueOther int64 `json:"viewUniqueOther,omitempty"`
+        ViewSystemShow int64 `json:"viewSystemShow,omitempty"`
+    }
+
+
+    DeleteResourceReq  {
+        ResourceData  []*CommonResourceData `json:"resourceData"`
+    }
+
+)
+
+
+@server(
+    group: resource
+    prefix: /admin/resource
+
+)
+
+service admin {
+    @doc(
+        summary:"资源新增"
+    )
+    @handler ResourceAdd
+    post /add (AddResourceReq) returns ()
+
+
+    @doc(
+        summary:"资源删除"
+    )
+    @handler ResourceDelete
+    delete /batchDelete (DeleteResourceReq) returns ()
+
+    @doc(
+        summary:"获取所有资源类型"
+    )
+    @handler ResourceList
+    get /list (ListResourceReq) returns (ListResourceResp)
+
+
+    @doc(
+        summary:"根据标签条件查询所需资源"
+    )
+    @handler ResourceObjectValueList
+    get /rsourceObjectValueList (ResourceObjectValueListReq) returns (ResourceObjectValueListResp)
+
+}

@@ -1,0 +1,91 @@
+syntax = "v1"
+
+info(
+	title: "配置文件信息信息"
+	desc: "配置文件信息信息"
+	author: "acool"
+)
+
+type (
+
+	AddConfigFileReq {
+		*ConfigFileCommon
+	}
+
+	UpdateConfigFileReq {
+		*ConfigFileCommon
+	}
+
+	DeleteConfigFileReq {
+		ConfigFileId int64 `path:"ConfigFileId"`
+	}
+
+    GetConfigFileReq {
+		ConfigFileId int64 `path:"ConfigFileId"`
+	}
+
+	ConfigFileCommon {
+        Id int64 `json:"id,optional"` 
+        ProjectId int64 `json:"projectId,optional"` 
+        Name string `json:"name,optional"` 
+        DestPath string `json:"destPath,optional"` 
+        FileModTime int64 `json:"fileModTime,optional"` 
+	}
+
+	ListConfigFileReq {
+		Current  int64  `form:"current,default=1"`
+		PageSize int64  `form:"pageSize,default=15"`
+	}
+	ListConfigFileResp {
+		Rows   []*ListConfigFileData `json:"rows"`
+		Total  int64            `json:"total"`
+	}
+	ListConfigFileData {
+        Id int64 `json:"id"` 
+        ProjectId int64 `json:"projectId"`
+		ProjectCn string `json:"projectCn"`
+		ProjectEn string `json:"projectEn"`
+        Name string `json:"name"` 
+        DestPath string `json:"destPath"` 
+        FileModTime int64 `json:"fileModTime"`
+		AssetCounts int64 `json:"assetCounts"`
+	}
+
+
+
+)
+
+@server(
+	group: configFile
+	prefix: /yunwei/configFile
+)
+service yunwei {
+
+	@doc(
+		summary:"配置文件信息新增"
+	)
+	@handler ConfigFileAdd
+	post /add (AddConfigFileReq) returns()
+	@doc(
+		summary:"配置文件信息列表"
+	)
+	@handler ConfigFileList
+	get /list (ListConfigFileReq) returns (ListConfigFileResp)
+	@doc(
+		summary:"配置文件信息更新"
+	)
+	@handler ConfigFileUpdate
+	put /update (UpdateConfigFileReq) returns ()
+	@doc(
+		summary:"配置文件信息删除"
+	)
+	@handler ConfigFileDelete
+	delete /delete/:ConfigFileId (DeleteConfigFileReq) returns ()
+
+	@doc(
+		summary:"配置文件信息获取"
+	)
+	@handler ConfigFileGet
+	get /get/:ConfigFileId (GetConfigFileReq) returns (ListConfigFileData)
+
+}

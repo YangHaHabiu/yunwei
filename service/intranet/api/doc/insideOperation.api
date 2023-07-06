@@ -1,0 +1,96 @@
+syntax = "v1"
+
+info(
+	title: "内网操作管理信息"
+	desc: "内网操作管理信息"
+	author: "acool"
+)
+
+type (
+
+	AddInsideOperationReq {
+		*InsideOperationCommon
+	}
+
+	UpdateInsideOperationReq {
+		*InsideOperationCommon
+	}
+
+	DeleteInsideOperationReq {
+		InsideOperationId int64 `path:"InsideOperationId"`
+	}
+
+    GetInsideOperationReq {
+		InsideOperationId int64 `path:"InsideOperationId"`
+	}
+
+	InsideOperationCommon {
+        Id int64 `json:"id,optional"` 
+        ProjectId int64 `json:"projectId,optional"` 
+        OperCn string `json:"operCn,optional"`
+		OperEn string `json:"operEn,optional"`
+		OperType string `json:"operType,optional"`
+        Sort int64 `json:"sort,optional"` 
+        DelFlag int64 `json:"delFlag,optional"` 
+	}
+
+	ListInsideOperationReq {
+		Current  int64  `form:"current,default=1"`
+		PageSize int64  `form:"pageSize,default=15"`
+		ProjectId int64 `form:"projectId,optional"`
+		OperType string `form:"buildType,optional"`
+	}
+	ListInsideOperationResp {
+		Rows   []*ListInsideOperationData `json:"rows"`
+		Total  int64            `json:"total"`
+		Filter []*FilterList    `json:"filter"`
+	}
+	ListInsideOperationData {
+        Id int64 `json:"id"` 
+        ProjectId int64 `json:"projectId"`
+		OperCn string `json:"operCn"`
+		OperEn string `json:"operEn"`
+        OperType string `json:"operType"`
+        Sort int64 `json:"sort"` 
+        DelFlag int64 `json:"delFlag"`
+		ProjectCn string `json:"projectCn"`
+	}
+
+
+
+)
+
+@server(
+	group: insideOperation
+	prefix: /intranet/insideOperation
+)
+service intranet {
+
+	@doc(
+		summary:"内网操作管理新增"
+	)
+	@handler InsideOperationAdd
+	post /add (AddInsideOperationReq) returns()
+	@doc(
+		summary:"内网操作管理列表"
+	)
+	@handler InsideOperationList
+	get /list (ListInsideOperationReq) returns (ListInsideOperationResp)
+	@doc(
+		summary:"内网操作管理更新"
+	)
+	@handler InsideOperationUpdate
+	put /update (UpdateInsideOperationReq) returns ()
+	@doc(
+		summary:"内网操作管理删除"
+	)
+	@handler InsideOperationDelete
+	delete /delete/:InsideOperationId (DeleteInsideOperationReq) returns ()
+
+	@doc(
+		summary:"内网操作管理获取"
+	)
+	@handler InsideOperationGet
+	get /get/:InsideOperationId (GetInsideOperationReq) returns (ListInsideOperationData)
+
+}

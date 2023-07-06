@@ -1,0 +1,122 @@
+syntax = "v1"
+
+info(
+	title: "配置文件下发管理"
+	desc: "配置文件下发管理"
+	author: "acool"
+)
+
+type (
+	AddConfigFileDeliveryReq {
+		ConfigFileData []*AddConfigFileDeliveryDataList `json:"configFileData"`
+	}
+
+	AddConfigFileDeliveryDataList{
+		ProjectEn string `json:"projectEn"`
+		List []*AddConfigFileDeliveryData `json:"list"`
+	}
+
+
+	AddConfigFileDeliveryData{
+		ProjectId int64 `json:"projectId"`
+		ProjectEn string `json:"projectEn"`
+		ConfigFileId int64 `json:"configFileId"`
+		ConfigName string `json:"configName"`
+		ConfigTime int64 `json:"configTime"`
+		AssetId int64 `json:"assetId"`
+		SshIp string `json:"sshIp"`
+		SshPort int64 `json:"sshPort"`
+		DestPath string `json:"destPath"`
+	}
+	ListConfigFileDeliveryReq {
+		projectIds string `form:"projectIds,optional"`
+	}
+
+	ListConfigFileDeliveryResp {
+		Rows   []*ListConfigFileData `json:"rows"`
+		MergeRows []*ListConfigFileDeliveryDataTree `json:"mergeRows"`
+		Filter []*FilterList    `json:"filter"`
+	}
+
+	ListConfigFileDeliveryDataTree {
+		ProjectId int64 `json:"projectId"`
+		TotalList string `json:"totalList"`
+		MouldFile []string `json:"mouldFile"`
+	}
+
+	GetConfigFileDeliveryTreeReq {
+		ProjectId int64 `form:"projectId"`
+		ConfigFileId int64 `form:"configFileId"`
+	}
+	GetConfigFileDeliveryTreeResp {
+		Rows   string `json:"rows"`
+	}
+
+
+	GetConfigFileDeliveryLogData {
+		ViewAssetDescribe string `json:"viewAssetDescribe"`
+		ViewConfigFileName string `json:"viewConfigFileName"`
+		ViewUserProjectCn string `json:"viewUserProjectCn"`
+	}
+
+
+	ConfigFileDeliveryGetFileContentReq{
+		ConfigName string `form:"configName"`
+		Option string `form:"option,options=template|create"`
+		ProjectEn string `form:"projectEn"`
+	}
+
+	ConfigFileDeliveryGetFileContentResp{
+		Content string `json:"content"`
+	}
+	UpdateConfigFileDeliveryTemplateReq{
+		ConfigName string `json:"configName"`
+		ProjectEn string `json:"projectEn"`
+		ProjectId int64 `json:"projectId"`
+		Content string `json:"content"`
+	}
+
+)
+
+@server(
+	group: configFileDelivery
+	prefix: /yunwei/configFileDelivery
+)
+service yunwei {
+	@doc(
+		summary:"配置文件下发"
+	)
+	@handler ConfigFileDeliveryAdd
+	post /add (AddConfigFileDeliveryReq) returns ()
+
+	@doc(
+		summary:"配置文件下发列表"
+	)
+	@handler ConfigFileDeliveryList
+	get /list (ListConfigFileDeliveryReq) returns (ListConfigFileDeliveryResp)
+
+	@doc(
+		summary:"配置文件下发获取服务器列表"
+	)
+	@handler ConfigFileDeliveryGet
+	get /configFileDeliveryGet (GetConfigFileDeliveryTreeReq) returns (GetConfigFileDeliveryTreeResp)
+
+
+	@doc(
+		summary:"刷新配置文件列表"
+	)
+	@handler ConfigFileDeliveryGetLog
+	put /refreshProfileList () returns ()
+
+	@doc(
+		summary:"配置文件下发获取模版或生成文件内容"
+	)
+	@handler ConfigFileDeliveryGetFileContent
+	get /configFileDeliveryGetFileContent (ConfigFileDeliveryGetFileContentReq) returns (ConfigFileDeliveryGetFileContentResp)
+
+	@doc(
+		summary:"配置文件下发修改模版文件内容"
+	)
+	@handler ConfigFileDeliveryUpdateTemplate
+	put /configFileDeliveryUpdateTemplate (UpdateConfigFileDeliveryTemplateReq) returns ()
+}

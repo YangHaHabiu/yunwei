@@ -1,0 +1,108 @@
+syntax = "v1"
+
+info(
+	title: "内网服务器信息"
+	desc: "内网服务器信息"
+	author: "acool"
+)
+
+type (
+
+	AddInsideServerReq {
+		*InsideServerCommon
+	}
+
+	UpdateInsideServerReq {
+		*InsideServerCommon
+	}
+
+	DeleteInsideServerReq {
+		InsideServerId int64 `path:"InsideServerId"`
+	}
+
+    GetInsideServerReq {
+		InsideServerId int64 `path:"InsideServerId"`
+	}
+
+	InsideServerCommon {
+        Id int64 `json:"id,optional"` 
+        ProjectId int64 `json:"projectId,optional"` 
+        ClusterId int64 `json:"clusterId,optional"`
+		FeatureType string `json:"featureType,optional"`
+        Sort int64 `json:"sort,optional"`
+		BuildType string `json:"buildType,optional"`
+		ServerTitle string `json:"serverTitle,optional"`
+        ServerPath string `json:"serverPath,optional"`
+        ServerDescDb string `json:"serverDescDb,optional"` 
+        Domain string `json:"domain,optional"` 
+        DelFlag int64 `json:"delFlag,optional"` 
+	}
+
+	ListInsideServerReq {
+		Current  int64  `form:"current,default=1"`
+		PageSize int64  `form:"pageSize,default=15"`
+		ProjectId int64 `form:"projectId,optional"`
+		ClusterId int64 `form:"clusterId,optional"`
+		FeatureType string `form:"featureType,optional"`
+		BuildType string `form:"buildType,optional"`
+
+	}
+	ListInsideServerResp {
+		Rows   []*ListInsideServerData `json:"rows"`
+		Total  int64            `json:"total"`
+		Filter []*FilterList    `json:"filter"`
+	}
+	ListInsideServerData {
+        Id int64 `json:"id"` 
+        ProjectId int64 `json:"projectId"` 
+        ClusterId int64 `json:"clusterId"`
+		FeatureType string `json:"featureType"`
+        Sort int64 `json:"sort"` 
+        ServerTitle string `json:"serverTitle"` 
+        ServerPath string `json:"serverPath"` 
+        ServerDescDb string `json:"serverDescDb"`
+        Domain string `json:"domain"` 
+        DelFlag int64 `json:"delFlag"`
+		BuildType string `json:"buildType"`
+		ProjectCn string `json:"projectCn"`
+		ClusterCn string `json:"clusterCn"`
+	}
+
+
+
+)
+
+@server(
+	group: insideServer
+	prefix: /intranet/insideServer
+)
+service intranet {
+
+	@doc(
+		summary:"内网服务器新增"
+	)
+	@handler InsideServerAdd
+	post /add (AddInsideServerReq) returns()
+	@doc(
+		summary:"内网服务器列表"
+	)
+	@handler InsideServerList
+	get /list (ListInsideServerReq) returns (ListInsideServerResp)
+	@doc(
+		summary:"内网服务器更新"
+	)
+	@handler InsideServerUpdate
+	put /update (UpdateInsideServerReq) returns ()
+	@doc(
+		summary:"内网服务器删除"
+	)
+	@handler InsideServerDelete
+	delete /delete/:InsideServerId (DeleteInsideServerReq) returns ()
+
+	@doc(
+		summary:"内网服务器获取"
+	)
+	@handler InsideServerGet
+	get /get/:InsideServerId (GetInsideServerReq) returns (ListInsideServerData)
+
+}

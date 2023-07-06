@@ -1,0 +1,33 @@
+syntax = "v1"
+
+info(
+    title: "帮助信息"
+    author: "acool"
+)
+type (
+    HelpListReq {
+        GameName string `form:"gameName,optional"`
+    }
+    HelpListResp {
+        Rows []*HelpListData `json:"rows"`
+    }
+    HelpListData{
+        Key string `json:"key"`
+        Value string `json:"value"`
+    }
+)
+
+
+
+
+@server(
+    group: help
+    prefix: /yunwei/help
+)
+service yunwei {
+    @doc(
+        summary:"帮助文档列表"
+    )
+    @handler HelpList
+    get /list(HelpListReq) returns (HelpListResp)
+}

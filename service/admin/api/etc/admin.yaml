@@ -1,0 +1,47 @@
+Name: admin-api
+Host: 0.0.0.0
+Port: 8002
+MaxBytes: 1073741824
+Timeout: 40000
+
+
+##是否开启验证码
+VerificationCode: false
+## 验证码水印
+VerificationCodeWatermark: 测试后台
+
+
+#脚本存放信息
+Scripts:
+  MaintainFilePath: "/data/gonivinck/service/yunwei_new/maintain_game/"
+
+
+Auth:
+  AccessSecret: ae0536f9-6450-4606-8e13-5a19ed505ea0
+
+Redis:
+  Host: 10.10.88.229:6379
+  Type: node
+  Pass:
+
+RecPath:
+  FullPath: ../../ws/api/rec/
+
+Log:
+  Mode: file
+  Level: error
+
+
+#rpc service
+AdminRpcConf:
+  Endpoints:
+    - 127.0.0.1:9002
+  NonBlock: true
+  Timeout: 30000
+
+
+IdentityRpcConf:
+  Endpoints:
+    - 127.0.0.1:9001
+  NonBlock: true
+  Timeout: 30000

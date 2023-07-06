@@ -1,0 +1,48 @@
+syntax = "v1"
+
+info(
+    desc: "终端日志"
+)
+
+
+type (
+
+    ListTerminalLogReq struct {
+        DateRange string `form:"dateRange,optional"`
+    }
+    ListTerminalData struct {
+        Label string `json:"label"`
+        Children []*ListTerminalData `json:"children,omitempty"`
+        Value string `json:"value,omitempty"`
+    }
+    ListTerminalResp struct {
+        Rows []*ListTerminalData `json:"rows"`
+    }
+
+    DetailTerminalLogReq struct {
+        File string `form:"file,optional"`
+    }
+
+    DetailTerminalLogResp struct {
+        Rows string `json:"rows"`
+    }
+
+)
+
+@server(
+    group: log
+    prefix: /admin/log
+)
+service admin {
+    @doc(
+        summary:"终端日志列表"
+    )
+    @handler TerminalList
+    get /terminallog (ListTerminalLogReq) returns (ListTerminalResp)
+
+    @doc(
+        summary:"终端文件下载"
+    )
+    @handler TerminalDownload
+    get /download (DetailTerminalLogReq) returns (DetailTerminalLogResp)
+}

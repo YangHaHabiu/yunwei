@@ -1,0 +1,131 @@
+syntax = "v1"
+
+info(
+	title: "开服计划信息"
+	desc: "开服计划信息"
+	author: "acool"
+)
+
+type (
+
+	AddOpenPlanReq {
+		OpenPlanData []*OpenPlanCommon `json:"openPlanData"`
+	}
+
+	UpdateOpenPlanReq {
+		*OpenPlanCommon
+	}
+
+	DeleteOpenPlanReq {
+		Id int64 `path:"id"`
+
+	}
+
+    GetOpenPlanReq {
+		Id int64 `path:"id"`
+
+	}
+
+	OpenPlanCommon {
+        Id int64 `json:"id,optional"`
+        ProjectId int64 `json:"projectId,optional"`
+        PlatformId int64 `json:"platformId,optional"`
+        ServerId int64 `json:"serverId,optional"`
+        GameserverTitle string `json:"gameserverTitle,optional"`
+		InstallStatus string `json:"installStatus,optional"`
+		OpenTime string `json:"openTime,optional"`
+		Remark string `json:"remark,optional"`
+	}
+
+	ListOpenPlanReq {
+		Current  int64  `json:"current,default=1"`
+		PageSize int64  `json:"pageSize,default=15"`
+		ProjectIds string `json:"projectIds,optional"`
+		DateRange string `json:"dateRange,optional"`
+		PlatformIds string `json:"platformIds,optional"`
+		InitdbStatus string `json:"initdbStatus,optional"`
+		InstallStatus string `json:"installStatus,optional"`
+		NotType string `json:"notType,optional"`
+		gameType string `json:"gameType,optional"`
+		SortFields []*SortFieldData `json:"sortFields,optional"`
+		ClusterName string `json:"clusterName,optional"`
+		PlatformType string `json:"platformType,optional"`
+	}
+	SortFieldData {
+		Field string `json:"field"`
+		Order string `json:"order"`
+	}
+
+	ListOpenPlanResp {
+		Rows   []*ListOpenPlanData `json:"rows"`
+		Total  int64            `json:"total"`
+		Filter []*FilterList    `json:"filter"`
+	}
+	ListOpenPlanData {
+        Id int64 `json:"id"`
+        ProjectId int64 `json:"projectId"`
+		ProjectCn string `json:"projectCn"`
+        PlatformId int64 `json:"platformId"`
+		PlatformCn string `json:"platformCn"`
+		PlatformEn string `json:"platformEn"`
+        ServerId int64 `json:"serverId"`
+        GameserverTitle string `json:"gameserverTitle"`
+        OpenTime string `json:"openTime"`
+        InstallStatus string `json:"installStatus"`
+        InstallOperator string `json:"installOperator"`
+        InitdbStatus string `json:"initdbStatus"`
+        InitdbOperator string `json:"initdbOperator"`
+		Remark string `json:"remark"`
+		ClusterName string `json:"clusterName"`
+	}
+
+	BatchModifyOpenTimeReq{
+		Data []*BatchModifyOpenTimeData `json:"data"`
+
+	}
+
+	BatchModifyOpenTimeData{
+		Id int64 `json:"id"`
+		OpenTime int64 `json:"openTime"`
+	}
+)
+
+@server(
+	group: openPlan
+	prefix: /yunying/openPlan
+)
+service yunwei {
+
+	@doc(
+		summary:"开服计划新增"
+	)
+	@handler OpenPlanAdd
+	post /add (AddOpenPlanReq) returns()
+	@doc(
+		summary:"开服计划列表"
+	)
+	@handler OpenPlanList
+	post /list (ListOpenPlanReq) returns (ListOpenPlanResp)
+	@doc(
+		summary:"开服计划更新"
+	)
+	@handler OpenPlanUpdate
+	put /update (UpdateOpenPlanReq) returns ()
+	@doc(
+		summary:"开服计划删除"
+	)
+	@handler OpenPlanDelete
+	delete /delete/:id (DeleteOpenPlanReq) returns ()
+
+	@doc(
+		summary:"开服计划获取"
+	)
+	@handler OpenPlanGet
+	get /get/:id (GetOpenPlanReq) returns (ListOpenPlanData)
+
+	@doc(
+		summary:"批量修改开服时间"
+	)
+	@handler OpenPlanBatchModifyOpenTime
+	post /batchModifyOpenTime (BatchModifyOpenTimeReq) returns()
+}

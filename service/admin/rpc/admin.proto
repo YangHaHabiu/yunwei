@@ -1,0 +1,1333 @@
+syntax = "proto3";
+
+package adminclient;
+
+option go_package = "./adminclient";
+
+//user start---------------------
+message LoginReq {
+  string username = 1;
+  string password = 2;
+}
+
+message LoginResp {
+  int64 id = 1;
+  string username = 2;
+  string AccessToken = 3;
+  int64 AccessExpire = 4;
+  int64 RefreshAfter = 5;
+}
+
+message LogoutResp{
+  string pong =1 ;
+}
+
+message LogoutReq{
+  int64 UserId = 1;
+}
+
+message InfoReq {
+  int64 UserId = 1;
+}
+
+message InfoResp {
+  string avatar = 1;
+  string name = 2;
+  repeated MenuListTree menuListTree=3;
+  repeated string BackgroundUrls =4;
+}
+
+message UserAddReq {
+  string email = 1;
+  string mobile = 2;
+  string name = 3;
+  string nick_name = 4;
+  string avatar = 5;
+  int64 dept_id = 6;
+  string create_by = 7;
+  int64 role_id = 8;
+  string role_ids = 9;
+  string ugroup_ids = 10;
+  string project_ids=11;
+}
+
+message UserAddResp {
+  string pong = 1;
+}
+
+message UserListReq {
+  int64 current = 1;
+  int64 pageSize = 2;
+  string name = 3;
+  string nick_name = 4;
+  string mobile = 5;
+  string email = 6;
+  int64 status = 7;
+  string dept_ids = 8;
+  int64 user_id = 9;
+  string project_ids=10;
+  string role_ids=11;
+  string ugroup_ids=12;
+
+}
+
+message UserListData{
+  int64 id = 1;
+  string name = 2;
+  string nick_name = 3;
+  string avatar = 4;
+  string password = 5;
+  string salt = 6;
+  string email = 7;
+  string mobile = 8;
+  int64 status = 9;
+  int64 dept_id = 10;
+  string create_by = 11;
+  string create_time = 12;
+  string last_update_by = 13;
+  string last_update_time = 14;
+  int64 del_flag = 15;
+  int64 role_id = 17;
+  string role_name = 18;
+  string dept_name = 20;
+  string role_ids = 21;
+  string ugroup_ids = 22;
+  string ugroup_names = 23;
+  string project_ids=24;
+}
+
+message UserListResp {
+  int64 total = 1;
+  repeated  UserListData list = 2;
+}
+
+message UserUpdateReq {
+  int64 id = 1;
+  string email = 2;
+  string mobile = 3;
+  string name = 4;
+  string nick_name = 5;
+  string avatar = 6;
+  int64 dept_id = 7;
+  string last_update_by = 8;
+  int64 role_id = 9;
+  int64 status = 10;
+  string role_ids = 11;
+  string ugroup_ids = 12;
+  string project_ids=13;
+}
+
+message UserUpdateResp {
+  string pong = 1;
+}
+
+message UserDeleteReq {
+  int64 id = 1;
+  string last_update_by = 2;
+}
+
+message UserDeleteResp {
+  string pong = 1;
+}
+
+
+message ReSetPasswordReq {
+  int64 id = 1;
+  string new_password = 2;
+  string last_update_by = 3;
+}
+
+message ReSetPasswordResp {
+  string pong = 1;
+}
+
+message UserStatusReq {
+  int64 id = 1;
+  int64 status = 2;
+  string last_update_by = 3;
+}
+
+message UserStatusResp {
+  string pong = 1;
+}
+
+
+message UserUpdatePersonalInfoReq {
+  int64 id = 1;
+  string email = 2;
+  string mobile = 3;
+  string avatar = 4;
+  string nick_name = 5;
+}
+
+message UserUpdatePersonalInfoResp {
+  string pong = 1;
+}
+
+message UserUpdatePersonalPasswordReq {
+  int64 id = 1;
+  string old_password = 2;
+  string new_password = 3;
+  string new_password_repeat = 4;
+}
+
+message UserUpdatePersonalPasswordResp {
+  string pong = 1;
+}
+
+
+
+message UserStrategyInfoReq {
+  string name = 1;
+}
+
+message UserStrategyInfoResp {
+  int64 sys_user_id = 1;
+  string sys_user_name = 2;
+  string stgroup_st_json = 3;
+}
+
+
+message GetUserAssignmentPolicyReq{
+  int64  id =1;
+}
+
+
+message GetUserAssignmentPolicyResp{
+  repeated userAssignmentPolicyData data =1;
+}
+
+message userAssignmentPolicyData{
+  int64 stgroup_id =1;
+  int64  user_id =2;
+}
+
+message UserAssignmentPolicyReq {
+  int64 user_id =1;
+  string user_check=2;
+}
+message UserAssignmentPolicyResp {
+  string pong =1;
+}
+
+message UserBatchEditItemsReq{
+  string userIds=1;
+  string projectIds=2;
+  string operate=3;
+}
+
+message UserBatchEditItemsResp{
+  string pong =1;
+}
+
+
+//user end---------------------
+
+//ugroup add---------------------
+message UgroupAddReq {
+  int64 id = 1;
+  string ug_json = 2;
+  string ug_name =3;
+  string create_by = 4;
+}
+
+message UgroupAddResp {
+  string pong = 1;
+}
+message UgroupUpdateReq {
+  int64 id = 1;
+  string ug_name=2;
+  string ug_json = 3;
+  string last_update_by = 4;
+}
+
+message UgroupUpdateResp {
+  string pong = 1;
+}
+
+message UgroupDeleteReq {
+  int64 id = 1;
+}
+
+message UgroupDeleteResp {
+  string pong = 1;
+}
+
+
+message UgroupInfoReq {
+  int64 id = 1;
+}
+
+message UgroupInfoResp {
+  UgroupListData info = 1;
+}
+
+
+message UgroupListReq {
+  int64 current = 1;
+  int64 page_size = 2;
+  string ug_name = 3;
+}
+
+message UgroupListData {
+  int64 id = 1;
+  string ug_name = 2;
+  string ug_json = 3;
+  string create_by = 4;
+  string create_time = 5;
+  string last_update_by = 6;
+  string last_update_time = 7;
+  int64 del_flag = 8;
+}
+
+message UgroupListResp {
+  int64 total = 1;
+  repeated  UgroupListData list = 2;
+}
+
+message GetUgroupAssignmentPolicyReq{
+  int64 id=1;
+}
+
+message GetUgroupAssignmentPolicyResp{
+repeated ugroupAssignmentPolicyData data =1;
+}
+
+message ugroupAssignmentPolicyData{
+  int64 stgroup_id =1;
+  int64  ugroup_id =2;
+}
+
+message UgroupAssignmentPolicyReq {
+  int64 ugroup_id =1;
+  string ugroup_check=2;
+}
+message UgroupAssignmentPolicyResp {
+  string pong =1;
+}
+
+
+message GetUgroupAssignmentUserReq{
+  int64 id=1;
+}
+
+message GetUgroupAssignmentUserResp{
+  repeated ugroupAssignmentUserData data =1;
+}
+
+message ugroupAssignmentUserData{
+  int64 user_id =1;
+  int64 ugroup_id =2;
+}
+
+message UgroupAssignmentUserReq {
+  int64 ugroup_id =1;
+  string user_check=2;
+}
+message UgroupAssignmentUserResp {
+  string pong =1;
+}
+
+
+
+
+
+
+//ugroup end---------------------
+
+//stgroup start---------------------
+message StgroupAddReq {
+  int64 id = 1;
+  string st_json = 2;
+  string st_name =3;
+  string create_by = 4;
+  string st_remark = 5;
+}
+
+message StgroupAddResp {
+  string pong = 1;
+}
+message StgroupUpdateReq {
+  int64 id = 1;
+  string st_name=2;
+  string st_json = 3;
+  string last_update_by = 4;
+  string st_remark = 5;
+}
+
+message StgroupUpdateResp {
+  string pong = 1;
+}
+
+message StgroupDeleteReq {
+  int64 id = 1;
+}
+
+message StgroupDeleteResp {
+  string pong = 1;
+}
+
+message StgroupListReq {
+  int64 current = 1;
+  int64 page_size = 2;
+  string st_name = 3;
+  int64  id =4;
+}
+
+message StgroupListData {
+  int64 id = 1;
+  string st_name = 2;
+  string st_json = 3;
+  string create_by = 4;
+  string create_time = 5;
+  string last_update_by = 6;
+  string last_update_time = 7;
+  int64 del_flag = 8;
+  string st_remark = 9;
+}
+
+message StgroupListResp {
+  int64 total = 1;
+  repeated  StgroupListData list = 2;
+}
+
+
+message StgroupInfoReq {
+  int64 id = 1;
+}
+
+message StgroupInfoResp {
+  StgroupListData info = 1;
+}
+
+message PolicyAssociatedUsersReq {
+  string user_check = 1;
+  string ugroup_check= 2;
+  int64 stgroup_id =3;
+}
+
+
+message PolicyAssociatedUsersResp {
+  string pong =1;
+}
+
+message StgroupUserCheckInfoReq {
+  int64 id = 1;
+}
+message StgroupUserCheckInfoResp {
+  repeated dataCheck user_check =1;
+  repeated dataCheck ugroup_check =2;
+}
+
+message dataCheck {
+  int64 id = 1;
+}
+
+
+//stgroup end---------------------
+
+//strategy start---------------------
+message StrategyListReq {
+  string st_name = 1;
+  int64 st_level = 2;
+  int64 st_pid = 3;
+  string st_urls = 4;
+  int64 st_is_auth=5;
+}
+message StrategyListData {
+  int64 id = 1;
+  string st_name = 2;
+  string st_remark = 3;
+  int64 st_level =4;
+  string st_urls= 5;
+  int64 st_pid = 6;
+  int64 st_is_auth=7;
+}
+
+message StrategyListResp {
+  repeated  StrategyListData list = 1;
+}
+//strategy end---------------------
+
+//role start---------------------
+message RoleAddReq {
+  string name = 1;
+  string remark = 2;
+  string create_by = 3;
+  int64 status = 5;
+}
+
+message RoleAddResp {
+  string pong = 1;
+}
+
+message RoleListReq {
+  int64 current = 1;
+  int64 pageSize = 2;
+  string name = 3;
+  int64 status = 4;
+}
+
+message RoleListData {
+  int64 id = 1;
+  string name = 2;
+  string remark = 3;
+  string create_by = 4;
+  string create_time = 5;
+  string last_update_by = 6;
+  string last_update_time = 7;
+  int64 del_flag = 8;
+  int64 status = 9;
+}
+
+message RoleListResp {
+  int64 total = 1;
+  repeated  RoleListData list = 2;
+}
+
+message RoleUpdateReq {
+  int64 id = 1;
+  string name = 2;
+  string remark = 3;
+  string last_update_by = 4;
+  int64 status = 5;
+}
+
+message RoleUpdateResp {
+  string pong = 1;
+}
+
+message RoleDeleteReq {
+  int64 id = 1;
+}
+
+message RoleDeleteResp {
+  string pong = 1;
+}
+
+message UpdateRoleRoleReq {
+  string id = 1;
+}
+
+message UpdateRoleRoleResp {
+  string pong = 1;
+}
+
+message QueryMenuByRoleIdReq {
+  int64 id = 1;
+}
+
+message QueryMenuByRoleIdResp {
+  repeated int64 ids = 1;
+}
+
+
+message GetRoleAssignmentUserReq{
+  int64 id=1;
+}
+
+message GetRoleAssignmentUserResp{
+  repeated RoleAssignmentUserData data =1;
+}
+
+message RoleAssignmentUserData{
+  int64 user_id =1;
+  int64 role_id =2;
+}
+
+message RoleAssignmentUserReq {
+  int64 role_id =1;
+  string user_check=2;
+}
+message RoleAssignmentUserResp {
+  string pong =1;
+}
+
+
+//role end---------------------
+//menu start---------------------
+message MenuAddReq {
+  string name = 1;
+  int64 parent_id = 2;
+  string url = 3;
+  string perms = 4;
+  int64 type = 5;
+  string icon = 6;
+  int64 order_num = 7;
+  string create_by = 8;
+  string vuePath =9;
+  string vueComponent =10;
+  string vueIcon =11;
+  string vueRedirect =12;
+}
+
+message MenuAddResp {
+  string pong = 1;
+}
+
+message MenuListReq {
+  string name = 1;
+  string url = 2;
+}
+
+message MenuListData {
+  int64 id = 1;
+  string name = 2;
+  int64 parent_id = 3;
+  string url = 4;
+  string perms = 5;
+  int64 type = 6;
+  string icon = 7;
+  int64 order_num = 8;
+  string create_by = 10;
+  string create_time = 11;
+  string last_update_by = 12;
+  string last_update_time = 13;
+  int64 del_flag = 14;
+  string vuePath =15;
+  string vueComponent =16;
+  string vueIcon =17;
+  string vueRedirect =18;
+  string tableName=19;
+  string keepAlive=20;
+  string isShow=21;
+}
+
+message MenuListTree {
+  int64 id = 1;
+  string name = 2;
+  string icon = 3;
+  int64 parent_id = 4;
+  string path = 5;
+  string vue_path = 6;
+  string vue_component = 7;
+  string vue_icon = 8;
+  string vue_redirect = 9;
+  int64 order_num = 10;
+  string tableName=11;
+  string keepAlive=12;
+  string isShow=13;
+}
+
+message MenuListResp{
+  int64 total = 1;
+  repeated  MenuListData list = 2;
+}
+message MenuUpdateReq {
+  int64 id = 1;
+  string name = 2;
+  int64 parent_id = 3;
+  string url = 4;
+  string perms = 5;
+  int64 type = 6;
+  string icon = 7;
+  int64 order_num = 8;
+  string last_update_by = 9;
+  string vuePath =10;
+  string vueComponent =11;
+  string vueIcon =12;
+  string vueRedirect =13;
+  string tableName=14;
+  string keepAlive=15;
+  string isShow=16;
+}
+
+message MenuUpdateResp {
+  string pong = 1;
+}
+
+message MenuDeleteReq {
+  int64 id = 1;
+}
+
+message MenuDeleteResp {
+  string pong = 1;
+}
+
+message UpdateMenuRoleReq {
+  int64 roleId = 1;
+  repeated int64 menuIds = 2;
+}
+
+message UpdateMenuRoleResp {
+  string pong = 1;
+}
+
+message MenuOperationListReq{
+
+}
+
+message MenuOperationListResp{
+  repeated MenuOperationListData MenuOperationListData=1;
+
+}
+
+message MenuOperationListData{
+  int64  parentId=1;
+  string parentName=2;
+  string parentUrl=3;
+  int64  parentTp=4;
+  int64  parentOrderNum=5;
+  int64  id=6;
+  string name=7;
+  string url=8;
+  int64  tp=9;
+  int64  orderNum=10;
+
+
+}
+
+//menu end---------------------
+//dict start---------------------
+message DictAddReq {
+  string value = 1;
+  string label = 2;
+  string types = 3;
+  string description = 4;
+  int64 sort = 5;
+  int64 pid = 6;
+}
+
+message DictAddResp {
+  string pong = 1;
+}
+
+message DictListReq {
+  int64 current = 1;
+  int64 pageSize = 2;
+  string types = 3;
+  int64 pid =4;
+  int64 id=5;
+}
+
+message DictListData {
+  int64 id = 1;
+  int64 pid = 7;
+  string value = 2;
+  string label = 3;
+  string types = 4;
+  string description = 5;
+  int64 sort = 6;
+}
+
+message DictListResp{
+  int64 total = 1;
+  repeated  DictListData list = 2;
+}
+
+message DictUpdateReq {
+  int64 id = 1;
+  string value = 2;
+  string label = 3;
+  string types = 4;
+  string description = 5;
+  int64 sort = 6;
+  int64  pid = 7;
+}
+
+message DictUpdateResp {
+  string pong = 1;
+}
+
+message DictDeleteReq {
+  int64 id = 1;
+}
+
+message DictDeleteResp {
+  string pong = 1;
+}
+//dict end---------------------
+
+//dept start---------------------
+message DeptAddReq {
+  string name = 1;
+  int64 parent_id = 2;
+  int64 order_num = 3;
+  string create_by = 4;
+}
+
+message DeptAddResp {
+  string pong = 1;
+}
+
+message DeptListReq {
+  //  int64 current = 1;
+  //  int64 pageSize = 2;
+  string name = 1;
+  string create_by = 2;
+}
+
+message DeptListData {
+  int64 id = 1;
+  string name = 2;
+  int64 parent_id = 3;
+  int64 order_num = 4;
+  string create_by = 5;
+  string create_time = 6;
+  string last_update_by = 7;
+  string last_update_time = 8;
+  int64 del_flag = 9;
+}
+
+message DeptListResp{
+  int64 total = 1;
+  repeated  DeptListData list = 2;
+}
+message DeptUpdateReq {
+  int64 id = 1;
+  string name = 2;
+  int64 parent_id = 3;
+  int64 order_num = 4;
+  string last_update_by = 7;
+}
+
+message DeptUpdateResp {
+  string pong = 1;
+}
+
+message DeptDeleteReq {
+  int64 id = 1;
+}
+
+message DeptDeleteResp {
+  string pong = 1;
+}
+//dept end---------------------
+
+//loginLog start---------------------
+message LoginLogAddReq {
+  string user_name = 1;
+  string status = 2;
+  string ip = 3;
+}
+
+message LoginLogAddResp {
+  string pong = 1;
+}
+
+message LoginLogUpdateReq {
+  string user_name = 1;
+  string status = 2;
+}
+
+message LoginLogUpdateResp {
+  string pong = 1;
+}
+
+
+message LoginLogListReq {
+  int64 current = 1;
+  int64 pageSize = 2;
+  string user_name =3;
+  string status = 4;
+  string ip=5;
+  string date_range=6;
+}
+
+message LoginLogListData {
+  int64 id = 1;
+  string user_name = 2;
+  string status = 3;
+  string ip = 4;
+  string create_time = 5;
+
+}
+
+message LoginLogListResp{
+  int64 total = 1;
+  repeated  LoginLogListData list = 2;
+}
+
+//loginLog end---------------------
+
+//sysLog start---------------------
+message SysLogAddReq {
+  string user_name = 1;
+  string operation = 2;
+  string method = 3;
+  string params = 4;
+  float time = 5;
+  string ip = 6;
+}
+
+message SysLogAddResp {
+  string pong = 1;
+}
+
+message SysLogListReq {
+  int64 current = 1;
+  int64 pageSize = 2;
+  string user_name = 3;
+  string ip = 4;
+  string date_range = 5;
+}
+
+message SysLogListData {
+  int64 id = 1;
+  string user_name = 2;
+  string operation = 3;
+  string method = 4;
+  string params = 5;
+  float time = 6;
+  string ip = 7;
+  string create_time = 8;
+}
+
+message SysLogListResp{
+  int64 total = 1;
+  repeated  SysLogListData list = 2;
+}
+
+//sysLog end---------------------
+
+//company start
+message CompanyAddReq {
+  int64 company_id = 1;
+  string company_cn = 2;
+  string company_en =3;
+  int64 deleted = 4;
+}
+
+message CompanyAddResp {
+  string pong = 1;
+}
+message CompanyUpdateReq {
+  int64 company_id = 1;
+  string company_cn = 2;
+  string company_en =3;
+  int64 deleted = 4;
+}
+
+message CompanyUpdateResp {
+  string pong = 1;
+}
+
+message CompanyDeleteReq {
+  int64 company_id = 1;
+}
+
+message CompanyDeleteResp {
+  string pong = 1;
+}
+
+message CompanyListReq {
+  int64 current = 1;
+  int64 page_size = 2;
+  string company_cn = 3;
+  string company_en =4;
+  string supplyCompanyStatus=5;
+}
+
+message CompanyListData {
+  int64 company_id = 1;
+  string company_cn = 2;
+  string company_en =3;
+  int64 deleted = 4;
+  int64 supplyCompanyStatus =5;
+}
+
+message CompanyListResp {
+  int64 total = 1;
+  repeated  CompanyListData list = 2;
+}
+
+message UpdateSupplyCompanyReq{
+  int64 companyId=1;
+}
+
+message UpdateSupplyCompanyResp{
+  string pong=1;
+}
+//company end
+
+//project start
+message ProjectAddReq {
+  int64 project_id = 1;
+  string project_cn = 2;
+  string project_en =3;
+  int64 deleted = 4;
+  int64 project_team = 5;
+  string project_type=6;
+  string group_qq=7;
+  string group_type =8;
+  string group_dev_qq=9;
+  int64 company_id=10;
+}
+
+message ProjectAddResp {
+  string pong = 1;
+}
+message ProjectUpdateReq {
+  int64 project_id = 1;
+  string project_cn = 2;
+  string project_en =3;
+  int64 deleted = 4;
+  int64 project_team = 5;
+  string project_type=6;
+  string group_qq=7;
+  string group_type =8;
+  string group_dev_qq=9;
+  int64 company_id=10;
+}
+
+message ProjectUpdateResp {
+  string pong = 1;
+}
+
+message ProjectDeleteReq {
+  int64 project_id = 1;
+  int64 del_flag=2;
+}
+
+message ProjectGetOneReq {
+  int64 project_id = 1;
+}
+
+
+message ProjectDeleteResp {
+  string pong = 1;
+}
+
+message ProjectListReq {
+  int64 current = 1;
+  int64 page_size = 2;
+  string project_cn = 3;
+  string project_en =4;
+  string status =5 ;
+  string project_ids=6;
+  string project_type=7;
+}
+
+message ProjectListData {
+  int64 project_id = 1;
+  string project_cn = 2;
+  string project_en =3;
+  int64 del_flag = 4;
+  int64 project_team = 5;
+  string project_type=6;
+  string group_qq=7;
+  string group_type =8;
+  string group_dev_qq=9;
+
+}
+
+message NewProjectListData {
+  int64 view_company_id = 1;
+  string view_company_cn = 2;
+  string view_company_en = 3;
+  int64 view_company_del_flag = 4;
+  int64 view_pr_id = 5;
+  int64 view_project_id = 6;
+  string view_project_cn = 7;
+  string view_project_en = 8;
+  int64 view_dept_id = 9;
+  string view_dept_name = 10;
+  string view_project_type = 11;
+  string view_group_qq = 12;
+  string view_group_type_cn = 13;
+  string view_group_type_en = 14;
+  string view_group_dev_qq = 15;
+  string view_project_del_flag = 16;
+  string view_project_type_cn = 17;
+}
+
+message ProjectListResp {
+  repeated  ProjectListData list = 1;
+}
+
+message NewProjectListResp {
+  int64 total = 1;
+  repeated  NewProjectListData list = 2;
+}
+
+message ProjectOwnerReq{
+  int64 user_id =1;
+  string projectType =2;
+}
+
+
+
+//project end
+
+//label start
+message LabelAddReq {
+  int64 label_id = 1;
+  string label_name = 2;
+  string label_values =3;
+  string create_by =4;
+  string create_time =5;
+  int64 deleted = 6;
+  string label_remark =7;
+  string label_type =8;
+}
+
+message LabelAddResp {
+  string pong = 1;
+}
+message LabelUpdateReq {
+  int64 label_id = 1;
+  string label_name = 2;
+  string label_values =3;
+  string create_by =4;
+  string create_time =5;
+  int64 deleted = 6;
+  string label_remark =7;
+  string label_type =8;
+}
+
+message LabelUpdateResp {
+  string pong = 1;
+}
+
+message LabelDeleteReq {
+  int64 label_id = 1;
+}
+
+message LabelDeleteResp {
+  string pong = 1;
+}
+
+message LabelListReq {
+  int64 current = 1;
+  int64 page_size = 2;
+  string label_name = 3;
+  int64 label_id =5;
+  string label_type=6;
+  string label_values =4;
+}
+
+message LabelListData {
+  int64 view_label_id = 1;
+  string view_label_name = 2;
+  string view_label_values =3;
+  string view_label_remark =7;
+  string view_label_type =8;
+  string view_stop_status=9;
+}
+
+message LabelListResp {
+  int64 total = 1;
+  repeated  LabelListData list = 2;
+}
+
+
+message LabelListByPriReq{
+  string project_ids=3;
+}
+
+message LabelListByPriData {
+  int64 view_label_id = 1;
+  string view_label_name = 2;
+}
+
+message LabelListByPriResp {
+  repeated  LabelListByPriData list = 2;
+}
+
+//label end
+
+//resource start
+
+message  AddResourceReq  {
+  repeated CommonResourceData resourceData=1;
+}
+
+message CommonResourceData{
+  int64 labelId =1;
+  int64 bindingId = 2;
+  string resourceEn =3;
+  int64  projectId = 4;
+}
+
+message  AddResourceResp {
+}
+
+message  ListResourceReq{
+  string labelType = 1;
+  string projectIds = 2;
+}
+message  ListResourceResp{
+  repeated ListResourceList list=1;
+}
+
+message ListResourceList{
+  string label = 1;
+  string value = 2;
+}
+
+
+message DeleteResourceReq {
+  repeated CommonResourceData resourceData=1;
+}
+
+message DeleteResourceResp {
+  string pong=1;
+}
+
+
+message ResourceObjectValueData{
+  string viewResourceCnName = 1;
+  string viewResourceEnName = 2;
+  string viewResourceRemark = 3;
+  int64 viewProjectId = 4;
+  string viewPrimaryKey = 5;
+  int64 viewPrimaryKeyValue = 6;
+  string viewResourceType = 7;
+  string viewResourceValue = 8;
+  string viewDataContent = 9;
+  string viewDataUrl = 10;
+  string viewJsonId = 11;
+  string viewTableName = 12;
+  int64 viewShowCluster = 13;
+  int64 viewShowFeature = 14;
+  int64 viewShowInstall = 15;
+  int64 viewShowOther = 16;
+  int64 viewSystemShow = 17;
+}
+
+
+message ResourceObjectValueListReq{
+  int64 labelId=1;
+  string labelType =2;
+  string projectIds = 3;
+  string resourceEnName =6;
+  int64 current = 5;
+  int64 pageSize = 4;
+  string viewResourceEnName=7;
+  string viewResourceValue=8;
+  string viewRecycleType=9;
+}
+
+message ResourceObjectValueListResp{
+  repeated ResourceObjectValueData list=1;
+  repeated ResourceObjectValueData bingList=2;
+  repeated ResourceObjectValueData allList=3;
+  int64 total =4;
+}
+
+//resource end
+
+//search start
+message SearchReq {
+  string keyword=1;
+}
+message SearchResp {
+  repeated ArticleReq rows=1;
+}
+message ArticleReq{
+  string viewDataContent=1;
+  string viewDataUrl=2;
+  string viewJsonId=3;
+  string viewTableName=4;
+}
+//search end
+
+
+
+
+service Admin {
+  //user rpc start
+  rpc Login(LoginReq) returns(LoginResp);
+  rpc Logout(LogoutReq) returns(LogoutResp);
+  rpc UserInfo(InfoReq) returns(InfoResp);
+  rpc UserAdd(UserAddReq) returns(UserAddResp);
+  rpc UserList(UserListReq) returns(UserListResp);
+  rpc UserUpdate(UserUpdateReq) returns(UserUpdateResp);
+  rpc UserDelete(UserDeleteReq) returns(UserDeleteResp);
+  rpc ReSetPassword(ReSetPasswordReq) returns(ReSetPasswordResp);
+  rpc UpdateUserStatus(UserStatusReq) returns(UserStatusResp);
+  rpc UpdatePersonalInfo(UserUpdatePersonalInfoReq)returns (UserUpdatePersonalInfoResp);
+  rpc UpdatePersonalPassword(UserUpdatePersonalPasswordReq)returns (UserUpdatePersonalPasswordResp);
+  rpc UserStrategyList(UserStrategyInfoReq) returns(UserStrategyInfoResp);
+  rpc GetUserAssignmentPolicy(GetUserAssignmentPolicyReq)returns(GetUserAssignmentPolicyResp);
+  rpc UserAssignmentPolicy(UserAssignmentPolicyReq)returns(UserAssignmentPolicyResp);
+  rpc UserBatchEditItems(UserBatchEditItemsReq)returns(UserBatchEditItemsResp);
+  //ugroup rpc start
+  rpc UgroupAdd(UgroupAddReq) returns(UgroupAddResp);
+  rpc UgroupList(UgroupListReq) returns(UgroupListResp);
+  rpc UgroupUpdate(UgroupUpdateReq) returns(UgroupUpdateResp);
+  rpc UgroupDelete(UgroupDeleteReq) returns(UgroupDeleteResp);
+  rpc UgroupInfo(UgroupInfoReq) returns(UgroupInfoResp);
+  rpc GetUgroupAssignmentPolicy(GetUgroupAssignmentPolicyReq)returns(GetUgroupAssignmentPolicyResp);
+  rpc UgroupAssignmentPolicy(UgroupAssignmentPolicyReq)returns(UgroupAssignmentPolicyResp);
+  rpc GetUgroupAssignmentUser(GetUgroupAssignmentUserReq)returns(GetUgroupAssignmentUserResp);
+  rpc UgroupAssignmentUser(UgroupAssignmentUserReq)returns(UgroupAssignmentUserResp);
+
+  //stgroup rpc start
+  rpc StgroupAdd(StgroupAddReq) returns(StgroupAddResp);
+  rpc StgroupList(StgroupListReq) returns(StgroupListResp);
+  rpc StgroupUpdate(StgroupUpdateReq) returns(StgroupUpdateResp);
+  rpc StgroupDelete(StgroupDeleteReq) returns(StgroupDeleteResp);
+  rpc StgroupInfo(StgroupInfoReq) returns(StgroupInfoResp);
+  rpc PolicyAssociatedUsers(PolicyAssociatedUsersReq) returns(PolicyAssociatedUsersResp);
+  rpc GetUserCheckStategyInfo(StgroupUserCheckInfoReq) returns (StgroupUserCheckInfoResp);
+
+  //strategy rpc start
+  rpc StrategyList(StrategyListReq) returns(StrategyListResp);
+  //role rpc start
+  rpc RoleAdd(RoleAddReq) returns(RoleAddResp);
+  rpc RoleList(RoleListReq) returns(RoleListResp);
+  rpc RoleUpdate(RoleUpdateReq) returns(RoleUpdateResp);
+  rpc RoleDelete(RoleDeleteReq) returns(RoleDeleteResp);
+  rpc QueryMenuByRoleId(QueryMenuByRoleIdReq) returns(QueryMenuByRoleIdResp);
+  rpc UpdateMenuRole(UpdateMenuRoleReq) returns(UpdateMenuRoleResp);
+  rpc GetRoleAssignmentUser(GetRoleAssignmentUserReq)returns(GetRoleAssignmentUserResp);
+  rpc RoleAssignmentUser(RoleAssignmentUserReq)returns(RoleAssignmentUserResp);
+
+
+  //menu rpc start
+  rpc MenuAdd(MenuAddReq) returns(MenuAddResp);
+  rpc MenuList(MenuListReq) returns(MenuListResp);
+  rpc MenuUpdate(MenuUpdateReq) returns(MenuUpdateResp);
+  rpc MenuDelete(MenuDeleteReq) returns(MenuDeleteResp);
+  rpc MenuOperationList(MenuOperationListReq)returns(MenuOperationListResp);
+  //dict rpc start
+  rpc DictAdd(DictAddReq) returns(DictAddResp);
+  rpc DictList(DictListReq) returns(DictListResp);
+  rpc DictUpdate(DictUpdateReq) returns(DictUpdateResp);
+  rpc DictDelete(DictDeleteReq) returns(DictDeleteResp);
+  //dept rpc start
+  rpc DeptAdd(DeptAddReq) returns(DeptAddResp);
+  rpc DeptList(DeptListReq) returns(DeptListResp);
+  rpc DeptUpdate(DeptUpdateReq) returns(DeptUpdateResp);
+  rpc DeptDelete(DeptDeleteReq) returns(DeptDeleteResp);
+  //loginlog rpc start
+  rpc LoginLogAdd(LoginLogAddReq) returns(LoginLogAddResp);
+  rpc LoginLogUpdate(LoginLogUpdateReq) returns(LoginLogUpdateResp);
+  rpc LoginLogList(LoginLogListReq) returns(LoginLogListResp);
+  //syslog rpc start
+  rpc SysLogAdd(SysLogAddReq) returns(SysLogAddResp);
+  rpc SysLogList(SysLogListReq) returns(SysLogListResp);
+
+  //company rpc start
+  rpc CompanyAdd(CompanyAddReq) returns(CompanyAddResp);
+  rpc CompanyList(CompanyListReq) returns(CompanyListResp);
+  rpc CompanyUpdate(CompanyUpdateReq) returns(CompanyUpdateResp);
+  rpc CompanyDelete(CompanyDeleteReq) returns(CompanyDeleteResp);
+  rpc UpdateSupplyCompany(UpdateSupplyCompanyReq)returns(UpdateSupplyCompanyResp);
+  //project rpc start
+  rpc ProjectAdd(ProjectAddReq) returns(ProjectAddResp);
+  rpc ProjectList(ProjectListReq) returns(NewProjectListResp);
+  rpc ProjectUpdate(ProjectUpdateReq) returns(ProjectUpdateResp);
+  rpc ProjectDelete(ProjectDeleteReq) returns(ProjectDeleteResp);
+  rpc ProjectOwnerList(ProjectOwnerReq) returns(ProjectListResp);
+  rpc ProjectGetOne(ProjectGetOneReq) returns (ProjectListData);
+  //label rpc start
+  rpc LabelAdd(LabelAddReq) returns(LabelAddResp);
+  rpc LabelList(LabelListReq) returns(LabelListResp);
+  rpc LabelUpdate(LabelUpdateReq) returns(LabelUpdateResp);
+  rpc LabelDelete(LabelDeleteReq) returns(LabelDeleteResp);
+  rpc LabelListByPri(LabelListByPriReq) returns(LabelListByPriResp);
+
+  //resource rpc start
+  rpc ResourceAdd(AddResourceReq) returns(AddResourceResp);
+  rpc ResourceList(ListResourceReq) returns(ListResourceResp);
+  rpc ResourceDelete(DeleteResourceReq) returns(DeleteResourceResp);
+  rpc ResourceObjectValueList(ResourceObjectValueListReq) returns(ResourceObjectValueListResp);
+  //search rpc start
+  rpc SearchList(SearchReq)returns(SearchResp);
+
+}
+
+
+

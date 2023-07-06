@@ -1,0 +1,85 @@
+syntax = "v1"
+
+info(
+	title: "内网任务日志信息"
+	desc: "内网任务日志信息"
+	author: "acool"
+)
+
+type (
+
+	AddInsideTasksLogsReq {
+		*InsideTasksLogsCommon
+	}
+
+	UpdateInsideTasksLogsReq {
+		*InsideTasksLogsCommon
+	}
+
+	DeleteInsideTasksLogsReq {
+		InsideTasksLogsId int64 `path:"InsideTasksLogsId"`
+	}
+
+    GetInsideTasksLogsReq {
+		InsideTasksLogsId int64 `path:"InsideTasksLogsId"`
+	}
+
+	InsideTasksLogsCommon {
+        Id int64 `json:"id,optional"` 
+        TasksId int64 `json:"tasksId,optional"` 
+        Content string `json:"content,optional"` 
+	}
+
+	ListInsideTasksLogsReq {
+		Current  int64  `form:"current,default=1"`
+		PageSize int64  `form:"pageSize,default=15"`
+	}
+	ListInsideTasksLogsResp {
+		Rows   []*ListInsideTasksLogsData `json:"rows"`
+		Total  int64            `json:"total"`
+		Filter []*FilterList    `json:"filter"`
+	}
+	ListInsideTasksLogsData {
+        Id int64 `json:"id"` 
+        TasksId int64 `json:"tasksId"` 
+        Content string `json:"content"` 
+	}
+
+
+
+)
+
+@server(
+	group: insideTasksLogs
+	prefix: /intranet/insideTasksLogs
+)
+service intranet {
+
+	@doc(
+		summary:"内网任务日志新增"
+	)
+	@handler InsideTasksLogsAdd
+	post /add (AddInsideTasksLogsReq) returns()
+	@doc(
+		summary:"内网任务日志列表"
+	)
+	@handler InsideTasksLogsList
+	get /list (ListInsideTasksLogsReq) returns (ListInsideTasksLogsResp)
+	@doc(
+		summary:"内网任务日志更新"
+	)
+	@handler InsideTasksLogsUpdate
+	put /update (UpdateInsideTasksLogsReq) returns ()
+	@doc(
+		summary:"内网任务日志删除"
+	)
+	@handler InsideTasksLogsDelete
+	delete /delete/:InsideTasksLogsId (DeleteInsideTasksLogsReq) returns ()
+
+	@doc(
+		summary:"内网任务日志获取"
+	)
+	@handler InsideTasksLogsGet
+	get /get/:InsideTasksLogsId (GetInsideTasksLogsReq) returns (ListInsideTasksLogsData)
+
+}

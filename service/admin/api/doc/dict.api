@@ -1,0 +1,89 @@
+info(
+    desc: "字典信息"
+)
+
+
+type (
+
+    AddDictReq  {
+        Value string `json:"value"`                        // 数据值
+        Label string `json:"label"`                        // 标签名
+        Pid int64 `json:"pid"`
+        Types string `json:"types"`                          // 类型
+        Description string `json:"description,optional"`            // 描述
+        Sort int64 `json:"sort,optional"`                          // 排序（升序）
+    }
+
+    ListDictReq  {
+        Current int64 `form:"current,default=1"`
+        PageSize int64 `form:"pageSize,default=15"`
+        Types string `form:"types,optional"`
+        Pid int64 `form:"pid,optional"`
+        Id int64 `form:"id,optional"`
+    }
+    ListDictData  {
+        Id int64 `json:"id"`                               // 编号
+        Value string `json:"value"`                        // 数据值
+        Pid int64 `json:"pid"`
+        Label string `json:"label"`                        // 标签名
+        Types string `json:"types"`                          // 类型
+        Description string `json:"description"`            // 描述
+        Sort int64 `json:"sort"`                         // 排序（升序）
+    }
+
+    ListDictResp  {
+        Rows []*ListDictData `json:"rows"`
+        Total int64 `json:"total"`
+    }
+    UpdateDictReq  {
+        Id int64 `json:"id"`                               // 编号
+        Value string `json:"value"`                        // 数据值
+        Pid int64 `json:"pid"`
+        Label string `json:"label"`                        // 标签名
+        Types string `json:"types"`                          // 类型
+        Description string `json:"description"`            // 描述
+        Sort int64 `json:"sort"`                         // 排序（升序）
+    }
+
+    DeleteDictReq  {
+        DictId int64 `path:"dictId"`
+    }
+
+
+    DictGetByTypeReq {
+        DictType string `path:"dictType"`
+    }
+)
+
+@server(
+    group: dict
+    prefix: /admin/dict
+)
+service admin {
+    @doc(
+        summary:"根据字典类型获取"
+    )
+    @handler DictGetByType
+    get /type/:dictType(DictGetByTypeReq) returns (ListDictResp)
+
+    @doc(
+        summary:"字典新增"
+    )
+    @handler DictAdd
+    post /add (AddDictReq) returns ()
+    @doc(
+        summary:"字典列表"
+    )
+    @handler DictList
+    get /list (ListDictReq) returns (ListDictResp)
+    @doc(
+        summary:"字典更新"
+    )
+    @handler DictUpdate
+    put /update (UpdateDictReq) returns ()
+    @doc(
+        summary:"字典删除"
+    )
+    @handler DictDelete
+    delete /delete/:dictId (DeleteDictReq) returns ()
+}

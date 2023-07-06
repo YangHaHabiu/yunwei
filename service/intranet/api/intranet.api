@@ -1,0 +1,19 @@
+syntax = "v1"
+
+info(
+	title: "内网模块"
+	desc: "内网模块"
+	author: "acool"
+)
+
+import (
+	"doc/insideInstallPlan.api"
+	"doc/insideOperation.api"
+	"doc/insideProjectCluster.api"
+	"doc/insideProxyHost.api"
+	"doc/insideServer.api"
+	"doc/insideTasks.api"
+	"doc/insideTasksLogs.api"
+	"doc/insideVersion.api"
+	"doc/insideHostInfo.api"
+)

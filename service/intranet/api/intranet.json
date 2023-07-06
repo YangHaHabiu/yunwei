@@ -1,0 +1,3021 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "内网模块",
+    "description": "内网模块",
+    "version": ""
+  },
+  "schemes": [
+    "http",
+    "https"
+  ],
+  "consumes": [
+    "application/json"
+  ],
+  "produces": [
+    "application/json"
+  ],
+  "paths": {
+    "/intranet/insideHostInfo/add": {
+      "post": {
+        "summary": "机器信息新增",
+        "operationId": "InsideHostInfoAdd",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {}
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/AddInsideHostInfoReq"
+            }
+          }
+        ],
+        "tags": [
+          "insideHostInfo"
+        ]
+      }
+    },
+    "/intranet/insideHostInfo/delete/{InsideHostInfoId}": {
+      "delete": {
+        "summary": "机器信息删除",
+        "operationId": "InsideHostInfoDelete",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {}
+          }
+        },
+        "parameters": [
+          {
+            "name": "InsideHostInfoId",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/DeleteInsideHostInfoReq"
+            }
+          }
+        ],
+        "tags": [
+          "insideHostInfo"
+        ]
+      }
+    },
+    "/intranet/insideHostInfo/get/{InsideHostInfoId}": {
+      "get": {
+        "summary": "机器信息获取",
+        "operationId": "InsideHostInfoGet",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/ListInsideHostInfoData"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "InsideHostInfoId",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "insideHostInfo"
+        ]
+      }
+    },
+    "/intranet/insideHostInfo/list": {
+      "get": {
+        "summary": "机器信息列表",
+        "operationId": "InsideHostInfoList",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/ListInsideHostInfoResp"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "current",
+            "in": "query",
+            "required": true,
+            "type": "integer",
+            "format": "int64",
+            "default": "1"
+          },
+          {
+            "name": "pageSize",
+            "in": "query",
+            "required": true,
+            "type": "integer",
+            "format": "int64",
+            "default": "15"
+          }
+        ],
+        "tags": [
+          "insideHostInfo"
+        ]
+      }
+    },
+    "/intranet/insideHostInfo/update": {
+      "put": {
+        "summary": "机器信息更新",
+        "operationId": "InsideHostInfoUpdate",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {}
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/UpdateInsideHostInfoReq"
+            }
+          }
+        ],
+        "tags": [
+          "insideHostInfo"
+        ]
+      }
+    },
+    "/intranet/insideInstallPlan/add": {
+      "post": {
+        "summary": "内网装服计划新增",
+        "operationId": "InsideInstallPlanAdd",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {}
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/AddInsideInstallPlanReq"
+            }
+          }
+        ],
+        "tags": [
+          "insideInstallPlan"
+        ]
+      }
+    },
+    "/intranet/insideInstallPlan/delete/{InsideInstallPlanId}": {
+      "delete": {
+        "summary": "内网装服计划删除",
+        "operationId": "InsideInstallPlanDelete",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {}
+          }
+        },
+        "parameters": [
+          {
+            "name": "InsideInstallPlanId",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/DeleteInsideInstallPlanReq"
+            }
+          }
+        ],
+        "tags": [
+          "insideInstallPlan"
+        ]
+      }
+    },
+    "/intranet/insideInstallPlan/get/{InsideInstallPlanId}": {
+      "get": {
+        "summary": "内网装服计划获取",
+        "operationId": "InsideInstallPlanGet",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/ListInsideInstallPlanData"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "InsideInstallPlanId",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "insideInstallPlan"
+        ]
+      }
+    },
+    "/intranet/insideInstallPlan/list": {
+      "get": {
+        "summary": "内网装服计划列表",
+        "operationId": "InsideInstallPlanList",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/ListInsideInstallPlanResp"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "current",
+            "in": "query",
+            "required": true,
+            "type": "integer",
+            "format": "int64",
+            "default": "1"
+          },
+          {
+            "name": "pageSize",
+            "in": "query",
+            "required": true,
+            "type": "integer",
+            "format": "int64",
+            "default": "15"
+          }
+        ],
+        "tags": [
+          "insideInstallPlan"
+        ]
+      }
+    },
+    "/intranet/insideInstallPlan/update": {
+      "put": {
+        "summary": "内网装服计划更新",
+        "operationId": "InsideInstallPlanUpdate",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {}
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/UpdateInsideInstallPlanReq"
+            }
+          }
+        ],
+        "tags": [
+          "insideInstallPlan"
+        ]
+      }
+    },
+    "/intranet/insideOperation/add": {
+      "post": {
+        "summary": "内网操作管理新增",
+        "operationId": "InsideOperationAdd",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {}
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/AddInsideOperationReq"
+            }
+          }
+        ],
+        "tags": [
+          "insideOperation"
+        ]
+      }
+    },
+    "/intranet/insideOperation/delete/{InsideOperationId}": {
+      "delete": {
+        "summary": "内网操作管理删除",
+        "operationId": "InsideOperationDelete",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {}
+          }
+        },
+        "parameters": [
+          {
+            "name": "InsideOperationId",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/DeleteInsideOperationReq"
+            }
+          }
+        ],
+        "tags": [
+          "insideOperation"
+        ]
+      }
+    },
+    "/intranet/insideOperation/get/{InsideOperationId}": {
+      "get": {
+        "summary": "内网操作管理获取",
+        "operationId": "InsideOperationGet",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/ListInsideOperationData"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "InsideOperationId",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "insideOperation"
+        ]
+      }
+    },
+    "/intranet/insideOperation/list": {
+      "get": {
+        "summary": "内网操作管理列表",
+        "operationId": "InsideOperationList",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/ListInsideOperationResp"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "current",
+            "in": "query",
+            "required": true,
+            "type": "integer",
+            "format": "int64",
+            "default": "1"
+          },
+          {
+            "name": "pageSize",
+            "in": "query",
+            "required": true,
+            "type": "integer",
+            "format": "int64",
+            "default": "15"
+          },
+          {
+            "name": "projectId",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int64"
+          },
+          {
+            "name": "buildType",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "insideOperation"
+        ]
+      }
+    },
+    "/intranet/insideOperation/update": {
+      "put": {
+        "summary": "内网操作管理更新",
+        "operationId": "InsideOperationUpdate",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {}
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/UpdateInsideOperationReq"
+            }
+          }
+        ],
+        "tags": [
+          "insideOperation"
+        ]
+      }
+    },
+    "/intranet/insideProjectCluster/add": {
+      "post": {
+        "summary": "内网集群和项目关系新增",
+        "operationId": "InsideProjectClusterAdd",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {}
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/AddInsideProjectClusterReq"
+            }
+          }
+        ],
+        "tags": [
+          "insideProjectCluster"
+        ]
+      }
+    },
+    "/intranet/insideProjectCluster/delete/{InsideProjectClusterId}": {
+      "delete": {
+        "summary": "内网集群和项目关系删除",
+        "operationId": "InsideProjectClusterDelete",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {}
+          }
+        },
+        "parameters": [
+          {
+            "name": "InsideProjectClusterId",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/DeleteInsideProjectClusterReq"
+            }
+          }
+        ],
+        "tags": [
+          "insideProjectCluster"
+        ]
+      }
+    },
+    "/intranet/insideProjectCluster/get/{InsideProjectClusterId}": {
+      "get": {
+        "summary": "内网集群和项目关系获取",
+        "operationId": "InsideProjectClusterGet",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/ListInsideProjectClusterData"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "InsideProjectClusterId",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "insideProjectCluster"
+        ]
+      }
+    },
+    "/intranet/insideProjectCluster/list": {
+      "get": {
+        "summary": "内网集群和项目关系列表",
+        "operationId": "InsideProjectClusterList",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/ListInsideProjectClusterResp"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "current",
+            "in": "query",
+            "required": true,
+            "type": "integer",
+            "format": "int64",
+            "default": "1"
+          },
+          {
+            "name": "pageSize",
+            "in": "query",
+            "required": true,
+            "type": "integer",
+            "format": "int64",
+            "default": "15"
+          },
+          {
+            "name": "projectId",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int64"
+          },
+          {
+            "name": "clusterId",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int64"
+          }
+        ],
+        "tags": [
+          "insideProjectCluster"
+        ]
+      }
+    },
+    "/intranet/insideProjectCluster/update": {
+      "put": {
+        "summary": "内网集群和项目关系更新",
+        "operationId": "InsideProjectClusterUpdate",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {}
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/UpdateInsideProjectClusterReq"
+            }
+          }
+        ],
+        "tags": [
+          "insideProjectCluster"
+        ]
+      }
+    },
+    "/intranet/insideProxyHost/add": {
+      "post": {
+        "summary": "内网代理主机新增",
+        "operationId": "InsideProxyHostAdd",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {}
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/AddInsideProxyHostReq"
+            }
+          }
+        ],
+        "tags": [
+          "insideProxyHost"
+        ]
+      }
+    },
+    "/intranet/insideProxyHost/delete/{InsideProxyHostId}": {
+      "delete": {
+        "summary": "内网代理主机删除",
+        "operationId": "InsideProxyHostDelete",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {}
+          }
+        },
+        "parameters": [
+          {
+            "name": "InsideProxyHostId",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/DeleteInsideProxyHostReq"
+            }
+          }
+        ],
+        "tags": [
+          "insideProxyHost"
+        ]
+      }
+    },
+    "/intranet/insideProxyHost/get/{InsideProxyHostId}": {
+      "get": {
+        "summary": "内网代理主机获取",
+        "operationId": "InsideProxyHostGet",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/ListInsideProxyHostData"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "InsideProxyHostId",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "insideProxyHost"
+        ]
+      }
+    },
+    "/intranet/insideProxyHost/list": {
+      "get": {
+        "summary": "内网代理主机列表",
+        "operationId": "InsideProxyHostList",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/ListInsideProxyHostResp"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "current",
+            "in": "query",
+            "required": true,
+            "type": "integer",
+            "format": "int64",
+            "default": "1"
+          },
+          {
+            "name": "pageSize",
+            "in": "query",
+            "required": true,
+            "type": "integer",
+            "format": "int64",
+            "default": "15"
+          }
+        ],
+        "tags": [
+          "insideProxyHost"
+        ]
+      }
+    },
+    "/intranet/insideProxyHost/update": {
+      "put": {
+        "summary": "内网代理主机更新",
+        "operationId": "InsideProxyHostUpdate",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {}
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/UpdateInsideProxyHostReq"
+            }
+          }
+        ],
+        "tags": [
+          "insideProxyHost"
+        ]
+      }
+    },
+    "/intranet/insideServer/add": {
+      "post": {
+        "summary": "内网服务器新增",
+        "operationId": "InsideServerAdd",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {}
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/AddInsideServerReq"
+            }
+          }
+        ],
+        "tags": [
+          "insideServer"
+        ]
+      }
+    },
+    "/intranet/insideServer/delete/{InsideServerId}": {
+      "delete": {
+        "summary": "内网服务器删除",
+        "operationId": "InsideServerDelete",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {}
+          }
+        },
+        "parameters": [
+          {
+            "name": "InsideServerId",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/DeleteInsideServerReq"
+            }
+          }
+        ],
+        "tags": [
+          "insideServer"
+        ]
+      }
+    },
+    "/intranet/insideServer/get/{InsideServerId}": {
+      "get": {
+        "summary": "内网服务器获取",
+        "operationId": "InsideServerGet",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/ListInsideServerData"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "InsideServerId",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "insideServer"
+        ]
+      }
+    },
+    "/intranet/insideServer/list": {
+      "get": {
+        "summary": "内网服务器列表",
+        "operationId": "InsideServerList",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/ListInsideServerResp"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "current",
+            "in": "query",
+            "required": true,
+            "type": "integer",
+            "format": "int64",
+            "default": "1"
+          },
+          {
+            "name": "pageSize",
+            "in": "query",
+            "required": true,
+            "type": "integer",
+            "format": "int64",
+            "default": "15"
+          },
+          {
+            "name": "projectId",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int64"
+          },
+          {
+            "name": "clusterId",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int64"
+          },
+          {
+            "name": "featureType",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "buildType",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "insideServer"
+        ]
+      }
+    },
+    "/intranet/insideServer/update": {
+      "put": {
+        "summary": "内网服务器更新",
+        "operationId": "InsideServerUpdate",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {}
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/UpdateInsideServerReq"
+            }
+          }
+        ],
+        "tags": [
+          "insideServer"
+        ]
+      }
+    },
+    "/intranet/insideTasks/add": {
+      "post": {
+        "summary": "内网任务新增",
+        "operationId": "InsideTasksAdd",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {}
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/AddInsideTasksReq"
+            }
+          }
+        ],
+        "tags": [
+          "insideTasks"
+        ]
+      }
+    },
+    "/intranet/insideTasks/delete/{InsideTasksId}": {
+      "delete": {
+        "summary": "内网任务删除",
+        "operationId": "InsideTasksDelete",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {}
+          }
+        },
+        "parameters": [
+          {
+            "name": "InsideTasksId",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/DeleteInsideTasksReq"
+            }
+          }
+        ],
+        "tags": [
+          "insideTasks"
+        ]
+      }
+    },
+    "/intranet/insideTasks/get/{InsideTasksId}": {
+      "get": {
+        "summary": "内网任务获取",
+        "operationId": "InsideTasksGet",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/ListInsideTasksData"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "InsideTasksId",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "insideTasks"
+        ]
+      }
+    },
+    "/intranet/insideTasks/list": {
+      "get": {
+        "summary": "内网任务列表",
+        "operationId": "InsideTasksList",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/ListInsideTasksResp"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "current",
+            "in": "query",
+            "required": true,
+            "type": "integer",
+            "format": "int64",
+            "default": "1"
+          },
+          {
+            "name": "pageSize",
+            "in": "query",
+            "required": true,
+            "type": "integer",
+            "format": "int64",
+            "default": "15"
+          },
+          {
+            "name": "projectId",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int64"
+          },
+          {
+            "name": "clusterId",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int64"
+          },
+          {
+            "name": "serverId",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int64"
+          },
+          {
+            "name": "versionId",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int64"
+          },
+          {
+            "name": "tasksType",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "projectIds",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "recentSubmit",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "status",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "startTime",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "insideTasks"
+        ]
+      }
+    },
+    "/intranet/insideTasks/operationInsideTasks": {
+      "get": {
+        "summary": "内网任务操作",
+        "operationId": "InsideTasksOperation",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/OperationInsideTasksResp"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "tasksId",
+            "in": "query",
+            "required": true,
+            "type": "integer",
+            "format": "int64"
+          },
+          {
+            "name": "operationType",
+            "in": "query",
+            "required": true,
+            "type": "string",
+            "enum": [
+              "getlog",
+              "stop"
+            ]
+          }
+        ],
+        "tags": [
+          "insideTasks"
+        ]
+      }
+    },
+    "/intranet/insideTasksLogs/add": {
+      "post": {
+        "summary": "内网任务日志新增",
+        "operationId": "InsideTasksLogsAdd",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {}
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/AddInsideTasksLogsReq"
+            }
+          }
+        ],
+        "tags": [
+          "insideTasksLogs"
+        ]
+      }
+    },
+    "/intranet/insideTasksLogs/delete/{InsideTasksLogsId}": {
+      "delete": {
+        "summary": "内网任务日志删除",
+        "operationId": "InsideTasksLogsDelete",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {}
+          }
+        },
+        "parameters": [
+          {
+            "name": "InsideTasksLogsId",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/DeleteInsideTasksLogsReq"
+            }
+          }
+        ],
+        "tags": [
+          "insideTasksLogs"
+        ]
+      }
+    },
+    "/intranet/insideTasksLogs/get/{InsideTasksLogsId}": {
+      "get": {
+        "summary": "内网任务日志获取",
+        "operationId": "InsideTasksLogsGet",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/ListInsideTasksLogsData"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "InsideTasksLogsId",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "insideTasksLogs"
+        ]
+      }
+    },
+    "/intranet/insideTasksLogs/list": {
+      "get": {
+        "summary": "内网任务日志列表",
+        "operationId": "InsideTasksLogsList",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/ListInsideTasksLogsResp"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "current",
+            "in": "query",
+            "required": true,
+            "type": "integer",
+            "format": "int64",
+            "default": "1"
+          },
+          {
+            "name": "pageSize",
+            "in": "query",
+            "required": true,
+            "type": "integer",
+            "format": "int64",
+            "default": "15"
+          }
+        ],
+        "tags": [
+          "insideTasksLogs"
+        ]
+      }
+    },
+    "/intranet/insideTasksLogs/update": {
+      "put": {
+        "summary": "内网任务日志更新",
+        "operationId": "InsideTasksLogsUpdate",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {}
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/UpdateInsideTasksLogsReq"
+            }
+          }
+        ],
+        "tags": [
+          "insideTasksLogs"
+        ]
+      }
+    },
+    "/intranet/insideVersion/add": {
+      "post": {
+        "summary": "内网版本新增",
+        "operationId": "InsideVersionAdd",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {}
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/AddInsideVersionReq"
+            }
+          }
+        ],
+        "tags": [
+          "insideVersion"
+        ]
+      }
+    },
+    "/intranet/insideVersion/delete/{InsideVersionId}": {
+      "delete": {
+        "summary": "内网版本删除",
+        "operationId": "InsideVersionDelete",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {}
+          }
+        },
+        "parameters": [
+          {
+            "name": "InsideVersionId",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/DeleteInsideVersionReq"
+            }
+          }
+        ],
+        "tags": [
+          "insideVersion"
+        ]
+      }
+    },
+    "/intranet/insideVersion/get/{InsideVersionId}": {
+      "get": {
+        "summary": "内网版本获取",
+        "operationId": "InsideVersionGet",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/ListInsideVersionData"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "InsideVersionId",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "insideVersion"
+        ]
+      }
+    },
+    "/intranet/insideVersion/getVersionInfo": {
+      "get": {
+        "summary": "内网版本历史获取",
+        "operationId": "GetVersionInfo",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/GetVersionInfoResp"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "versionId",
+            "in": "query",
+            "required": true,
+            "type": "integer",
+            "format": "int64"
+          }
+        ],
+        "tags": [
+          "insideVersion"
+        ]
+      }
+    },
+    "/intranet/insideVersion/list": {
+      "get": {
+        "summary": "内网版本列表",
+        "operationId": "InsideVersionList",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/ListInsideVersionResp"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "current",
+            "in": "query",
+            "required": true,
+            "type": "integer",
+            "format": "int64",
+            "default": "1"
+          },
+          {
+            "name": "pageSize",
+            "in": "query",
+            "required": true,
+            "type": "integer",
+            "format": "int64",
+            "default": "15"
+          },
+          {
+            "name": "projectId",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int64"
+          },
+          {
+            "name": "clusterId",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int64"
+          },
+          {
+            "name": "buildType",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "insideVersion"
+        ]
+      }
+    },
+    "/intranet/insideVersion/update": {
+      "put": {
+        "summary": "内网版本更新",
+        "operationId": "InsideVersionUpdate",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {}
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/UpdateInsideVersionReq"
+            }
+          }
+        ],
+        "tags": [
+          "insideVersion"
+        ]
+      }
+    }
+  },
+  "definitions": {
+    "AddInsideHostInfoReq": {
+      "type": "object",
+      "title": "AddInsideHostInfoReq"
+    },
+    "AddInsideInstallPlanReq": {
+      "type": "object",
+      "title": "AddInsideInstallPlanReq"
+    },
+    "AddInsideOperationReq": {
+      "type": "object",
+      "title": "AddInsideOperationReq"
+    },
+    "AddInsideProjectClusterReq": {
+      "type": "object",
+      "title": "AddInsideProjectClusterReq"
+    },
+    "AddInsideProxyHostReq": {
+      "type": "object",
+      "title": "AddInsideProxyHostReq"
+    },
+    "AddInsideServerReq": {
+      "type": "object",
+      "title": "AddInsideServerReq"
+    },
+    "AddInsideTasksLogsReq": {
+      "type": "object",
+      "title": "AddInsideTasksLogsReq"
+    },
+    "AddInsideTasksReq": {
+      "type": "object",
+      "title": "AddInsideTasksReq"
+    },
+    "AddInsideVersionReq": {
+      "type": "object",
+      "title": "AddInsideVersionReq"
+    },
+    "DeleteInsideHostInfoReq": {
+      "type": "object",
+      "title": "DeleteInsideHostInfoReq"
+    },
+    "DeleteInsideInstallPlanReq": {
+      "type": "object",
+      "title": "DeleteInsideInstallPlanReq"
+    },
+    "DeleteInsideOperationReq": {
+      "type": "object",
+      "title": "DeleteInsideOperationReq"
+    },
+    "DeleteInsideProjectClusterReq": {
+      "type": "object",
+      "title": "DeleteInsideProjectClusterReq"
+    },
+    "DeleteInsideProxyHostReq": {
+      "type": "object",
+      "title": "DeleteInsideProxyHostReq"
+    },
+    "DeleteInsideServerReq": {
+      "type": "object",
+      "title": "DeleteInsideServerReq"
+    },
+    "DeleteInsideTasksLogsReq": {
+      "type": "object",
+      "title": "DeleteInsideTasksLogsReq"
+    },
+    "DeleteInsideTasksReq": {
+      "type": "object",
+      "title": "DeleteInsideTasksReq"
+    },
+    "DeleteInsideVersionReq": {
+      "type": "object",
+      "title": "DeleteInsideVersionReq"
+    },
+    "FilterList": {
+      "type": "object",
+      "properties": {
+        "label": {
+          "type": "string"
+        },
+        "value": {
+          "type": "string"
+        },
+        "types": {
+          "type": "string"
+        },
+        "children": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/FilterList"
+          }
+        }
+      },
+      "title": "FilterList"
+    },
+    "GetInsideHostInfoReq": {
+      "type": "object",
+      "title": "GetInsideHostInfoReq"
+    },
+    "GetInsideInstallPlanReq": {
+      "type": "object",
+      "title": "GetInsideInstallPlanReq"
+    },
+    "GetInsideOperationReq": {
+      "type": "object",
+      "title": "GetInsideOperationReq"
+    },
+    "GetInsideProjectClusterReq": {
+      "type": "object",
+      "title": "GetInsideProjectClusterReq"
+    },
+    "GetInsideProxyHostReq": {
+      "type": "object",
+      "title": "GetInsideProxyHostReq"
+    },
+    "GetInsideServerReq": {
+      "type": "object",
+      "title": "GetInsideServerReq"
+    },
+    "GetInsideTasksLogsReq": {
+      "type": "object",
+      "title": "GetInsideTasksLogsReq"
+    },
+    "GetInsideTasksReq": {
+      "type": "object",
+      "title": "GetInsideTasksReq"
+    },
+    "GetInsideVersionReq": {
+      "type": "object",
+      "title": "GetInsideVersionReq"
+    },
+    "GetVersionInfoData": {
+      "type": "object",
+      "properties": {
+        "message": {
+          "type": "string"
+        },
+        "time": {
+          "type": "string"
+        },
+        "user": {
+          "type": "string"
+        },
+        "ver": {
+          "type": "string"
+        }
+      },
+      "title": "GetVersionInfoData",
+      "required": [
+        "message",
+        "time",
+        "user",
+        "ver"
+      ]
+    },
+    "GetVersionInfoReq": {
+      "type": "object",
+      "properties": {
+        "versionId": {
+          "type": "integer",
+          "format": "int64"
+        }
+      },
+      "title": "GetVersionInfoReq",
+      "required": [
+        "versionId"
+      ]
+    },
+    "GetVersionInfoResp": {
+      "type": "object",
+      "properties": {
+        "rows": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/GetVersionInfoData"
+          }
+        }
+      },
+      "title": "GetVersionInfoResp",
+      "required": [
+        "rows"
+      ]
+    },
+    "InsideHostInfoCommon": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "hostName": {
+          "type": "string"
+        },
+        "hostIp": {
+          "type": "string"
+        },
+        "hostPort": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "dbUser": {
+          "type": "string"
+        },
+        "dbPass": {
+          "type": "string"
+        },
+        "dbPort": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "hostScriptPath": {
+          "type": "string"
+        }
+      },
+      "title": "InsideHostInfoCommon"
+    },
+    "InsideInstallPlanCommon": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "projectId": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "clusterId": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "featureType": {
+          "type": "string"
+        },
+        "sid": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "serverTitle": {
+          "type": "string"
+        },
+        "installStatus": {
+          "type": "string"
+        },
+        "delFlag": {
+          "type": "integer",
+          "format": "int64"
+        }
+      },
+      "title": "InsideInstallPlanCommon"
+    },
+    "InsideOperationCommon": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "projectId": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "operCn": {
+          "type": "string"
+        },
+        "operEn": {
+          "type": "string"
+        },
+        "operType": {
+          "type": "string"
+        },
+        "sort": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "delFlag": {
+          "type": "integer",
+          "format": "int64"
+        }
+      },
+      "title": "InsideOperationCommon"
+    },
+    "InsideProjectClusterCommon": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "projectId": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "clusterId": {
+          "type": "integer",
+          "format": "int64"
+        }
+      },
+      "title": "InsideProjectClusterCommon"
+    },
+    "InsideProxyHostCommon": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "projectId": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "hostId": {
+          "type": "integer",
+          "format": "int64"
+        }
+      },
+      "title": "InsideProxyHostCommon"
+    },
+    "InsideServerCommon": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "projectId": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "clusterId": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "featureType": {
+          "type": "string"
+        },
+        "sort": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "buildType": {
+          "type": "string"
+        },
+        "serverTitle": {
+          "type": "string"
+        },
+        "serverPath": {
+          "type": "string"
+        },
+        "serverDescDb": {
+          "type": "string"
+        },
+        "domain": {
+          "type": "string"
+        },
+        "delFlag": {
+          "type": "integer",
+          "format": "int64"
+        }
+      },
+      "title": "InsideServerCommon"
+    },
+    "InsideTasksCommon": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "projectId": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "clusterId": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "serverId": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "versionId": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "operationId": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "tasksType": {
+          "type": "string"
+        },
+        "version": {
+          "type": "string"
+        },
+        "cmd": {
+          "type": "string"
+        },
+        "startTime": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "endTime": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "status": {
+          "type": "string"
+        },
+        "createBy": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "delFlag": {
+          "type": "integer",
+          "format": "int64"
+        }
+      },
+      "title": "InsideTasksCommon"
+    },
+    "InsideTasksLogsCommon": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "tasksId": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "content": {
+          "type": "string"
+        }
+      },
+      "title": "InsideTasksLogsCommon"
+    },
+    "InsideVersionCommon": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "projectId": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "clusterId": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "buildType": {
+          "type": "string"
+        },
+        "versionName": {
+          "type": "string"
+        },
+        "versionData": {
+          "type": "string"
+        },
+        "versionConf": {
+          "type": "string"
+        },
+        "versionType": {
+          "type": "string"
+        },
+        "sourceDb": {
+          "type": "string"
+        },
+        "sort": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "delFlag": {
+          "type": "integer",
+          "format": "int64"
+        }
+      },
+      "title": "InsideVersionCommon"
+    },
+    "ListInsideHostInfoData": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "hostName": {
+          "type": "string"
+        },
+        "hostIp": {
+          "type": "string"
+        },
+        "hostPort": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "dbUser": {
+          "type": "string"
+        },
+        "dbPass": {
+          "type": "string"
+        },
+        "dbPort": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "hostScriptPath": {
+          "type": "string"
+        }
+      },
+      "title": "ListInsideHostInfoData",
+      "required": [
+        "id",
+        "hostName",
+        "hostIp",
+        "hostPort",
+        "dbUser",
+        "dbPass",
+        "dbPort",
+        "hostScriptPath"
+      ]
+    },
+    "ListInsideHostInfoReq": {
+      "type": "object",
+      "properties": {
+        "current": {
+          "type": "integer",
+          "format": "int64",
+          "default": "1"
+        },
+        "pageSize": {
+          "type": "integer",
+          "format": "int64",
+          "default": "15"
+        }
+      },
+      "title": "ListInsideHostInfoReq",
+      "required": [
+        "current",
+        "pageSize"
+      ]
+    },
+    "ListInsideHostInfoResp": {
+      "type": "object",
+      "properties": {
+        "rows": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/ListInsideHostInfoData"
+          }
+        },
+        "total": {
+          "type": "integer",
+          "format": "int64"
+        }
+      },
+      "title": "ListInsideHostInfoResp",
+      "required": [
+        "rows",
+        "total"
+      ]
+    },
+    "ListInsideInstallPlanData": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "projectId": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "clusterId": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "featureType": {
+          "type": "string"
+        },
+        "sid": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "serverTitle": {
+          "type": "string"
+        },
+        "installStatus": {
+          "type": "string"
+        },
+        "delFlag": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "projectCn": {
+          "type": "string",
+          "description": " 项目cn"
+        },
+        "clusterCn": {
+          "type": "string",
+          "description": " 集群cn"
+        }
+      },
+      "title": "ListInsideInstallPlanData",
+      "required": [
+        "id",
+        "projectId",
+        "clusterId",
+        "featureType",
+        "sid",
+        "serverTitle",
+        "installStatus",
+        "delFlag",
+        "projectCn",
+        "clusterCn"
+      ]
+    },
+    "ListInsideInstallPlanReq": {
+      "type": "object",
+      "properties": {
+        "current": {
+          "type": "integer",
+          "format": "int64",
+          "default": "1"
+        },
+        "pageSize": {
+          "type": "integer",
+          "format": "int64",
+          "default": "15"
+        }
+      },
+      "title": "ListInsideInstallPlanReq",
+      "required": [
+        "current",
+        "pageSize"
+      ]
+    },
+    "ListInsideInstallPlanResp": {
+      "type": "object",
+      "properties": {
+        "rows": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/ListInsideInstallPlanData"
+          }
+        },
+        "total": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "filter": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/FilterList"
+          }
+        }
+      },
+      "title": "ListInsideInstallPlanResp",
+      "required": [
+        "rows",
+        "total",
+        "filter"
+      ]
+    },
+    "ListInsideOperationData": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "projectId": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "operCn": {
+          "type": "string"
+        },
+        "operEn": {
+          "type": "string"
+        },
+        "operType": {
+          "type": "string"
+        },
+        "sort": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "delFlag": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "projectCn": {
+          "type": "string"
+        }
+      },
+      "title": "ListInsideOperationData",
+      "required": [
+        "id",
+        "projectId",
+        "operCn",
+        "operEn",
+        "operType",
+        "sort",
+        "delFlag",
+        "projectCn"
+      ]
+    },
+    "ListInsideOperationReq": {
+      "type": "object",
+      "properties": {
+        "current": {
+          "type": "integer",
+          "format": "int64",
+          "default": "1"
+        },
+        "pageSize": {
+          "type": "integer",
+          "format": "int64",
+          "default": "15"
+        },
+        "projectId": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "buildType": {
+          "type": "string"
+        }
+      },
+      "title": "ListInsideOperationReq",
+      "required": [
+        "current",
+        "pageSize"
+      ]
+    },
+    "ListInsideOperationResp": {
+      "type": "object",
+      "properties": {
+        "rows": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/ListInsideOperationData"
+          }
+        },
+        "total": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "filter": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/FilterList"
+          }
+        }
+      },
+      "title": "ListInsideOperationResp",
+      "required": [
+        "rows",
+        "total",
+        "filter"
+      ]
+    },
+    "ListInsideProjectClusterData": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "projectId": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "clusterId": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "projectCn": {
+          "type": "string"
+        },
+        "clusterCn": {
+          "type": "string"
+        }
+      },
+      "title": "ListInsideProjectClusterData",
+      "required": [
+        "id",
+        "projectId",
+        "clusterId",
+        "projectCn",
+        "clusterCn"
+      ]
+    },
+    "ListInsideProjectClusterReq": {
+      "type": "object",
+      "properties": {
+        "current": {
+          "type": "integer",
+          "format": "int64",
+          "default": "1"
+        },
+        "pageSize": {
+          "type": "integer",
+          "format": "int64",
+          "default": "15"
+        },
+        "projectId": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "clusterId": {
+          "type": "integer",
+          "format": "int64"
+        }
+      },
+      "title": "ListInsideProjectClusterReq",
+      "required": [
+        "current",
+        "pageSize"
+      ]
+    },
+    "ListInsideProjectClusterResp": {
+      "type": "object",
+      "properties": {
+        "rows": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/ListInsideProjectClusterData"
+          }
+        },
+        "total": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "filter": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/FilterList"
+          }
+        }
+      },
+      "title": "ListInsideProjectClusterResp",
+      "required": [
+        "rows",
+        "total",
+        "filter"
+      ]
+    },
+    "ListInsideProxyHostData": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "projectId": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "hostName": {
+          "type": "string"
+        },
+        "hostIp": {
+          "type": "string"
+        },
+        "hostPort": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "dbUser": {
+          "type": "string"
+        },
+        "dbPass": {
+          "type": "string"
+        },
+        "dbPort": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "projectCn": {
+          "type": "string"
+        },
+        "hostScriptPath": {
+          "type": "string"
+        },
+        "hostId": {
+          "type": "integer",
+          "format": "int64"
+        }
+      },
+      "title": "ListInsideProxyHostData",
+      "required": [
+        "id",
+        "projectId",
+        "hostName",
+        "hostIp",
+        "hostPort",
+        "dbUser",
+        "dbPass",
+        "dbPort",
+        "projectCn",
+        "hostScriptPath",
+        "hostId"
+      ]
+    },
+    "ListInsideProxyHostReq": {
+      "type": "object",
+      "properties": {
+        "current": {
+          "type": "integer",
+          "format": "int64",
+          "default": "1"
+        },
+        "pageSize": {
+          "type": "integer",
+          "format": "int64",
+          "default": "15"
+        }
+      },
+      "title": "ListInsideProxyHostReq",
+      "required": [
+        "current",
+        "pageSize"
+      ]
+    },
+    "ListInsideProxyHostResp": {
+      "type": "object",
+      "properties": {
+        "rows": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/ListInsideProxyHostData"
+          }
+        },
+        "total": {
+          "type": "integer",
+          "format": "int64"
+        }
+      },
+      "title": "ListInsideProxyHostResp",
+      "required": [
+        "rows",
+        "total"
+      ]
+    },
+    "ListInsideServerData": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "projectId": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "clusterId": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "featureType": {
+          "type": "string"
+        },
+        "sort": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "serverTitle": {
+          "type": "string"
+        },
+        "serverPath": {
+          "type": "string"
+        },
+        "serverDescDb": {
+          "type": "string"
+        },
+        "domain": {
+          "type": "string"
+        },
+        "delFlag": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "buildType": {
+          "type": "string"
+        },
+        "projectCn": {
+          "type": "string"
+        },
+        "clusterCn": {
+          "type": "string"
+        }
+      },
+      "title": "ListInsideServerData",
+      "required": [
+        "id",
+        "projectId",
+        "clusterId",
+        "featureType",
+        "sort",
+        "serverTitle",
+        "serverPath",
+        "serverDescDb",
+        "domain",
+        "delFlag",
+        "buildType",
+        "projectCn",
+        "clusterCn"
+      ]
+    },
+    "ListInsideServerReq": {
+      "type": "object",
+      "properties": {
+        "current": {
+          "type": "integer",
+          "format": "int64",
+          "default": "1"
+        },
+        "pageSize": {
+          "type": "integer",
+          "format": "int64",
+          "default": "15"
+        },
+        "projectId": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "clusterId": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "featureType": {
+          "type": "string"
+        },
+        "buildType": {
+          "type": "string"
+        }
+      },
+      "title": "ListInsideServerReq",
+      "required": [
+        "current",
+        "pageSize"
+      ]
+    },
+    "ListInsideServerResp": {
+      "type": "object",
+      "properties": {
+        "rows": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/ListInsideServerData"
+          }
+        },
+        "total": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "filter": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/FilterList"
+          }
+        }
+      },
+      "title": "ListInsideServerResp",
+      "required": [
+        "rows",
+        "total",
+        "filter"
+      ]
+    },
+    "ListInsideTasksData": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "projectId": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "clusterId": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "serverId": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "versionId": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "operationId": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "tasksType": {
+          "type": "string"
+        },
+        "cmd": {
+          "type": "string"
+        },
+        "startTime": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "excuteTime": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "endTime": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "status": {
+          "type": "string"
+        },
+        "createBy": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "delFlag": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "version": {
+          "type": "string"
+        },
+        "projectCn": {
+          "type": "string",
+          "description": " 项目cn"
+        },
+        "clusterCn": {
+          "type": "string",
+          "description": " 集群cn"
+        },
+        "serverTitle": {
+          "type": "string",
+          "description": " 服务器名"
+        },
+        "serverPath": {
+          "type": "string",
+          "description": " 服务器地址信息"
+        },
+        "serverDescDb": {
+          "type": "string",
+          "description": " 服务器目标库"
+        },
+        "versionName": {
+          "type": "string",
+          "description": " 版本名称"
+        },
+        "versionData": {
+          "type": "string",
+          "description": " 版本数据"
+        },
+        "versionConf": {
+          "type": "string",
+          "description": " 版本配置"
+        },
+        "versionType": {
+          "type": "string",
+          "description": " 版本类型 1：svn 2：git"
+        },
+        "operCn": {
+          "type": "string",
+          "description": " 操作内容"
+        },
+        "operEn": {
+          "type": "string",
+          "description": " 操作内容"
+        },
+        "operType": {
+          "type": "string",
+          "description": " 操作类型 1：server 2：client"
+        },
+        "nickName": {
+          "type": "string"
+        }
+      },
+      "title": "ListInsideTasksData",
+      "required": [
+        "id",
+        "projectId",
+        "clusterId",
+        "serverId",
+        "versionId",
+        "tasksType",
+        "cmd",
+        "startTime",
+        "excuteTime",
+        "endTime",
+        "status",
+        "createBy",
+        "delFlag",
+        "version",
+        "projectCn",
+        "clusterCn",
+        "serverTitle",
+        "serverPath",
+        "serverDescDb",
+        "versionName",
+        "versionData",
+        "versionConf",
+        "versionType",
+        "operCn",
+        "operEn",
+        "operType",
+        "nickName"
+      ]
+    },
+    "ListInsideTasksLogsData": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "tasksId": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "content": {
+          "type": "string"
+        }
+      },
+      "title": "ListInsideTasksLogsData",
+      "required": [
+        "id",
+        "tasksId",
+        "content"
+      ]
+    },
+    "ListInsideTasksLogsReq": {
+      "type": "object",
+      "properties": {
+        "current": {
+          "type": "integer",
+          "format": "int64",
+          "default": "1"
+        },
+        "pageSize": {
+          "type": "integer",
+          "format": "int64",
+          "default": "15"
+        }
+      },
+      "title": "ListInsideTasksLogsReq",
+      "required": [
+        "current",
+        "pageSize"
+      ]
+    },
+    "ListInsideTasksLogsResp": {
+      "type": "object",
+      "properties": {
+        "rows": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/ListInsideTasksLogsData"
+          }
+        },
+        "total": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "filter": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/FilterList"
+          }
+        }
+      },
+      "title": "ListInsideTasksLogsResp",
+      "required": [
+        "rows",
+        "total",
+        "filter"
+      ]
+    },
+    "ListInsideTasksReq": {
+      "type": "object",
+      "properties": {
+        "current": {
+          "type": "integer",
+          "format": "int64",
+          "default": "1"
+        },
+        "pageSize": {
+          "type": "integer",
+          "format": "int64",
+          "default": "15"
+        },
+        "projectId": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "clusterId": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "serverId": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "versionId": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "tasksType": {
+          "type": "string"
+        },
+        "projectIds": {
+          "type": "string"
+        },
+        "recentSubmit": {
+          "type": "string"
+        },
+        "status": {
+          "type": "string"
+        },
+        "startTime": {
+          "type": "string"
+        }
+      },
+      "title": "ListInsideTasksReq",
+      "required": [
+        "current",
+        "pageSize"
+      ]
+    },
+    "ListInsideTasksResp": {
+      "type": "object",
+      "properties": {
+        "rows": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/ListInsideTasksData"
+          }
+        },
+        "total": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "filter": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/FilterList"
+          }
+        }
+      },
+      "title": "ListInsideTasksResp",
+      "required": [
+        "rows",
+        "total",
+        "filter"
+      ]
+    },
+    "ListInsideVersionData": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "projectId": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "clusterId": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "versionName": {
+          "type": "string"
+        },
+        "versionData": {
+          "type": "string"
+        },
+        "versionConf": {
+          "type": "string"
+        },
+        "versionType": {
+          "type": "string"
+        },
+        "buildType": {
+          "type": "string"
+        },
+        "sourceDb": {
+          "type": "string"
+        },
+        "sort": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "delFlag": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "projectCn": {
+          "type": "string",
+          "description": " 项目cn"
+        },
+        "clusterCn": {
+          "type": "string",
+          "description": " 集群cn"
+        }
+      },
+      "title": "ListInsideVersionData",
+      "required": [
+        "id",
+        "projectId",
+        "clusterId",
+        "versionName",
+        "versionData",
+        "versionConf",
+        "versionType",
+        "buildType",
+        "sourceDb",
+        "sort",
+        "delFlag",
+        "projectCn",
+        "clusterCn"
+      ]
+    },
+    "ListInsideVersionReq": {
+      "type": "object",
+      "properties": {
+        "current": {
+          "type": "integer",
+          "format": "int64",
+          "default": "1"
+        },
+        "pageSize": {
+          "type": "integer",
+          "format": "int64",
+          "default": "15"
+        },
+        "projectId": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "clusterId": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "buildType": {
+          "type": "string"
+        }
+      },
+      "title": "ListInsideVersionReq",
+      "required": [
+        "current",
+        "pageSize"
+      ]
+    },
+    "ListInsideVersionResp": {
+      "type": "object",
+      "properties": {
+        "rows": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/ListInsideVersionData"
+          }
+        },
+        "total": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "filter": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/FilterList"
+          }
+        }
+      },
+      "title": "ListInsideVersionResp",
+      "required": [
+        "rows",
+        "total",
+        "filter"
+      ]
+    },
+    "OperationInsideTasksReq": {
+      "type": "object",
+      "properties": {
+        "tasksId": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "operationType": {
+          "type": "string",
+          "enum": [
+            "getlog",
+            "stop"
+          ]
+        }
+      },
+      "title": "OperationInsideTasksReq",
+      "required": [
+        "tasksId",
+        "operationType"
+      ]
+    },
+    "OperationInsideTasksResp": {
+      "type": "object",
+      "properties": {
+        "row": {
+          "type": "string"
+        }
+      },
+      "title": "OperationInsideTasksResp",
+      "required": [
+        "row"
+      ]
+    },
+    "UpdateInsideHostInfoReq": {
+      "type": "object",
+      "title": "UpdateInsideHostInfoReq"
+    },
+    "UpdateInsideInstallPlanReq": {
+      "type": "object",
+      "title": "UpdateInsideInstallPlanReq"
+    },
+    "UpdateInsideOperationReq": {
+      "type": "object",
+      "title": "UpdateInsideOperationReq"
+    },
+    "UpdateInsideProjectClusterReq": {
+      "type": "object",
+      "title": "UpdateInsideProjectClusterReq"
+    },
+    "UpdateInsideProxyHostReq": {
+      "type": "object",
+      "title": "UpdateInsideProxyHostReq"
+    },
+    "UpdateInsideServerReq": {
+      "type": "object",
+      "title": "UpdateInsideServerReq"
+    },
+    "UpdateInsideTasksLogsReq": {
+      "type": "object",
+      "title": "UpdateInsideTasksLogsReq"
+    },
+    "UpdateInsideTasksReq": {
+      "type": "object",
+      "title": "UpdateInsideTasksReq"
+    },
+    "UpdateInsideVersionReq": {
+      "type": "object",
+      "title": "UpdateInsideVersionReq"
+    }
+  },
+  "securityDefinitions": {
+    "apiKey": {
+      "type": "apiKey",
+      "description": "Enter JWT Bearer token **_only_**",
+      "name": "Authorization",
+      "in": "header"
+    }
+  }
+}

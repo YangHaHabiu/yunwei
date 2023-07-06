@@ -1,0 +1,56 @@
+syntax = "v1"
+
+info(
+    title: "服务器信息"
+    desc: "服务器信息"
+)
+
+type (
+    ListHostsReq {
+        Current  int64  `form:"current,default=1"`
+        PageSize int64  `form:"pageSize,default=15"`
+        ViewHostRoleCn string `form:"viewHostRoleCn,optional"`
+        ProjectIds string `form:"projectIds,optional"`
+        Company string `form:"company,optional"`
+        Ips string `form:"ips,optional"`
+        SNames string `form:"sNames,optional"`
+        Provider string `form:"provider,optional"`
+        Label string `form:"label,optional"`
+    }
+    ListHostsResp {
+        Rows   []*ListHostsData `json:"rows"`
+        Total  int64            `json:"total"`
+        Filter []*FilterList    `json:"filter"`
+
+    }
+    ListHostsData {
+        ViewAssetId        string `json:"viewAssetId"`
+        ViewUserCompanyCn  string `json:"viewUserCompanyCn"`
+        ViewUserProjectCn  string `json:"viewUserProjectCn"`
+        ViewOuterIp        string `json:"viewOuterIp"`
+        ViewInnerIp        string `json:"viewInnerIp"`
+        ViewHardwareInfo   string `json:"viewHardwareInfo"`
+        ViewProviderNameCn string `json:"viewProviderNameCn"`
+        ViewProviderNameEn string `json:"viewProviderNameEn"`
+        ViewHostRoleCn     string `json:"viewHostRoleCn"`
+        Installed          string `json:"installed"`
+        ServerName         string `json:"serverName"`
+        LabelInfo          string `json:"labelInfo"`
+    }
+
+)
+
+
+@server(
+    group: hosts
+    prefix: /yunwei/hosts
+)
+service yunwei {
+
+    @doc(
+        summary:"服务器列表"
+    )
+    @handler HostsList
+    get /list (ListHostsReq) returns (ListHostsResp)
+
+}

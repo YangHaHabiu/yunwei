@@ -1,0 +1,46 @@
+syntax = "proto3";
+
+package monitorclient;
+
+option go_package = "./monitorclient";
+
+message ReportAddReq{
+  string reportType=1;
+  string value=2;
+  string sn=3;
+  string ts=4;
+}
+message ReportAddResp{
+  string pong =1;
+}
+
+
+message GraphListReq{
+  int64 assetId=1;
+  string granularity=2;
+  int64 startTime=3;
+  int64 endTime=4;
+}
+
+message GraphListResp{
+  string rows=1;
+}
+
+message SelectReportReq{
+  int64 assetId=1;
+  int64 reportTime=2;
+  string assetIp=3;
+  string remark=4;
+}
+
+message SelectReportResp{
+  int64 count=1;
+}
+
+
+
+service Monitor {
+  rpc ReportAdd(ReportAddReq) returns(ReportAddResp);
+  rpc GraphList(GraphListReq) returns (GraphListResp);
+  rpc SelectReport(SelectReportReq) returns(SelectReportResp);
+}

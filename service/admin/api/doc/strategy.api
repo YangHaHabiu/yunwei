@@ -1,0 +1,39 @@
+info(
+    desc: "策略信息"
+
+)
+
+type (
+    ListstrategyReq struct {
+        StName string `form:"stName,optional"`
+        StLevel int64 `form:"stLevel,optional"`
+        StPid   int64  `form:"stPid,optional"`
+        StIsAuth int64 `form:"stIsAuth,optional"`
+    }
+    ListstrategyData struct {
+        Id int64 `json:"id"`
+        StName string `json:"stName"`
+        StPid int64 `json:"stPid"`
+        StUrls   string `json:"stUrls"`
+        StLevel int64 `json:"stLevel"`
+        StRemark string `json:"stRemark"`
+        StIsAuth int64 `json:"stIsAuth,optional"`
+
+    }
+    ListstrategyResp struct {
+        Rows []*ListstrategyData `json:"rows"`
+    }
+)
+
+@server(
+    group: strategy
+    prefix: /admin/strategy
+
+)
+service admin {
+    @doc(
+        summary:"策略列表"
+    )
+    @handler strategyList
+    get /list (ListstrategyReq) returns (ListstrategyResp)
+}

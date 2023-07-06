@@ -1,0 +1,95 @@
+syntax = "v1"
+
+info(
+	title: "功能服信息"
+	desc: "功能服信息"
+)
+
+type (
+
+	AddFeatureServerReq {
+		*FeatureServerDatas
+	}
+
+	UpdateFeatureServerReq {
+		*FeatureServerDatas
+	}
+
+	DeleteFeatureServerReq {
+		FeatureServerId int64 `path:"featureServerId"`
+	}
+
+	GetFeatureServerReq {
+		FeatureServerId int64 `path:"featureServerId"`
+	}
+
+	FeatureServerDatas {
+		FeatureServerId            int64  `json:"featureServerId,optional"`
+		ProjectId int64  `json:"projectId,optional"`
+		FeatureServerInfo string `json:"featureServerInfo,optional"`
+		Remark string `json:"remark,optional"`
+	}
+
+	ListFeatureServerReq {
+		Current  int64  `form:"current,default=1"`
+		PageSize int64  `form:"pageSize,default=15"`
+		FeatureServerId  int64  `form:"featureServerId,optional"`
+		ProjectIds  string  `form:"projectIds,optional"`
+		Ip string `form:"ip,optional"`
+		Domain string `form:"domain,optional"`
+		Feature string `form:"feature,optional"`
+		Remark string `form:"remark,optional"`
+	}
+	ListFeatureServerResp {
+		Rows   []*ListFeatureServerData `json:"rows"`
+		Total  int64            `json:"total"`
+		Filter []*FilterList    `json:"filter"`
+	}
+	ListFeatureServerData {
+		FeatureServerId  int64  `json:"featureServerId"`
+		ProjectId int64  `json:"projectId"`
+		FeatureServerInfo string `json:"featureServerInfo"`
+		Remark string `json:"remark"`
+		DelFlag int64  `json:"delFlag"`
+		ProjectCn string  `json:"projectCn"`
+		ProjectEn string  `json:"projectEn"`
+	}
+	
+
+	
+)
+
+@server(
+	group: featureServer
+	prefix: /yunwei/featureServer
+)
+service yunwei {
+	
+	@doc(
+		summary:"功能服新增"
+	)
+	@handler FeatureServerAdd
+	post /add (AddFeatureServerReq) returns()
+	@doc(
+		summary:"功能服列表"
+	)
+	@handler FeatureServerList
+	get /list (ListFeatureServerReq) returns (ListFeatureServerResp)
+	@doc(
+		summary:"功能服更新"
+	)
+	@handler FeatureServerUpdate
+	put /update (UpdateFeatureServerReq) returns ()
+	@doc(
+		summary:"功能服删除"
+	)
+	@handler FeatureServerDelete
+	delete /delete/:featureServerId (DeleteFeatureServerReq) returns ()
+
+	@doc(
+		summary:"功能服获取"
+	)
+	@handler FeatureServerGet
+	get /get/:featureServerId (GetFeatureServerReq) returns (ListFeatureServerData)
+
+}

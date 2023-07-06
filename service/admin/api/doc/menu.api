@@ -1,0 +1,101 @@
+info(
+    desc: "菜单相关"
+)
+
+type (
+
+    addMenuReq  {
+        Name string `json:"name"`
+        ParentId int64 `json:"parentId,optional"`
+        Url string `json:"url,optional"`
+        Perms string `json:"perms,optional"`
+        Type int64 `json:"type,optional"`
+        Icon string `json:"icon,optional"`
+        OrderNum int64 `json:"orderNum,optional"`
+        VuePath string `json:"vuePath,optional"`
+        VueComponent string `json:"vueComponent,optional"`
+        VueIcon string `json:"vueIcon,optional"`
+        VueRedirect string `json:"vueRedirect,optional"`
+    }
+
+    ListMenuReq  {
+        Name string `form:"name,optional"`
+        Url string `form:"url,optional "`
+    }
+    ListtMenuData  {
+        Id int64 `json:"id"`
+        Key string `json:"key"`
+        Name string `json:"name"`
+        Title string `json:"title"`
+        ParentId int64 `json:"parentId"`
+        Url string `json:"url"`
+        Perms string `json:"perms"`
+        Type int64 `json:"type"`
+        Icon string `json:"icon"`
+        OrderNum int64 `json:"orderNum"`
+        CreateBy string `json:"createBy"`
+        CreateTime string `json:"createTime"`
+        LastUpdateBy string `json:"lastUpdateBy"`
+        LastUpdateTime string `json:"lastUpdateTime"`
+        VuePath string `json:"vuePath"`
+        VueComponent string `json:"vueComponent"`
+        VueIcon string `json:"vueIcon"`
+        VueRedirect string `json:"vueRedirect"`
+        TableName      string    `json:"tableName"`
+        KeepAlive      string    `json:"keepAlive"`
+        IsShow         string    `json:"isShow"`
+    }
+    ListMenuResp  {
+        Rows []*ListtMenuData `json:"rows"`
+        Total int64 `json:"total"`
+    }
+    UpdateMenuReq  {
+        Id int64 `json:"id"`
+        Name string `json:"name"`
+        ParentId int64 `json:"parentId"`
+        Url string `json:"url,optional"`
+        Perms string `json:"perms,optional"`
+        Type int64 `json:"type,optional"`
+        Icon string `json:"icon,optional"`
+        OrderNum int64 `json:"orderNum,optional"`
+        VuePath string `json:"vuePath,optional"`
+        VueComponent string `json:"vueComponent,optional"`
+        VueIcon string `json:"vueIcon,optional"`
+        VueRedirect string `json:"vueRedirect,optional"`
+    }
+
+    DeleteMenuReq  {
+        MenuId int64 `path:"menuId"`
+    }
+
+)
+
+@server(
+    group: menu
+    prefix: /admin/menu
+)
+service admin {
+    @doc(
+        summary:"菜单新增"
+    )
+    @handler MenuAdd
+    post /add (addMenuReq) returns ()
+
+    @doc(
+        summary:"菜单列表"
+    )
+    @handler MenuList
+    get /list (ListMenuReq) returns (ListMenuResp)
+
+    @doc(
+        summary:"菜单更新"
+    )
+    @handler MenuUpdate
+    put /update (UpdateMenuReq) returns ()
+
+    @doc(
+        summary:"菜单删除"
+    )
+    @handler MenuDelete
+    delete /delete/:menuId (DeleteMenuReq) returns ()
+}

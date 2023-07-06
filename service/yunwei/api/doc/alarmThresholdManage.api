@@ -1,0 +1,110 @@
+syntax = "v1"
+
+info(
+	title: "报警阈值管理信息"
+	desc: "报警阈值管理信息"
+	author: "acool"
+)
+
+type (
+
+	AddAlarmThresholdManageReq {
+		*AlarmThresholdManageCommon
+	}
+
+	UpdateAlarmThresholdManageReq {
+		*AlarmThresholdManageCommon
+	}
+
+	DeleteAlarmThresholdManageReq {
+		AlarmThresholdManageId int64 `path:"AlarmThresholdManageId"`
+	}
+
+    GetAlarmThresholdManageReq {
+		AlarmThresholdManageId int64 `path:"AlarmThresholdManageId"`
+		AlarmThresholdManageTypes string `path:"AlarmThresholdManageTypes"`
+	}
+
+	AlarmThresholdManageCommon {
+        Id int64 `json:"id,optional"` 
+        Name string `json:"name,optional"` 
+        Config string `json:"config,optional"` 
+		Types string `json:"types,optional"`
+        ProjectId int64 `json:"projectId,optional"` 
+        GameServerId int64 `json:"gameServerId,optional"` 
+        AssetId int64 `json:"assetId,optional"` 
+        Level int64 `json:"level,optional"` 
+        DelFlag int64 `json:"delFlag,optional"` 
+        Remark string `json:"remark,optional"` 
+	}
+
+	ListAlarmThresholdManageReq {
+		Current  int64  `form:"current,default=1"`
+		PageSize int64  `form:"pageSize,default=15"`
+		ProjectIds string `form:"projectIds,optional"`
+		Ips string `form:"ips,optional"`
+		Types string `form:"types,optional"`
+		GameServerAlias string `form:"gameServerAlias,optional"`
+
+	}
+	ListAlarmThresholdManageResp {
+		Rows   []*ListAlarmThresholdManageData `json:"rows"`
+		Total  int64            `json:"total"`
+		Filter []*FilterList    `json:"filter"`
+	}
+	ListAlarmThresholdManageData {
+        Id int64 `json:"id"` 
+        Name string `json:"name"` 
+        Config string `json:"config"` 
+		Types string `json:"types"`
+        ProjectId int64 `json:"projectId"` 
+        GameServerId int64 `json:"gameServerId"` 
+        AssetId int64 `json:"assetId"` 
+        Level int64 `json:"level"` 
+        DelFlag int64 `json:"delFlag"` 
+        Remark string `json:"remark"`
+		ProjectCn string `json:"projectCn"`
+		Ips string `json:"ips"`
+		GameServerAlias string `json:"gameServerAlias"`
+
+	}
+
+
+
+)
+
+
+@server(
+	group: alarmThresholdManage
+	prefix: /yunwei/alarmThresholdManage
+)
+service yunwei {
+
+	@doc(
+		summary:"报警阈值管理新增"
+	)
+	@handler AlarmThresholdManageAdd
+	post /add (AddAlarmThresholdManageReq) returns()
+	@doc(
+		summary:"报警阈值管理列表"
+	)
+	@handler AlarmThresholdManageList
+	get /list (ListAlarmThresholdManageReq) returns (ListAlarmThresholdManageResp)
+	@doc(
+		summary:"报警阈值管理更新"
+	)
+	@handler AlarmThresholdManageUpdate
+	put /update (UpdateAlarmThresholdManageReq) returns ()
+	@doc(
+		summary:"报警阈值管理删除"
+	)
+	@handler AlarmThresholdManageDelete
+	delete /delete/:AlarmThresholdManageId (DeleteAlarmThresholdManageReq) returns ()
+
+	@doc(
+		summary:"报警阈值管理获取"
+	)
+	@handler AlarmThresholdManageGet
+	get /get/:AlarmThresholdManageId/:AlarmThresholdManageTypes (GetAlarmThresholdManageReq) returns (ListAlarmThresholdManageData)
+
+}

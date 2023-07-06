@@ -1,0 +1,42 @@
+Name: yunwei-api
+Host: 0.0.0.0
+Port: 8003
+Timeout: 40000
+MaxBytes: 1073741824
+
+WebsocketAddr: 10.10.21.59:8004
+
+
+Redis:
+  Host: 10.10.88.229:6379
+  Type: node
+  Pass:
+
+
+Auth:
+  AccessSecret: ae0536f9-6450-4606-8e13-5a19ed505ea0
+
+
+Log:
+  Mode: file
+  Level: error
+
+
+#rpc service
+AdminRpcConf:
+  Endpoints:
+    - 127.0.0.1:9002
+  NonBlock: true
+  Timeout: 30000
+
+YunWeiRpcConf:
+  Endpoints:
+    - 127.0.0.1:9003
+  NonBlock: true
+  Timeout: 30000
+
+IdentityRpcConf:
+  Endpoints:
+    - 127.0.0.1:9001
+  NonBlock: true
+  Timeout: 30000

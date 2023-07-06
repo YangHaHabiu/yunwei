@@ -1,0 +1,37 @@
+syntax = "v1"
+
+info(
+    title: "全局搜索"
+    author: "acool"
+)
+
+
+type (
+    SearchReq {
+        Keyword string `form:"keyword,optional"`
+    }
+    SearchResp {
+        Rows []*ArticleReq `json:"rows"`
+    }
+    ArticleReq{
+        ViewDataContent string `json:"viewDataContent"`
+        ViewDataUrl string `json:"viewDataUrl"`
+        ViewJsonId string `json:"viewJsonId"`
+        ViewTableName string `json:"viewTableName"`
+    }
+
+)
+
+@server(
+    group: search
+    prefix: /admin/search
+
+
+)
+service admin {
+    @doc(
+        summary: "全局搜索"
+    )
+    @handler SearchArticle
+    get /article (SearchReq) returns (SearchResp)
+}

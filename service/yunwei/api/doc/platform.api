@@ -1,0 +1,142 @@
+syntax = "v1"
+
+info(
+	title: "平台信息"
+	desc: "平台信息"
+)
+
+type (
+
+	AddPlatformReq {
+		*PlatformCommon
+	}
+
+	UpdatePlatformReq {
+		*PlatformCommon
+	}
+
+	DeletePlatformReq {
+		PlatformId int64 `path:"platformId"`
+	}
+
+	GetPlatformReq {
+		PlatformId int64 `path:"platformId"`
+	}
+
+	GetPlatformResp {
+		Row *ListPlatformData `json:"row"`
+	}
+	DetailPlatformReq {
+		PlatformId int64 `path:"platformId"`
+	}
+
+
+	PlatformListByProjectReq {
+		ProjectId int64 `path:"projectId"`
+		NotType string `form:"notType,optional"`
+	}
+	PlatformListByProjectResp{
+		PlatfromData []*PlatformCommon `json:"platfromData"`
+	}
+	DetailPlatformResp {
+		ViewPlatformAutoid int64 `json:"viewPlatformAutoid"`
+		ViewPlatformId int64 `json:"viewPlatformId"`
+		ViewPlatformEn string `json:"viewPlatformEn"`
+		ViewPlatformCn string `json:"viewPlatformCn"`
+		ViewProjectId int64 `json:"viewProjectId"`
+		ViewProjectCn string `json:"viewProjectCn"`
+		ViewProjectEn string `json:"viewProjectEn"`
+		ViewPlatformRemark string `json:"viewPlatformRemark"`
+		ViewLabels string `json:"viewLabels"`
+		ViewFeatureInfo string `json:"viewFeatureInfo"`
+	}
+
+	PlatformCommon {
+        Id int64 `json:"id,optional"`
+        ProjectId int64 `json:"projectId,optional"`
+        PlatformId int64 `json:"platformId,optional"`
+        PlatformEn string `json:"platformEn,optional"`
+        PlatformCn string `json:"platformCn,optional"`
+        DomainFormat string `json:"domainFormat,optional"`
+        Remark string `json:"remark,optional"`
+        DelFlag int64 `json:"delFlag,optional"`
+		PlatformFormat string `json:"platformFormat,optional"`
+	}
+
+	ListPlatformReq {
+		Current  int64  `form:"current,default=1"`
+		PageSize int64  `form:"pageSize,default=15"`
+		Id int64  `form:"id,optional"`
+		ProjectIds string `form:"projectIds,optional"`
+		PlatformInfo string `form:"platformInfo,optional"`
+		Label string `form:"label,optional"`
+		PlatformType string `form:"platformType,optional"`
+
+	}
+	ListPlatformResp {
+		Rows   []*ListPlatformData `json:"rows"`
+		Total  int64            `json:"total"`
+		Filter []*FilterList    `json:"filter"`
+	}
+	ListPlatformData {
+        Id int64 `json:"id"`
+        ProjectId int64 `json:"projectId"`
+        PlatformId int64 `json:"platformId"`
+        PlatformEn string `json:"platformEn"`
+        PlatformCn string `json:"platformCn"`
+        DomainFormat string `json:"domainFormat"`
+        Remark string `json:"remark"`
+        DelFlag int64 `json:"delFlag"`
+		LabelNames string `json:"labelNames"`
+		ProjectCn string `json:"projectCn"`
+	}
+
+
+)
+
+@server(
+	group: platform
+	prefix: /yunwei/platform
+)
+service yunwei {
+
+	@doc(
+		summary:"平台新增"
+	)
+	@handler PlatformAdd
+	post /add (AddPlatformReq) returns()
+	@doc(
+		summary:"平台列表"
+	)
+	@handler PlatformList
+	get /list (ListPlatformReq) returns (ListPlatformResp)
+	@doc(
+		summary:"平台更新"
+	)
+	@handler PlatformUpdate
+	put /update (UpdatePlatformReq) returns ()
+	@doc(
+		summary:"平台删除"
+	)
+	@handler PlatformDelete
+	delete /delete/:platformId (DeletePlatformReq) returns ()
+
+	@doc(
+		summary:"平台获取"
+	)
+	@handler PlatformGet
+	get /get/:platformId (GetPlatformReq) returns (ListPlatformData)
+
+	@doc(
+		summary:"根据项目ID取平台"
+	)
+	@handler PlatformListByProject
+	get /project/:projectId (PlatformListByProjectReq) returns (PlatformListByProjectResp)
+
+
+	@doc(
+		summary:"平台详情"
+	)
+	@handler PlatformDetail
+	get /detail/:platformId (DetailPlatformReq) returns (DetailPlatformResp)
+}

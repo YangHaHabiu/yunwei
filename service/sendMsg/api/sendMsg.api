@@ -1,0 +1,74 @@
+syntax = "v1"
+
+info(
+	title: "sendMsg api"
+	desc: "sendMsg api"
+	author: "acool"
+)
+
+type (
+	FilterList {
+		Label    string        `json:"label,omitempty"`
+		Value    string        `json:"value,omitempty"`
+		Types    string        `json:"types,omitempty"`
+		Children []*FilterList `json:"children,omitempty"`
+	}
+	AddMsgApiReq {
+		AppKey     string `json:"appKey"`
+		Sn         string `json:"sn"`
+		Ts         string `json:"ts"`
+		MsgTitle   string `json:"msgTitle"`
+		MsgContent string `json:"msgContent"`
+		MsgTo      string `json:"msgTo"`
+		MsgType    string `json:"msgType"`
+		MsgLevel   string `json:"msgLevel"`
+		SendType   string `json:"sendType"`
+	}
+	ListMsgApiReq {
+		Current    int64  `form:"current,default=1"`
+		PageSize   int64  `form:"pageSize,default=15"`
+		MsgTitle   string `form:"msgTitle,optional"`
+		MsgContent string `form:"msgContent,optional"`
+		DateRange  string `form:"dateRange,optional"`
+		Status     string `form:"status,optional"`
+		SendType   string `form:"sendType,optional"`
+		MsgType    string `form:"msgType,optional"`
+		MsgLevel   string `form:"msgLevel,optional"`
+	}
+	ListMsgApiResp {
+		Rows   []*ListMsgApiData `json:"rows"`
+		Total  int64             `json:"total"`
+		Filter []*FilterList     `json:"filter"`
+	}
+	ListMsgApiData {
+		Id         int64  `json:"id"`
+		MsgTitle   string `json:"msgTitle"`
+		MsgContent string `json:"msgContent"`
+		MsgTo      string `json:"msgTo"`
+		MsgType    string `json:"msgType"`
+		MsgLevel   string `json:"msgLevel"`
+		Status     string `json:"status"`
+		SendType   string `json:"sendType"`
+		AccessIp   string `json:"accessIp"`
+		CreateDate int64  `json:"createDate"`
+		FailureLog string `json:"failureLog"`
+	}
+)
+
+@server(
+	group: msgApi
+	prefix: /sendMsg/msgApi
+)
+service sendMsg {
+	@doc(
+		summary:"发送消息"
+	)
+	@handler AddMsgApi
+	post /add (AddMsgApiReq) returns ()
+	
+	@doc(
+		summary:"消息列表"
+	)
+	@handler ListMsgApi
+	get /list (ListMsgApiReq) returns (ListMsgApiResp)
+}

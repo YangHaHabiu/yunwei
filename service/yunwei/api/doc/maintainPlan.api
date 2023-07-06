@@ -1,0 +1,168 @@
+syntax = "v1"
+
+info(
+	title: "维护计划信息"
+	desc: "维护计划信息"
+	author: "acool"
+)
+
+type (
+
+	AddMaintainPlanReq {
+		*MaintainPlanCommon
+	}
+
+	UpdateMaintainPlanReq {
+		*MaintainPlanCommon
+	}
+
+	DeleteMaintainPlanReq {
+		Id int64 `path:"id"`
+	}
+
+    GetMaintainPlanReq {
+		Id int64 `path:"id"`
+	}
+
+	MaintainPlanCommon {
+        Id int64 `json:"id,optional"`
+        ProjectId int64 `json:"projectId,optional"`
+        MaintainType string `json:"maintainType,optional"`
+        StartTime string `json:"startTime,optional"`
+        EndTime string `json:"endTime,optional"`
+        MaintainRange string `json:"maintainRange,optional"`
+        Title string `json:"title,optional"`
+        Content string `json:"content,optional"`
+        CreateBy string `json:"createBy,optional"`
+        CreateTime string `json:"createTime,optional"`
+        UpdateBy string `json:"updateBy,optional"`
+        UpdateTime string `json:"updateTime,optional"`
+        MaintainOperator string `json:"maintainOperator,optional"`
+        ClusterId string `json:"clusterId,optional"`
+        TaskId int64 `json:"taskId,optional"` 
+        
+	}
+
+	ListMaintainPlanReq {
+		Current  int64  `json:"current,default=1"`
+		PageSize int64  `json:"pageSize,default=15"`
+		DateRange string `json:"dateRange,optional"`
+		ProjectIds string `json:"projectIds,optional"`
+		Title string `json:"title,optional"`
+		SortFields []*SortFieldData `json:"sortFields,optional"`
+	}
+	ListMaintainPlanResp {
+		Rows   []*ListMaintainPlanData `json:"rows"`
+		Total  int64            `json:"total"`
+		Filter []*FilterList    `json:"filter"`
+	}
+	ListMaintainPlanData {
+        Id int64 `json:"id"`
+        ProjectId int64 `json:"projectId"`
+        MaintainType string `json:"maintainType"`
+        StartTime string `json:"startTime"`
+        EndTime string `json:"endTime"`
+        MaintainRange string `json:"maintainRange"`
+        Title string `json:"title"`
+        Content string `json:"content"`
+        CreateBy string `json:"createBy"`
+        CreateTime string `json:"createTime"`
+        UpdateBy string `json:"updateBy"`
+        UpdateTime string `json:"updateTime"`
+        MaintainOperator string `json:"maintainOperator"`
+        ClusterId string `json:"clusterId"`
+        TaskId int64 `json:"taskId"`
+		ProjectCn string `json:"projectCn"`
+		MaintainTypeCn string `json:"maintainTypeCn"`
+		CreateNameEn string `json:"createNameEn"`
+		CreateNameCn string `json:"createNameCn"`
+		UpdateNameEn string `json:"updateNameEn"`
+		UpdateNameCn string `json:"updateNameCn"`
+        
+	}
+
+	GetMaintainPlanListTreeByClsIdAndProIdReq{
+		ProjectId int64 `form:"projectId"`
+		ClusterCn string `form:"clusterCn"`
+	}
+	GetMaintainPlanListTreeByClsIdAndProIdResp{
+		MaRangeTreeData []*VueTree `json:"maRangeTreeData"`
+	}
+	MaintainGetClusterInfoReq{
+		ProjectId int64 `form:"projectId"`
+		LabelIds string `form:"labelIds,optional"`
+	}
+	MaintainGetClusterInfoResp{
+		ClusterInfoData []*MaintainGetClusterInfoData `json:"clusterInfoData"`
+	}
+
+	MaintainGetClusterInfoData{
+		LabelId int64 `json:"labelId"`
+		LabelName string `json:"labelName"`
+		LabelValues string `json:"labelValues"`
+		Labelx string `json:"labelx"`
+		LabelRemark string `json:"labelRemark"`
+		ProjectId int64 `json:"projectId"`
+		OuterIp string `json:"outerIp"`
+		BaseDir string `json:"baseDir"`
+	}
+
+	GetMaintanListByPriReq{
+		ProjectId int64 `form:"projectId"`
+	}
+	GetMaintanListByPriResp{
+		Rows   []*ListMaintainPlanData `json:"rows"`
+	}
+
+)
+
+@server(
+	group: maintainPlan
+	prefix: /yunying/maintainPlan
+)
+service yunwei {
+
+	@doc(
+		summary:"维护计划新增"
+	)
+	@handler MaintainPlanAdd
+	post /add (AddMaintainPlanReq) returns()
+	@doc(
+		summary:"维护计划列表"
+	)
+	@handler MaintainPlanList
+	post /list (ListMaintainPlanReq) returns (ListMaintainPlanResp)
+	@doc(
+		summary:"维护计划更新"
+	)
+	@handler MaintainPlanUpdate
+	put /update (UpdateMaintainPlanReq) returns ()
+	@doc(
+		summary:"维护计划删除"
+	)
+	@handler MaintainPlanDelete
+	delete /delete/:id (DeleteMaintainPlanReq) returns ()
+
+	@doc(
+		summary:"维护计划获取"
+	)
+	@handler MaintainPlanGet
+	get /get/:id (GetMaintainPlanReq) returns (ListMaintainPlanData)
+
+	@doc(
+		summary:"维护计划范围获取"
+	)
+	@handler MaintainPlanRangeList
+	get /maintainPlanRangeList (GetMaintainPlanListTreeByClsIdAndProIdReq) returns (GetMaintainPlanListTreeByClsIdAndProIdResp)
+	@doc(
+		summary:"根据项目获取集群信息"
+	)
+	@handler MaintainGetClusterInfo
+	get /maintainGetClusterInfo (MaintainGetClusterInfoReq) returns (MaintainGetClusterInfoResp)
+	@doc(
+		summary:"根据项目获取维护计划"
+	)
+	@handler getMaintanListByPri
+	get /getMaintanListByPri (GetMaintanListByPriReq) returns (GetMaintanListByPriResp)
+
+}

@@ -1,0 +1,90 @@
+syntax = "v1"
+
+info(
+	title: "type title here"
+	desc: "type desc here"
+	author: "type author here"
+	email: "type email here"
+	version: "type version here"
+)
+
+type (
+	ReportResp {
+	}
+	QqMessage {
+		SelfID      int64   `json:"self_id"`
+		Time        int     `json:"time"`
+		PostType    string  `json:"post_type"`
+		NoticeType  string  `json:"notice_type"`
+		MessageType string  `json:"message_type"`
+		SubType     string  `json:"sub_type"`
+		MessageID   string  `json:"message_id"`
+		DiscussId   int64   `json:"discuss_id"`
+		GroupID     int64   `json:"group_id"`
+		GroupName   string  `json:"group_name"`
+		UserID      int64   `json:"user_id"`
+		Anonymous   string  `json:"anonymous"`
+		Message     string  `json:"message"`
+		RawMessage  string  `json:"raw_message"`
+		Atme        bool    `json:"atme"`
+		Block       bool    `json:"block"`
+		Seqid       int     `json:"seqid"`
+		Font        string  `json:"font"`
+		Sender      Senders `json:"sender"`
+	}
+
+	Senders {
+		UserID   int64  `json:"user_id"`
+		Nickname string `json:"nickname"`
+		Card     string `json:"card"`
+		Sex      string `json:"sex"`
+		Age      int    `json:"age"`
+		Area     string `json:"area"`
+		Level    int    `json:"level"`
+		Role     string `json:"role"`
+		Title    string `json:"title"`
+	}
+
+	MsgerQQInfo {
+		Retcode int        `json:"retcode"`
+		Data    []Datainfo `json:"data"`
+		Status  string     `json:"status"`
+		Error   string     `json:"error"`
+	}
+	Datainfo {
+		GroupID         int    `json:"group_id"`
+		UserID          int64  `json:"user_id"`
+		Nickname        string `json:"nickname"`
+		Card            string `json:"card"`
+		Sex             string `json:"sex"`
+		Age             int    `json:"age"`
+		Area            string `json:"area"`
+		JoinTime        int    `json:"join_time"`
+		LastSentTime    int    `json:"last_sent_time"`
+		Level           int    `json:"level"`
+		Rank            string `json:"rank"`
+		Role            string `json:"role"`
+		Unfriendly      bool   `json:"unfriendly"`
+		Title           string `json:"title"`
+		TitleExpireTime int    `json:"title_expire_time"`
+		CardChangeable  bool   `json:"card_changeable"`
+		ShutupTime      int    `json:"shutup_time"`
+		UpdateTime      int    `json:"update_time"`
+	}
+	KillProcessReq {
+		KillPid int `form:"killPid"`
+	}
+)
+
+@server(
+	group:report
+	prefix: api
+)
+service qqGroup {
+	
+	@handler Info
+	post /report returns (ReportResp)
+	
+	@handler KillProcess
+	get /killProcess (KillProcessReq) returns();
+}

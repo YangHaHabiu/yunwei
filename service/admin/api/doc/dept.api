@@ -1,0 +1,84 @@
+info(
+    desc: "部门信息"
+)
+
+type (
+
+    addDeptReq struct {
+        Name string `json:"name"`                                  // 部门名称
+        OrderNum int64 `json:"orderNum,optional"`                  // 排序
+    }
+
+    ListDeptReq struct {
+        Current int64 `form:"current,default=1"`
+        PageSize int64 `form:"pageSize,default=15"`
+        Name string `form:"name,optional"`
+        CreateBy string `form:"createBy,optional"`
+    }
+    ListDeptData struct {
+        Id int64 `json:"id"`                               // 编号
+        Name string `json:"name"`                          // 机构名称
+        ParentId int64 `json:"parentId"`                   // 上级机构ID，一级机构为0
+        OrderNum int64 `json:"orderNum"`                   // 排序
+        CreateBy string `json:"createBy"`                  // 创建人
+        CreateTime string `json:"createTime"`              // 创建时间
+        LastUpdateBy string `json:"lastUpdateBy"`          // 更新人
+        LastUpdateTime string `json:"lastUpdateTime"`      // 更新时间
+    }
+    ListDeptResp struct {
+        Rows []*ListDeptData `json:"rows"`
+        Total int64 `json:"total"`
+    }
+    UpdateDeptReq struct {
+        Id int64 `json:"id"`                               // 编号
+        Name string `json:"name"`                          // 机构名称
+        OrderNum int64 `json:"orderNum"`                   // 排序
+    }
+
+    DeleteDeptReq struct {
+        DeptId int64 `path:"deptId"`
+    }
+
+
+    TreeselectResp {
+        TreeData []*ListDeptData `json:"treeData"`
+    }
+
+
+
+)
+
+
+@server(
+    group: dept
+    prefix: /admin/dept
+
+)
+service admin {
+    @doc(
+        summary:"部门生成树"
+    )
+    @handler Treeselect
+    get /treeselect  returns (TreeselectResp)
+
+    @doc(
+        summary:"部门新增"
+    )
+    @handler DeptAdd
+    post /add (addDeptReq) returns ()
+    @doc(
+        summary:"部门列表"
+    )
+    @handler DeptList
+    get /list (ListDeptReq) returns (ListDeptResp)
+    @doc(
+        summary:"部门更新"
+    )
+    @handler DeptUpdate
+    put /update (UpdateDeptReq) returns ()
+    @doc(
+        summary:"部门删除"
+    )
+    @handler DeptDelete
+    delete /delete/:deptId (DeleteDeptReq) returns ()
+}

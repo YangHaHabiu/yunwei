@@ -1,0 +1,43 @@
+Name: qqGroup
+Host: 0.0.0.0
+Port: 8005
+Timeout: 40000
+
+#日志信息
+Log:
+  Mode: file
+  Level: error
+
+YunWeiRpcConf:
+  Endpoints:
+    - 127.0.0.1:9003
+  NonBlock: true
+  Timeout: 30000
+
+AdminRpcConf:
+  Endpoints:
+    - 127.0.0.1:9002
+  NonBlock: true
+  Timeout: 30000
+
+#数据库
+DB:
+  DataSource: root:123456@tcp(10.10.88.229:3307)/qq_group?charset=utf8mb4&parseTime=true&loc=Asia%2FShanghai
+#项目相关信息
+Project:
+  #管理员信息
+  ManagerQQ: 459105919:jiayuanhao,1062829477:zhangqingxian,963853870:dengxiguang,721768250:liaodehai
+  #支持的游戏
+  SupportGame: jswar,cjzz,all
+  #锁文件目录
+  LockFilePath: ./lockFile
+  #更新脚本路径
+  MaintainFilePath : /data/gonivinck/service/yunwei_new/maintain_game
+  #装服脚本路径
+  InstallFilePath : /data/gonivinck/service/yunwei_new/install_game
+
+#运维群QQ
+YwQQGroup: "324113338"
+
+#是否定时开启检测vpn
+IsOpenCheckVpn: false

@@ -1,0 +1,29 @@
+Name: intranet.rpc
+ListenOn: 127.0.0.1:9006
+
+
+#rpc service
+AdminRpcConf:
+  Endpoints:
+    - 127.0.0.1:9002
+  NonBlock: true
+  Timeout: 30000
+
+YunWeiRpcConf:
+  Endpoints:
+    - 127.0.0.1:9003
+  NonBlock: true
+  Timeout: 30000
+
+Redis:
+  Host: 10.10.88.229:6379
+  Type: node
+  Pass:
+
+Log:
+  Mode: file
+  Level: error
+
+#数据库
+DB:
+  DataSource: root:123456@tcp(10.10.88.229:3307)/ywadmin_v3?charset=utf8mb4&parseTime=true&loc=Asia%2FShanghai

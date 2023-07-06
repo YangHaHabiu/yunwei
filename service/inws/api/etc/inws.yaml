@@ -1,0 +1,25 @@
+Name: inws
+Host: 0.0.0.0
+Port: 8007
+Timeout: 40000
+MaxBytes: 1073741824
+
+#jwtAuth
+JwtAuth:
+  AccessSecret: ae0536f9-6450-4606-8e13-5a19ed505ea0
+
+#日志信息
+Log:
+  Mode: file
+  Level: error
+
+
+#Rpc
+IntranetRpcConf:
+  Endpoints:
+    - 127.0.0.1:9006
+  NonBlock: true
+  Timeout: 30000
+
+#脚本存放
+ScriptsFilePath: "./inws"

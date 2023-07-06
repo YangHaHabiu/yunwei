@@ -1,0 +1,182 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "监控模块",
+    "description": "监控模块",
+    "version": ""
+  },
+  "schemes": [
+    "http",
+    "https"
+  ],
+  "consumes": [
+    "application/json"
+  ],
+  "produces": [
+    "application/json"
+  ],
+  "paths": {
+    "/monitor/graph/list": {
+      "get": {
+        "summary": "监控图形",
+        "operationId": "GraphList",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/ListGraphResp"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "assetId",
+            "description": "主机ID",
+            "in": "query",
+            "required": true,
+            "type": "integer",
+            "format": "int64"
+          },
+          {
+            "name": "granularity",
+            "description": "粒度",
+            "in": "query",
+            "required": true,
+            "type": "string",
+            "enum": [
+              "M",
+              "H"
+            ]
+          },
+          {
+            "name": "startTime",
+            "description": "开始时间",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int64"
+          },
+          {
+            "name": "endTime",
+            "description": "结束时间",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int64"
+          }
+        ],
+        "tags": [
+          "graph"
+        ]
+      }
+    },
+    "/monitor/report/add": {
+      "post": {
+        "summary": "上报数据新增",
+        "operationId": "ReportAdd",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {}
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/ReportAddReq"
+            }
+          }
+        ],
+        "tags": [
+          "report"
+        ]
+      }
+    }
+  },
+  "definitions": {
+    "ListGraphReq": {
+      "type": "object",
+      "properties": {
+        "assetId": {
+          "type": "integer",
+          "format": "int64",
+          "description": "主机ID"
+        },
+        "granularity": {
+          "type": "string",
+          "enum": [
+            "M",
+            "H"
+          ],
+          "description": "粒度"
+        },
+        "startTime": {
+          "type": "integer",
+          "format": "int64",
+          "description": "开始时间"
+        },
+        "endTime": {
+          "type": "integer",
+          "format": "int64",
+          "description": "结束时间"
+        }
+      },
+      "title": "ListGraphReq",
+      "required": [
+        "assetId",
+        "granularity"
+      ]
+    },
+    "ListGraphResp": {
+      "type": "object",
+      "properties": {
+        "rows": {
+          "$ref": "#/definitions/mapstringinterface"
+        }
+      },
+      "title": "ListGraphResp",
+      "required": [
+        "rows"
+      ]
+    },
+    "ReportAddReq": {
+      "type": "object",
+      "properties": {
+        "reportType": {
+          "type": "string",
+          "enum": [
+            "monitor",
+            "machine"
+          ]
+        },
+        "value": {
+          "type": "string"
+        },
+        "sn": {
+          "type": "string"
+        },
+        "ts": {
+          "type": "string"
+        }
+      },
+      "title": "ReportAddReq",
+      "required": [
+        "reportType",
+        "value",
+        "sn",
+        "ts"
+      ]
+    }
+  },
+  "securityDefinitions": {
+    "apiKey": {
+      "type": "apiKey",
+      "description": "Enter JWT Bearer token **_only_**",
+      "name": "Authorization",
+      "in": "header"
+    }
+  }
+}

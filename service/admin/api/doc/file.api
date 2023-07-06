@@ -1,0 +1,33 @@
+syntax = "v1"
+
+info(
+    title: "文件上传和下载"
+)
+
+type (
+    FileUploadResp {
+        File string `json:"file"`
+        FilePath string `json:"filePath"`
+    }
+    DownloadReq {
+        File string `path:"file"`
+        Action string `form:"action,optional"`
+    }
+)
+
+@server(
+    group: file
+    prefix: /admin/file
+)
+service admin {
+    @doc(
+        summary:"上传文件"
+    )
+    @handler FileUploadHandler
+    post /upload () returns (FileUploadResp)
+    @doc(
+        summary:"下载文件"
+    )
+    @handler FileDownloadHandler
+    get /download/:file (DownloadReq) returns ()
+}

@@ -1,0 +1,89 @@
+syntax = "v1"
+
+info(
+	title: "内网集群项目管理信息"
+	desc: "内网集群项目管理信息"
+	author: "acool"
+)
+
+type (
+
+	AddInsideProjectClusterReq {
+		*InsideProjectClusterCommon
+	}
+
+	UpdateInsideProjectClusterReq {
+		*InsideProjectClusterCommon
+	}
+
+	DeleteInsideProjectClusterReq {
+		InsideProjectClusterId int64 `path:"InsideProjectClusterId"`
+	}
+
+    GetInsideProjectClusterReq {
+		InsideProjectClusterId int64 `path:"InsideProjectClusterId"`
+	}
+
+	InsideProjectClusterCommon {
+        Id int64 `json:"id,optional"` 
+        ProjectId int64 `json:"projectId,optional"` 
+        ClusterId int64 `json:"clusterId,optional"` 
+	}
+
+	ListInsideProjectClusterReq {
+		Current  int64  `form:"current,default=1"`
+		PageSize int64  `form:"pageSize,default=15"`
+		ProjectId int64 `form:"projectId,optional"`
+		ClusterId int64 `form:"clusterId,optional"`
+	}
+	ListInsideProjectClusterResp {
+		Rows   []*ListInsideProjectClusterData `json:"rows"`
+		Total  int64            `json:"total"`
+		Filter []*FilterList    `json:"filter"`
+	}
+	ListInsideProjectClusterData {
+        Id int64 `json:"id"` 
+        ProjectId int64 `json:"projectId"` 
+        ClusterId int64 `json:"clusterId"`
+		ProjectCn string `json:"projectCn"`
+		ClusterCn string `json:"clusterCn"`
+	}
+
+
+
+)
+
+@server(
+	group: insideProjectCluster
+	prefix: /intranet/insideProjectCluster
+)
+service intranet {
+
+	@doc(
+		summary:"内网集群和项目关系新增"
+	)
+	@handler InsideProjectClusterAdd
+	post /add (AddInsideProjectClusterReq) returns()
+	@doc(
+		summary:"内网集群和项目关系列表"
+	)
+	@handler InsideProjectClusterList
+	get /list (ListInsideProjectClusterReq) returns (ListInsideProjectClusterResp)
+	@doc(
+		summary:"内网集群和项目关系更新"
+	)
+	@handler InsideProjectClusterUpdate
+	put /update (UpdateInsideProjectClusterReq) returns ()
+	@doc(
+		summary:"内网集群和项目关系删除"
+	)
+	@handler InsideProjectClusterDelete
+	delete /delete/:InsideProjectClusterId (DeleteInsideProjectClusterReq) returns ()
+
+	@doc(
+		summary:"内网集群和项目关系获取"
+	)
+	@handler InsideProjectClusterGet
+	get /get/:InsideProjectClusterId (GetInsideProjectClusterReq) returns (ListInsideProjectClusterData)
+
+}

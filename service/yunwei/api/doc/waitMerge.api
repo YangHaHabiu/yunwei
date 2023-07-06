@@ -1,0 +1,51 @@
+syntax = "v1"
+
+info(
+    title: "待合列表"
+    desc: "待合列表"
+)
+
+
+type (
+
+    ListWaitMergeReq {
+        Current  int64  `json:"current,default=1"`
+        PageSize int64  `json:"pageSize,default=15"`
+        SortFields []*SortFieldData `json:"sortFields,optional"`
+    }
+
+
+    ListWaitMergeResp {
+        Rows   []*ListWaitMergeData `json:"rows"`
+        Total  int64            `json:"total"`
+        Filter []*FilterList    `json:"filter"`
+    }
+    ListWaitMergeData {
+        Id int64 `json:"id"`
+        ProjectId int64 `json:"projectId"`
+        PlatformId int64 `json:"platformId"`
+        ServerId int64 `json:"serverId"`
+        InputRange string `json:"inputRange"`
+        CombineRange string `json:"combineRange"`
+        StartTime string `json:"startTime"`
+        EndTime string `json:"endTime"`
+        MergeStatus int64 `json:"mergeStatus"`
+        MergeOperator string `json:"mergeOperator"`
+        PlatformCn string `json:"platformCn"`
+        PlatformEn string `json:"platformEn"`
+        ProjectCn string `json:"projectCn"`
+    }
+
+)
+@server(
+    group: taskQueue
+    prefix: /taskMng/taskQueue
+)
+service yunwei {
+    @doc(
+        summary:"待合列表"
+    )
+    @handler WaitMergeList
+    post /waitMergeList (ListWaitMergeReq) returns (ListWaitMergeResp)
+
+}

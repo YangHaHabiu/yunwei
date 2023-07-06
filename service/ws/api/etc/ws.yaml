@@ -1,0 +1,57 @@
+Name: ws
+Host: 0.0.0.0
+Port: 8004
+Timeout: 40000
+MaxBytes: 1073741824
+
+
+#jwtAuth
+JwtAuth:
+  AccessSecret: ae0536f9-6450-4606-8e13-5a19ed505ea0
+
+#日志信息
+Log:
+  Mode: file
+  Level: error
+
+#脚本存放
+Scripts:
+  MaintainFilePath: "/data/gonivinck/service/yunwei_new/maintain_game/main.sh"
+  InstallFilePath: "/data/gonivinck/service/yunwei_new/install_game/main.sh"
+  MigrateFilePath: "/data/gonivinck/service/yunwei_new/migrate_game/main.sh"
+  CombineFilePath: "/data/gonivinck/service/yunwei_new/combine_game/main.sh"
+  FormatOutPutPath: "/data/gonivinck/service/yunwei_new/maintain_game/cmd_entrance.sh"
+
+
+
+#跳板机信息(0：国内 1：香港)
+JumpServer:
+  - Ipaddr: 10.10.88.229:16666
+    PrivateKeyPath: ./key/
+    SocksName: root
+    SocksPwd: "123456"
+  - Ipaddr: 10.10.88.229:16666
+    PrivateKeyPath: ./key/
+    SocksName: root
+    SocksPwd: "123456"
+
+
+#运维Rpc
+YunWeiRpcConf:
+  Endpoints:
+    - 127.0.0.1:9003
+  NonBlock: true
+  Timeout: 30000
+
+#认证Rpc
+IdentityRpcConf:
+  Endpoints:
+    - 127.0.0.1:9001
+  NonBlock: true
+  Timeout: 30000
+
+#管理Rpc
+AdminRpcConf:
+  Endpoints:
+    - 127.0.0.1:9002
+  NonBlock: true

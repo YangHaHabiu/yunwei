@@ -1,0 +1,26 @@
+syntax = "v1"
+
+info(
+	title: "type title here"
+	desc: "type desc here"
+	author: "type author here"
+	email: "type email here"
+	version: "type version here"
+)
+
+type (
+	ReportResp {
+		Challenge string `json:"challenge"`
+		Token     string `json:"token"`
+		Type      string `json:"type"`
+	}
+)
+
+@server(
+	group:report
+	prefix: api
+)
+service feishuTalk {
+	@handler Info
+	post /feishuEvent returns (ReportResp)
+}

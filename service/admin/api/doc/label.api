@@ -1,0 +1,76 @@
+info(
+    desc: "标签信息"
+)
+
+type (
+
+    addLabelReq struct {
+        LabelName string `json:"labelName"`
+        LabelValues string `json:"labelValues"`
+        LabelType   string     `json:"labelType,optional"`
+        LabelRemark string    `json:"labelRemark,optional"`
+    }
+
+
+    ListLabelReq struct {
+        Current int64 `form:"current,optional"`
+        PageSize int64 `form:"pageSize,optional"`
+        LabelId int64 `form:"label_id,optional"`
+        LabelName string `form:"labelName,optional"`
+        LabelValues string `form:"labelValues,optional"`
+        LabelType string `form:"labelType,optional"`
+    }
+    ListLabelData struct {
+        ViewLabelId int64 `json:"labelId"`
+        ViewLabelName string `json:"labelName"`
+        ViewLabelValues string `json:"labelValues"`
+        ViewLabelType   string  `json:"labelType"`
+        ViewLabelRemark string  `json:"labelRemark"`
+        ViewStopStatus string `json:"stopStatus"`
+
+    }
+    ListLabelResp struct {
+        Rows []*ListLabelData `json:"rows"`
+        Total int64 `json:"total,omitempty"`
+        Filter   []*FilterList 	 `json:"filter"`
+    }
+    UpdateLabelReq struct {
+        LabelId int64 `json:"labelId"`
+        LabelName string `json:"labelName"`
+        LabelValues string `json:"labelValues"`
+        LabelType   string     `json:"labelType,optional"`
+        LabelRemark string    `json:"labelRemark,optional"`
+    }
+    DeleteLabelReq struct {
+        LabelId int64 `path:"labelId"`
+    }
+
+)
+
+
+@server(
+    group: label
+    prefix: /admin/label
+)
+service admin {
+    @doc(
+        summary:"标签新增"
+    )
+    @handler LabelAdd
+    post /add (addLabelReq) returns()
+    @doc(
+        summary:"标签列表"
+    )
+    @handler LabelList
+    get /list (ListLabelReq) returns (ListLabelResp)
+    @doc(
+        summary:"标签更新"
+    )
+    @handler LabelUpdate
+    put /update (UpdateLabelReq) returns ()
+    @doc(
+        summary:"标签删除"
+    )
+    @handler LabelDelete
+    delete /delete/:labelId (DeleteLabelReq) returns ()
+}

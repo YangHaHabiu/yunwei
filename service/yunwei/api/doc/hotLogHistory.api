@@ -1,0 +1,58 @@
+syntax = "v1"
+
+info(
+	title: "任务日志"
+	desc: "任务日志"
+)
+
+type (
+
+	GetHotLogHistoryReq {
+		Id int64 `path:"id"`
+	}
+
+
+	ListHotLogHistoryResp {
+		Rows   []*HotLogHistoryDataTree `json:"rows"`
+	}
+	ListHotLogHistoryData {
+		Id          int64  `json:"id"`
+		HotTitle    string `json:"hotTitle"`
+		ProjectId    int64 `json:"projectId"`
+		OperType    string `json:"operType"`
+		OperContent string `json:"operContent"`
+		OperStatus  int64  `json:"operStatus"`
+		CreateBy    string `json:"createBy"`
+		CreateTime  int64  `json:"createTime"`
+	}
+
+
+
+
+
+	HotLogHistoryDataTree{
+		Label string `json:"label"`
+		Children []*HotLogHistoryDataTree `json:"children,omitempty"`
+		Value int64 `json:"value,omitempty"`
+	}
+)
+
+@server(
+	group: taskLog
+	prefix: /taskMng/taskLog
+)
+service yunwei {
+
+	@doc(
+		summary:"任务日志列表"
+	)
+	@handler HotLogHistoryList
+	get /list () returns (ListHotLogHistoryResp)
+
+	@doc(
+		summary:"任务日志详情"
+	)
+	@handler HotLogHistoryGet
+	get /get/:id (GetHotLogHistoryReq) returns (ListHotLogHistoryData)
+
+}

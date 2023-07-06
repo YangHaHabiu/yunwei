@@ -1,0 +1,17 @@
+Name: identity.rpc
+ListenOn: 0.0.0.0:9001
+Timeout: 30000
+
+Log:
+  Mode: file
+  Level: error
+
+#jwtAuth
+JwtAuth:
+  AccessSecret: ae0536f9-6450-4606-8e13-5a19ed505ea0
+  AccessExpire: 86400
+
+Redis:
+  Host: 10.10.88.229:6379
+  Type: node
+  Pass:

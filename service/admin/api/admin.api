@@ -1,0 +1,28 @@
+syntax = "v1"
+
+info(
+	title: "系统模块"
+	desc: "系统模块"
+	author: "acool"
+)
+
+import (
+	"doc/user.api"
+	"doc/menu.api"
+	"doc/dept.api"
+	"doc/dict.api"
+	"doc/loginlog.api"
+	"doc/role.api"
+	"doc/syslog.api"
+	"doc/stgroup.api"
+	"doc/strategy.api"
+	"doc/ugroup.api"
+	"doc/project.api"
+	"doc/company.api"
+	"doc/label.api"
+	"doc/file.api"
+	"doc/resource.api"
+	"doc/search.api"
+	"doc/terminallog.api"
+	"doc/captcha.api"
+)

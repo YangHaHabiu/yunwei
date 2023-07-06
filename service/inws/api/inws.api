@@ -1,0 +1,26 @@
+syntax = "v1"
+
+info(
+	title: "intranetwebsocket"
+	author: "acool"
+)
+
+type (
+	GetInsideTasksLogReq {
+		Token string `form:"token"`
+	}
+)
+
+@server(
+	group: inws
+	prefix: /inws
+)
+service inws {
+	
+	@doc(
+		summary:"获取内网任务日志"
+	)
+	@handler getInsideTasksLog
+	get /getInsideTasksLog(GetInsideTasksLogReq) returns ()
+	
+}

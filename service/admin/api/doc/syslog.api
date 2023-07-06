@@ -1,0 +1,44 @@
+info(
+    desc: "系统日志"
+)
+
+type (
+
+    ListSysLogReq struct {
+        Current int64 `form:"current,default=1"`
+        PageSize int64 `form:"pageSize,default=15"`
+        UserName string `form:"userName,optional"`
+        Ip string `form:"ip,optional"`
+        DateRange string `form:"dateRange,optional"`
+    }
+    ListSysLogData struct {
+        Id int64 `json:"id"`                               // 编号
+        UserName string `json:"userName"`                  // 用户名
+        Operation string `json:"operation"`                // 用户操作
+        Method string `json:"method"`                      // 请求方法
+        Params string `json:"params"`                      // 请求参数
+        Time float32 `json:"time"`                           // 执行时长(毫秒)
+        Ip string `json:"ip"`                              // IP地址
+        CreateTime string `json:"createTime"`
+    }
+    ListSysLogResp struct {
+        Rows []*ListSysLogData `json:"rows"`
+        Total int64 `json:"total"`
+        Filter   []*FilterList 	 `json:"filter"`
+    }
+
+)
+
+@server(
+    group: log
+    prefix: /admin/log
+)
+service admin {
+    @doc(
+        summary:"系统日志列表"
+    )
+    @handler SysLogList
+    get /syslog (ListSysLogReq) returns (ListSysLogResp)
+
+}
+

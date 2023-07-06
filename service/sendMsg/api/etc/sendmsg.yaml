@@ -1,0 +1,45 @@
+Name: sendMsg
+Host: 0.0.0.0
+Port: 8009
+Timeout: 30000
+
+Auth:
+  AccessSecret: ae0536f9-6450-4606-8e13-5a19ed505ea0
+
+ApiAuthKey:
+  List:
+    - Name: "运维"
+      AppKey: "10011"
+      AppSecret: "abc123456"
+    - Name: "php"
+      AppKey: "10012"
+      AppSecret: "ABC123456"
+  Limit: 20
+  DefaultChannel: ""
+  CardSending: false #是否发送卡片提醒
+
+#rpc service
+AdminRpcConf:
+  Endpoints:
+    - 127.0.0.1:9002
+  NonBlock: true
+  Timeout: 30000
+
+IdentityRpcConf:
+  Endpoints:
+    - 127.0.0.1:9001
+  NonBlock: true
+  Timeout: 30000
+
+Redis:
+  Host: 10.10.88.229:6379
+  Type: node
+  Pass:
+
+Log:
+  Mode: file
+  Level: error
+
+#数据库
+DB:
+  DataSource: root:123456@tcp(10.10.88.229:3307)/send_message?charset=utf8mb4&parseTime=true&loc=Asia%2FShanghai

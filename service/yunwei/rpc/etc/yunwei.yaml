@@ -1,0 +1,58 @@
+Name: yunwei.rpc
+ListenOn: 127.0.0.1:9003
+Timeout: 30000
+
+#脚本存放信息
+Scripts:
+  MaintainFilePath: "/data/gonivinck/service/yunwei_new/maintain_game/main.sh"
+  InstallFilePath: "/data/gonivinck/service/yunwei_new/install_game/main.sh"
+  MigrateFilePath: "/data/gonivinck/service/yunwei_new/migrate_game/main.sh"
+  CombineFilePath: "/data/gonivinck/service/yunwei_new/combine_game/main.sh"
+  FormatOutPutPath: "/data/gonivinck/service/yunwei_new/maintain_game/cmd_entrance.sh"
+  InitScriptPath: "/data/yunwei_init_env"
+
+#模版文件
+TemplateFilePath: "./templateFile"
+#密钥
+KeyFullPath: "../../ws/api/key/id_rsa"
+#配置文件中心
+ConfigCenterPath: "./configCenterPath"
+#锁文件
+LockFilePath: "./fileLock"
+#配置下发线程数
+ConfigMngThreads: 100
+#是否开启告警
+IsOpenCall: false
+
+
+
+#rpc service
+AdminRpcConf:
+  Endpoints:
+    - 127.0.0.1:9002
+  NonBlock: true
+  Timeout: 30000
+
+#rpc service
+MonitorRpcConf:
+  Endpoints:
+    - 127.0.0.1:9008
+  NonBlock: true
+  Timeout: 30000
+
+
+Redis:
+  Host: 10.10.88.229:6379
+  Type: node
+  Pass:
+
+Log:
+  Mode: file
+  Level: error
+
+#数据库
+DB:
+  DataSource: root:123456@tcp(10.10.88.229:3307)/ywadmin_v3?charset=utf8mb4&parseTime=true&loc=Asia%2FShanghai
+
+#运维群QQ
+YwQQGroup: "324113338"

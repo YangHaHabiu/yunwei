@@ -1,0 +1,12 @@
+Name: feishuTalk
+Host: 0.0.0.0
+Port: 8001
+AppId: "cli_a4c0ac1d55f81013"
+AppSecret: "VpWAu9ahxUYCQPs3l9Frkdi61Ic5deWA"
+EncryptKey: "wIe7NdyTqXBdVKPnrQ1vFbwtvcvIzXca"
+VerificationToken: "h3TxiqOnlj4hwoixHTm0ZePDRSIBNuF0"
+
+#日志信息
+Log:
+  Mode: file
+  Level: error

@@ -1,0 +1,284 @@
+syntax = "v1"
+
+info(
+	title: "资产信息"
+	desc: "资产信息"
+)
+
+type (
+	FilterList {
+		Label    string        `json:"label,omitempty"`
+		Value    string        `json:"value,omitempty"`
+		Types    string        `json:"types,omitempty"`
+		Children []*FilterList `json:"children,omitempty"`
+	}
+
+	AddAssetReq {
+		AssetData []*AssetDatas `json:"assetData"`
+	}
+	AddAssetResp {
+		Row *ListAssetData `json:"row"`
+	}
+
+	UpdateAssetReq {
+		*AssetDatas
+	}
+
+	DeleteAssetReq {
+		AssetId int64 `path:"assetId"`
+	}
+
+	GetAssetReq {
+		AssetId int64 `path:"assetId"`
+	}
+	RecycleDeleteAssetReq {
+		AssetId int64 `path:"assetId"`
+	}
+
+	AssetDatas {
+		AssetId            int64  `json:"assetId,optional"`
+		OuterIp            string `json:"outerIp"`
+		InnerIp            string `json:"innerIp"`
+		HostRoleId         string `json:"hostRoleId,optional"`
+		ProviderId         string `json:"providerId,optional"`
+		HardwareInfo       string `json:"hardwareInfo,optional"`
+		SshPort            string `json:"sshPort,optional"`
+		InitType           string `json:"initType,optional"`
+		CleanType          string `json:"cleanType,optional"`
+		RecycleType        string `json:"recycleType,optional"`
+		InitLoginInfo      string `json:"initLoginInfo,optional"`
+		ChangeStatusRemark string `json:"changeStatusRemark,optional"`
+		Remark             string `json:"remark,optional"`
+		ProjectId          int64  `json:"projectId,optional"`
+		CompanyId          int64  `json:"companyId,optional"`
+		UserCompanyId      int64  `json:"userCompanyId,optional"`
+		AccelerateDomain   string `json:"accelerateDomain,optional"`
+		ClusterId          int64  `json:"clusterId,optional"`
+	}
+
+	ListAssetReq {
+		Current  int64 `form:"current,default=1"`
+		PageSize int64 `form:"pageSize,default=15"`
+		AssetId  int64 `form:"asset_id,optional"`
+
+		Ips                 string `form:"ips,optional"`
+		RecycleType         int64  `form:"recycleType,optional"`
+		CleanType           string `form:"cleanType,optional"`
+		InitType            string `form:"initType,optional"`
+		Provider            string `form:"provider,optional"`
+		Label               string `form:"label,optional"`
+		ProjectIds          string `form:"projectIds,optional"`
+		OwnershipCompanyIds string `form:"ownershipCompanyIds,optional"`
+		HostRoleCn          string `form:"hostRoleCn,optional"`
+		ProjectType         string `form:"projectType,optional"`
+	}
+	ListAssetResp {
+		Rows   []*ListAssetData `json:"rows"`
+		Total  int64            `json:"total"`
+		Filter []*FilterList    `json:"filter"`
+	}
+	ListAssetData {
+		ViewAssetId                      int64  `json:"assetId"`
+		ViewOuterIp                      string `json:"outerIp"`
+		ViewInnerIp                      string `json:"innerIp"`
+		ViewHostRoleId                   string `json:"hostRoleId"`
+		ViewHostRoleCn                   string `json:"viewHostRoleCn"`
+		ViewProviderId                   string `json:"providerId"`
+		ViewProviderNameEn               string `json:"viewProviderNameEn"`
+		ViewProviderNameCn               string `json:"viewProviderNameCn"`
+		ViewHardwareInfo                 string `json:"hardwareInfo"`
+		ViewSshPort                      string `json:"sshPort"`
+		ViewInitType                     string `json:"initType"`
+		ViewCleanType                    string `json:"cleanType"`
+		ViewRecycleType                  string `json:"recycleType"`
+		ViewInitLoginInfo                string `json:"initLoginInfo"`
+		ViewChangeStatusRemark           string `json:"changeStatusRemark"`
+		ViewRemark                       string `json:"remark"`
+		ViewAssetCreateTime              string `json:"viewAssetCreateTime"`
+		ViewAssetUpdateTime              string `json:"viewAssetUpdateTime"`
+		ViewAssetDelFlag                 int64  `json:"viewAssetDelFlag"`
+		ViewPrId                         string `json:"viewPrId"`
+		ViewAssetOwnershipCompanyId      int64  `json:"companyId"`
+		ViewAssetOwnershipCompanyCn      string `json:"viewAssetOwnershipCompanyCn"`
+		ViewAssetOwnershipCompanyEn      string `json:"viewAssetOwnershipCompanyEn"`
+		ViewAssetOwnershipCompanyDeleted int64  `json:"viewAssetOwnershipCompanyDeleted"`
+		ViewServerAffiliationDeleted     int64  `json:"viewServerAffiliationDeleted"`
+		ViewUserCompanyId                int64  `json:"userCompanyId"`
+		ViewUserCompanyCn                string `json:"viewUserCompanyCn"`
+		ViewUserCompanyEn                string `json:"viewUserCompanyEn"`
+		ViewUserCompanyDeleted           int64  `json:"viewUserCompanyDeleted"`
+		ViewUserProjectId                int64  `json:"projectId"`
+		ViewUserProjectCn                string `json:"viewUserProjectCn"`
+		ViewUserProjectEn                string `json:"viewUserProjectEn"`
+		ViewUserProjectDeleted           int64  `json:"viewUserProjectDeleted"`
+		LabelNames                       string `json:"LabelNames"`
+		ViewAccelerateDomain             string `json:"accelerateDomain"`
+	}
+	AssetInfoDataResp {
+		ViewCompanyProjectView []*ListProjectData `json:"viewCompanyProjectView"`
+	}
+
+	ListProjectData {
+		ViewCompanyId      int64  `json:"viewCompanyId"`
+		ViewCompanyCn      string `json:"viewCompanyCn"`
+		ViewCompanyEn      string `json:"viewCompanyEn"`
+		ViewCompanyDelFlag int64  `json:"viewCompanyDelFlag"`
+		ViewPrId           int64  `json:"viewPrId"`
+		ViewProjectId      int64  `json:"viewProjectId"`
+		ViewProjectCn      string `json:"viewProjectCn"`
+		ViewProjectEn      string `json:"viewProjectEn"`
+		ViewDeptId         int64  `json:"viewProjectTeam"`
+		ViewDeptName       string `json:"viewDeptName"`
+		ViewProjectType    string `json:"viewProjectType"`
+		ViewProjectTypeCn  string `json:"viewProjectTypeCn"`
+		ViewGroupQq        string `json:"viewGroupQq"`
+		ViewGroupTypeCn    string `json:"viewGroupTypeCn"`
+		ViewGroupTypeEn    string `json:"viewGroupType"`
+		ViewGroupDevQq     string `json:"viewGroupDevQq"`
+		ViewProjectDelFlag string `json:"viewDelFlag"`
+	}
+
+	OwnerProjectDataResp {
+		OwnerProjectData []*OwnerProjectData `json:"ownerProjectData"`
+	}
+
+	OwnerProjectData {
+		Label     string `json:"label,omitempty"`
+		Value     int64  `json:"value,omitempty"`
+		ProjectEn string `json:"projectEn,omitempty"`
+	}
+
+	GetWebSshReq {
+		ProjectIds string `form:"projectIds,optional"`
+	}
+	GetWebSshResp {
+		Rows *WebSshDataTree `json:"rows"`
+	}
+	WebSshDataTree {
+		Key      string            `json:"key,omitempty"`
+		Value    string            `json:"value,omitempty"`
+		Children []*WebSshDataTree `json:"children,omitempty"`
+		Hostname string            `json:"hostname,omitempty"`
+		SshPort  string            `json:"sshPort,omitempty"`
+		Cluster  string            `json:"cluster,omitempty"`
+	}
+
+	AssetFileReq {
+		Hostname string `form:"hostname,optional"`
+		Port     int    `form:"port,optional"`
+		Path     string `form:"path,optional"`
+	}
+
+	AssetFileData {
+		Code   string `json:"code"`
+		Date   string `json:"date"`
+		IsLink bool   `json:"isLink"`
+		Kind   string `json:"kind"`
+		Name   string `json:"name"`
+		Size   string `json:"size"`
+	}
+
+	AssetFileResp {
+		Rows []*AssetFileData `json:"rows"`
+	}
+
+	AssetFileUploadReq {
+		Hostname string `form:"hostname"`
+		Port     int    `form:"port,optional"`
+		Path     string `form:"path"`
+	}
+
+	AssetFileDownloadReq {
+		File     string `json:"file"`
+		Hostname string `json:"hostname"`
+		Port     int    `json:"port,optional"`
+		Path     string `json:"path"`
+	}
+
+	AssetBatchDistributeReq {
+		AssetIds string `json:"assetIds"`
+		Model    string `json:"model"`
+		Value    string `json:"value"`
+	}
+)
+
+@server(
+	group: asset
+	prefix: /yunwei/asset
+)
+service yunwei {
+	
+	@doc(
+		summary:"资产获取"
+	)
+	@handler AssetGet
+	get /get/:assetId (GetAssetReq) returns(AddAssetResp)
+	
+	@doc(
+		summary:"资产新增"
+	)
+	@handler AssetAdd
+	post /add (AddAssetReq) returns()
+	@doc(
+		summary:"资产列表"
+	)
+	@handler AssetList
+	get /list (ListAssetReq) returns (ListAssetResp)
+	@doc(
+		summary:"资产更新"
+	)
+	@handler AssetUpdate
+	put /update (UpdateAssetReq) returns ()
+	@doc(
+		summary:"资产删除"
+	)
+	@handler AssetDelete
+	delete /delete/:assetId (DeleteAssetReq) returns ()
+	@doc(
+		summary:"资产回收"
+	)
+	@handler AssetRecycleDelete
+	delete /recycle/:assetId (RecycleDeleteAssetReq) returns ()
+	@doc(
+		summary:"项目公司视图"
+	)
+	@handler AssetInfoData
+	get /assetInfoData returns (AssetInfoDataResp)
+	
+	@doc(
+		summary:"个人项目数据"
+	)
+	@handler OwnerProjectData
+	get /ownerProjectData returns (OwnerProjectDataResp)
+	
+	@doc(
+		summary:"webssh树形"
+	)
+	@handler GetWebSshTree
+	get /getWebSshTree (GetWebSshReq) returns (GetWebSshResp)
+	
+	@doc(
+		summary:"文件管理器列表"
+	)
+	@handler AssetFile
+	get /assetFile (AssetFileReq) returns (AssetFileResp)
+	
+	@doc(
+		summary:"文件管理器上传"
+	)
+	@handler AssetFileUpload
+	post /assetFileUpload (AssetFileUploadReq) returns ()
+	
+	@doc(
+		summary:"文件管理器下载"
+	)
+	@handler AssetFileDownload
+	post /assetFileDownload (AssetFileDownloadReq) returns ()
+	
+	@doc(
+		summary:"资产批量操作"
+	)
+	@handler AssetBatchDistribute
+	put /assetBatchDistribute (AssetBatchDistributeReq) returns ()
+	
+}

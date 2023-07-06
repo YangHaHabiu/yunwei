@@ -1,0 +1,26 @@
+syntax = "v1"
+
+info(
+    title: "type title here"
+    desc: "type desc here"
+)
+
+
+type (
+    GetWebSocketAddrResp{
+        IpAddr string `json:"ipAddr"`
+    }
+
+)
+
+@server(
+    group: taskQueue
+    prefix: /taskMng/taskQueue
+)
+service yunwei {
+    @doc(
+        summary: "获取websokcet地址"
+    )
+    @handler GetWebSocketAddr
+    get /getWebSocketAddr () returns (GetWebSocketAddrResp)
+}

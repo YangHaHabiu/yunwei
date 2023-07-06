@@ -1,0 +1,78 @@
+syntax = "v1"
+
+info(
+    title: "集群信息"
+    desc: "集群信息"
+)
+
+type (
+    ListClusterReq {
+        Current  int64  `form:"current,default=1"`
+        PageSize int64  `form:"pageSize,default=15"`
+        LabelId int64 `form:"labelId,optional"`
+        ProjectId int64 `form:"projectId,optional"`
+        ProjectIds string `form:"projectIds,optional"`
+        ClusterCn string  `form:"clusterCn,optional"`
+    }
+    ListClusterResp {
+        Rows   []*ListClusterData `json:"rows"`
+        Total  int64            `json:"total"`
+        Filter []*FilterList    `json:"filter"`
+
+    }
+    ListClusterData {
+        ViewLabelId int64 `json:"labelId"`
+        ViewLabelName string `json:"labelName"`
+        ViewLabelValues string `json:"labelValues"`
+        ViewLabelRemark string `json:"labelRemark"`
+        ViewProjectId int64 `json:"projectId"`
+        ViewProjectCn string `json:"projectCn"`
+        ViewProjectEn string `json:"projectEn"`
+        ViewClusterFeatureInfo string `json:"clusterFeatureInfo"`
+        ViewFeatureServerDelFlag int64 `json:"featureServerDelFlag"`
+    }
+    ListClusterAssetData {
+        ViewDataUrl string `json:"viewDataUrl"`
+        ViewJsonId string `json:"viewJsonId"`
+        AssetIp string `json:"assetIp"`
+    }
+    ListClusterPlatformData {
+        ViewDataUrl string`json:"viewDataUrl"`
+        ViewJsonId string `json:"viewJsonId"`
+        PlatformInfo string `json:"platformInfo"`
+    }
+
+    DetailClusterReq {
+        LabelId int64 `form:"labelId"`
+        ProjectId int64 `form:"projectId"`
+    }
+
+    DetailClusterResp {
+        ViewLabelName string `json:"labelName"`
+        ViewProjectCn string `json:"projectCn"`
+        ViewClusterFeatureInfo string `json:"clusterFeatureInfo"`
+        AssetRows []*ListClusterAssetData `json:"assetRows"`
+        PlatformRows []*ListClusterPlatformData `json:"platformRows"`
+    }
+
+)
+
+
+@server(
+    group: cluster
+    prefix: /yunwei/cluster
+)
+service yunwei {
+
+    @doc(
+        summary:"集群列表"
+    )
+    @handler ClusterList
+    get /list (ListClusterReq) returns (ListClusterResp)
+    @doc(
+        summary:"集群详情"
+    )
+    @handler ClusterDetail
+    get /detail (DetailClusterReq) returns (DetailClusterResp)
+
+}

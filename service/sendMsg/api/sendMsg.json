@@ -1,0 +1,319 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "sendMsg api",
+    "description": "sendMsg api",
+    "version": ""
+  },
+  "schemes": [
+    "http",
+    "https"
+  ],
+  "consumes": [
+    "application/json"
+  ],
+  "produces": [
+    "application/json"
+  ],
+  "paths": {
+    "/sendMsg/msgApi/add": {
+      "post": {
+        "summary": "发送消息",
+        "operationId": "AddMsgApi",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {}
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/AddMsgApiReq"
+            }
+          }
+        ],
+        "tags": [
+          "msgApi"
+        ]
+      }
+    },
+    "/sendMsg/msgApi/list": {
+      "get": {
+        "summary": "消息列表",
+        "operationId": "ListMsgApi",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/ListMsgApiResp"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "current",
+            "in": "query",
+            "required": true,
+            "type": "integer",
+            "format": "int64",
+            "default": "1"
+          },
+          {
+            "name": "pageSize",
+            "in": "query",
+            "required": true,
+            "type": "integer",
+            "format": "int64",
+            "default": "15"
+          },
+          {
+            "name": "msgTitle",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "msgContent",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "dateRange",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "status",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "sendType",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "msgType",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "msgLevel",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "msgApi"
+        ]
+      }
+    }
+  },
+  "definitions": {
+    "AddMsgApiReq": {
+      "type": "object",
+      "properties": {
+        "appKey": {
+          "type": "string"
+        },
+        "sn": {
+          "type": "string"
+        },
+        "ts": {
+          "type": "string"
+        },
+        "msgTitle": {
+          "type": "string"
+        },
+        "msgContent": {
+          "type": "string"
+        },
+        "msgTo": {
+          "type": "string"
+        },
+        "msgType": {
+          "type": "string"
+        },
+        "msgLevel": {
+          "type": "string"
+        },
+        "sendType": {
+          "type": "string"
+        }
+      },
+      "title": "AddMsgApiReq",
+      "required": [
+        "appKey",
+        "sn",
+        "ts",
+        "msgTitle",
+        "msgContent",
+        "msgTo",
+        "msgType",
+        "msgLevel",
+        "sendType"
+      ]
+    },
+    "FilterList": {
+      "type": "object",
+      "properties": {
+        "label": {
+          "type": "string"
+        },
+        "value": {
+          "type": "string"
+        },
+        "types": {
+          "type": "string"
+        },
+        "children": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/FilterList"
+          }
+        }
+      },
+      "title": "FilterList"
+    },
+    "ListMsgApiData": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "msgTitle": {
+          "type": "string"
+        },
+        "msgContent": {
+          "type": "string"
+        },
+        "msgTo": {
+          "type": "string"
+        },
+        "msgType": {
+          "type": "string"
+        },
+        "msgLevel": {
+          "type": "string"
+        },
+        "status": {
+          "type": "string"
+        },
+        "sendType": {
+          "type": "string"
+        },
+        "accessIp": {
+          "type": "string"
+        },
+        "createDate": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "failureLog": {
+          "type": "string"
+        }
+      },
+      "title": "ListMsgApiData",
+      "required": [
+        "id",
+        "msgTitle",
+        "msgContent",
+        "msgTo",
+        "msgType",
+        "msgLevel",
+        "status",
+        "sendType",
+        "accessIp",
+        "createDate",
+        "failureLog"
+      ]
+    },
+    "ListMsgApiReq": {
+      "type": "object",
+      "properties": {
+        "current": {
+          "type": "integer",
+          "format": "int64",
+          "default": "1"
+        },
+        "pageSize": {
+          "type": "integer",
+          "format": "int64",
+          "default": "15"
+        },
+        "msgTitle": {
+          "type": "string"
+        },
+        "msgContent": {
+          "type": "string"
+        },
+        "dateRange": {
+          "type": "string"
+        },
+        "status": {
+          "type": "string"
+        },
+        "sendType": {
+          "type": "string"
+        },
+        "msgType": {
+          "type": "string"
+        },
+        "msgLevel": {
+          "type": "string"
+        }
+      },
+      "title": "ListMsgApiReq",
+      "required": [
+        "current",
+        "pageSize"
+      ]
+    },
+    "ListMsgApiResp": {
+      "type": "object",
+      "properties": {
+        "rows": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/ListMsgApiData"
+          }
+        },
+        "total": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "filter": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/FilterList"
+          }
+        }
+      },
+      "title": "ListMsgApiResp",
+      "required": [
+        "rows",
+        "total",
+        "filter"
+      ]
+    }
+  },
+  "securityDefinitions": {
+    "apiKey": {
+      "type": "apiKey",
+      "description": "Enter JWT Bearer token **_only_**",
+      "name": "Authorization",
+      "in": "header"
+    }
+  }
+}

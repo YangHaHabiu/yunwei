@@ -1,0 +1,92 @@
+syntax = "v1"
+
+info(
+	title: "开关入口信息"
+	desc: "开关入口信息"
+	author: "acool"
+)
+
+type (
+
+	AddSwitchEntranceGameserverReq {
+		*SwitchEntranceGameserverCommon
+	}
+
+	UpdateSwitchEntranceGameserverReq {
+		*SwitchEntranceGameserverCommon
+	}
+
+	DeleteSwitchEntranceGameserverReq {
+		Ids string `form:"ids"`
+		Operation string `form:"operation,options=start|stop"`
+	}
+
+    GetSwitchEntranceGameserverReq {
+		SwitchEntranceGameserverId int64 `path:"SwitchEntranceGameserverId"`
+	}
+
+	SwitchEntranceGameserverCommon {
+        Id int64 `json:"id,optional"` 
+        ProjectId int64 `json:"projectId,optional"` 
+        PlatformId int64 `json:"platformId,optional"` 
+        ConfigJsonPath string `json:"configJsonPath,optional"` 
+        State int64 `json:"state,optional"` 
+	}
+
+	ListSwitchEntranceGameserverReq {
+		Current  int64  `form:"current,default=1"`
+		PageSize int64  `form:"pageSize,default=15"`
+		ProjectIds string `form:"projectIds,optional"`
+	}
+	ListSwitchEntranceGameserverResp {
+		Rows   []*ListSwitchEntranceGameserverData `json:"rows"`
+		Total  int64            `json:"total"`
+	}
+	ListSwitchEntranceGameserverData {
+        Id int64 `json:"id"` 
+        ProjectId int64 `json:"projectId"`
+		ProjectCn string `json:"projectCn"`
+        PlatformId int64 `json:"platformId"`
+		PlatformEn string `json:"platformEn"`
+		ConfigJsonPath string `json:"configJsonPath"`
+        State int64 `json:"state"` 
+	}
+
+
+
+)
+
+@server(
+	group: switchEntranceGameserver
+	prefix: /yunwei/switchEntranceGameserver
+)
+service yunwei {
+
+	@doc(
+		summary:"开关入口新增"
+	)
+	@handler SwitchEntranceGameserverAdd
+	post /add (AddSwitchEntranceGameserverReq) returns()
+	@doc(
+		summary:"开关入口列表"
+	)
+	@handler SwitchEntranceGameserverList
+	get /list (ListSwitchEntranceGameserverReq) returns (ListSwitchEntranceGameserverResp)
+	@doc(
+		summary:"开关入口更新"
+	)
+	@handler SwitchEntranceGameserverUpdate
+	put /update (UpdateSwitchEntranceGameserverReq) returns ()
+	@doc(
+		summary:"批量开关入口开始和关闭"
+	)
+	@handler SwitchEntranceGameserverDelete
+	delete /delete (DeleteSwitchEntranceGameserverReq) returns ()
+
+	@doc(
+		summary:"开关入口获取"
+	)
+	@handler SwitchEntranceGameserverGet
+	get /get/:SwitchEntranceGameserverId (GetSwitchEntranceGameserverReq) returns (ListSwitchEntranceGameserverData)
+
+}

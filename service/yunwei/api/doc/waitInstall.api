@@ -1,0 +1,52 @@
+syntax = "v1"
+
+info(
+    title: "待装列表"
+    desc: "待装列表"
+)
+
+
+type (
+
+    ListWaitInstallReq {
+        Current  int64  `json:"current,default=1"`
+        PageSize int64  `json:"pageSize,default=15"`
+        SortFields []*SortFieldData `json:"sortFields,optional"`
+    }
+
+    ListWaitInstallResp {
+        Rows   []*ListWaitInstallData `json:"rows"`
+        Total  int64            `json:"total"`
+        Filter []*FilterList    `json:"filter"`
+    }
+    ListWaitInstallData {
+        Id int64 `json:"id"`
+        ProjectId int64 `json:"projectId"`
+        ProjectCn string `json:"projectCn"`
+        PlatformId int64 `json:"platformId"`
+        PlatformCn string `json:"platformCn"`
+        PlatformEn string `json:"platformEn"`
+        ServerId int64 `json:"serverId"`
+        GameserverTitle string `json:"gameserverTitle"`
+        OpenTime string `json:"openTime"`
+        InstallStatus int64 `json:"installStatus"`
+        InstallOperator string `json:"installOperator"`
+        InitdbStatus int64 `json:"initdbStatus"`
+        InitdbOperator string `json:"initdbOperator"`
+        Remark string `json:"remark"`
+    }
+
+)
+
+@server(
+    group: taskQueue
+    prefix: /taskMng/taskQueue
+)
+service yunwei {
+    @doc(
+        summary:"待装列表"
+    )
+    @handler WaitInstallList
+    post /waitInstallList (ListWaitInstallReq) returns (ListWaitInstallResp)
+
+}

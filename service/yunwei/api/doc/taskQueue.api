@@ -1,0 +1,194 @@
+syntax = "v1"
+info(
+	title: "任务管理"
+	desc: "任务管理"
+	author: "acool"
+)
+type (
+	AddTasksReq {
+		Title        string `json:"title"`
+		ProjectId    int64  `json:"projectId"`
+		ClusterId    string `json:"clusterId"`
+		StartTime    string `json:"startTime"`
+		Content      string `json:"content,optional"`
+		TaskType     string  `json:"taskType"`
+		TaskListForm string `json:"taskListForm"`
+		OuterIp      string `json:"outerIp,optional"`
+		MaintainId   int64  `json:"maintainId,optional"`
+		Uid 		 string `json:"uid,optional"`
+	}
+
+
+	UpdateTasksReq {
+		Id               int64  `json:"id"`
+		Title            string `json:"title"`
+		ErrDifferenceSet string `json:"errDifferenceSet,optional"`
+		DifferenceSet    string `json:"differenceSet,optional"`
+		IsEnable		 int64 `json:"isEnable,optional"`
+		TaskType         string  `json:"taskType,optional"`
+		ProjectId        int64  `json:"projectId"`
+		ClusterId        string `json:"clusterId"`
+		MaintainId       int64  `json:"maintainId"`
+		StartTime        string `json:"startTime"`
+		Content          string `json:"content,optional"`
+		TaskListForm     string `json:"taskListForm"`
+		OuterIp          string `json:"outerIp,optional"`
+	}
+	DeleteTasksReq {
+		Id int64 `path:"id"`
+	}
+    GetTasksReq {
+		Id int64 `path:"id"`
+	}
+	GetTasksResp {
+		AllIdArr []int64 `json:"allIdArr"`
+		ErrArr []int64 `json:"errArr"`
+		Rows []*ListTasksData `json:"rows"`
+	}
+	ListTasksReq {
+		Current  int64  `form:"current,default=1"`
+		PageSize int64  `form:"pageSize,default=15"`
+		ProjectIds string `form:"projectIds,optional"`
+		CreateTime string `form:"createTime,optional"`
+		TaskType string `form:"taskType,optional"`
+		CreateBy string `form:"createBy,optional"`
+	}
+	ListTasksResp {
+		Rows   []*ListTasksData `json:"rows"`
+		Total  int64            `json:"total"`
+		Filter []*FilterList    `json:"filter"`
+	}
+	ListTasksData {
+        Id int64 `json:"id"` 
+        ProjectId int64 `json:"projectId"` 
+        ClusterId string `json:"clusterId"` 
+        TaskType string `json:"taskType"`
+        Level int64 `json:"level"` 
+        MaintainId int64 `json:"maintainId"` 
+        Name string `json:"name"` 
+        Types string `json:"types"` 
+        Pid int64 `json:"pid"` 
+        TaskStartTime int64 `json:"taskStartTime"` 
+        TaskEndTime int64 `json:"taskEndTime"` 
+        TaskExecTime int64 `json:"taskExecTime"` 
+        Cmd string `json:"cmd"` 
+        Content string `json:"content"` 
+        TaskStatus int64 `json:"taskStatus"` 
+        TaskStep int64 `json:"taskStep"` 
+        OuterIp string `json:"outerIp"`
+        ExportFileName string `json:"exportFileName"` 
+        Remark string `json:"remark"`
+	    CreateNameEn string `json:"createNameEn"`
+	    CreateNameCn string `json:"createNameCn"`
+	    UpdateNameEn string `json:"updateNameEn"`
+	    UpdateNameCn string `json:"updateNameCn"`
+		ProjectCn string `json:"projectCn"`
+		TaskTypeCn string `json:"taskTypeCn"`
+		TaskStatusCn string `json:"taskStatusCn"`
+		ProjectEn string `json:"projectEn"`
+	}
+
+	GetTaskOperationList{
+		OpTreeData []*TaskOperationListData `json:"opTreeData"`
+	}
+	TaskOperationListData{
+		Id       int64  `json:"id"`
+		Name     string `json:"name"`
+		Url      string `json:"url"`
+		ParentId int64  `json:"parentId"`
+		OrderNum int64  `json:"orderNum"`
+		Tp       int64  `json:"tp"`
+		RoleId   int64  `json:"roleId"`
+		UserId   int64  `json:"userId"`
+	}
+
+	TaskGetFormatJsonReq{
+		Game string `json:"game"`
+		Content string `json:"content"`
+	}
+
+	OperationListM{
+		OperationListForm []*TaskCommonJson `json:"operationListForm"`
+	}
+
+	TaskGetFormatJsonResp{
+		OperationListM []*OperationListM `json:"operationListM"`
+	}
+
+	TaskCommonJson struct {
+		Operation      string `json:"operation,omitempty"`
+		OperationCn    string `json:"operationCn,omitempty"`
+		Stable         string `json:"stable,omitempty"`
+		OuterIp        string `json:"outerIp,omitempty"`
+		DbUpdate       string `json:"dbUpdate,omitempty"`
+		FileList       string `json:"fileList,omitempty"`
+		MaintainRange  string `json:"maintainRange,omitempty"`
+		CmdList        string `json:"cmdList,omitempty"`
+		DbType         string `json:"dbType,omitempty"`
+		PlatName       string `json:"platName,omitempty"`
+		CheckSt        string `json:"checkSt,omitempty"`
+		SQLCmd         string `json:"SQLCmd,omitempty"`
+		Merge          string `json:"merge,omitempty"`
+		ExportFileName string `json:"exportFileName,omitempty"`
+		InitSetTime    string `json:"initSetTime,omitempty"`
+		ExecuteSQL     string `json:"executeSQL,omitempty"`
+		ExecuteFlag    string `json:"executeFlag,omitempty"`
+	}
+
+)
+@server(
+	group: taskQueue
+	prefix: /taskMng/taskQueue
+)
+service yunwei {
+	@doc(
+		summary:"任务管理新增"
+	)
+	@handler TasksAdd
+	post /add (AddTasksReq) returns()
+	@doc(
+		summary:"任务管理列表"
+	)
+	@handler TasksList
+	get /list (ListTasksReq) returns (ListTasksResp)
+	@doc(
+		summary:"任务管理更新"
+	)
+	@handler TasksUpdate
+	put /update (UpdateTasksReq) returns ()
+	@doc(
+		summary:"任务管理删除"
+	)
+	@handler TasksDelete
+	delete /delete/:id (DeleteTasksReq) returns ()
+	@doc(
+		summary:"任务管理获取"
+	)
+	@handler TasksGet
+	get /get/:id (GetTasksReq) returns (GetTasksResp)
+
+	@doc(
+		summary:"获取当前用户操作列表"
+	)
+	@handler GetTaskOperationList
+	get /getTaskOperationList returns (GetTaskOperationList)
+
+	@doc(
+		summary:"任务管理开始"
+	)
+	@handler TasksStart
+	get /start/:id (GetTasksReq) returns ()
+
+	@doc(
+		summary:"任务管理停止"
+	)
+	@handler TasksStop
+	get /stop/:id (GetTasksReq) returns ()
+
+	@doc(
+		summary:"任务格式化"
+	)
+	@handler TaskGetFormatJson
+	post /taskGetFormatJson (TaskGetFormatJsonReq) returns (TaskGetFormatJsonResp)
+
+}

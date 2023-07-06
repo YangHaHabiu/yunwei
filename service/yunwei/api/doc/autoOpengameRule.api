@@ -1,0 +1,104 @@
+syntax = "v1"
+
+info(
+	title: "自动开服规则[mzf]信息"
+	desc: "自动开服规则[mzf]信息"
+	author: "acool"
+)
+
+type (
+
+	AddAutoOpengameRuleReq {
+		*AutoOpengameRuleCommon
+	}
+
+	UpdateAutoOpengameRuleReq {
+		*AutoOpengameRuleCommon
+	}
+
+	DeleteAutoOpengameRuleReq {
+		AutoOpengameRuleId int64 `path:"AutoOpengameRuleId"`
+	}
+
+    GetAutoOpengameRuleReq {
+		AutoOpengameRuleId int64 `path:"AutoOpengameRuleId"`
+	}
+
+	AutoOpengameRuleCommon {
+        Id int64 `json:"id,optional"` 
+        ProjectId int64 `json:"projectId,optional"` 
+        PlatformId int64 `json:"platformId,optional"` 
+        StartOpenTime string `json:"startOpenTime,optional"` 
+        EndOpenTime string `json:"endOpenTime,optional"` 
+        IntervalDay int64 `json:"intervalDay,optional"` 
+        ThresholdValue int64 `json:"thresholdValue,optional"` 
+        NumberOfServer int64 `json:"numberOfServer,optional"` 
+        OpenTime string `json:"openTime,optional"` 
+        StartOpenMulti string `json:"startOpenMulti,optional"` 
+        EndOpenMulti string `json:"endOpenMulti,optional"` 
+        State int64 `json:"state,optional"` 
+	}
+
+	ListAutoOpengameRuleReq {
+		Current  int64  `form:"current,default=1"`
+		PageSize int64  `form:"pageSize,default=15"`
+	}
+	ListAutoOpengameRuleResp {
+		Rows   []*ListAutoOpengameRuleData `json:"rows"`
+		Total  int64            `json:"total"`
+	}
+	ListAutoOpengameRuleData {
+        Id int64 `json:"id"` 
+        ProjectId int64 `json:"projectId"`
+        PlatformId int64 `json:"platformId"`
+		ProjectCn string `json:"projectCn"`
+		PlatformEn string `json:"platformEn"`
+		StartOpenTime string `json:"startOpenTime"`
+        EndOpenTime string `json:"endOpenTime"` 
+        IntervalDay int64 `json:"intervalDay"` 
+        ThresholdValue int64 `json:"thresholdValue"` 
+        NumberOfServer int64 `json:"numberOfServer"` 
+        OpenTime string `json:"openTime"` 
+        StartOpenMulti string `json:"startOpenMulti"` 
+        EndOpenMulti string `json:"endOpenMulti"` 
+        State int64 `json:"state"` 
+	}
+
+
+
+)
+
+@server(
+	group: autoOpengameRule
+	prefix: /yunwei/autoOpengameRule
+)
+service yunwei {
+
+	@doc(
+		summary:"自动开服规则[mzf]新增"
+	)
+	@handler AutoOpengameRuleAdd
+	post /add (AddAutoOpengameRuleReq) returns()
+	@doc(
+		summary:"自动开服规则[mzf]列表"
+	)
+	@handler AutoOpengameRuleList
+	get /list (ListAutoOpengameRuleReq) returns (ListAutoOpengameRuleResp)
+	@doc(
+		summary:"自动开服规则[mzf]更新"
+	)
+	@handler AutoOpengameRuleUpdate
+	put /update (UpdateAutoOpengameRuleReq) returns ()
+	@doc(
+		summary:"自动开服规则[mzf]删除"
+	)
+	@handler AutoOpengameRuleDelete
+	delete /delete/:AutoOpengameRuleId (DeleteAutoOpengameRuleReq) returns ()
+
+	@doc(
+		summary:"自动开服规则[mzf]获取"
+	)
+	@handler AutoOpengameRuleGet
+	get /get/:AutoOpengameRuleId (GetAutoOpengameRuleReq) returns (ListAutoOpengameRuleData)
+
+}

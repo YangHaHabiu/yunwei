@@ -1,0 +1,8073 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "运维模块",
+    "description": "运维模块",
+    "version": ""
+  },
+  "schemes": [
+    "http",
+    "https"
+  ],
+  "consumes": [
+    "application/json"
+  ],
+  "produces": [
+    "application/json"
+  ],
+  "paths": {
+    "/taskMng/installLogList/getInstallLogList": {
+      "get": {
+        "summary": "装服日志列表",
+        "operationId": "GetInstallLogList",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/ListInstallLogListResp"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "gameName",
+            "in": "query",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "installLogList"
+        ]
+      }
+    },
+    "/taskMng/taskLog/get/{id}": {
+      "get": {
+        "summary": "任务日志详情",
+        "operationId": "HotLogHistoryGet",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/ListHotLogHistoryData"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "taskLog"
+        ]
+      }
+    },
+    "/taskMng/taskLog/list": {
+      "get": {
+        "summary": "任务日志列表",
+        "operationId": "HotLogHistoryList",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/ListHotLogHistoryResp"
+            }
+          }
+        },
+        "tags": [
+          "taskLog"
+        ]
+      }
+    },
+    "/taskMng/taskLogHistroy/detail/{taskId}": {
+      "get": {
+        "summary": "任务历史日志详情",
+        "operationId": "TaskLogHistroyDetail",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/DetailTaskLogHistroyResp"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "taskId",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "taskLogHistroy"
+        ]
+      }
+    },
+    "/taskMng/taskLogHistroy/list": {
+      "get": {
+        "summary": "任务历史日志列表",
+        "operationId": "TaskLogHistroyList",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/ListTaskLogHistroyResp"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "taskId",
+            "in": "query",
+            "required": true,
+            "type": "integer",
+            "format": "int64"
+          }
+        ],
+        "tags": [
+          "taskLogHistroy"
+        ]
+      }
+    },
+    "/taskMng/taskQueue/add": {
+      "post": {
+        "summary": "任务管理新增",
+        "operationId": "TasksAdd",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {}
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/AddTasksReq"
+            }
+          }
+        ],
+        "tags": [
+          "taskQueue"
+        ]
+      }
+    },
+    "/taskMng/taskQueue/delete/{id}": {
+      "delete": {
+        "summary": "任务管理删除",
+        "operationId": "TasksDelete",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {}
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/DeleteTasksReq"
+            }
+          }
+        ],
+        "tags": [
+          "taskQueue"
+        ]
+      }
+    },
+    "/taskMng/taskQueue/get/{id}": {
+      "get": {
+        "summary": "任务管理获取",
+        "operationId": "TasksGet",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/GetTasksResp"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "taskQueue"
+        ]
+      }
+    },
+    "/taskMng/taskQueue/getTaskOperationList": {
+      "get": {
+        "summary": "获取当前用户操作列表",
+        "operationId": "GetTaskOperationList",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/GetTaskOperationList"
+            }
+          }
+        },
+        "tags": [
+          "taskQueue"
+        ]
+      }
+    },
+    "/taskMng/taskQueue/getWebSocketAddr": {
+      "get": {
+        "summary": "获取websokcet地址",
+        "operationId": "GetWebSocketAddr",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/GetWebSocketAddrResp"
+            }
+          }
+        },
+        "tags": [
+          "taskQueue"
+        ]
+      }
+    },
+    "/taskMng/taskQueue/list": {
+      "get": {
+        "summary": "任务管理列表",
+        "operationId": "TasksList",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/ListTasksResp"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "current",
+            "in": "query",
+            "required": true,
+            "type": "integer",
+            "format": "int64",
+            "default": "1"
+          },
+          {
+            "name": "pageSize",
+            "in": "query",
+            "required": true,
+            "type": "integer",
+            "format": "int64",
+            "default": "15"
+          },
+          {
+            "name": "projectIds",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "createTime",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "taskType",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "createBy",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "taskQueue"
+        ]
+      }
+    },
+    "/taskMng/taskQueue/start/{id}": {
+      "get": {
+        "summary": "任务管理开始",
+        "operationId": "TasksStart",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {}
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "taskQueue"
+        ]
+      }
+    },
+    "/taskMng/taskQueue/stop/{id}": {
+      "get": {
+        "summary": "任务管理停止",
+        "operationId": "TasksStop",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {}
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "taskQueue"
+        ]
+      }
+    },
+    "/taskMng/taskQueue/taskGetFormatJson": {
+      "post": {
+        "summary": "任务格式化",
+        "operationId": "TaskGetFormatJson",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/TaskGetFormatJsonResp"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/TaskGetFormatJsonReq"
+            }
+          }
+        ],
+        "tags": [
+          "taskQueue"
+        ]
+      }
+    },
+    "/taskMng/taskQueue/update": {
+      "put": {
+        "summary": "任务管理更新",
+        "operationId": "TasksUpdate",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {}
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/UpdateTasksReq"
+            }
+          }
+        ],
+        "tags": [
+          "taskQueue"
+        ]
+      }
+    },
+    "/taskMng/taskQueue/waitInstallList": {
+      "post": {
+        "summary": "待装列表",
+        "operationId": "WaitInstallList",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/ListWaitInstallResp"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/ListWaitInstallReq"
+            }
+          }
+        ],
+        "tags": [
+          "taskQueue"
+        ]
+      }
+    },
+    "/taskMng/taskQueue/waitMergeList": {
+      "post": {
+        "summary": "待合列表",
+        "operationId": "WaitMergeList",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/ListWaitMergeResp"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/ListWaitMergeReq"
+            }
+          }
+        ],
+        "tags": [
+          "taskQueue"
+        ]
+      }
+    },
+    "/taskMng/tasksScheduleQueue/add": {
+      "post": {
+        "summary": "计划队列新增",
+        "operationId": "TasksScheduleQueueAdd",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {}
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/AddTasksScheduleQueueReq"
+            }
+          }
+        ],
+        "tags": [
+          "tasksScheduleQueue"
+        ]
+      }
+    },
+    "/taskMng/tasksScheduleQueue/delete/{TasksScheduleQueueId}": {
+      "delete": {
+        "summary": "计划队列删除",
+        "operationId": "TasksScheduleQueueDelete",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {}
+          }
+        },
+        "parameters": [
+          {
+            "name": "TasksScheduleQueueId",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/DeleteTasksScheduleQueueReq"
+            }
+          }
+        ],
+        "tags": [
+          "tasksScheduleQueue"
+        ]
+      }
+    },
+    "/taskMng/tasksScheduleQueue/get/{TasksScheduleQueueId}": {
+      "get": {
+        "summary": "计划队列获取",
+        "operationId": "TasksScheduleQueueGet",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/ListTasksScheduleQueueData"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "TasksScheduleQueueId",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "tasksScheduleQueue"
+        ]
+      }
+    },
+    "/taskMng/tasksScheduleQueue/list": {
+      "get": {
+        "summary": "计划队列列表",
+        "operationId": "TasksScheduleQueueList",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/ListTasksScheduleQueueResp"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "current",
+            "in": "query",
+            "required": true,
+            "type": "integer",
+            "format": "int64",
+            "default": "1"
+          },
+          {
+            "name": "pageSize",
+            "in": "query",
+            "required": true,
+            "type": "integer",
+            "format": "int64",
+            "default": "15"
+          },
+          {
+            "name": "scheduleStatus",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "scheduleType",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "dateRange",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "scheduleTitle",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "tasksScheduleQueue"
+        ]
+      }
+    },
+    "/taskMng/tasksScheduleQueue/update": {
+      "put": {
+        "summary": "计划队列更新",
+        "operationId": "TasksScheduleQueueUpdate",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {}
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/UpdateTasksScheduleQueueReq"
+            }
+          }
+        ],
+        "tags": [
+          "tasksScheduleQueue"
+        ]
+      }
+    },
+    "/yunwei/alarmThresholdManage/add": {
+      "post": {
+        "summary": "报警阈值管理新增",
+        "operationId": "AlarmThresholdManageAdd",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {}
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/AddAlarmThresholdManageReq"
+            }
+          }
+        ],
+        "tags": [
+          "alarmThresholdManage"
+        ]
+      }
+    },
+    "/yunwei/alarmThresholdManage/delete/{AlarmThresholdManageId}": {
+      "delete": {
+        "summary": "报警阈值管理删除",
+        "operationId": "AlarmThresholdManageDelete",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {}
+          }
+        },
+        "parameters": [
+          {
+            "name": "AlarmThresholdManageId",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/DeleteAlarmThresholdManageReq"
+            }
+          }
+        ],
+        "tags": [
+          "alarmThresholdManage"
+        ]
+      }
+    },
+    "/yunwei/alarmThresholdManage/get/{AlarmThresholdManageId}/{AlarmThresholdManageTypes}": {
+      "get": {
+        "summary": "报警阈值管理获取",
+        "operationId": "AlarmThresholdManageGet",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/ListAlarmThresholdManageData"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "AlarmThresholdManageId",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "AlarmThresholdManageTypes",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "alarmThresholdManage"
+        ]
+      }
+    },
+    "/yunwei/alarmThresholdManage/list": {
+      "get": {
+        "summary": "报警阈值管理列表",
+        "operationId": "AlarmThresholdManageList",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/ListAlarmThresholdManageResp"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "current",
+            "in": "query",
+            "required": true,
+            "type": "integer",
+            "format": "int64",
+            "default": "1"
+          },
+          {
+            "name": "pageSize",
+            "in": "query",
+            "required": true,
+            "type": "integer",
+            "format": "int64",
+            "default": "15"
+          },
+          {
+            "name": "projectIds",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "ips",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "types",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "gameServerAlias",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "alarmThresholdManage"
+        ]
+      }
+    },
+    "/yunwei/alarmThresholdManage/update": {
+      "put": {
+        "summary": "报警阈值管理更新",
+        "operationId": "AlarmThresholdManageUpdate",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {}
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/UpdateAlarmThresholdManageReq"
+            }
+          }
+        ],
+        "tags": [
+          "alarmThresholdManage"
+        ]
+      }
+    },
+    "/yunwei/asset/add": {
+      "post": {
+        "summary": "资产新增",
+        "operationId": "AssetAdd",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {}
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/AddAssetReq"
+            }
+          }
+        ],
+        "tags": [
+          "asset"
+        ]
+      }
+    },
+    "/yunwei/asset/assetBatchDistribute": {
+      "put": {
+        "summary": "资产批量操作",
+        "operationId": "AssetBatchDistribute",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {}
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/AssetBatchDistributeReq"
+            }
+          }
+        ],
+        "tags": [
+          "asset"
+        ]
+      }
+    },
+    "/yunwei/asset/assetFile": {
+      "get": {
+        "summary": "文件管理器列表",
+        "operationId": "AssetFile",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/AssetFileResp"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "hostname",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "port",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          }
+        ],
+        "tags": [
+          "asset"
+        ]
+      }
+    },
+    "/yunwei/asset/assetFileDownload": {
+      "post": {
+        "summary": "文件管理器下载",
+        "operationId": "AssetFileDownload",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {}
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/AssetFileDownloadReq"
+            }
+          }
+        ],
+        "tags": [
+          "asset"
+        ]
+      }
+    },
+    "/yunwei/asset/assetFileUpload": {
+      "post": {
+        "summary": "文件管理器上传",
+        "operationId": "AssetFileUpload",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {}
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/AssetFileUploadReq"
+            }
+          }
+        ],
+        "tags": [
+          "asset"
+        ]
+      }
+    },
+    "/yunwei/asset/assetInfoData": {
+      "get": {
+        "summary": "项目公司视图",
+        "operationId": "AssetInfoData",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/AssetInfoDataResp"
+            }
+          }
+        },
+        "tags": [
+          "asset"
+        ]
+      }
+    },
+    "/yunwei/asset/delete/{assetId}": {
+      "delete": {
+        "summary": "资产删除",
+        "operationId": "AssetDelete",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {}
+          }
+        },
+        "parameters": [
+          {
+            "name": "assetId",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/DeleteAssetReq"
+            }
+          }
+        ],
+        "tags": [
+          "asset"
+        ]
+      }
+    },
+    "/yunwei/asset/get/{assetId}": {
+      "get": {
+        "summary": "资产获取",
+        "operationId": "AssetGet",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/AddAssetResp"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "assetId",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "asset"
+        ]
+      }
+    },
+    "/yunwei/asset/getWebSshTree": {
+      "get": {
+        "summary": "webssh树形",
+        "operationId": "GetWebSshTree",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/GetWebSshResp"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "projectIds",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "asset"
+        ]
+      }
+    },
+    "/yunwei/asset/list": {
+      "get": {
+        "summary": "资产列表",
+        "operationId": "AssetList",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/ListAssetResp"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "current",
+            "in": "query",
+            "required": true,
+            "type": "integer",
+            "format": "int64",
+            "default": "1"
+          },
+          {
+            "name": "pageSize",
+            "in": "query",
+            "required": true,
+            "type": "integer",
+            "format": "int64",
+            "default": "15"
+          },
+          {
+            "name": "asset_id",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int64"
+          },
+          {
+            "name": "ips",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "recycleType",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int64"
+          },
+          {
+            "name": "cleanType",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "initType",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "provider",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "label",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "projectIds",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "ownershipCompanyIds",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "hostRoleCn",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "projectType",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "asset"
+        ]
+      }
+    },
+    "/yunwei/asset/ownerProjectData": {
+      "get": {
+        "summary": "个人项目数据",
+        "operationId": "OwnerProjectData",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/OwnerProjectDataResp"
+            }
+          }
+        },
+        "tags": [
+          "asset"
+        ]
+      }
+    },
+    "/yunwei/asset/recycle/{assetId}": {
+      "delete": {
+        "summary": "资产回收",
+        "operationId": "AssetRecycleDelete",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {}
+          }
+        },
+        "parameters": [
+          {
+            "name": "assetId",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/RecycleDeleteAssetReq"
+            }
+          }
+        ],
+        "tags": [
+          "asset"
+        ]
+      }
+    },
+    "/yunwei/asset/update": {
+      "put": {
+        "summary": "资产更新",
+        "operationId": "AssetUpdate",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {}
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/UpdateAssetReq"
+            }
+          }
+        ],
+        "tags": [
+          "asset"
+        ]
+      }
+    },
+    "/yunwei/autoOpengameRule/add": {
+      "post": {
+        "summary": "自动开服规则[mzf]新增",
+        "operationId": "AutoOpengameRuleAdd",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {}
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/AddAutoOpengameRuleReq"
+            }
+          }
+        ],
+        "tags": [
+          "autoOpengameRule"
+        ]
+      }
+    },
+    "/yunwei/autoOpengameRule/delete/{AutoOpengameRuleId}": {
+      "delete": {
+        "summary": "自动开服规则[mzf]删除",
+        "operationId": "AutoOpengameRuleDelete",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {}
+          }
+        },
+        "parameters": [
+          {
+            "name": "AutoOpengameRuleId",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/DeleteAutoOpengameRuleReq"
+            }
+          }
+        ],
+        "tags": [
+          "autoOpengameRule"
+        ]
+      }
+    },
+    "/yunwei/autoOpengameRule/get/{AutoOpengameRuleId}": {
+      "get": {
+        "summary": "自动开服规则[mzf]获取",
+        "operationId": "AutoOpengameRuleGet",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/ListAutoOpengameRuleData"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "AutoOpengameRuleId",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "autoOpengameRule"
+        ]
+      }
+    },
+    "/yunwei/autoOpengameRule/list": {
+      "get": {
+        "summary": "自动开服规则[mzf]列表",
+        "operationId": "AutoOpengameRuleList",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/ListAutoOpengameRuleResp"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "current",
+            "in": "query",
+            "required": true,
+            "type": "integer",
+            "format": "int64",
+            "default": "1"
+          },
+          {
+            "name": "pageSize",
+            "in": "query",
+            "required": true,
+            "type": "integer",
+            "format": "int64",
+            "default": "15"
+          }
+        ],
+        "tags": [
+          "autoOpengameRule"
+        ]
+      }
+    },
+    "/yunwei/autoOpengameRule/update": {
+      "put": {
+        "summary": "自动开服规则[mzf]更新",
+        "operationId": "AutoOpengameRuleUpdate",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {}
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/UpdateAutoOpengameRuleReq"
+            }
+          }
+        ],
+        "tags": [
+          "autoOpengameRule"
+        ]
+      }
+    },
+    "/yunwei/cluster/detail": {
+      "get": {
+        "summary": "集群详情",
+        "operationId": "ClusterDetail",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/DetailClusterResp"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "labelId",
+            "in": "query",
+            "required": true,
+            "type": "integer",
+            "format": "int64"
+          },
+          {
+            "name": "projectId",
+            "in": "query",
+            "required": true,
+            "type": "integer",
+            "format": "int64"
+          }
+        ],
+        "tags": [
+          "cluster"
+        ]
+      }
+    },
+    "/yunwei/cluster/list": {
+      "get": {
+        "summary": "集群列表",
+        "operationId": "ClusterList",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/ListClusterResp"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "current",
+            "in": "query",
+            "required": true,
+            "type": "integer",
+            "format": "int64",
+            "default": "1"
+          },
+          {
+            "name": "pageSize",
+            "in": "query",
+            "required": true,
+            "type": "integer",
+            "format": "int64",
+            "default": "15"
+          },
+          {
+            "name": "labelId",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int64"
+          },
+          {
+            "name": "projectId",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int64"
+          },
+          {
+            "name": "projectIds",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "clusterCn",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "cluster"
+        ]
+      }
+    },
+    "/yunwei/configFile/add": {
+      "post": {
+        "summary": "配置文件信息新增",
+        "operationId": "ConfigFileAdd",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {}
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/AddConfigFileReq"
+            }
+          }
+        ],
+        "tags": [
+          "configFile"
+        ]
+      }
+    },
+    "/yunwei/configFile/delete/{ConfigFileId}": {
+      "delete": {
+        "summary": "配置文件信息删除",
+        "operationId": "ConfigFileDelete",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {}
+          }
+        },
+        "parameters": [
+          {
+            "name": "ConfigFileId",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/DeleteConfigFileReq"
+            }
+          }
+        ],
+        "tags": [
+          "configFile"
+        ]
+      }
+    },
+    "/yunwei/configFile/get/{ConfigFileId}": {
+      "get": {
+        "summary": "配置文件信息获取",
+        "operationId": "ConfigFileGet",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/ListConfigFileData"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "ConfigFileId",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "configFile"
+        ]
+      }
+    },
+    "/yunwei/configFile/list": {
+      "get": {
+        "summary": "配置文件信息列表",
+        "operationId": "ConfigFileList",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/ListConfigFileResp"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "current",
+            "in": "query",
+            "required": true,
+            "type": "integer",
+            "format": "int64",
+            "default": "1"
+          },
+          {
+            "name": "pageSize",
+            "in": "query",
+            "required": true,
+            "type": "integer",
+            "format": "int64",
+            "default": "15"
+          }
+        ],
+        "tags": [
+          "configFile"
+        ]
+      }
+    },
+    "/yunwei/configFile/update": {
+      "put": {
+        "summary": "配置文件信息更新",
+        "operationId": "ConfigFileUpdate",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {}
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/UpdateConfigFileReq"
+            }
+          }
+        ],
+        "tags": [
+          "configFile"
+        ]
+      }
+    },
+    "/yunwei/configFileDelivery/add": {
+      "post": {
+        "summary": "配置文件下发",
+        "operationId": "ConfigFileDeliveryAdd",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {}
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/AddConfigFileDeliveryReq"
+            }
+          }
+        ],
+        "tags": [
+          "configFileDelivery"
+        ]
+      }
+    },
+    "/yunwei/configFileDelivery/configFileDeliveryGet": {
+      "get": {
+        "summary": "配置文件下发获取服务器列表",
+        "operationId": "ConfigFileDeliveryGet",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/GetConfigFileDeliveryTreeResp"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "projectId",
+            "in": "query",
+            "required": true,
+            "type": "integer",
+            "format": "int64"
+          },
+          {
+            "name": "configFileId",
+            "in": "query",
+            "required": true,
+            "type": "integer",
+            "format": "int64"
+          }
+        ],
+        "tags": [
+          "configFileDelivery"
+        ]
+      }
+    },
+    "/yunwei/configFileDelivery/configFileDeliveryGetFileContent": {
+      "get": {
+        "summary": "配置文件下发获取模版或生成文件内容",
+        "operationId": "ConfigFileDeliveryGetFileContent",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/ConfigFileDeliveryGetFileContentResp"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "configName",
+            "in": "query",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "option",
+            "in": "query",
+            "required": true,
+            "type": "string",
+            "enum": [
+              "template",
+              "create"
+            ]
+          },
+          {
+            "name": "projectEn",
+            "in": "query",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "configFileDelivery"
+        ]
+      }
+    },
+    "/yunwei/configFileDelivery/configFileDeliveryUpdateTemplate": {
+      "put": {
+        "summary": "配置文件下发修改模版文件内容",
+        "operationId": "ConfigFileDeliveryUpdateTemplate",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {}
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/UpdateConfigFileDeliveryTemplateReq"
+            }
+          }
+        ],
+        "tags": [
+          "configFileDelivery"
+        ]
+      }
+    },
+    "/yunwei/configFileDelivery/list": {
+      "get": {
+        "summary": "配置文件下发列表",
+        "operationId": "ConfigFileDeliveryList",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/ListConfigFileDeliveryResp"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "projectIds",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "configFileDelivery"
+        ]
+      }
+    },
+    "/yunwei/configFileDelivery/refreshProfileList": {
+      "put": {
+        "summary": "刷新配置文件列表",
+        "operationId": "ConfigFileDeliveryGetLog",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {}
+          }
+        },
+        "tags": [
+          "configFileDelivery"
+        ]
+      }
+    },
+    "/yunwei/dashboard/getGameTrendChart": {
+      "get": {
+        "summary": "游戏服趋势图",
+        "operationId": "GetGameTrendChart",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/GetGameTrendChartListResp"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "projectIds",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "dashboard"
+        ]
+      }
+    },
+    "/yunwei/dashboard/getServerTrendChart": {
+      "get": {
+        "summary": "服务器趋势图",
+        "operationId": "GetServerTrendChart",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/GetServerTrendChartListResp"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "projectIds",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "dashboard"
+        ]
+      }
+    },
+    "/yunwei/dashboard/getSumOfCurrentInfor": {
+      "get": {
+        "summary": "当前信息汇总",
+        "operationId": "GetSumOfCurrentInfo",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/GetSumOfCurrentInfoListResp"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "projectIds",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "dashboard"
+        ]
+      }
+    },
+    "/yunwei/featureServer/add": {
+      "post": {
+        "summary": "功能服新增",
+        "operationId": "FeatureServerAdd",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {}
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/AddFeatureServerReq"
+            }
+          }
+        ],
+        "tags": [
+          "featureServer"
+        ]
+      }
+    },
+    "/yunwei/featureServer/delete/{featureServerId}": {
+      "delete": {
+        "summary": "功能服删除",
+        "operationId": "FeatureServerDelete",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {}
+          }
+        },
+        "parameters": [
+          {
+            "name": "featureServerId",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/DeleteFeatureServerReq"
+            }
+          }
+        ],
+        "tags": [
+          "featureServer"
+        ]
+      }
+    },
+    "/yunwei/featureServer/get/{featureServerId}": {
+      "get": {
+        "summary": "功能服获取",
+        "operationId": "FeatureServerGet",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/ListFeatureServerData"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "featureServerId",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "featureServer"
+        ]
+      }
+    },
+    "/yunwei/featureServer/list": {
+      "get": {
+        "summary": "功能服列表",
+        "operationId": "FeatureServerList",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/ListFeatureServerResp"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "current",
+            "in": "query",
+            "required": true,
+            "type": "integer",
+            "format": "int64",
+            "default": "1"
+          },
+          {
+            "name": "pageSize",
+            "in": "query",
+            "required": true,
+            "type": "integer",
+            "format": "int64",
+            "default": "15"
+          },
+          {
+            "name": "featureServerId",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int64"
+          },
+          {
+            "name": "projectIds",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "ip",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "domain",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "feature",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "remark",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "featureServer"
+        ]
+      }
+    },
+    "/yunwei/featureServer/update": {
+      "put": {
+        "summary": "功能服更新",
+        "operationId": "FeatureServerUpdate",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {}
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/UpdateFeatureServerReq"
+            }
+          }
+        ],
+        "tags": [
+          "featureServer"
+        ]
+      }
+    },
+    "/yunwei/gameServer/list": {
+      "get": {
+        "summary": "游戏服列表",
+        "operationId": "GameServerList",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/ListGameServerResp"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "current",
+            "in": "query",
+            "required": true,
+            "type": "integer",
+            "format": "int64",
+            "default": "1"
+          },
+          {
+            "name": "pageSize",
+            "in": "query",
+            "required": true,
+            "type": "integer",
+            "format": "int64",
+            "default": "15"
+          },
+          {
+            "name": "serverStatus",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "projectIds",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "newPlatformInfo",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "ip",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "gameServerTitle",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "serverStatusX",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "openTime",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "platformType",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "gameServer"
+        ]
+      }
+    },
+    "/yunwei/help/list": {
+      "get": {
+        "summary": "帮助文档列表",
+        "operationId": "HelpList",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/HelpListResp"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "gameName",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "help"
+        ]
+      }
+    },
+    "/yunwei/hosts/list": {
+      "get": {
+        "summary": "服务器列表",
+        "operationId": "HostsList",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/ListHostsResp"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "current",
+            "in": "query",
+            "required": true,
+            "type": "integer",
+            "format": "int64",
+            "default": "1"
+          },
+          {
+            "name": "pageSize",
+            "in": "query",
+            "required": true,
+            "type": "integer",
+            "format": "int64",
+            "default": "15"
+          },
+          {
+            "name": "viewHostRoleCn",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "projectIds",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "company",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "ips",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "sNames",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "provider",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "label",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "hosts"
+        ]
+      }
+    },
+    "/yunwei/keyManage/add": {
+      "post": {
+        "summary": "密钥管理新增",
+        "operationId": "KeyManageAdd",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {}
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/AddKeyManageReq"
+            }
+          }
+        ],
+        "tags": [
+          "keyManage"
+        ]
+      }
+    },
+    "/yunwei/keyManage/delete/{keyId}": {
+      "delete": {
+        "summary": "密钥管理删除",
+        "operationId": "KeyManageDelete",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {}
+          }
+        },
+        "parameters": [
+          {
+            "name": "keyId",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/DeleteKeyManageReq"
+            }
+          }
+        ],
+        "tags": [
+          "keyManage"
+        ]
+      }
+    },
+    "/yunwei/keyManage/get/{keyId}": {
+      "get": {
+        "summary": "密钥管理获取",
+        "operationId": "KeyManageGet",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/ListKeyManageData"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "keyId",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "keyManage"
+        ]
+      }
+    },
+    "/yunwei/keyManage/list": {
+      "get": {
+        "summary": "密钥管理列表",
+        "operationId": "KeyManageList",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/ListKeyManageResp"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "current",
+            "in": "query",
+            "required": true,
+            "type": "integer",
+            "format": "int64",
+            "default": "1"
+          },
+          {
+            "name": "pageSize",
+            "in": "query",
+            "required": true,
+            "type": "integer",
+            "format": "int64",
+            "default": "15"
+          }
+        ],
+        "tags": [
+          "keyManage"
+        ]
+      }
+    },
+    "/yunwei/keyManage/update": {
+      "put": {
+        "summary": "密钥管理更新",
+        "operationId": "KeyManageUpdate",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {}
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/UpdateKeyManageReq"
+            }
+          }
+        ],
+        "tags": [
+          "keyManage"
+        ]
+      }
+    },
+    "/yunwei/platform/add": {
+      "post": {
+        "summary": "平台新增",
+        "operationId": "PlatformAdd",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {}
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/AddPlatformReq"
+            }
+          }
+        ],
+        "tags": [
+          "platform"
+        ]
+      }
+    },
+    "/yunwei/platform/delete/{platformId}": {
+      "delete": {
+        "summary": "平台删除",
+        "operationId": "PlatformDelete",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {}
+          }
+        },
+        "parameters": [
+          {
+            "name": "platformId",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/DeletePlatformReq"
+            }
+          }
+        ],
+        "tags": [
+          "platform"
+        ]
+      }
+    },
+    "/yunwei/platform/detail/{platformId}": {
+      "get": {
+        "summary": "平台详情",
+        "operationId": "PlatformDetail",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/DetailPlatformResp"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "platformId",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "platform"
+        ]
+      }
+    },
+    "/yunwei/platform/get/{platformId}": {
+      "get": {
+        "summary": "平台获取",
+        "operationId": "PlatformGet",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/ListPlatformData"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "platformId",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "platform"
+        ]
+      }
+    },
+    "/yunwei/platform/list": {
+      "get": {
+        "summary": "平台列表",
+        "operationId": "PlatformList",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/ListPlatformResp"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "current",
+            "in": "query",
+            "required": true,
+            "type": "integer",
+            "format": "int64",
+            "default": "1"
+          },
+          {
+            "name": "pageSize",
+            "in": "query",
+            "required": true,
+            "type": "integer",
+            "format": "int64",
+            "default": "15"
+          },
+          {
+            "name": "id",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int64"
+          },
+          {
+            "name": "projectIds",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "platformInfo",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "label",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "platformType",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "platform"
+        ]
+      }
+    },
+    "/yunwei/platform/project/{projectId}": {
+      "get": {
+        "summary": "根据项目ID取平台",
+        "operationId": "PlatformListByProject",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/PlatformListByProjectResp"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "projectId",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "notType",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "platform"
+        ]
+      }
+    },
+    "/yunwei/platform/update": {
+      "put": {
+        "summary": "平台更新",
+        "operationId": "PlatformUpdate",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {}
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/UpdatePlatformReq"
+            }
+          }
+        ],
+        "tags": [
+          "platform"
+        ]
+      }
+    },
+    "/yunwei/switchEntranceGameserver/add": {
+      "post": {
+        "summary": "开关入口新增",
+        "operationId": "SwitchEntranceGameserverAdd",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {}
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/AddSwitchEntranceGameserverReq"
+            }
+          }
+        ],
+        "tags": [
+          "switchEntranceGameserver"
+        ]
+      }
+    },
+    "/yunwei/switchEntranceGameserver/delete": {
+      "delete": {
+        "summary": "批量开关入口开始和关闭",
+        "operationId": "SwitchEntranceGameserverDelete",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {}
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/DeleteSwitchEntranceGameserverReq"
+            }
+          }
+        ],
+        "tags": [
+          "switchEntranceGameserver"
+        ]
+      }
+    },
+    "/yunwei/switchEntranceGameserver/get/{SwitchEntranceGameserverId}": {
+      "get": {
+        "summary": "开关入口获取",
+        "operationId": "SwitchEntranceGameserverGet",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/ListSwitchEntranceGameserverData"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "SwitchEntranceGameserverId",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "switchEntranceGameserver"
+        ]
+      }
+    },
+    "/yunwei/switchEntranceGameserver/list": {
+      "get": {
+        "summary": "开关入口列表",
+        "operationId": "SwitchEntranceGameserverList",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/ListSwitchEntranceGameserverResp"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "current",
+            "in": "query",
+            "required": true,
+            "type": "integer",
+            "format": "int64",
+            "default": "1"
+          },
+          {
+            "name": "pageSize",
+            "in": "query",
+            "required": true,
+            "type": "integer",
+            "format": "int64",
+            "default": "15"
+          },
+          {
+            "name": "projectIds",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "switchEntranceGameserver"
+        ]
+      }
+    },
+    "/yunwei/switchEntranceGameserver/update": {
+      "put": {
+        "summary": "开关入口更新",
+        "operationId": "SwitchEntranceGameserverUpdate",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {}
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/UpdateSwitchEntranceGameserverReq"
+            }
+          }
+        ],
+        "tags": [
+          "switchEntranceGameserver"
+        ]
+      }
+    },
+    "/yunying/maintainPlan/add": {
+      "post": {
+        "summary": "维护计划新增",
+        "operationId": "MaintainPlanAdd",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {}
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/AddMaintainPlanReq"
+            }
+          }
+        ],
+        "tags": [
+          "maintainPlan"
+        ]
+      }
+    },
+    "/yunying/maintainPlan/delete/{id}": {
+      "delete": {
+        "summary": "维护计划删除",
+        "operationId": "MaintainPlanDelete",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {}
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/DeleteMaintainPlanReq"
+            }
+          }
+        ],
+        "tags": [
+          "maintainPlan"
+        ]
+      }
+    },
+    "/yunying/maintainPlan/get/{id}": {
+      "get": {
+        "summary": "维护计划获取",
+        "operationId": "MaintainPlanGet",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/ListMaintainPlanData"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "maintainPlan"
+        ]
+      }
+    },
+    "/yunying/maintainPlan/getMaintanListByPri": {
+      "get": {
+        "summary": "根据项目获取维护计划",
+        "operationId": "getMaintanListByPri",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/GetMaintanListByPriResp"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "projectId",
+            "in": "query",
+            "required": true,
+            "type": "integer",
+            "format": "int64"
+          }
+        ],
+        "tags": [
+          "maintainPlan"
+        ]
+      }
+    },
+    "/yunying/maintainPlan/list": {
+      "post": {
+        "summary": "维护计划列表",
+        "operationId": "MaintainPlanList",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/ListMaintainPlanResp"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/ListMaintainPlanReq"
+            }
+          }
+        ],
+        "tags": [
+          "maintainPlan"
+        ]
+      }
+    },
+    "/yunying/maintainPlan/maintainGetClusterInfo": {
+      "get": {
+        "summary": "根据项目获取集群信息",
+        "operationId": "MaintainGetClusterInfo",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/MaintainGetClusterInfoResp"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "projectId",
+            "in": "query",
+            "required": true,
+            "type": "integer",
+            "format": "int64"
+          },
+          {
+            "name": "labelIds",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "maintainPlan"
+        ]
+      }
+    },
+    "/yunying/maintainPlan/maintainPlanRangeList": {
+      "get": {
+        "summary": "维护计划范围获取",
+        "operationId": "MaintainPlanRangeList",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/GetMaintainPlanListTreeByClsIdAndProIdResp"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "projectId",
+            "in": "query",
+            "required": true,
+            "type": "integer",
+            "format": "int64"
+          },
+          {
+            "name": "clusterCn",
+            "in": "query",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "maintainPlan"
+        ]
+      }
+    },
+    "/yunying/maintainPlan/update": {
+      "put": {
+        "summary": "维护计划更新",
+        "operationId": "MaintainPlanUpdate",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {}
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/UpdateMaintainPlanReq"
+            }
+          }
+        ],
+        "tags": [
+          "maintainPlan"
+        ]
+      }
+    },
+    "/yunying/mergePlan/add": {
+      "post": {
+        "summary": "合服计划新增",
+        "operationId": "MergePlanAdd",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {}
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/AddMergePlanReq"
+            }
+          }
+        ],
+        "tags": [
+          "mergePlan"
+        ]
+      }
+    },
+    "/yunying/mergePlan/delete/{id}": {
+      "delete": {
+        "summary": "合服计划删除",
+        "operationId": "MergePlanDelete",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {}
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/DeleteMergePlanReq"
+            }
+          }
+        ],
+        "tags": [
+          "mergePlan"
+        ]
+      }
+    },
+    "/yunying/mergePlan/get/{id}": {
+      "get": {
+        "summary": "合服计划获取",
+        "operationId": "MergePlanGet",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/ListMergePlanData"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "mergePlan"
+        ]
+      }
+    },
+    "/yunying/mergePlan/list": {
+      "post": {
+        "summary": "合服计划列表",
+        "operationId": "MergePlanList",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/ListMergePlanResp"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/ListMergePlanReq"
+            }
+          }
+        ],
+        "tags": [
+          "mergePlan"
+        ]
+      }
+    },
+    "/yunying/mergePlan/mergeCheckServerRange": {
+      "post": {
+        "summary": "验证合服范围",
+        "operationId": "MergeCheckServerRange",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/MergeCheckServerRangeResp"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/MergeCheckServerRangeReq"
+            }
+          }
+        ],
+        "tags": [
+          "mergePlan"
+        ]
+      }
+    },
+    "/yunying/mergePlan/mergePlanRangeList": {
+      "get": {
+        "summary": "获取合服范围",
+        "operationId": "MergePlanRangeList",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/GetMergeListTreeByPlatIdAndProIdResp"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "projectId",
+            "in": "query",
+            "required": true,
+            "type": "integer",
+            "format": "int64"
+          },
+          {
+            "name": "platformId",
+            "in": "query",
+            "required": true,
+            "type": "integer",
+            "format": "int64"
+          }
+        ],
+        "tags": [
+          "mergePlan"
+        ]
+      }
+    },
+    "/yunying/mergePlan/update": {
+      "put": {
+        "summary": "合服计划更新",
+        "operationId": "MergePlanUpdate",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {}
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/UpdateMergePlanReq"
+            }
+          }
+        ],
+        "tags": [
+          "mergePlan"
+        ]
+      }
+    },
+    "/yunying/openPlan/add": {
+      "post": {
+        "summary": "开服计划新增",
+        "operationId": "OpenPlanAdd",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {}
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/AddOpenPlanReq"
+            }
+          }
+        ],
+        "tags": [
+          "openPlan"
+        ]
+      }
+    },
+    "/yunying/openPlan/batchModifyOpenTime": {
+      "post": {
+        "summary": "批量修改开服时间",
+        "operationId": "OpenPlanBatchModifyOpenTime",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {}
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/BatchModifyOpenTimeReq"
+            }
+          }
+        ],
+        "tags": [
+          "openPlan"
+        ]
+      }
+    },
+    "/yunying/openPlan/delete/{id}": {
+      "delete": {
+        "summary": "开服计划删除",
+        "operationId": "OpenPlanDelete",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {}
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/DeleteOpenPlanReq"
+            }
+          }
+        ],
+        "tags": [
+          "openPlan"
+        ]
+      }
+    },
+    "/yunying/openPlan/get/{id}": {
+      "get": {
+        "summary": "开服计划获取",
+        "operationId": "OpenPlanGet",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/ListOpenPlanData"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "openPlan"
+        ]
+      }
+    },
+    "/yunying/openPlan/list": {
+      "post": {
+        "summary": "开服计划列表",
+        "operationId": "OpenPlanList",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/ListOpenPlanResp"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/ListOpenPlanReq"
+            }
+          }
+        ],
+        "tags": [
+          "openPlan"
+        ]
+      }
+    },
+    "/yunying/openPlan/update": {
+      "put": {
+        "summary": "开服计划更新",
+        "operationId": "OpenPlanUpdate",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {}
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/UpdateOpenPlanReq"
+            }
+          }
+        ],
+        "tags": [
+          "openPlan"
+        ]
+      }
+    }
+  },
+  "definitions": {
+    "AddAlarmThresholdManageReq": {
+      "type": "object",
+      "title": "AddAlarmThresholdManageReq"
+    },
+    "AddAssetReq": {
+      "type": "object",
+      "properties": {
+        "assetData": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/AssetDatas"
+          }
+        }
+      },
+      "title": "AddAssetReq",
+      "required": [
+        "assetData"
+      ]
+    },
+    "AddAssetResp": {
+      "type": "object",
+      "properties": {
+        "row": {
+          "$ref": "#/definitions/ListAssetData"
+        }
+      },
+      "title": "AddAssetResp",
+      "required": [
+        "row"
+      ]
+    },
+    "AddAutoOpengameRuleReq": {
+      "type": "object",
+      "title": "AddAutoOpengameRuleReq"
+    },
+    "AddConfigFileDeliveryData": {
+      "type": "object",
+      "properties": {
+        "projectId": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "projectEn": {
+          "type": "string"
+        },
+        "configFileId": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "configName": {
+          "type": "string"
+        },
+        "configTime": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "assetId": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "sshIp": {
+          "type": "string"
+        },
+        "sshPort": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "destPath": {
+          "type": "string"
+        }
+      },
+      "title": "AddConfigFileDeliveryData",
+      "required": [
+        "projectId",
+        "projectEn",
+        "configFileId",
+        "configName",
+        "configTime",
+        "assetId",
+        "sshIp",
+        "sshPort",
+        "destPath"
+      ]
+    },
+    "AddConfigFileDeliveryDataList": {
+      "type": "object",
+      "properties": {
+        "projectEn": {
+          "type": "string"
+        },
+        "list": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/AddConfigFileDeliveryData"
+          }
+        }
+      },
+      "title": "AddConfigFileDeliveryDataList",
+      "required": [
+        "projectEn",
+        "list"
+      ]
+    },
+    "AddConfigFileDeliveryReq": {
+      "type": "object",
+      "properties": {
+        "configFileData": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/AddConfigFileDeliveryDataList"
+          }
+        }
+      },
+      "title": "AddConfigFileDeliveryReq",
+      "required": [
+        "configFileData"
+      ]
+    },
+    "AddConfigFileReq": {
+      "type": "object",
+      "title": "AddConfigFileReq"
+    },
+    "AddFeatureServerReq": {
+      "type": "object",
+      "title": "AddFeatureServerReq"
+    },
+    "AddKeyManageReq": {
+      "type": "object",
+      "title": "AddKeyManageReq"
+    },
+    "AddMaintainPlanReq": {
+      "type": "object",
+      "title": "AddMaintainPlanReq"
+    },
+    "AddMergePlanReq": {
+      "type": "object",
+      "properties": {
+        "mergePlanData": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/MergePlanCommon"
+          }
+        }
+      },
+      "title": "AddMergePlanReq",
+      "required": [
+        "mergePlanData"
+      ]
+    },
+    "AddOpenPlanReq": {
+      "type": "object",
+      "properties": {
+        "openPlanData": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/OpenPlanCommon"
+          }
+        }
+      },
+      "title": "AddOpenPlanReq",
+      "required": [
+        "openPlanData"
+      ]
+    },
+    "AddPlatformReq": {
+      "type": "object",
+      "title": "AddPlatformReq"
+    },
+    "AddSwitchEntranceGameserverReq": {
+      "type": "object",
+      "title": "AddSwitchEntranceGameserverReq"
+    },
+    "AddTasksReq": {
+      "type": "object",
+      "properties": {
+        "title": {
+          "type": "string"
+        },
+        "projectId": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "clusterId": {
+          "type": "string"
+        },
+        "startTime": {
+          "type": "string"
+        },
+        "content": {
+          "type": "string"
+        },
+        "taskType": {
+          "type": "string"
+        },
+        "taskListForm": {
+          "type": "string"
+        },
+        "outerIp": {
+          "type": "string"
+        },
+        "maintainId": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "uid": {
+          "type": "string"
+        }
+      },
+      "title": "AddTasksReq",
+      "required": [
+        "title",
+        "projectId",
+        "clusterId",
+        "startTime",
+        "taskType",
+        "taskListForm"
+      ]
+    },
+    "AddTasksScheduleQueueReq": {
+      "type": "object",
+      "title": "AddTasksScheduleQueueReq"
+    },
+    "AlarmThresholdManageCommon": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "name": {
+          "type": "string"
+        },
+        "config": {
+          "type": "string"
+        },
+        "types": {
+          "type": "string"
+        },
+        "projectId": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "gameServerId": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "assetId": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "level": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "delFlag": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "remark": {
+          "type": "string"
+        }
+      },
+      "title": "AlarmThresholdManageCommon"
+    },
+    "AssetBatchDistributeReq": {
+      "type": "object",
+      "properties": {
+        "assetIds": {
+          "type": "string"
+        },
+        "model": {
+          "type": "string"
+        },
+        "value": {
+          "type": "string"
+        }
+      },
+      "title": "AssetBatchDistributeReq",
+      "required": [
+        "assetIds",
+        "model",
+        "value"
+      ]
+    },
+    "AssetDatas": {
+      "type": "object",
+      "properties": {
+        "assetId": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "outerIp": {
+          "type": "string"
+        },
+        "innerIp": {
+          "type": "string"
+        },
+        "hostRoleId": {
+          "type": "string"
+        },
+        "providerId": {
+          "type": "string"
+        },
+        "hardwareInfo": {
+          "type": "string"
+        },
+        "sshPort": {
+          "type": "string"
+        },
+        "initType": {
+          "type": "string"
+        },
+        "cleanType": {
+          "type": "string"
+        },
+        "recycleType": {
+          "type": "string"
+        },
+        "initLoginInfo": {
+          "type": "string"
+        },
+        "changeStatusRemark": {
+          "type": "string"
+        },
+        "remark": {
+          "type": "string"
+        },
+        "projectId": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "companyId": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "userCompanyId": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "accelerateDomain": {
+          "type": "string"
+        },
+        "clusterId": {
+          "type": "integer",
+          "format": "int64"
+        }
+      },
+      "title": "AssetDatas",
+      "required": [
+        "outerIp",
+        "innerIp"
+      ]
+    },
+    "AssetFileData": {
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "string"
+        },
+        "date": {
+          "type": "string"
+        },
+        "isLink": {
+          "type": "boolean",
+          "format": "boolean"
+        },
+        "kind": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "size": {
+          "type": "string"
+        }
+      },
+      "title": "AssetFileData",
+      "required": [
+        "code",
+        "date",
+        "isLink",
+        "kind",
+        "name",
+        "size"
+      ]
+    },
+    "AssetFileDownloadReq": {
+      "type": "object",
+      "properties": {
+        "file": {
+          "type": "string"
+        },
+        "hostname": {
+          "type": "string"
+        },
+        "port": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "path": {
+          "type": "string"
+        }
+      },
+      "title": "AssetFileDownloadReq",
+      "required": [
+        "file",
+        "hostname",
+        "path"
+      ]
+    },
+    "AssetFileReq": {
+      "type": "object",
+      "properties": {
+        "hostname": {
+          "type": "string"
+        },
+        "port": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "path": {
+          "type": "string"
+        }
+      },
+      "title": "AssetFileReq"
+    },
+    "AssetFileResp": {
+      "type": "object",
+      "properties": {
+        "rows": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/AssetFileData"
+          }
+        }
+      },
+      "title": "AssetFileResp",
+      "required": [
+        "rows"
+      ]
+    },
+    "AssetFileUploadReq": {
+      "type": "object",
+      "properties": {
+        "hostname": {
+          "type": "string"
+        },
+        "port": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "path": {
+          "type": "string"
+        }
+      },
+      "title": "AssetFileUploadReq",
+      "required": [
+        "hostname",
+        "path"
+      ]
+    },
+    "AssetInfoDataResp": {
+      "type": "object",
+      "properties": {
+        "viewCompanyProjectView": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/ListProjectData"
+          }
+        }
+      },
+      "title": "AssetInfoDataResp",
+      "required": [
+        "viewCompanyProjectView"
+      ]
+    },
+    "AutoOpengameRuleCommon": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "projectId": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "platformId": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "startOpenTime": {
+          "type": "string"
+        },
+        "endOpenTime": {
+          "type": "string"
+        },
+        "intervalDay": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "thresholdValue": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "numberOfServer": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "openTime": {
+          "type": "string"
+        },
+        "startOpenMulti": {
+          "type": "string"
+        },
+        "endOpenMulti": {
+          "type": "string"
+        },
+        "state": {
+          "type": "integer",
+          "format": "int64"
+        }
+      },
+      "title": "AutoOpengameRuleCommon"
+    },
+    "BatchModifyOpenTimeData": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "openTime": {
+          "type": "integer",
+          "format": "int64"
+        }
+      },
+      "title": "BatchModifyOpenTimeData",
+      "required": [
+        "id",
+        "openTime"
+      ]
+    },
+    "BatchModifyOpenTimeReq": {
+      "type": "object",
+      "properties": {
+        "data": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/BatchModifyOpenTimeData"
+          }
+        }
+      },
+      "title": "BatchModifyOpenTimeReq",
+      "required": [
+        "data"
+      ]
+    },
+    "ConfigFileCommon": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "projectId": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "name": {
+          "type": "string"
+        },
+        "destPath": {
+          "type": "string"
+        },
+        "fileModTime": {
+          "type": "integer",
+          "format": "int64"
+        }
+      },
+      "title": "ConfigFileCommon"
+    },
+    "ConfigFileDeliveryGetFileContentReq": {
+      "type": "object",
+      "properties": {
+        "configName": {
+          "type": "string"
+        },
+        "option": {
+          "type": "string",
+          "enum": [
+            "template",
+            "create"
+          ]
+        },
+        "projectEn": {
+          "type": "string"
+        }
+      },
+      "title": "ConfigFileDeliveryGetFileContentReq",
+      "required": [
+        "configName",
+        "option",
+        "projectEn"
+      ]
+    },
+    "ConfigFileDeliveryGetFileContentResp": {
+      "type": "object",
+      "properties": {
+        "content": {
+          "type": "string"
+        }
+      },
+      "title": "ConfigFileDeliveryGetFileContentResp",
+      "required": [
+        "content"
+      ]
+    },
+    "DeleteAlarmThresholdManageReq": {
+      "type": "object",
+      "title": "DeleteAlarmThresholdManageReq"
+    },
+    "DeleteAssetReq": {
+      "type": "object",
+      "title": "DeleteAssetReq"
+    },
+    "DeleteAutoOpengameRuleReq": {
+      "type": "object",
+      "title": "DeleteAutoOpengameRuleReq"
+    },
+    "DeleteConfigFileReq": {
+      "type": "object",
+      "title": "DeleteConfigFileReq"
+    },
+    "DeleteFeatureServerReq": {
+      "type": "object",
+      "title": "DeleteFeatureServerReq"
+    },
+    "DeleteKeyManageReq": {
+      "type": "object",
+      "title": "DeleteKeyManageReq"
+    },
+    "DeleteMaintainPlanReq": {
+      "type": "object",
+      "title": "DeleteMaintainPlanReq"
+    },
+    "DeleteMergePlanReq": {
+      "type": "object",
+      "title": "DeleteMergePlanReq"
+    },
+    "DeleteOpenPlanReq": {
+      "type": "object",
+      "title": "DeleteOpenPlanReq"
+    },
+    "DeletePlatformReq": {
+      "type": "object",
+      "title": "DeletePlatformReq"
+    },
+    "DeleteSwitchEntranceGameserverReq": {
+      "type": "object",
+      "properties": {
+        "ids": {
+          "type": "string"
+        },
+        "operation": {
+          "type": "string",
+          "enum": [
+            "start",
+            "stop"
+          ]
+        }
+      },
+      "title": "DeleteSwitchEntranceGameserverReq",
+      "required": [
+        "ids",
+        "operation"
+      ]
+    },
+    "DeleteTasksReq": {
+      "type": "object",
+      "title": "DeleteTasksReq"
+    },
+    "DeleteTasksScheduleQueueReq": {
+      "type": "object",
+      "title": "DeleteTasksScheduleQueueReq"
+    },
+    "DetailClusterReq": {
+      "type": "object",
+      "properties": {
+        "labelId": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "projectId": {
+          "type": "integer",
+          "format": "int64"
+        }
+      },
+      "title": "DetailClusterReq",
+      "required": [
+        "labelId",
+        "projectId"
+      ]
+    },
+    "DetailClusterResp": {
+      "type": "object",
+      "properties": {
+        "labelName": {
+          "type": "string"
+        },
+        "projectCn": {
+          "type": "string"
+        },
+        "clusterFeatureInfo": {
+          "type": "string"
+        },
+        "assetRows": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/ListClusterAssetData"
+          }
+        },
+        "platformRows": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/ListClusterPlatformData"
+          }
+        }
+      },
+      "title": "DetailClusterResp",
+      "required": [
+        "labelName",
+        "projectCn",
+        "clusterFeatureInfo",
+        "assetRows",
+        "platformRows"
+      ]
+    },
+    "DetailPlatformReq": {
+      "type": "object",
+      "title": "DetailPlatformReq"
+    },
+    "DetailPlatformResp": {
+      "type": "object",
+      "properties": {
+        "viewPlatformAutoid": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "viewPlatformId": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "viewPlatformEn": {
+          "type": "string"
+        },
+        "viewPlatformCn": {
+          "type": "string"
+        },
+        "viewProjectId": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "viewProjectCn": {
+          "type": "string"
+        },
+        "viewProjectEn": {
+          "type": "string"
+        },
+        "viewPlatformRemark": {
+          "type": "string"
+        },
+        "viewLabels": {
+          "type": "string"
+        },
+        "viewFeatureInfo": {
+          "type": "string"
+        }
+      },
+      "title": "DetailPlatformResp",
+      "required": [
+        "viewPlatformAutoid",
+        "viewPlatformId",
+        "viewPlatformEn",
+        "viewPlatformCn",
+        "viewProjectId",
+        "viewProjectCn",
+        "viewProjectEn",
+        "viewPlatformRemark",
+        "viewLabels",
+        "viewFeatureInfo"
+      ]
+    },
+    "DetailTaskLogHistroyReq": {
+      "type": "object",
+      "title": "DetailTaskLogHistroyReq"
+    },
+    "DetailTaskLogHistroyResp": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "tasksId": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "tasksLogs": {
+          "type": "string"
+        },
+        "tasksTime": {
+          "type": "integer",
+          "format": "int64"
+        }
+      },
+      "title": "DetailTaskLogHistroyResp",
+      "required": [
+        "id",
+        "tasksId",
+        "tasksLogs",
+        "tasksTime"
+      ]
+    },
+    "FeatureServerDatas": {
+      "type": "object",
+      "properties": {
+        "featureServerId": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "projectId": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "featureServerInfo": {
+          "type": "string"
+        },
+        "remark": {
+          "type": "string"
+        }
+      },
+      "title": "FeatureServerDatas"
+    },
+    "FilterList": {
+      "type": "object",
+      "properties": {
+        "label": {
+          "type": "string"
+        },
+        "value": {
+          "type": "string"
+        },
+        "types": {
+          "type": "string"
+        },
+        "children": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/FilterList"
+          }
+        }
+      },
+      "title": "FilterList"
+    },
+    "GetAlarmThresholdManageReq": {
+      "type": "object",
+      "title": "GetAlarmThresholdManageReq"
+    },
+    "GetAssetReq": {
+      "type": "object",
+      "title": "GetAssetReq"
+    },
+    "GetAutoOpengameRuleReq": {
+      "type": "object",
+      "title": "GetAutoOpengameRuleReq"
+    },
+    "GetConfigFileDeliveryLogData": {
+      "type": "object",
+      "properties": {
+        "viewAssetDescribe": {
+          "type": "string"
+        },
+        "viewConfigFileName": {
+          "type": "string"
+        },
+        "viewUserProjectCn": {
+          "type": "string"
+        }
+      },
+      "title": "GetConfigFileDeliveryLogData",
+      "required": [
+        "viewAssetDescribe",
+        "viewConfigFileName",
+        "viewUserProjectCn"
+      ]
+    },
+    "GetConfigFileDeliveryTreeReq": {
+      "type": "object",
+      "properties": {
+        "projectId": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "configFileId": {
+          "type": "integer",
+          "format": "int64"
+        }
+      },
+      "title": "GetConfigFileDeliveryTreeReq",
+      "required": [
+        "projectId",
+        "configFileId"
+      ]
+    },
+    "GetConfigFileDeliveryTreeResp": {
+      "type": "object",
+      "properties": {
+        "rows": {
+          "type": "string"
+        }
+      },
+      "title": "GetConfigFileDeliveryTreeResp",
+      "required": [
+        "rows"
+      ]
+    },
+    "GetConfigFileReq": {
+      "type": "object",
+      "title": "GetConfigFileReq"
+    },
+    "GetFeatureServerReq": {
+      "type": "object",
+      "title": "GetFeatureServerReq"
+    },
+    "GetGameTrendChartData": {
+      "type": "object",
+      "properties": {
+        "projectEn": {
+          "type": "string"
+        },
+        "counts": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "detail": {
+          "type": "string"
+        },
+        "createTime": {
+          "type": "integer",
+          "format": "int64"
+        }
+      },
+      "title": "GetGameTrendChartData",
+      "required": [
+        "projectEn",
+        "counts",
+        "detail",
+        "createTime"
+      ]
+    },
+    "GetGameTrendChartListReq": {
+      "type": "object",
+      "properties": {
+        "projectIds": {
+          "type": "string"
+        }
+      },
+      "title": "GetGameTrendChartListReq"
+    },
+    "GetGameTrendChartListResp": {
+      "type": "object",
+      "properties": {
+        "rows": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/GetGameTrendChartData"
+          }
+        }
+      },
+      "title": "GetGameTrendChartListResp",
+      "required": [
+        "rows"
+      ]
+    },
+    "GetHotLogHistoryReq": {
+      "type": "object",
+      "title": "GetHotLogHistoryReq"
+    },
+    "GetKeyManageReq": {
+      "type": "object",
+      "title": "GetKeyManageReq"
+    },
+    "GetMaintainPlanListTreeByClsIdAndProIdReq": {
+      "type": "object",
+      "properties": {
+        "projectId": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "clusterCn": {
+          "type": "string"
+        }
+      },
+      "title": "GetMaintainPlanListTreeByClsIdAndProIdReq",
+      "required": [
+        "projectId",
+        "clusterCn"
+      ]
+    },
+    "GetMaintainPlanListTreeByClsIdAndProIdResp": {
+      "type": "object",
+      "properties": {
+        "maRangeTreeData": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/VueTree"
+          }
+        }
+      },
+      "title": "GetMaintainPlanListTreeByClsIdAndProIdResp",
+      "required": [
+        "maRangeTreeData"
+      ]
+    },
+    "GetMaintainPlanReq": {
+      "type": "object",
+      "title": "GetMaintainPlanReq"
+    },
+    "GetMaintanListByPriReq": {
+      "type": "object",
+      "properties": {
+        "projectId": {
+          "type": "integer",
+          "format": "int64"
+        }
+      },
+      "title": "GetMaintanListByPriReq",
+      "required": [
+        "projectId"
+      ]
+    },
+    "GetMaintanListByPriResp": {
+      "type": "object",
+      "properties": {
+        "rows": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/ListMaintainPlanData"
+          }
+        }
+      },
+      "title": "GetMaintanListByPriResp",
+      "required": [
+        "rows"
+      ]
+    },
+    "GetMergeListTreeByPlatIdAndProIdReq": {
+      "type": "object",
+      "properties": {
+        "projectId": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "platformId": {
+          "type": "integer",
+          "format": "int64"
+        }
+      },
+      "title": "GetMergeListTreeByPlatIdAndProIdReq",
+      "required": [
+        "projectId",
+        "platformId"
+      ]
+    },
+    "GetMergeListTreeByPlatIdAndProIdResp": {
+      "type": "object",
+      "properties": {
+        "meRangeTreeData": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/VueTree"
+          }
+        }
+      },
+      "title": "GetMergeListTreeByPlatIdAndProIdResp",
+      "required": [
+        "meRangeTreeData"
+      ]
+    },
+    "GetMergePlanReq": {
+      "type": "object",
+      "title": "GetMergePlanReq"
+    },
+    "GetOpenPlanReq": {
+      "type": "object",
+      "title": "GetOpenPlanReq"
+    },
+    "GetPlatformReq": {
+      "type": "object",
+      "title": "GetPlatformReq"
+    },
+    "GetPlatformResp": {
+      "type": "object",
+      "properties": {
+        "row": {
+          "$ref": "#/definitions/ListPlatformData"
+        }
+      },
+      "title": "GetPlatformResp",
+      "required": [
+        "row"
+      ]
+    },
+    "GetServerTrendChartData": {
+      "type": "object",
+      "properties": {
+        "projectEn": {
+          "type": "string"
+        },
+        "counts": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "detail": {
+          "type": "string"
+        },
+        "createTime": {
+          "type": "integer",
+          "format": "int64"
+        }
+      },
+      "title": "GetServerTrendChartData",
+      "required": [
+        "projectEn",
+        "counts",
+        "detail",
+        "createTime"
+      ]
+    },
+    "GetServerTrendChartListReq": {
+      "type": "object",
+      "properties": {
+        "projectIds": {
+          "type": "string"
+        }
+      },
+      "title": "GetServerTrendChartListReq"
+    },
+    "GetServerTrendChartListResp": {
+      "type": "object",
+      "properties": {
+        "rows": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/GetServerTrendChartData"
+          }
+        }
+      },
+      "title": "GetServerTrendChartListResp",
+      "required": [
+        "rows"
+      ]
+    },
+    "GetSumOfCurrentInfoData": {
+      "type": "object",
+      "properties": {
+        "projectEn": {
+          "type": "string"
+        },
+        "cluster": {
+          "type": "string"
+        },
+        "hostRole": {
+          "type": "string"
+        },
+        "serverNum": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "gameNum": {
+          "type": "integer",
+          "format": "int64"
+        }
+      },
+      "title": "GetSumOfCurrentInfoData",
+      "required": [
+        "projectEn",
+        "cluster",
+        "hostRole",
+        "serverNum",
+        "gameNum"
+      ]
+    },
+    "GetSumOfCurrentInfoListReq": {
+      "type": "object",
+      "properties": {
+        "projectIds": {
+          "type": "string"
+        }
+      },
+      "title": "GetSumOfCurrentInfoListReq"
+    },
+    "GetSumOfCurrentInfoListResp": {
+      "type": "object",
+      "properties": {
+        "rows": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/GetSumOfCurrentInfoData"
+          }
+        }
+      },
+      "title": "GetSumOfCurrentInfoListResp",
+      "required": [
+        "rows"
+      ]
+    },
+    "GetSwitchEntranceGameserverReq": {
+      "type": "object",
+      "title": "GetSwitchEntranceGameserverReq"
+    },
+    "GetTaskOperationList": {
+      "type": "object",
+      "properties": {
+        "opTreeData": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/TaskOperationListData"
+          }
+        }
+      },
+      "title": "GetTaskOperationList",
+      "required": [
+        "opTreeData"
+      ]
+    },
+    "GetTasksReq": {
+      "type": "object",
+      "title": "GetTasksReq"
+    },
+    "GetTasksResp": {
+      "type": "object",
+      "properties": {
+        "allIdArr": {
+          "type": "array",
+          "items": {
+            "type": "integer",
+            "format": "int64"
+          }
+        },
+        "errArr": {
+          "type": "array",
+          "items": {
+            "type": "integer",
+            "format": "int64"
+          }
+        },
+        "rows": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/ListTasksData"
+          }
+        }
+      },
+      "title": "GetTasksResp",
+      "required": [
+        "allIdArr",
+        "errArr",
+        "rows"
+      ]
+    },
+    "GetTasksScheduleQueueReq": {
+      "type": "object",
+      "title": "GetTasksScheduleQueueReq"
+    },
+    "GetWebSocketAddrResp": {
+      "type": "object",
+      "properties": {
+        "ipAddr": {
+          "type": "string"
+        }
+      },
+      "title": "GetWebSocketAddrResp",
+      "required": [
+        "ipAddr"
+      ]
+    },
+    "GetWebSshReq": {
+      "type": "object",
+      "properties": {
+        "projectIds": {
+          "type": "string"
+        }
+      },
+      "title": "GetWebSshReq"
+    },
+    "GetWebSshResp": {
+      "type": "object",
+      "properties": {
+        "rows": {
+          "$ref": "#/definitions/WebSshDataTree"
+        }
+      },
+      "title": "GetWebSshResp",
+      "required": [
+        "rows"
+      ]
+    },
+    "HelpListData": {
+      "type": "object",
+      "properties": {
+        "key": {
+          "type": "string"
+        },
+        "value": {
+          "type": "string"
+        }
+      },
+      "title": "HelpListData",
+      "required": [
+        "key",
+        "value"
+      ]
+    },
+    "HelpListReq": {
+      "type": "object",
+      "properties": {
+        "gameName": {
+          "type": "string"
+        }
+      },
+      "title": "HelpListReq"
+    },
+    "HelpListResp": {
+      "type": "object",
+      "properties": {
+        "rows": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/HelpListData"
+          }
+        }
+      },
+      "title": "HelpListResp",
+      "required": [
+        "rows"
+      ]
+    },
+    "HotLogHistoryDataTree": {
+      "type": "object",
+      "properties": {
+        "label": {
+          "type": "string"
+        },
+        "children": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/HotLogHistoryDataTree"
+          }
+        },
+        "value": {
+          "type": "integer",
+          "format": "int64"
+        }
+      },
+      "title": "HotLogHistoryDataTree",
+      "required": [
+        "label"
+      ]
+    },
+    "KeyManageCommon": {
+      "type": "object",
+      "properties": {
+        "keyId": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "keyName": {
+          "type": "string"
+        },
+        "keyPath": {
+          "type": "string"
+        },
+        "keyPass": {
+          "type": "string"
+        },
+        "keyType": {
+          "type": "string"
+        },
+        "remark": {
+          "type": "string"
+        }
+      },
+      "title": "KeyManageCommon"
+    },
+    "ListAlarmThresholdManageData": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "name": {
+          "type": "string"
+        },
+        "config": {
+          "type": "string"
+        },
+        "types": {
+          "type": "string"
+        },
+        "projectId": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "gameServerId": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "assetId": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "level": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "delFlag": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "remark": {
+          "type": "string"
+        },
+        "projectCn": {
+          "type": "string"
+        },
+        "ips": {
+          "type": "string"
+        },
+        "gameServerAlias": {
+          "type": "string"
+        }
+      },
+      "title": "ListAlarmThresholdManageData",
+      "required": [
+        "id",
+        "name",
+        "config",
+        "types",
+        "projectId",
+        "gameServerId",
+        "assetId",
+        "level",
+        "delFlag",
+        "remark",
+        "projectCn",
+        "ips",
+        "gameServerAlias"
+      ]
+    },
+    "ListAlarmThresholdManageReq": {
+      "type": "object",
+      "properties": {
+        "current": {
+          "type": "integer",
+          "format": "int64",
+          "default": "1"
+        },
+        "pageSize": {
+          "type": "integer",
+          "format": "int64",
+          "default": "15"
+        },
+        "projectIds": {
+          "type": "string"
+        },
+        "ips": {
+          "type": "string"
+        },
+        "types": {
+          "type": "string"
+        },
+        "gameServerAlias": {
+          "type": "string"
+        }
+      },
+      "title": "ListAlarmThresholdManageReq",
+      "required": [
+        "current",
+        "pageSize"
+      ]
+    },
+    "ListAlarmThresholdManageResp": {
+      "type": "object",
+      "properties": {
+        "rows": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/ListAlarmThresholdManageData"
+          }
+        },
+        "total": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "filter": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/FilterList"
+          }
+        }
+      },
+      "title": "ListAlarmThresholdManageResp",
+      "required": [
+        "rows",
+        "total",
+        "filter"
+      ]
+    },
+    "ListAssetData": {
+      "type": "object",
+      "properties": {
+        "assetId": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "outerIp": {
+          "type": "string"
+        },
+        "innerIp": {
+          "type": "string"
+        },
+        "hostRoleId": {
+          "type": "string"
+        },
+        "viewHostRoleCn": {
+          "type": "string"
+        },
+        "providerId": {
+          "type": "string"
+        },
+        "viewProviderNameEn": {
+          "type": "string"
+        },
+        "viewProviderNameCn": {
+          "type": "string"
+        },
+        "hardwareInfo": {
+          "type": "string"
+        },
+        "sshPort": {
+          "type": "string"
+        },
+        "initType": {
+          "type": "string"
+        },
+        "cleanType": {
+          "type": "string"
+        },
+        "recycleType": {
+          "type": "string"
+        },
+        "initLoginInfo": {
+          "type": "string"
+        },
+        "changeStatusRemark": {
+          "type": "string"
+        },
+        "remark": {
+          "type": "string"
+        },
+        "viewAssetCreateTime": {
+          "type": "string"
+        },
+        "viewAssetUpdateTime": {
+          "type": "string"
+        },
+        "viewAssetDelFlag": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "viewPrId": {
+          "type": "string"
+        },
+        "companyId": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "viewAssetOwnershipCompanyCn": {
+          "type": "string"
+        },
+        "viewAssetOwnershipCompanyEn": {
+          "type": "string"
+        },
+        "viewAssetOwnershipCompanyDeleted": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "viewServerAffiliationDeleted": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "userCompanyId": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "viewUserCompanyCn": {
+          "type": "string"
+        },
+        "viewUserCompanyEn": {
+          "type": "string"
+        },
+        "viewUserCompanyDeleted": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "projectId": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "viewUserProjectCn": {
+          "type": "string"
+        },
+        "viewUserProjectEn": {
+          "type": "string"
+        },
+        "viewUserProjectDeleted": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "LabelNames": {
+          "type": "string"
+        },
+        "accelerateDomain": {
+          "type": "string"
+        }
+      },
+      "title": "ListAssetData",
+      "required": [
+        "assetId",
+        "outerIp",
+        "innerIp",
+        "hostRoleId",
+        "viewHostRoleCn",
+        "providerId",
+        "viewProviderNameEn",
+        "viewProviderNameCn",
+        "hardwareInfo",
+        "sshPort",
+        "initType",
+        "cleanType",
+        "recycleType",
+        "initLoginInfo",
+        "changeStatusRemark",
+        "remark",
+        "viewAssetCreateTime",
+        "viewAssetUpdateTime",
+        "viewAssetDelFlag",
+        "viewPrId",
+        "companyId",
+        "viewAssetOwnershipCompanyCn",
+        "viewAssetOwnershipCompanyEn",
+        "viewAssetOwnershipCompanyDeleted",
+        "viewServerAffiliationDeleted",
+        "userCompanyId",
+        "viewUserCompanyCn",
+        "viewUserCompanyEn",
+        "viewUserCompanyDeleted",
+        "projectId",
+        "viewUserProjectCn",
+        "viewUserProjectEn",
+        "viewUserProjectDeleted",
+        "LabelNames",
+        "accelerateDomain"
+      ]
+    },
+    "ListAssetReq": {
+      "type": "object",
+      "properties": {
+        "current": {
+          "type": "integer",
+          "format": "int64",
+          "default": "1"
+        },
+        "pageSize": {
+          "type": "integer",
+          "format": "int64",
+          "default": "15"
+        },
+        "asset_id": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "ips": {
+          "type": "string"
+        },
+        "recycleType": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "cleanType": {
+          "type": "string"
+        },
+        "initType": {
+          "type": "string"
+        },
+        "provider": {
+          "type": "string"
+        },
+        "label": {
+          "type": "string"
+        },
+        "projectIds": {
+          "type": "string"
+        },
+        "ownershipCompanyIds": {
+          "type": "string"
+        },
+        "hostRoleCn": {
+          "type": "string"
+        },
+        "projectType": {
+          "type": "string"
+        }
+      },
+      "title": "ListAssetReq",
+      "required": [
+        "current",
+        "pageSize"
+      ]
+    },
+    "ListAssetResp": {
+      "type": "object",
+      "properties": {
+        "rows": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/ListAssetData"
+          }
+        },
+        "total": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "filter": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/FilterList"
+          }
+        }
+      },
+      "title": "ListAssetResp",
+      "required": [
+        "rows",
+        "total",
+        "filter"
+      ]
+    },
+    "ListAutoOpengameRuleData": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "projectId": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "platformId": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "projectCn": {
+          "type": "string"
+        },
+        "platformEn": {
+          "type": "string"
+        },
+        "startOpenTime": {
+          "type": "string"
+        },
+        "endOpenTime": {
+          "type": "string"
+        },
+        "intervalDay": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "thresholdValue": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "numberOfServer": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "openTime": {
+          "type": "string"
+        },
+        "startOpenMulti": {
+          "type": "string"
+        },
+        "endOpenMulti": {
+          "type": "string"
+        },
+        "state": {
+          "type": "integer",
+          "format": "int64"
+        }
+      },
+      "title": "ListAutoOpengameRuleData",
+      "required": [
+        "id",
+        "projectId",
+        "platformId",
+        "projectCn",
+        "platformEn",
+        "startOpenTime",
+        "endOpenTime",
+        "intervalDay",
+        "thresholdValue",
+        "numberOfServer",
+        "openTime",
+        "startOpenMulti",
+        "endOpenMulti",
+        "state"
+      ]
+    },
+    "ListAutoOpengameRuleReq": {
+      "type": "object",
+      "properties": {
+        "current": {
+          "type": "integer",
+          "format": "int64",
+          "default": "1"
+        },
+        "pageSize": {
+          "type": "integer",
+          "format": "int64",
+          "default": "15"
+        }
+      },
+      "title": "ListAutoOpengameRuleReq",
+      "required": [
+        "current",
+        "pageSize"
+      ]
+    },
+    "ListAutoOpengameRuleResp": {
+      "type": "object",
+      "properties": {
+        "rows": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/ListAutoOpengameRuleData"
+          }
+        },
+        "total": {
+          "type": "integer",
+          "format": "int64"
+        }
+      },
+      "title": "ListAutoOpengameRuleResp",
+      "required": [
+        "rows",
+        "total"
+      ]
+    },
+    "ListClusterAssetData": {
+      "type": "object",
+      "properties": {
+        "viewDataUrl": {
+          "type": "string"
+        },
+        "viewJsonId": {
+          "type": "string"
+        },
+        "assetIp": {
+          "type": "string"
+        }
+      },
+      "title": "ListClusterAssetData",
+      "required": [
+        "viewDataUrl",
+        "viewJsonId",
+        "assetIp"
+      ]
+    },
+    "ListClusterData": {
+      "type": "object",
+      "properties": {
+        "labelId": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "labelName": {
+          "type": "string"
+        },
+        "labelValues": {
+          "type": "string"
+        },
+        "labelRemark": {
+          "type": "string"
+        },
+        "projectId": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "projectCn": {
+          "type": "string"
+        },
+        "projectEn": {
+          "type": "string"
+        },
+        "clusterFeatureInfo": {
+          "type": "string"
+        },
+        "featureServerDelFlag": {
+          "type": "integer",
+          "format": "int64"
+        }
+      },
+      "title": "ListClusterData",
+      "required": [
+        "labelId",
+        "labelName",
+        "labelValues",
+        "labelRemark",
+        "projectId",
+        "projectCn",
+        "projectEn",
+        "clusterFeatureInfo",
+        "featureServerDelFlag"
+      ]
+    },
+    "ListClusterPlatformData": {
+      "type": "object",
+      "properties": {
+        "viewDataUrl": {
+          "type": "string"
+        },
+        "viewJsonId": {
+          "type": "string"
+        },
+        "platformInfo": {
+          "type": "string"
+        }
+      },
+      "title": "ListClusterPlatformData",
+      "required": [
+        "viewDataUrl",
+        "viewJsonId",
+        "platformInfo"
+      ]
+    },
+    "ListClusterReq": {
+      "type": "object",
+      "properties": {
+        "current": {
+          "type": "integer",
+          "format": "int64",
+          "default": "1"
+        },
+        "pageSize": {
+          "type": "integer",
+          "format": "int64",
+          "default": "15"
+        },
+        "labelId": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "projectId": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "projectIds": {
+          "type": "string"
+        },
+        "clusterCn": {
+          "type": "string"
+        }
+      },
+      "title": "ListClusterReq",
+      "required": [
+        "current",
+        "pageSize"
+      ]
+    },
+    "ListClusterResp": {
+      "type": "object",
+      "properties": {
+        "rows": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/ListClusterData"
+          }
+        },
+        "total": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "filter": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/FilterList"
+          }
+        }
+      },
+      "title": "ListClusterResp",
+      "required": [
+        "rows",
+        "total",
+        "filter"
+      ]
+    },
+    "ListConfigFileData": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "projectId": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "projectCn": {
+          "type": "string"
+        },
+        "projectEn": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "destPath": {
+          "type": "string"
+        },
+        "fileModTime": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "assetCounts": {
+          "type": "integer",
+          "format": "int64"
+        }
+      },
+      "title": "ListConfigFileData",
+      "required": [
+        "id",
+        "projectId",
+        "projectCn",
+        "projectEn",
+        "name",
+        "destPath",
+        "fileModTime",
+        "assetCounts"
+      ]
+    },
+    "ListConfigFileDeliveryDataTree": {
+      "type": "object",
+      "properties": {
+        "projectId": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "totalList": {
+          "type": "string"
+        },
+        "mouldFile": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      },
+      "title": "ListConfigFileDeliveryDataTree",
+      "required": [
+        "projectId",
+        "totalList",
+        "mouldFile"
+      ]
+    },
+    "ListConfigFileDeliveryReq": {
+      "type": "object",
+      "properties": {
+        "projectIds": {
+          "type": "string"
+        }
+      },
+      "title": "ListConfigFileDeliveryReq"
+    },
+    "ListConfigFileDeliveryResp": {
+      "type": "object",
+      "properties": {
+        "rows": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/ListConfigFileData"
+          }
+        },
+        "mergeRows": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/ListConfigFileDeliveryDataTree"
+          }
+        },
+        "filter": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/FilterList"
+          }
+        }
+      },
+      "title": "ListConfigFileDeliveryResp",
+      "required": [
+        "rows",
+        "mergeRows",
+        "filter"
+      ]
+    },
+    "ListConfigFileReq": {
+      "type": "object",
+      "properties": {
+        "current": {
+          "type": "integer",
+          "format": "int64",
+          "default": "1"
+        },
+        "pageSize": {
+          "type": "integer",
+          "format": "int64",
+          "default": "15"
+        }
+      },
+      "title": "ListConfigFileReq",
+      "required": [
+        "current",
+        "pageSize"
+      ]
+    },
+    "ListConfigFileResp": {
+      "type": "object",
+      "properties": {
+        "rows": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/ListConfigFileData"
+          }
+        },
+        "total": {
+          "type": "integer",
+          "format": "int64"
+        }
+      },
+      "title": "ListConfigFileResp",
+      "required": [
+        "rows",
+        "total"
+      ]
+    },
+    "ListFeatureServerData": {
+      "type": "object",
+      "properties": {
+        "featureServerId": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "projectId": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "featureServerInfo": {
+          "type": "string"
+        },
+        "remark": {
+          "type": "string"
+        },
+        "delFlag": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "projectCn": {
+          "type": "string"
+        },
+        "projectEn": {
+          "type": "string"
+        }
+      },
+      "title": "ListFeatureServerData",
+      "required": [
+        "featureServerId",
+        "projectId",
+        "featureServerInfo",
+        "remark",
+        "delFlag",
+        "projectCn",
+        "projectEn"
+      ]
+    },
+    "ListFeatureServerReq": {
+      "type": "object",
+      "properties": {
+        "current": {
+          "type": "integer",
+          "format": "int64",
+          "default": "1"
+        },
+        "pageSize": {
+          "type": "integer",
+          "format": "int64",
+          "default": "15"
+        },
+        "featureServerId": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "projectIds": {
+          "type": "string"
+        },
+        "ip": {
+          "type": "string"
+        },
+        "domain": {
+          "type": "string"
+        },
+        "feature": {
+          "type": "string"
+        },
+        "remark": {
+          "type": "string"
+        }
+      },
+      "title": "ListFeatureServerReq",
+      "required": [
+        "current",
+        "pageSize"
+      ]
+    },
+    "ListFeatureServerResp": {
+      "type": "object",
+      "properties": {
+        "rows": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/ListFeatureServerData"
+          }
+        },
+        "total": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "filter": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/FilterList"
+          }
+        }
+      },
+      "title": "ListFeatureServerResp",
+      "required": [
+        "rows",
+        "total",
+        "filter"
+      ]
+    },
+    "ListGameServerData": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "projectId": {
+          "type": "string"
+        },
+        "platformId": {
+          "type": "string"
+        },
+        "serverId": {
+          "type": "string"
+        },
+        "serverAlias": {
+          "type": "string"
+        },
+        "openTime": {
+          "type": "string"
+        },
+        "assetId": {
+          "type": "string"
+        },
+        "serverStatus": {
+          "type": "string"
+        },
+        "combineRemark": {
+          "type": "string"
+        },
+        "operateInfo": {
+          "type": "string"
+        },
+        "delFlag": {
+          "type": "string"
+        },
+        "projectCn": {
+          "type": "string"
+        },
+        "outerIp": {
+          "type": "string"
+        },
+        "innerIp": {
+          "type": "string"
+        },
+        "platformCn": {
+          "type": "string"
+        },
+        "platformEn": {
+          "type": "string"
+        },
+        "ip": {
+          "type": "string"
+        },
+        "newPlatformInfo": {
+          "type": "string"
+        },
+        "gameServerTitle": {
+          "type": "string"
+        }
+      },
+      "title": "ListGameServerData",
+      "required": [
+        "id",
+        "projectId",
+        "platformId",
+        "serverId",
+        "serverAlias",
+        "openTime",
+        "assetId",
+        "serverStatus",
+        "combineRemark",
+        "operateInfo",
+        "delFlag",
+        "projectCn",
+        "outerIp",
+        "innerIp",
+        "platformCn",
+        "platformEn",
+        "ip",
+        "newPlatformInfo",
+        "gameServerTitle"
+      ]
+    },
+    "ListGameServerReq": {
+      "type": "object",
+      "properties": {
+        "current": {
+          "type": "integer",
+          "format": "int64",
+          "default": "1"
+        },
+        "pageSize": {
+          "type": "integer",
+          "format": "int64",
+          "default": "15"
+        },
+        "serverStatus": {
+          "type": "string"
+        },
+        "projectIds": {
+          "type": "string"
+        },
+        "newPlatformInfo": {
+          "type": "string"
+        },
+        "ip": {
+          "type": "string"
+        },
+        "gameServerTitle": {
+          "type": "string"
+        },
+        "serverStatusX": {
+          "type": "string"
+        },
+        "openTime": {
+          "type": "string"
+        },
+        "platformType": {
+          "type": "string"
+        }
+      },
+      "title": "ListGameServerReq",
+      "required": [
+        "current",
+        "pageSize"
+      ]
+    },
+    "ListGameServerResp": {
+      "type": "object",
+      "properties": {
+        "rows": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/ListGameServerData"
+          }
+        },
+        "total": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "filter": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/FilterList"
+          }
+        }
+      },
+      "title": "ListGameServerResp",
+      "required": [
+        "rows",
+        "total",
+        "filter"
+      ]
+    },
+    "ListHostsData": {
+      "type": "object",
+      "properties": {
+        "viewAssetId": {
+          "type": "string"
+        },
+        "viewUserCompanyCn": {
+          "type": "string"
+        },
+        "viewUserProjectCn": {
+          "type": "string"
+        },
+        "viewOuterIp": {
+          "type": "string"
+        },
+        "viewInnerIp": {
+          "type": "string"
+        },
+        "viewHardwareInfo": {
+          "type": "string"
+        },
+        "viewProviderNameCn": {
+          "type": "string"
+        },
+        "viewProviderNameEn": {
+          "type": "string"
+        },
+        "viewHostRoleCn": {
+          "type": "string"
+        },
+        "installed": {
+          "type": "string"
+        },
+        "serverName": {
+          "type": "string"
+        },
+        "labelInfo": {
+          "type": "string"
+        }
+      },
+      "title": "ListHostsData",
+      "required": [
+        "viewAssetId",
+        "viewUserCompanyCn",
+        "viewUserProjectCn",
+        "viewOuterIp",
+        "viewInnerIp",
+        "viewHardwareInfo",
+        "viewProviderNameCn",
+        "viewProviderNameEn",
+        "viewHostRoleCn",
+        "installed",
+        "serverName",
+        "labelInfo"
+      ]
+    },
+    "ListHostsReq": {
+      "type": "object",
+      "properties": {
+        "current": {
+          "type": "integer",
+          "format": "int64",
+          "default": "1"
+        },
+        "pageSize": {
+          "type": "integer",
+          "format": "int64",
+          "default": "15"
+        },
+        "viewHostRoleCn": {
+          "type": "string"
+        },
+        "projectIds": {
+          "type": "string"
+        },
+        "company": {
+          "type": "string"
+        },
+        "ips": {
+          "type": "string"
+        },
+        "sNames": {
+          "type": "string"
+        },
+        "provider": {
+          "type": "string"
+        },
+        "label": {
+          "type": "string"
+        }
+      },
+      "title": "ListHostsReq",
+      "required": [
+        "current",
+        "pageSize"
+      ]
+    },
+    "ListHostsResp": {
+      "type": "object",
+      "properties": {
+        "rows": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/ListHostsData"
+          }
+        },
+        "total": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "filter": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/FilterList"
+          }
+        }
+      },
+      "title": "ListHostsResp",
+      "required": [
+        "rows",
+        "total",
+        "filter"
+      ]
+    },
+    "ListHotLogHistoryData": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "hotTitle": {
+          "type": "string"
+        },
+        "projectId": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "operType": {
+          "type": "string"
+        },
+        "operContent": {
+          "type": "string"
+        },
+        "operStatus": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "createBy": {
+          "type": "string"
+        },
+        "createTime": {
+          "type": "integer",
+          "format": "int64"
+        }
+      },
+      "title": "ListHotLogHistoryData",
+      "required": [
+        "id",
+        "hotTitle",
+        "projectId",
+        "operType",
+        "operContent",
+        "operStatus",
+        "createBy",
+        "createTime"
+      ]
+    },
+    "ListHotLogHistoryResp": {
+      "type": "object",
+      "properties": {
+        "rows": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/HotLogHistoryDataTree"
+          }
+        }
+      },
+      "title": "ListHotLogHistoryResp",
+      "required": [
+        "rows"
+      ]
+    },
+    "ListInstallLogListData": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string"
+        }
+      },
+      "title": "ListInstallLogListData",
+      "required": [
+        "name"
+      ]
+    },
+    "ListInstallLogListReq": {
+      "type": "object",
+      "properties": {
+        "gameName": {
+          "type": "string"
+        }
+      },
+      "title": "ListInstallLogListReq",
+      "required": [
+        "gameName"
+      ]
+    },
+    "ListInstallLogListResp": {
+      "type": "object",
+      "properties": {
+        "rows": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/ListInstallLogListData"
+          }
+        }
+      },
+      "title": "ListInstallLogListResp",
+      "required": [
+        "rows"
+      ]
+    },
+    "ListKeyManageData": {
+      "type": "object",
+      "properties": {
+        "keyId": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "keyName": {
+          "type": "string"
+        },
+        "keyPath": {
+          "type": "string"
+        },
+        "keyPass": {
+          "type": "string"
+        },
+        "keyType": {
+          "type": "string"
+        },
+        "remark": {
+          "type": "string"
+        }
+      },
+      "title": "ListKeyManageData",
+      "required": [
+        "keyId",
+        "keyName",
+        "keyPath",
+        "keyPass",
+        "keyType",
+        "remark"
+      ]
+    },
+    "ListKeyManageReq": {
+      "type": "object",
+      "properties": {
+        "current": {
+          "type": "integer",
+          "format": "int64",
+          "default": "1"
+        },
+        "pageSize": {
+          "type": "integer",
+          "format": "int64",
+          "default": "15"
+        }
+      },
+      "title": "ListKeyManageReq",
+      "required": [
+        "current",
+        "pageSize"
+      ]
+    },
+    "ListKeyManageResp": {
+      "type": "object",
+      "properties": {
+        "rows": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/ListKeyManageData"
+          }
+        },
+        "total": {
+          "type": "integer",
+          "format": "int64"
+        }
+      },
+      "title": "ListKeyManageResp",
+      "required": [
+        "rows",
+        "total"
+      ]
+    },
+    "ListMaintainPlanData": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "projectId": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "maintainType": {
+          "type": "string"
+        },
+        "startTime": {
+          "type": "string"
+        },
+        "endTime": {
+          "type": "string"
+        },
+        "maintainRange": {
+          "type": "string"
+        },
+        "title": {
+          "type": "string"
+        },
+        "content": {
+          "type": "string"
+        },
+        "createBy": {
+          "type": "string"
+        },
+        "createTime": {
+          "type": "string"
+        },
+        "updateBy": {
+          "type": "string"
+        },
+        "updateTime": {
+          "type": "string"
+        },
+        "maintainOperator": {
+          "type": "string"
+        },
+        "clusterId": {
+          "type": "string"
+        },
+        "taskId": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "projectCn": {
+          "type": "string"
+        },
+        "maintainTypeCn": {
+          "type": "string"
+        },
+        "createNameEn": {
+          "type": "string"
+        },
+        "createNameCn": {
+          "type": "string"
+        },
+        "updateNameEn": {
+          "type": "string"
+        },
+        "updateNameCn": {
+          "type": "string"
+        }
+      },
+      "title": "ListMaintainPlanData",
+      "required": [
+        "id",
+        "projectId",
+        "maintainType",
+        "startTime",
+        "endTime",
+        "maintainRange",
+        "title",
+        "content",
+        "createBy",
+        "createTime",
+        "updateBy",
+        "updateTime",
+        "maintainOperator",
+        "clusterId",
+        "taskId",
+        "projectCn",
+        "maintainTypeCn",
+        "createNameEn",
+        "createNameCn",
+        "updateNameEn",
+        "updateNameCn"
+      ]
+    },
+    "ListMaintainPlanReq": {
+      "type": "object",
+      "properties": {
+        "current": {
+          "type": "integer",
+          "format": "int64",
+          "default": "1"
+        },
+        "pageSize": {
+          "type": "integer",
+          "format": "int64",
+          "default": "15"
+        },
+        "dateRange": {
+          "type": "string"
+        },
+        "projectIds": {
+          "type": "string"
+        },
+        "title": {
+          "type": "string"
+        },
+        "sortFields": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/SortFieldData"
+          }
+        }
+      },
+      "title": "ListMaintainPlanReq",
+      "required": [
+        "current",
+        "pageSize"
+      ]
+    },
+    "ListMaintainPlanResp": {
+      "type": "object",
+      "properties": {
+        "rows": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/ListMaintainPlanData"
+          }
+        },
+        "total": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "filter": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/FilterList"
+          }
+        }
+      },
+      "title": "ListMaintainPlanResp",
+      "required": [
+        "rows",
+        "total",
+        "filter"
+      ]
+    },
+    "ListMergePlanData": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "projectId": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "platformId": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "serverId": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "inputRange": {
+          "type": "string"
+        },
+        "combineRange": {
+          "type": "string"
+        },
+        "startTime": {
+          "type": "string"
+        },
+        "endTime": {
+          "type": "string"
+        },
+        "mergeStatus": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "mergeOperator": {
+          "type": "string"
+        },
+        "platformCn": {
+          "type": "string"
+        },
+        "platformEn": {
+          "type": "string"
+        },
+        "projectCn": {
+          "type": "string"
+        }
+      },
+      "title": "ListMergePlanData",
+      "required": [
+        "id",
+        "projectId",
+        "platformId",
+        "serverId",
+        "inputRange",
+        "combineRange",
+        "startTime",
+        "endTime",
+        "mergeStatus",
+        "mergeOperator",
+        "platformCn",
+        "platformEn",
+        "projectCn"
+      ]
+    },
+    "ListMergePlanReq": {
+      "type": "object",
+      "properties": {
+        "current": {
+          "type": "integer",
+          "format": "int64",
+          "default": "1"
+        },
+        "pageSize": {
+          "type": "integer",
+          "format": "int64",
+          "default": "15"
+        },
+        "projectIds": {
+          "type": "string"
+        },
+        "dateRange": {
+          "type": "string"
+        },
+        "platformIds": {
+          "type": "string"
+        },
+        "mergeStatus": {
+          "type": "string"
+        },
+        "sortFields": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/SortFieldData"
+          }
+        },
+        "platformType": {
+          "type": "string"
+        }
+      },
+      "title": "ListMergePlanReq",
+      "required": [
+        "current",
+        "pageSize"
+      ]
+    },
+    "ListMergePlanResp": {
+      "type": "object",
+      "properties": {
+        "rows": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/ListMergePlanData"
+          }
+        },
+        "total": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "filter": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/FilterList"
+          }
+        }
+      },
+      "title": "ListMergePlanResp",
+      "required": [
+        "rows",
+        "total",
+        "filter"
+      ]
+    },
+    "ListOpenPlanData": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "projectId": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "projectCn": {
+          "type": "string"
+        },
+        "platformId": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "platformCn": {
+          "type": "string"
+        },
+        "platformEn": {
+          "type": "string"
+        },
+        "serverId": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "gameserverTitle": {
+          "type": "string"
+        },
+        "openTime": {
+          "type": "string"
+        },
+        "installStatus": {
+          "type": "string"
+        },
+        "installOperator": {
+          "type": "string"
+        },
+        "initdbStatus": {
+          "type": "string"
+        },
+        "initdbOperator": {
+          "type": "string"
+        },
+        "remark": {
+          "type": "string"
+        },
+        "clusterName": {
+          "type": "string"
+        }
+      },
+      "title": "ListOpenPlanData",
+      "required": [
+        "id",
+        "projectId",
+        "projectCn",
+        "platformId",
+        "platformCn",
+        "platformEn",
+        "serverId",
+        "gameserverTitle",
+        "openTime",
+        "installStatus",
+        "installOperator",
+        "initdbStatus",
+        "initdbOperator",
+        "remark",
+        "clusterName"
+      ]
+    },
+    "ListOpenPlanReq": {
+      "type": "object",
+      "properties": {
+        "current": {
+          "type": "integer",
+          "format": "int64",
+          "default": "1"
+        },
+        "pageSize": {
+          "type": "integer",
+          "format": "int64",
+          "default": "15"
+        },
+        "projectIds": {
+          "type": "string"
+        },
+        "dateRange": {
+          "type": "string"
+        },
+        "platformIds": {
+          "type": "string"
+        },
+        "initdbStatus": {
+          "type": "string"
+        },
+        "installStatus": {
+          "type": "string"
+        },
+        "notType": {
+          "type": "string"
+        },
+        "gameType": {
+          "type": "string"
+        },
+        "sortFields": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/SortFieldData"
+          }
+        },
+        "clusterName": {
+          "type": "string"
+        },
+        "platformType": {
+          "type": "string"
+        }
+      },
+      "title": "ListOpenPlanReq",
+      "required": [
+        "current",
+        "pageSize"
+      ]
+    },
+    "ListOpenPlanResp": {
+      "type": "object",
+      "properties": {
+        "rows": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/ListOpenPlanData"
+          }
+        },
+        "total": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "filter": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/FilterList"
+          }
+        }
+      },
+      "title": "ListOpenPlanResp",
+      "required": [
+        "rows",
+        "total",
+        "filter"
+      ]
+    },
+    "ListPlatformData": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "projectId": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "platformId": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "platformEn": {
+          "type": "string"
+        },
+        "platformCn": {
+          "type": "string"
+        },
+        "domainFormat": {
+          "type": "string"
+        },
+        "remark": {
+          "type": "string"
+        },
+        "delFlag": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "labelNames": {
+          "type": "string"
+        },
+        "projectCn": {
+          "type": "string"
+        }
+      },
+      "title": "ListPlatformData",
+      "required": [
+        "id",
+        "projectId",
+        "platformId",
+        "platformEn",
+        "platformCn",
+        "domainFormat",
+        "remark",
+        "delFlag",
+        "labelNames",
+        "projectCn"
+      ]
+    },
+    "ListPlatformReq": {
+      "type": "object",
+      "properties": {
+        "current": {
+          "type": "integer",
+          "format": "int64",
+          "default": "1"
+        },
+        "pageSize": {
+          "type": "integer",
+          "format": "int64",
+          "default": "15"
+        },
+        "id": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "projectIds": {
+          "type": "string"
+        },
+        "platformInfo": {
+          "type": "string"
+        },
+        "label": {
+          "type": "string"
+        },
+        "platformType": {
+          "type": "string"
+        }
+      },
+      "title": "ListPlatformReq",
+      "required": [
+        "current",
+        "pageSize"
+      ]
+    },
+    "ListPlatformResp": {
+      "type": "object",
+      "properties": {
+        "rows": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/ListPlatformData"
+          }
+        },
+        "total": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "filter": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/FilterList"
+          }
+        }
+      },
+      "title": "ListPlatformResp",
+      "required": [
+        "rows",
+        "total",
+        "filter"
+      ]
+    },
+    "ListProjectData": {
+      "type": "object",
+      "properties": {
+        "viewCompanyId": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "viewCompanyCn": {
+          "type": "string"
+        },
+        "viewCompanyEn": {
+          "type": "string"
+        },
+        "viewCompanyDelFlag": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "viewPrId": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "viewProjectId": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "viewProjectCn": {
+          "type": "string"
+        },
+        "viewProjectEn": {
+          "type": "string"
+        },
+        "viewProjectTeam": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "viewDeptName": {
+          "type": "string"
+        },
+        "viewProjectType": {
+          "type": "string"
+        },
+        "viewProjectTypeCn": {
+          "type": "string"
+        },
+        "viewGroupQq": {
+          "type": "string"
+        },
+        "viewGroupTypeCn": {
+          "type": "string"
+        },
+        "viewGroupType": {
+          "type": "string"
+        },
+        "viewGroupDevQq": {
+          "type": "string"
+        },
+        "viewDelFlag": {
+          "type": "string"
+        }
+      },
+      "title": "ListProjectData",
+      "required": [
+        "viewCompanyId",
+        "viewCompanyCn",
+        "viewCompanyEn",
+        "viewCompanyDelFlag",
+        "viewPrId",
+        "viewProjectId",
+        "viewProjectCn",
+        "viewProjectEn",
+        "viewProjectTeam",
+        "viewDeptName",
+        "viewProjectType",
+        "viewProjectTypeCn",
+        "viewGroupQq",
+        "viewGroupTypeCn",
+        "viewGroupType",
+        "viewGroupDevQq",
+        "viewDelFlag"
+      ]
+    },
+    "ListSwitchEntranceGameserverData": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "projectId": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "projectCn": {
+          "type": "string"
+        },
+        "platformId": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "platformEn": {
+          "type": "string"
+        },
+        "configJsonPath": {
+          "type": "string"
+        },
+        "state": {
+          "type": "integer",
+          "format": "int64"
+        }
+      },
+      "title": "ListSwitchEntranceGameserverData",
+      "required": [
+        "id",
+        "projectId",
+        "projectCn",
+        "platformId",
+        "platformEn",
+        "configJsonPath",
+        "state"
+      ]
+    },
+    "ListSwitchEntranceGameserverReq": {
+      "type": "object",
+      "properties": {
+        "current": {
+          "type": "integer",
+          "format": "int64",
+          "default": "1"
+        },
+        "pageSize": {
+          "type": "integer",
+          "format": "int64",
+          "default": "15"
+        },
+        "projectIds": {
+          "type": "string"
+        }
+      },
+      "title": "ListSwitchEntranceGameserverReq",
+      "required": [
+        "current",
+        "pageSize"
+      ]
+    },
+    "ListSwitchEntranceGameserverResp": {
+      "type": "object",
+      "properties": {
+        "rows": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/ListSwitchEntranceGameserverData"
+          }
+        },
+        "total": {
+          "type": "integer",
+          "format": "int64"
+        }
+      },
+      "title": "ListSwitchEntranceGameserverResp",
+      "required": [
+        "rows",
+        "total"
+      ]
+    },
+    "ListTaskLogHistroyData": {
+      "type": "object",
+      "properties": {
+        "label": {
+          "type": "object"
+        },
+        "is_open": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "children": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/ListTaskLogHistroyData"
+          }
+        },
+        "tasks_id": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "value": {
+          "type": "integer",
+          "format": "int64"
+        }
+      },
+      "title": "ListTaskLogHistroyData",
+      "required": [
+        "label"
+      ]
+    },
+    "ListTaskLogHistroyDataJson": {
+      "type": "object",
+      "properties": {
+        "log_info": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/ListTaskLogHistroyData"
+          }
+        }
+      },
+      "title": "ListTaskLogHistroyDataJson",
+      "required": [
+        "log_info"
+      ]
+    },
+    "ListTaskLogHistroyReq": {
+      "type": "object",
+      "properties": {
+        "taskId": {
+          "type": "integer",
+          "format": "int64"
+        }
+      },
+      "title": "ListTaskLogHistroyReq",
+      "required": [
+        "taskId"
+      ]
+    },
+    "ListTaskLogHistroyResp": {
+      "type": "object",
+      "properties": {
+        "rows": {
+          "$ref": "#/definitions/ListTaskLogHistroyDataJson"
+        }
+      },
+      "title": "ListTaskLogHistroyResp",
+      "required": [
+        "rows"
+      ]
+    },
+    "ListTasksData": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "projectId": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "clusterId": {
+          "type": "string"
+        },
+        "taskType": {
+          "type": "string"
+        },
+        "level": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "maintainId": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "name": {
+          "type": "string"
+        },
+        "types": {
+          "type": "string"
+        },
+        "pid": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "taskStartTime": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "taskEndTime": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "taskExecTime": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "cmd": {
+          "type": "string"
+        },
+        "content": {
+          "type": "string"
+        },
+        "taskStatus": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "taskStep": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "outerIp": {
+          "type": "string"
+        },
+        "exportFileName": {
+          "type": "string"
+        },
+        "remark": {
+          "type": "string"
+        },
+        "createNameEn": {
+          "type": "string"
+        },
+        "createNameCn": {
+          "type": "string"
+        },
+        "updateNameEn": {
+          "type": "string"
+        },
+        "updateNameCn": {
+          "type": "string"
+        },
+        "projectCn": {
+          "type": "string"
+        },
+        "taskTypeCn": {
+          "type": "string"
+        },
+        "taskStatusCn": {
+          "type": "string"
+        },
+        "projectEn": {
+          "type": "string"
+        }
+      },
+      "title": "ListTasksData",
+      "required": [
+        "id",
+        "projectId",
+        "clusterId",
+        "taskType",
+        "level",
+        "maintainId",
+        "name",
+        "types",
+        "pid",
+        "taskStartTime",
+        "taskEndTime",
+        "taskExecTime",
+        "cmd",
+        "content",
+        "taskStatus",
+        "taskStep",
+        "outerIp",
+        "exportFileName",
+        "remark",
+        "createNameEn",
+        "createNameCn",
+        "updateNameEn",
+        "updateNameCn",
+        "projectCn",
+        "taskTypeCn",
+        "taskStatusCn",
+        "projectEn"
+      ]
+    },
+    "ListTasksReq": {
+      "type": "object",
+      "properties": {
+        "current": {
+          "type": "integer",
+          "format": "int64",
+          "default": "1"
+        },
+        "pageSize": {
+          "type": "integer",
+          "format": "int64",
+          "default": "15"
+        },
+        "projectIds": {
+          "type": "string"
+        },
+        "createTime": {
+          "type": "string"
+        },
+        "taskType": {
+          "type": "string"
+        },
+        "createBy": {
+          "type": "string"
+        }
+      },
+      "title": "ListTasksReq",
+      "required": [
+        "current",
+        "pageSize"
+      ]
+    },
+    "ListTasksResp": {
+      "type": "object",
+      "properties": {
+        "rows": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/ListTasksData"
+          }
+        },
+        "total": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "filter": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/FilterList"
+          }
+        }
+      },
+      "title": "ListTasksResp",
+      "required": [
+        "rows",
+        "total",
+        "filter"
+      ]
+    },
+    "ListTasksScheduleQueueData": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "scheduleTitle": {
+          "type": "string"
+        },
+        "scheduleStartTime": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "scheduleEndTime": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "scheduleStatus": {
+          "type": "string"
+        },
+        "scheduleType": {
+          "type": "string"
+        },
+        "scheduleRangeIds": {
+          "type": "string"
+        },
+        "schedulePid": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "scheduleLogs": {
+          "type": "string"
+        },
+        "scheduleRemark": {
+          "type": "string"
+        },
+        "scheduleTypeMaps": {
+          "type": "string"
+        },
+        "scheduleCreateByName": {
+          "type": "string"
+        }
+      },
+      "title": "ListTasksScheduleQueueData",
+      "required": [
+        "id",
+        "scheduleTitle",
+        "scheduleStartTime",
+        "scheduleEndTime",
+        "scheduleStatus",
+        "scheduleType",
+        "scheduleRangeIds",
+        "schedulePid",
+        "scheduleLogs",
+        "scheduleRemark",
+        "scheduleTypeMaps",
+        "scheduleCreateByName"
+      ]
+    },
+    "ListTasksScheduleQueueReq": {
+      "type": "object",
+      "properties": {
+        "current": {
+          "type": "integer",
+          "format": "int64",
+          "default": "1"
+        },
+        "pageSize": {
+          "type": "integer",
+          "format": "int64",
+          "default": "15"
+        },
+        "scheduleStatus": {
+          "type": "string"
+        },
+        "scheduleType": {
+          "type": "string"
+        },
+        "dateRange": {
+          "type": "string"
+        },
+        "scheduleTitle": {
+          "type": "string"
+        }
+      },
+      "title": "ListTasksScheduleQueueReq",
+      "required": [
+        "current",
+        "pageSize"
+      ]
+    },
+    "ListTasksScheduleQueueResp": {
+      "type": "object",
+      "properties": {
+        "rows": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/ListTasksScheduleQueueData"
+          }
+        },
+        "total": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "filter": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/FilterList"
+          }
+        }
+      },
+      "title": "ListTasksScheduleQueueResp",
+      "required": [
+        "rows",
+        "total",
+        "filter"
+      ]
+    },
+    "ListWaitInstallData": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "projectId": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "projectCn": {
+          "type": "string"
+        },
+        "platformId": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "platformCn": {
+          "type": "string"
+        },
+        "platformEn": {
+          "type": "string"
+        },
+        "serverId": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "gameserverTitle": {
+          "type": "string"
+        },
+        "openTime": {
+          "type": "string"
+        },
+        "installStatus": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "installOperator": {
+          "type": "string"
+        },
+        "initdbStatus": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "initdbOperator": {
+          "type": "string"
+        },
+        "remark": {
+          "type": "string"
+        }
+      },
+      "title": "ListWaitInstallData",
+      "required": [
+        "id",
+        "projectId",
+        "projectCn",
+        "platformId",
+        "platformCn",
+        "platformEn",
+        "serverId",
+        "gameserverTitle",
+        "openTime",
+        "installStatus",
+        "installOperator",
+        "initdbStatus",
+        "initdbOperator",
+        "remark"
+      ]
+    },
+    "ListWaitInstallReq": {
+      "type": "object",
+      "properties": {
+        "current": {
+          "type": "integer",
+          "format": "int64",
+          "default": "1"
+        },
+        "pageSize": {
+          "type": "integer",
+          "format": "int64",
+          "default": "15"
+        },
+        "sortFields": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/SortFieldData"
+          }
+        }
+      },
+      "title": "ListWaitInstallReq",
+      "required": [
+        "current",
+        "pageSize"
+      ]
+    },
+    "ListWaitInstallResp": {
+      "type": "object",
+      "properties": {
+        "rows": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/ListWaitInstallData"
+          }
+        },
+        "total": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "filter": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/FilterList"
+          }
+        }
+      },
+      "title": "ListWaitInstallResp",
+      "required": [
+        "rows",
+        "total",
+        "filter"
+      ]
+    },
+    "ListWaitMergeData": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "projectId": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "platformId": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "serverId": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "inputRange": {
+          "type": "string"
+        },
+        "combineRange": {
+          "type": "string"
+        },
+        "startTime": {
+          "type": "string"
+        },
+        "endTime": {
+          "type": "string"
+        },
+        "mergeStatus": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "mergeOperator": {
+          "type": "string"
+        },
+        "platformCn": {
+          "type": "string"
+        },
+        "platformEn": {
+          "type": "string"
+        },
+        "projectCn": {
+          "type": "string"
+        }
+      },
+      "title": "ListWaitMergeData",
+      "required": [
+        "id",
+        "projectId",
+        "platformId",
+        "serverId",
+        "inputRange",
+        "combineRange",
+        "startTime",
+        "endTime",
+        "mergeStatus",
+        "mergeOperator",
+        "platformCn",
+        "platformEn",
+        "projectCn"
+      ]
+    },
+    "ListWaitMergeReq": {
+      "type": "object",
+      "properties": {
+        "current": {
+          "type": "integer",
+          "format": "int64",
+          "default": "1"
+        },
+        "pageSize": {
+          "type": "integer",
+          "format": "int64",
+          "default": "15"
+        },
+        "sortFields": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/SortFieldData"
+          }
+        }
+      },
+      "title": "ListWaitMergeReq",
+      "required": [
+        "current",
+        "pageSize"
+      ]
+    },
+    "ListWaitMergeResp": {
+      "type": "object",
+      "properties": {
+        "rows": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/ListWaitMergeData"
+          }
+        },
+        "total": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "filter": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/FilterList"
+          }
+        }
+      },
+      "title": "ListWaitMergeResp",
+      "required": [
+        "rows",
+        "total",
+        "filter"
+      ]
+    },
+    "MaintainGetClusterInfoData": {
+      "type": "object",
+      "properties": {
+        "labelId": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "labelName": {
+          "type": "string"
+        },
+        "labelValues": {
+          "type": "string"
+        },
+        "labelx": {
+          "type": "string"
+        },
+        "labelRemark": {
+          "type": "string"
+        },
+        "projectId": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "outerIp": {
+          "type": "string"
+        },
+        "baseDir": {
+          "type": "string"
+        }
+      },
+      "title": "MaintainGetClusterInfoData",
+      "required": [
+        "labelId",
+        "labelName",
+        "labelValues",
+        "labelx",
+        "labelRemark",
+        "projectId",
+        "outerIp",
+        "baseDir"
+      ]
+    },
+    "MaintainGetClusterInfoReq": {
+      "type": "object",
+      "properties": {
+        "projectId": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "labelIds": {
+          "type": "string"
+        }
+      },
+      "title": "MaintainGetClusterInfoReq",
+      "required": [
+        "projectId"
+      ]
+    },
+    "MaintainGetClusterInfoResp": {
+      "type": "object",
+      "properties": {
+        "clusterInfoData": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/MaintainGetClusterInfoData"
+          }
+        }
+      },
+      "title": "MaintainGetClusterInfoResp",
+      "required": [
+        "clusterInfoData"
+      ]
+    },
+    "MaintainPlanCommon": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "projectId": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "maintainType": {
+          "type": "string"
+        },
+        "startTime": {
+          "type": "string"
+        },
+        "endTime": {
+          "type": "string"
+        },
+        "maintainRange": {
+          "type": "string"
+        },
+        "title": {
+          "type": "string"
+        },
+        "content": {
+          "type": "string"
+        },
+        "createBy": {
+          "type": "string"
+        },
+        "createTime": {
+          "type": "string"
+        },
+        "updateBy": {
+          "type": "string"
+        },
+        "updateTime": {
+          "type": "string"
+        },
+        "maintainOperator": {
+          "type": "string"
+        },
+        "clusterId": {
+          "type": "string"
+        },
+        "taskId": {
+          "type": "integer",
+          "format": "int64"
+        }
+      },
+      "title": "MaintainPlanCommon"
+    },
+    "MergeCheckServerRangeReq": {
+      "type": "object",
+      "title": "MergeCheckServerRangeReq"
+    },
+    "MergeCheckServerRangeResp": {
+      "type": "object",
+      "properties": {
+        "combineRange": {
+          "type": "string"
+        }
+      },
+      "title": "MergeCheckServerRangeResp",
+      "required": [
+        "combineRange"
+      ]
+    },
+    "MergePlanCommon": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "projectId": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "platformId": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "serverId": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "inputRange": {
+          "type": "string"
+        },
+        "combineRange": {
+          "type": "string"
+        },
+        "startTime": {
+          "type": "string"
+        },
+        "endTime": {
+          "type": "string"
+        },
+        "mergeStatus": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "mergeOperator": {
+          "type": "string"
+        },
+        "allRange": {
+          "type": "array",
+          "items": {
+            "type": "integer",
+            "format": "int64"
+          }
+        }
+      },
+      "title": "MergePlanCommon"
+    },
+    "OpenPlanCommon": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "projectId": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "platformId": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "serverId": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "gameserverTitle": {
+          "type": "string"
+        },
+        "installStatus": {
+          "type": "string"
+        },
+        "openTime": {
+          "type": "string"
+        },
+        "remark": {
+          "type": "string"
+        }
+      },
+      "title": "OpenPlanCommon"
+    },
+    "OperationListM": {
+      "type": "object",
+      "properties": {
+        "operationListForm": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/TaskCommonJson"
+          }
+        }
+      },
+      "title": "OperationListM",
+      "required": [
+        "operationListForm"
+      ]
+    },
+    "OwnerProjectData": {
+      "type": "object",
+      "properties": {
+        "label": {
+          "type": "string"
+        },
+        "value": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "projectEn": {
+          "type": "string"
+        }
+      },
+      "title": "OwnerProjectData"
+    },
+    "OwnerProjectDataResp": {
+      "type": "object",
+      "properties": {
+        "ownerProjectData": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/OwnerProjectData"
+          }
+        }
+      },
+      "title": "OwnerProjectDataResp",
+      "required": [
+        "ownerProjectData"
+      ]
+    },
+    "PlatformCommon": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "projectId": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "platformId": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "platformEn": {
+          "type": "string"
+        },
+        "platformCn": {
+          "type": "string"
+        },
+        "domainFormat": {
+          "type": "string"
+        },
+        "remark": {
+          "type": "string"
+        },
+        "delFlag": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "platformFormat": {
+          "type": "string"
+        }
+      },
+      "title": "PlatformCommon"
+    },
+    "PlatformListByProjectReq": {
+      "type": "object",
+      "properties": {
+        "notType": {
+          "type": "string"
+        }
+      },
+      "title": "PlatformListByProjectReq"
+    },
+    "PlatformListByProjectResp": {
+      "type": "object",
+      "properties": {
+        "platfromData": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/PlatformCommon"
+          }
+        }
+      },
+      "title": "PlatformListByProjectResp",
+      "required": [
+        "platfromData"
+      ]
+    },
+    "RecycleDeleteAssetReq": {
+      "type": "object",
+      "title": "RecycleDeleteAssetReq"
+    },
+    "SortFieldData": {
+      "type": "object",
+      "properties": {
+        "field": {
+          "type": "string"
+        },
+        "order": {
+          "type": "string"
+        }
+      },
+      "title": "SortFieldData",
+      "required": [
+        "field",
+        "order"
+      ]
+    },
+    "SwitchEntranceGameserverCommon": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "projectId": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "platformId": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "configJsonPath": {
+          "type": "string"
+        },
+        "state": {
+          "type": "integer",
+          "format": "int64"
+        }
+      },
+      "title": "SwitchEntranceGameserverCommon"
+    },
+    "TaskCommonJson": {
+      "type": "object",
+      "properties": {
+        "operation": {
+          "type": "string"
+        },
+        "operationCn": {
+          "type": "string"
+        },
+        "stable": {
+          "type": "string"
+        },
+        "outerIp": {
+          "type": "string"
+        },
+        "dbUpdate": {
+          "type": "string"
+        },
+        "fileList": {
+          "type": "string"
+        },
+        "maintainRange": {
+          "type": "string"
+        },
+        "cmdList": {
+          "type": "string"
+        },
+        "dbType": {
+          "type": "string"
+        },
+        "platName": {
+          "type": "string"
+        },
+        "checkSt": {
+          "type": "string"
+        },
+        "SQLCmd": {
+          "type": "string"
+        },
+        "merge": {
+          "type": "string"
+        },
+        "exportFileName": {
+          "type": "string"
+        },
+        "initSetTime": {
+          "type": "string"
+        },
+        "executeSQL": {
+          "type": "string"
+        },
+        "executeFlag": {
+          "type": "string"
+        }
+      },
+      "title": "TaskCommonJson"
+    },
+    "TaskGetFormatJsonReq": {
+      "type": "object",
+      "properties": {
+        "game": {
+          "type": "string"
+        },
+        "content": {
+          "type": "string"
+        }
+      },
+      "title": "TaskGetFormatJsonReq",
+      "required": [
+        "game",
+        "content"
+      ]
+    },
+    "TaskGetFormatJsonResp": {
+      "type": "object",
+      "properties": {
+        "operationListM": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/OperationListM"
+          }
+        }
+      },
+      "title": "TaskGetFormatJsonResp",
+      "required": [
+        "operationListM"
+      ]
+    },
+    "TaskOperationListData": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "name": {
+          "type": "string"
+        },
+        "url": {
+          "type": "string"
+        },
+        "parentId": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "orderNum": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "tp": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "roleId": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "userId": {
+          "type": "integer",
+          "format": "int64"
+        }
+      },
+      "title": "TaskOperationListData",
+      "required": [
+        "id",
+        "name",
+        "url",
+        "parentId",
+        "orderNum",
+        "tp",
+        "roleId",
+        "userId"
+      ]
+    },
+    "TasksScheduleQueueCommon": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "scheduleTitle": {
+          "type": "string"
+        },
+        "scheduleStartTime": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "scheduleEndTime": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "scheduleStatus": {
+          "type": "string"
+        },
+        "scheduleType": {
+          "type": "string"
+        },
+        "scheduleRangeIds": {
+          "type": "string"
+        },
+        "scheduleRemark": {
+          "type": "string"
+        }
+      },
+      "title": "TasksScheduleQueueCommon"
+    },
+    "UpdateAlarmThresholdManageReq": {
+      "type": "object",
+      "title": "UpdateAlarmThresholdManageReq"
+    },
+    "UpdateAssetReq": {
+      "type": "object",
+      "title": "UpdateAssetReq"
+    },
+    "UpdateAutoOpengameRuleReq": {
+      "type": "object",
+      "title": "UpdateAutoOpengameRuleReq"
+    },
+    "UpdateConfigFileDeliveryTemplateReq": {
+      "type": "object",
+      "properties": {
+        "configName": {
+          "type": "string"
+        },
+        "projectEn": {
+          "type": "string"
+        },
+        "projectId": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "content": {
+          "type": "string"
+        }
+      },
+      "title": "UpdateConfigFileDeliveryTemplateReq",
+      "required": [
+        "configName",
+        "projectEn",
+        "projectId",
+        "content"
+      ]
+    },
+    "UpdateConfigFileReq": {
+      "type": "object",
+      "title": "UpdateConfigFileReq"
+    },
+    "UpdateFeatureServerReq": {
+      "type": "object",
+      "title": "UpdateFeatureServerReq"
+    },
+    "UpdateKeyManageReq": {
+      "type": "object",
+      "title": "UpdateKeyManageReq"
+    },
+    "UpdateMaintainPlanReq": {
+      "type": "object",
+      "title": "UpdateMaintainPlanReq"
+    },
+    "UpdateMergePlanReq": {
+      "type": "object",
+      "title": "UpdateMergePlanReq"
+    },
+    "UpdateOpenPlanReq": {
+      "type": "object",
+      "title": "UpdateOpenPlanReq"
+    },
+    "UpdatePlatformReq": {
+      "type": "object",
+      "title": "UpdatePlatformReq"
+    },
+    "UpdateSwitchEntranceGameserverReq": {
+      "type": "object",
+      "title": "UpdateSwitchEntranceGameserverReq"
+    },
+    "UpdateTasksReq": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "title": {
+          "type": "string"
+        },
+        "errDifferenceSet": {
+          "type": "string"
+        },
+        "differenceSet": {
+          "type": "string"
+        },
+        "isEnable": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "taskType": {
+          "type": "string"
+        },
+        "projectId": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "clusterId": {
+          "type": "string"
+        },
+        "maintainId": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "startTime": {
+          "type": "string"
+        },
+        "content": {
+          "type": "string"
+        },
+        "taskListForm": {
+          "type": "string"
+        },
+        "outerIp": {
+          "type": "string"
+        }
+      },
+      "title": "UpdateTasksReq",
+      "required": [
+        "id",
+        "title",
+        "projectId",
+        "clusterId",
+        "maintainId",
+        "startTime",
+        "taskListForm"
+      ]
+    },
+    "UpdateTasksScheduleQueueReq": {
+      "type": "object",
+      "title": "UpdateTasksScheduleQueueReq"
+    },
+    "VueTree": {
+      "type": "object",
+      "properties": {
+        "value": {
+          "type": "string"
+        },
+        "label": {
+          "type": "string"
+        },
+        "total": {
+          "type": "string"
+        },
+        "level": {
+          "type": "string"
+        },
+        "platform": {
+          "type": "string"
+        },
+        "ips": {
+          "type": "string"
+        },
+        "new_platform": {
+          "type": "string"
+        },
+        "children": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/VueTree"
+          }
+        }
+      },
+      "title": "VueTree",
+      "required": [
+        "value",
+        "label"
+      ]
+    },
+    "WebSshDataTree": {
+      "type": "object",
+      "properties": {
+        "key": {
+          "type": "string"
+        },
+        "value": {
+          "type": "string"
+        },
+        "children": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/WebSshDataTree"
+          }
+        },
+        "hostname": {
+          "type": "string"
+        },
+        "sshPort": {
+          "type": "string"
+        },
+        "cluster": {
+          "type": "string"
+        }
+      },
+      "title": "WebSshDataTree"
+    }
+  },
+  "securityDefinitions": {
+    "apiKey": {
+      "type": "apiKey",
+      "description": "Enter JWT Bearer token **_only_**",
+      "name": "Authorization",
+      "in": "header"
+    }
+  }
+}

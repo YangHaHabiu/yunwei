@@ -1,0 +1,40 @@
+info(
+    desc: "登录日志"
+)
+
+type (
+
+    ListLoginLogReq struct {
+        Current int64 `form:"current,default=1"`
+        PageSize int64 `form:"pageSize,default=15"`
+        DateRange string `form:"dateRange,optional"`
+        UserName string `form:"userName,optional"`
+        Status string `form:"status,optional"`
+        Ip string `form:"ip,optional"`
+    }
+    ListLoginLogData struct {
+        Id int64 `json:"id"`
+        UserName string `json:"userName"`
+        Status string `json:"status"`
+        Ip string `json:"ip"`
+        CreateTime string `json:"createTime"`
+    }
+    ListLoginLogResp struct {
+        Rows []*ListLoginLogData `json:"rows"`
+        Total int64 `json:"total"`
+        Filter   []*FilterList 	 `json:"filter"`
+    }
+
+)
+
+@server(
+    group: log
+    prefix: /admin/log
+)
+service admin {
+    @doc(
+        summary:"登录日志列表"
+    )
+    @handler LoginLogList
+    get /loginlog (ListLoginLogReq) returns (ListLoginLogResp)
+}

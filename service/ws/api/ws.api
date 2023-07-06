@@ -1,0 +1,57 @@
+syntax = "v1"
+
+info(
+	title: "websocket"
+	author: "acool"
+)
+
+type (
+	GetProcessReq {
+		Token  string `form:"token"`
+		TaskId int64  `form:"taskId"`
+	}
+	GetTaskRealTimeLogReq {
+		Token string `form:"token"`
+	}
+	GetWebSshReq {
+		Token    string `form:"token"`
+		Hostname string `form:"hostname"`
+		SshPort  int64  `form:"sshPort,optional"`
+		Cluster  string `form:"cluster,optional"`
+	}
+
+	GetInstallLogReq {
+		Token    string `form:"token"`
+		GameName string `form:"gameName,optional"`
+		FileName string `form:"fileName,optional"`
+	}
+)
+
+@server(
+	group: ws
+	prefix: /ws
+)
+service ws {
+	@doc(
+		summary:"获取任务进度信息"
+	)
+	@handler getProcess
+	get /getProcess(GetProcessReq) returns ()
+	@doc(
+		summary:"获取任务实时日志"
+	)
+	@handler getTaskRealTimeLog
+	get /getTaskRealTimeLog(GetTaskRealTimeLogReq) returns ()
+	@doc(
+		summary:"获取webssh"
+	)
+	@handler getWebSsh
+	get /getWebSsh(GetWebSshReq) returns ()
+	
+	@doc(
+		summary:"获取装服日志"
+	)
+	@handler getInstallLog
+	get /getInstallLog(GetInstallLogReq) returns ()
+	
+}

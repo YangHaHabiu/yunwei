@@ -1,0 +1,367 @@
+info(
+	desc: "用户信息"
+)
+
+
+type (
+	//过滤条件的结构体
+	FilterList  {
+		Label    string       `json:"label,omitempty"`
+		Value    string       `json:"value,omitempty"`
+		Types    string       `json:"types,omitempty"`
+		children []*FilterList `json:"children,omitempty"`
+	}
+	loginReq {
+		Username string `json:"username"`
+		Password string `json:"password"`
+		CaptchaType string `json:"captchaType,optional"`
+		ClientUid string `json:"clientUid,optional"`
+		PointJson string `json:"pointJson,optional"`
+	}
+	loginResp {
+		Id               int64  `json:"id"`
+		Username         string `json:"username"`
+		AccessToken      string `json:"token"`
+		AccessExpire     int64  `json:"accessExpire"`
+		RefreshAfter     int64  `json:"refreshAfter"`
+	}
+
+
+
+
+	StrategyJson{
+		AccessUrls []string `json:"access_urls"`
+	}
+
+
+	GetRoutersResp{
+		Rows []*MenuNewVue `json:"rows"`
+	}
+
+	MenuNewVue {
+		AlwaysShow bool `json:"alwaysShow,omitempty"`
+		Component string `json:"component,omitempty"`
+		Hidden  bool  `json:"hidden,omitempty"`
+		Name string `json:"name,omitempty"`
+		Path string `json:"path,omitempty"`
+		Redirect string `json:"redirect,omitempty"`
+		Meta MetaVue `json:"meta,omitempty"`
+		Children []*MenuNewVue `json:"children,omitempty"`
+	}
+
+
+	MetaVue  {
+		Icon string `json:"icon,omitempty"`
+		Link string `json:"link,omitempty"`
+		NoCache string `json:"noCache,omitempty"`
+		Title string `json:"title,omitempty"`
+	}
+
+	ListMenuTree {
+		Id       int64  `json:"id"`       // 编号
+		Path     string `json:"path"`     // 菜单路径
+		Name     string `json:"name"`     // 菜单名称
+		ParentId int64  `json:"parentId"` // 父菜单ID，一级菜单为0
+		Icon     string `json:"icon"`     // 菜单图标
+	}
+
+	ListMenuTreeVue {
+		Id           int64        `json:"id"`
+		ParentId     int64        `json:"parentId"`
+		Title        string       `json:"title"`
+		Path         string       `json:"path"`
+		Name         string       `json:"name"`
+		Icon         string       `json:"icon"`
+		VueRedirect  string       `json:"redirect"`
+		VueComponent string       `json:"component"`
+		IsShow string `json:"isShow"`
+		Meta         MenuTreeMeta `json:"meta"`
+	}
+
+
+	MenuTreeMeta {
+		Title string `json:"title"`
+		Icon  string `json:"icon"`
+		OrderNum     int64       `json:"rank"`
+		KeepAlive string `json:"keepAlive"`
+	}
+
+	userInfoResp {
+		Avatar      string             `json:"avatar"`
+		Name        string             `json:"name"`
+		Profiles ListUserData `json:"profiles"`
+		UserId int64 `json:"userId"`
+		MenuTreeVue []*ListMenuTreeVue `json:"menuTreeVue"`
+		WebTitle string `json:"webTitle"`
+	}
+	addUserReq {
+		Email    string `json:"email,optional"`
+		Mobile   string `json:"mobile,optional"`
+		Name     string `json:"name"`
+		NickName string `json:"nickName"`
+		DeptId   int64  `json:"deptId,optional"`
+		RoleIds   string  `json:"roleIds,optional"`
+		UgroupIds string `json:"ugroupIds,optional"`
+		ProjectIds string `json:"projectIds,optional"`
+	}
+
+
+	ListUserReq {
+		Current  int64  `form:"current,default=1"`
+		PageSize int64  `form:"pageSize,default=20"`
+		Id int64 `form:"id,optional"`
+		Name     string `form:"name,optional"`
+		NickName string `form:"nickName,optional"`
+		Mobile   string `form:"mobile,optional"`
+		Email    string `form:"email,optional"`
+		Status   string  `form:"status,optional"`
+		DeptIds   string  `form:"deptIds,optional"`
+		ProjectIds   string  `form:"projectIds,optional"`
+		RoleIds   string  `form:"roleIds,optional"`
+		UgroupIds   string  `form:"ugroupIds,optional"`
+	}
+
+
+
+	ListUserData {
+		Id             int64  `json:"id"`             // 编号
+		Name           string `json:"name"`           // 用户名
+		NickName       string `json:"nickName"`       // 昵称
+		Avatar         string `json:"avatar"`         // 头像
+		Password       string `json:"password"`       // 密码
+		Salt           string `json:"salt"`           // 加密盐
+		Email          string `json:"email"`          // 邮箱
+		Mobile         string `json:"mobile"`         // 手机号
+		Status         int64  `json:"status"`         // 状态  0：禁用   1：正常
+		DeptId         int64  `json:"deptId"`         // 机构ID
+		CreateBy       string `json:"createBy"`       // 创建人
+		CreateTime     string `json:"createTime"`     // 创建时间
+		LastUpdateBy   string `json:"lastUpdateBy"`   // 更新人
+		LastUpdateTime string `json:"lastUpdateTime"` // 更新时间
+		RoleIds         string  `json:"roleIds"`
+		RoleName       string `json:"roleName"`
+		DeptName       string `json:"deptName"`
+		UgroupIds      string `json:"ugroupIds"`
+		UgroupNames    string `json:"ugroupNames"`
+		ProjectIds string `json:"projectIds"`
+	}
+	ListUserResp {
+		Rows     []*ListUserData `json:"rows"`
+		Total    int64           `json:"total"`
+		Filter   []*FilterList 	 `json:"filter"`
+	}
+	UpdateUserReq {
+		Id       int64  `json:"id"`
+		Email    string `json:"email,optional"`
+		Mobile   string `json:"mobile,optional"`
+		Name     string `json:"name"`
+		NickName string `json:"nickName"`
+		DeptId   int64  `json:"deptId,optional"`
+		RoleIds   string  `json:"roleIds,optional"`
+		UgroupIds string `json:"ugroupIds,optional"`
+		ProjectIds string `json:"projectIds,optional"`
+		Status   int64  `json:"status"`
+	}
+
+	UpdatePersonalReq{
+		Id       int64  `json:"id"`
+		Email    string `json:"email"`
+		Mobile   string `json:"mobile"`
+		Avatar   string `json:"avatar"`
+		NickName string `json:"nickName"`
+	}
+
+
+	UpdatePersonalPasswordReq{
+		Id       int64  `json:"id"`
+		OldPassword string `json:"oldPassword"`
+		NewPassword string `json:"newPassword"`
+		NewPasswordRepeat string `json:"newPasswordRepeat"`
+	}
+
+
+
+	DeleteUserReq {
+		Id int64 `path:"id"`
+	}
+
+	ReSetPasswordReq {
+		Id int64 `json:"id"`
+		NewPassword string `json:"newPassword,default=123456"`
+	}
+
+	UserStatusReq {
+		Id     int64 `json:"id"`
+		Status int64 `json:"status"`
+	}
+
+
+	RoleAllResp {
+		Id     int64  `json:"id"`
+		Name   string `json:"name"`
+		Remark string `json:"remark"`
+	}
+
+	DeptAllResp {
+		Id       int64  `json:"id"`
+		Value    string `json:"value"`
+		Title    string `json:"title"`
+		ParentId int64  `json:"parentId"`
+	}
+
+	UgroupAllResp{
+		Id     int64  `json:"id"`
+		Name   string `json:"name"`
+		Remark string `json:"remark"`
+	}
+
+	SelectDataReq {
+		Current  int64 `form:"current,default=1"`
+		PageSize int64 `form:"pageSize,default=20"`
+	}
+
+	SelectDataResp {
+		RoleAll []*RoleAllResp `json:"roleAll"`
+		DeptAll []*DeptAllResp `json:"deptAll"`
+		UgroupAll []*UgroupAllResp `json:"ugroupAll"`
+
+	}
+
+	GetUserByIdReq {
+		UserId int64 `path:"userId"`
+	}
+	GetUserByIdResp {
+		Data ListUserData `json:"data,omitempty"`
+		RoleIds []int64 `json:"roleIds,omitempty"`
+		Roles []*RoleAllResp `json:"roles"`
+		UgroupIds []int64 `json:"ugroupIds,omitempty"`
+		Ugroups []*UgroupAllResp `json:"ugroups"`
+	}
+	GetUserAssignmentPolicyReq{
+		UserId int64 `path:"userId"`
+	}
+	GetUserAssignmentPolicyResp{
+		UserChecked []int64 `json:"userChecked"`
+		UserAllData []*ListStgroupData`json:"userAllData"`
+	}
+
+	UserAssignmentPolicyReq{
+		UserId int64 `json:"userId"`
+		UserChecked string `json:"userChecked"`
+	}
+
+	UserBatchEditItemsReq{
+		UserIds string `json:"userIds"`
+		ProjectIds string `json:"projectIds"`
+		Operate string `json:"operate"`
+	}
+
+
+)
+
+@server(
+	group: user
+	prefix: /admin/user
+)
+service admin {
+	@doc(
+		summary:"用户信息"
+	)
+	@handler UserInfo
+	get /currentUser  returns (userInfoResp)
+	@doc(
+		summary:"用户退出"
+	)
+	@handler Logout
+	post /logout  returns()
+
+	@doc(
+		summary:"用户新增"
+	)
+	@handler UserAdd
+	post /add (addUserReq) returns()
+	@doc(
+		summary:"用户列表"
+	)
+	@handler UserList
+	get /list (ListUserReq) returns (ListUserResp)
+	@doc(
+		summary:"用户更新"
+	)
+	@handler UserUpdate
+	put /update (UpdateUserReq) returns ()
+	@doc(
+		summary:"用户删除"
+	)
+	@handler UserDelete
+	delete /delete/:id (DeleteUserReq) returns()
+	@doc(
+		summary:"重置用户密码"
+	)
+	@handler ReSetPassword
+	put /reSetPassword (ReSetPasswordReq) returns ()
+	@doc(
+		summary:"更改用户状态"
+	)
+	@handler UpdateUserStatus
+	put /updateUserStatus (UserStatusReq) returns ()
+	@doc(
+		summary:"用户相关所有数据"
+	)
+	@handler SelectAllData
+	get /selectAllData (SelectDataReq) returns (SelectDataResp)
+
+	@doc(
+		summary:"根据id获取对应用户数据"
+	)
+	@handler GetUserById
+	get /edit/:userId (GetUserByIdReq) returns (GetUserByIdResp)
+
+
+	@doc(
+		summary:"修改个人用户相关信息"
+	)
+	@handler UpdatePersonalData
+	put /updatePersonalData (UpdatePersonalReq) returns ()
+	@doc(
+		summary:"修改个人密码信息"
+	)
+	@handler UpdatePersonalPasswordData
+	put /updatePersonalPasswordData (UpdatePersonalPasswordReq) returns ()
+	@doc(
+		summary :"获取个人路由信息"
+	)
+	@handler GetRouters
+	get /getRouters returns(GetRoutersResp)
+
+	@doc (
+		summary :"获取用户已选策略"
+	)
+	@handler GetUserAssignmentPolicy
+	get /getUserAssignmentPolicy/:userId(GetUserAssignmentPolicyReq)  returns(GetUserAssignmentPolicyResp)
+
+	@doc (
+		summary :"分配用户策略"
+	)
+	@handler UserAssignmentPolicy
+	post /userAssignmentPolicy(UserAssignmentPolicyReq)  returns()
+
+	@doc (
+		summary :"批量分配（删除）用户项目"
+	)
+	@handler UserBatchEditItems
+	post /userBatchEditItems(UserBatchEditItemsReq)  returns()
+
+}
+
+@server(
+	group: user
+	prefix: /admin/user
+)
+service admin {
+	@doc(
+		summary:"用户登录"
+	)
+	@handler UserLogin
+	post /login (loginReq) returns (loginResp)
+}

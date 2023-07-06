@@ -1,0 +1,35 @@
+syntax = "v1"
+
+info(
+	title: "运维模块"
+	desc: "运维模块"
+	author: "acool"
+)
+
+import (
+	"doc/asset.api"
+	"doc/featureServer.api"
+	"doc/platform.api"
+	"doc/keyManage.api"
+	"doc/maintainPlan.api"
+	"doc/mergePlan.api"
+	"doc/openPlan.api"
+	"doc/cluster.api"
+	"doc/hosts.api"
+	"doc/gameServer.api"
+	"doc/taskQueue.api"
+	"doc/wsaddress.api"
+	"doc/hotLogHistory.api"
+	"doc/taskLogHistroy.api"
+	"doc/configFile.api"
+	"doc/configFileDelivery.api"
+	"doc/waitInstall.api"
+	"doc/waitMerge.api"
+	"doc/installLogList.api"
+	"doc/help.api"
+	"doc/dashboard.api"
+	"doc/autoOpengameRule.api"
+	"doc/switchEntranceGameserver.api"
+	"doc/alarmThresholdManage.api"
+	"doc/tasksScheduleQueue.api"
+)

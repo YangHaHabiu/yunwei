@@ -1,0 +1,94 @@
+info(
+    desc: "项目信息"
+)
+
+type (
+
+    addProjectReq struct {
+        ProjectCn string `json:"projectCn"`
+        ProjectEn string `json:"projectEn"`
+        ProjectTeam int64 `json:"projectTeam,optional"`
+        ProjectType string `json:"projectType,optional"`
+        CompanyId int64 `json:"companyId,optional"`
+        GroupQq string `json:"groupQq,optional"`
+        GroupType string `json:"groupType,optional"`
+        GroupDevQq string `json:"groupDevQq,optional"`
+    }
+
+    ListProjectReq struct {
+        Current int64 `form:"current,default=1"`
+        PageSize int64 `form:"pageSize,default=15"`
+        ProjectCn string `form:"projectCn,optional"`
+        ProjectEn string `form:"projectEn,optional"`
+        Status string `form:"status,optional"`
+        ProjectType string `form:"projectType,optional"`
+    }
+    ListProjectData struct {
+        ViewCompanyId int64 `json:"companyId"`
+        ViewCompanyCn string `json:"viewCompanyCn"`
+        ViewCompanyEn string `json:"viewCompanyEn"`
+        ViewCompanyDelFlag int64 `json:"viewCompanyDelFlag"`
+        ViewPrId int64 `json:"viewPrId"`
+        ViewProjectId int64 `json:"projectId"`
+        ViewProjectCn string `json:"projectCn"`
+        ViewProjectEn string `json:"projectEn"`
+        ViewDeptId int64 `json:"projectTeam"`
+        ViewDeptName string `json:"viewDeptName"`
+        ViewProjectType string `json:"projectType"`
+        ViewProjectTypeCn string `json:"projectTypeCn"`
+        ViewGroupQq string `json:"groupQq"`
+        ViewGroupTypeCn string `json:"groupTypeCn"`
+        ViewGroupTypeEn string `json:"groupType"`
+        ViewGroupDevQq string `json:"groupDevQq"`
+        ViewProjectDelFlag string `json:"delFlag"`
+    }
+    ListProjectResp struct {
+        Rows []*ListProjectData `json:"rows"`
+        Total int64 `json:"total"`
+        Filter   []*FilterList 	 `json:"filter"`
+    }
+    UpdateProjectReq struct {
+        ProjectId int64 `json:"projectId"`
+        ProjectCn string `json:"projectCn"`
+        ProjectEn string `json:"projectEn"`
+        ProjectTeam int64 `json:"projectTeam,optional"`
+        CompanyId int64 `json:"companyId,optional"`
+        ProjectType string `json:"projectType,optional"`
+        GroupQq string `json:"groupQq,optional"`
+        GroupType string `json:"groupType,optional"`
+        GroupDevQq string `json:"groupDevQq,optional"`
+    }
+    DeleteProjectReq struct {
+        ProjectId int64 `path:"projectId"`
+    }
+
+)
+
+
+@server(
+    group: project
+    prefix: /admin/project
+
+)
+service admin {
+    @doc(
+        summary:"项目新增"
+    )
+    @handler ProjectAdd
+    post /add (addProjectReq) returns()
+    @doc(
+        summary:"项目列表"
+    )
+    @handler ProjectList
+    get /list (ListProjectReq) returns (ListProjectResp)
+    @doc(
+        summary:"项目更新"
+    )
+    @handler ProjectUpdate
+    put /update (UpdateProjectReq) returns ()
+    @doc(
+        summary:"项目删除"
+    )
+    @handler ProjectDelete
+    delete /delete/:projectId (DeleteProjectReq) returns ()
+}

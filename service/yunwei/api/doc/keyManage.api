@@ -1,0 +1,90 @@
+syntax = "v1"
+
+info(
+	title: "密钥管理信息"
+	desc: "密钥管理信息"
+	author: "acool"
+)
+
+type (
+
+	AddKeyManageReq {
+		*KeyManageCommon
+	}
+
+	UpdateKeyManageReq {
+		*KeyManageCommon
+	}
+
+	DeleteKeyManageReq {
+		KeyId int64 `path:"keyId"`
+	}
+
+    GetKeyManageReq {
+		KeyId int64 `path:"keyId"`
+	}
+
+	KeyManageCommon {
+        KeyId int64 `json:"keyId,optional"`
+        KeyName string `json:"keyName,optional"`
+        KeyPath string `json:"keyPath,optional"`
+        KeyPass string `json:"keyPass,optional"`
+        KeyType string `json:"keyType,optional"`
+        Remark string `json:"remark,optional"`
+	}
+
+	ListKeyManageReq {
+		Current  int64  `form:"current,default=1"`
+		PageSize int64  `form:"pageSize,default=15"`
+	}
+	ListKeyManageResp {
+		Rows   []*ListKeyManageData `json:"rows"`
+		Total  int64            `json:"total"`
+	}
+	ListKeyManageData {
+        KeyId int64 `json:"keyId"`
+        KeyName string `json:"keyName"`
+        KeyPath string `json:"keyPath"`
+        KeyPass string `json:"keyPass"`
+        KeyType string `json:"keyType"`
+        Remark string `json:"remark"`
+	}
+
+
+
+)
+
+@server(
+	group: keyManage
+	prefix: /yunwei/keyManage
+)
+service yunwei {
+
+	@doc(
+		summary:"密钥管理新增"
+	)
+	@handler KeyManageAdd
+	post /add (AddKeyManageReq) returns()
+	@doc(
+		summary:"密钥管理列表"
+	)
+	@handler KeyManageList
+	get /list (ListKeyManageReq) returns (ListKeyManageResp)
+	@doc(
+		summary:"密钥管理更新"
+	)
+	@handler KeyManageUpdate
+	put /update (UpdateKeyManageReq) returns ()
+	@doc(
+		summary:"密钥管理删除"
+	)
+	@handler KeyManageDelete
+	delete /delete/:keyId (DeleteKeyManageReq) returns ()
+
+	@doc(
+		summary:"密钥管理获取"
+	)
+	@handler KeyManageGet
+	get /get/:keyId (GetKeyManageReq) returns (ListKeyManageData)
+
+}

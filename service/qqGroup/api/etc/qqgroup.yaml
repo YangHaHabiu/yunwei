@@ -1,0 +1,27 @@
+Name: qqGroup
+Host: 0.0.0.0
+Port: 9876
+
+#日志信息
+Log:
+  Mode: file
+  Level: error
+
+
+#数据库
+DB:
+  DataSource: root:123456@tcp(10.10.88.229:3306)/qq_group?charset=utf8mb4&parseTime=true&loc=Asia%2FShanghai
+#项目相关信息
+Project:
+  #管理员信息
+  ManagerQQ: 459105919:jiayuanhao,1062829477:zhangqingxian,963853870:dengxiguang,721768250:liaodehai
+  #支持的游戏
+  SupportGame: jswar,cjzz,bkzj,xx3d,jnqk,wdzt2,sjsj,pkyx,mr,all
+  #一键添加运维计划api
+  YwTaskAddApiUrl: http://10.10.88.215:8088/tasks/ywHelper/add
+  #一键热更api
+  HotUpdateApiUrl: http://10.10.88.215:8086/api/hot_update_log/add
+  # 更新脚本路径
+  MaintainFilePath : /data/web/yunwei/scripts/yunwei_new/maintain_game
+  # 装服脚本路径
+  InstallFilePath : /data/web/yunwei/scripts/yunwei_new/install_game

@@ -1,0 +1,92 @@
+syntax = "v1"
+
+info(
+	title: "内网代理主机信息"
+	desc: "内网代理主机信息"
+	author: "acool"
+)
+
+type (
+
+	AddInsideProxyHostReq {
+		*InsideProxyHostCommon
+	}
+
+	UpdateInsideProxyHostReq {
+		*InsideProxyHostCommon
+	}
+
+	DeleteInsideProxyHostReq {
+		InsideProxyHostId int64 `path:"InsideProxyHostId"`
+	}
+
+    GetInsideProxyHostReq {
+		InsideProxyHostId int64 `path:"InsideProxyHostId"`
+	}
+
+	InsideProxyHostCommon {
+        Id int64 `json:"id,optional"` 
+        ProjectId int64 `json:"projectId,optional"`
+        HostId int64 `json:"hostId,optional"`
+	}
+
+	ListInsideProxyHostReq {
+		Current  int64  `form:"current,default=1"`
+		PageSize int64  `form:"pageSize,default=15"`
+	}
+	ListInsideProxyHostResp {
+		Rows   []*ListInsideProxyHostData `json:"rows"`
+		Total  int64            `json:"total"`
+	}
+	ListInsideProxyHostData {
+        Id int64 `json:"id"` 
+        ProjectId int64 `json:"projectId"`
+		HostName string `json:"hostName"`
+        HostIp string `json:"hostIp"` 
+        HostPort int64 `json:"hostPort"` 
+        DbUser string `json:"dbUser"` 
+        DbPass string `json:"dbPass"` 
+        DbPort int64 `json:"dbPort"`
+		ProjectCn string `json:"projectCn"`
+		HostScriptPath string `json:"hostScriptPath"`
+		HostId int64 `json:"hostId"`
+	}
+
+
+
+)
+
+@server(
+	group: insideProxyHost
+	prefix: /intranet/insideProxyHost
+)
+service intranet {
+
+	@doc(
+		summary:"内网代理主机新增"
+	)
+	@handler InsideProxyHostAdd
+	post /add (AddInsideProxyHostReq) returns()
+	@doc(
+		summary:"内网代理主机列表"
+	)
+	@handler InsideProxyHostList
+	get /list (ListInsideProxyHostReq) returns (ListInsideProxyHostResp)
+	@doc(
+		summary:"内网代理主机更新"
+	)
+	@handler InsideProxyHostUpdate
+	put /update (UpdateInsideProxyHostReq) returns ()
+	@doc(
+		summary:"内网代理主机删除"
+	)
+	@handler InsideProxyHostDelete
+	delete /delete/:InsideProxyHostId (DeleteInsideProxyHostReq) returns ()
+
+	@doc(
+		summary:"内网代理主机获取"
+	)
+	@handler InsideProxyHostGet
+	get /get/:InsideProxyHostId (GetInsideProxyHostReq) returns (ListInsideProxyHostData)
+
+}

@@ -1,0 +1,5937 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "系统模块",
+    "description": "系统模块",
+    "version": ""
+  },
+  "schemes": [
+    "http",
+    "https"
+  ],
+  "consumes": [
+    "application/json"
+  ],
+  "produces": [
+    "application/json"
+  ],
+  "paths": {
+    "/admin/captcha/checkCaptcha": {
+      "post": {
+        "summary": "校验验证码",
+        "operationId": "CheckCaptcha",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {}
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/CheckCaptchaReq"
+            }
+          }
+        ],
+        "tags": [
+          "captcha"
+        ]
+      }
+    },
+    "/admin/captcha/getCaptcha": {
+      "post": {
+        "summary": "获取图形验证码",
+        "operationId": "GetCaptcha",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/GetCaptchaResp"
+            }
+          }
+        },
+        "tags": [
+          "captcha"
+        ]
+      }
+    },
+    "/admin/captcha/getWordCaptcha": {
+      "post": {
+        "summary": "获取文字验证码",
+        "operationId": "GetWordCaptcha",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/GetWordCaptchaResp"
+            }
+          }
+        },
+        "tags": [
+          "captcha"
+        ]
+      }
+    },
+    "/admin/company/add": {
+      "post": {
+        "summary": "公司新增",
+        "operationId": "CompanyAdd",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {}
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/addCompanyReq"
+            }
+          }
+        ],
+        "tags": [
+          "company"
+        ]
+      }
+    },
+    "/admin/company/delete/{companyId}": {
+      "delete": {
+        "summary": "公司删除",
+        "operationId": "CompanyDelete",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {}
+          }
+        },
+        "parameters": [
+          {
+            "name": "companyId",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/DeleteCompanyReq"
+            }
+          }
+        ],
+        "tags": [
+          "company"
+        ]
+      }
+    },
+    "/admin/company/list": {
+      "get": {
+        "summary": "公司列表",
+        "operationId": "CompanyList",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/ListCompanyResp"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "current",
+            "in": "query",
+            "required": true,
+            "type": "integer",
+            "format": "int64",
+            "default": "1"
+          },
+          {
+            "name": "pageSize",
+            "in": "query",
+            "required": true,
+            "type": "integer",
+            "format": "int64",
+            "default": "15"
+          },
+          {
+            "name": "companyCn",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "companyEn",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "supplyCompanyStatus",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "company"
+        ]
+      }
+    },
+    "/admin/company/update": {
+      "put": {
+        "summary": "公司更新",
+        "operationId": "CompanyUpdate",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {}
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/UpdateCompanyReq"
+            }
+          }
+        ],
+        "tags": [
+          "company"
+        ]
+      }
+    },
+    "/admin/company/updateSupplyCompany/{companyId}": {
+      "put": {
+        "summary": "出机方状态更新",
+        "operationId": "UpdateSupplyCompany",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {}
+          }
+        },
+        "parameters": [
+          {
+            "name": "companyId",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/UpdateSupplyCompanyReq"
+            }
+          }
+        ],
+        "tags": [
+          "company"
+        ]
+      }
+    },
+    "/admin/dept/add": {
+      "post": {
+        "summary": "部门新增",
+        "operationId": "DeptAdd",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {}
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/addDeptReq"
+            }
+          }
+        ],
+        "tags": [
+          "dept"
+        ]
+      }
+    },
+    "/admin/dept/delete/{deptId}": {
+      "delete": {
+        "summary": "部门删除",
+        "operationId": "DeptDelete",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {}
+          }
+        },
+        "parameters": [
+          {
+            "name": "deptId",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/DeleteDeptReq"
+            }
+          }
+        ],
+        "tags": [
+          "dept"
+        ]
+      }
+    },
+    "/admin/dept/list": {
+      "get": {
+        "summary": "部门列表",
+        "operationId": "DeptList",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/ListDeptResp"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "current",
+            "in": "query",
+            "required": true,
+            "type": "integer",
+            "format": "int64",
+            "default": "1"
+          },
+          {
+            "name": "pageSize",
+            "in": "query",
+            "required": true,
+            "type": "integer",
+            "format": "int64",
+            "default": "15"
+          },
+          {
+            "name": "name",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "createBy",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "dept"
+        ]
+      }
+    },
+    "/admin/dept/treeselect": {
+      "get": {
+        "summary": "部门生成树",
+        "operationId": "Treeselect",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/TreeselectResp"
+            }
+          }
+        },
+        "tags": [
+          "dept"
+        ]
+      }
+    },
+    "/admin/dept/update": {
+      "put": {
+        "summary": "部门更新",
+        "operationId": "DeptUpdate",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {}
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/UpdateDeptReq"
+            }
+          }
+        ],
+        "tags": [
+          "dept"
+        ]
+      }
+    },
+    "/admin/dict/add": {
+      "post": {
+        "summary": "字典新增",
+        "operationId": "DictAdd",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {}
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/AddDictReq"
+            }
+          }
+        ],
+        "tags": [
+          "dict"
+        ]
+      }
+    },
+    "/admin/dict/delete/{dictId}": {
+      "delete": {
+        "summary": "字典删除",
+        "operationId": "DictDelete",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {}
+          }
+        },
+        "parameters": [
+          {
+            "name": "dictId",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/DeleteDictReq"
+            }
+          }
+        ],
+        "tags": [
+          "dict"
+        ]
+      }
+    },
+    "/admin/dict/list": {
+      "get": {
+        "summary": "字典列表",
+        "operationId": "DictList",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/ListDictResp"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "current",
+            "in": "query",
+            "required": true,
+            "type": "integer",
+            "format": "int64",
+            "default": "1"
+          },
+          {
+            "name": "pageSize",
+            "in": "query",
+            "required": true,
+            "type": "integer",
+            "format": "int64",
+            "default": "15"
+          },
+          {
+            "name": "types",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "pid",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int64"
+          },
+          {
+            "name": "id",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int64"
+          }
+        ],
+        "tags": [
+          "dict"
+        ]
+      }
+    },
+    "/admin/dict/type/{dictType}": {
+      "get": {
+        "summary": "根据字典类型获取",
+        "operationId": "DictGetByType",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/ListDictResp"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "dictType",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "dict"
+        ]
+      }
+    },
+    "/admin/dict/update": {
+      "put": {
+        "summary": "字典更新",
+        "operationId": "DictUpdate",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {}
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/UpdateDictReq"
+            }
+          }
+        ],
+        "tags": [
+          "dict"
+        ]
+      }
+    },
+    "/admin/file/download/{file}": {
+      "get": {
+        "summary": "下载文件",
+        "operationId": "FileDownloadHandler",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {}
+          }
+        },
+        "parameters": [
+          {
+            "name": "file",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "action",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "file"
+        ]
+      }
+    },
+    "/admin/file/upload": {
+      "post": {
+        "summary": "上传文件",
+        "operationId": "FileUploadHandler",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/FileUploadResp"
+            }
+          }
+        },
+        "tags": [
+          "file"
+        ]
+      }
+    },
+    "/admin/label/add": {
+      "post": {
+        "summary": "标签新增",
+        "operationId": "LabelAdd",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {}
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/addLabelReq"
+            }
+          }
+        ],
+        "tags": [
+          "label"
+        ]
+      }
+    },
+    "/admin/label/delete/{labelId}": {
+      "delete": {
+        "summary": "标签删除",
+        "operationId": "LabelDelete",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {}
+          }
+        },
+        "parameters": [
+          {
+            "name": "labelId",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/DeleteLabelReq"
+            }
+          }
+        ],
+        "tags": [
+          "label"
+        ]
+      }
+    },
+    "/admin/label/list": {
+      "get": {
+        "summary": "标签列表",
+        "operationId": "LabelList",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/ListLabelResp"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "current",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int64"
+          },
+          {
+            "name": "pageSize",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int64"
+          },
+          {
+            "name": "label_id",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int64"
+          },
+          {
+            "name": "labelName",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "labelValues",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "labelType",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "label"
+        ]
+      }
+    },
+    "/admin/label/update": {
+      "put": {
+        "summary": "标签更新",
+        "operationId": "LabelUpdate",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {}
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/UpdateLabelReq"
+            }
+          }
+        ],
+        "tags": [
+          "label"
+        ]
+      }
+    },
+    "/admin/log/download": {
+      "get": {
+        "summary": "终端文件下载",
+        "operationId": "TerminalDownload",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/DetailTerminalLogResp"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "file",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "log"
+        ]
+      }
+    },
+    "/admin/log/loginlog": {
+      "get": {
+        "summary": "登录日志列表",
+        "operationId": "LoginLogList",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/ListLoginLogResp"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "current",
+            "in": "query",
+            "required": true,
+            "type": "integer",
+            "format": "int64",
+            "default": "1"
+          },
+          {
+            "name": "pageSize",
+            "in": "query",
+            "required": true,
+            "type": "integer",
+            "format": "int64",
+            "default": "15"
+          },
+          {
+            "name": "dateRange",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "userName",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "status",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "ip",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "log"
+        ]
+      }
+    },
+    "/admin/log/syslog": {
+      "get": {
+        "summary": "系统日志列表",
+        "operationId": "SysLogList",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/ListSysLogResp"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "current",
+            "in": "query",
+            "required": true,
+            "type": "integer",
+            "format": "int64",
+            "default": "1"
+          },
+          {
+            "name": "pageSize",
+            "in": "query",
+            "required": true,
+            "type": "integer",
+            "format": "int64",
+            "default": "15"
+          },
+          {
+            "name": "userName",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "ip",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "dateRange",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "log"
+        ]
+      }
+    },
+    "/admin/log/terminallog": {
+      "get": {
+        "summary": "终端日志列表",
+        "operationId": "TerminalList",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/ListTerminalResp"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "dateRange",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "log"
+        ]
+      }
+    },
+    "/admin/menu/add": {
+      "post": {
+        "summary": "菜单新增",
+        "operationId": "MenuAdd",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {}
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/addMenuReq"
+            }
+          }
+        ],
+        "tags": [
+          "menu"
+        ]
+      }
+    },
+    "/admin/menu/delete/{menuId}": {
+      "delete": {
+        "summary": "菜单删除",
+        "operationId": "MenuDelete",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {}
+          }
+        },
+        "parameters": [
+          {
+            "name": "menuId",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/DeleteMenuReq"
+            }
+          }
+        ],
+        "tags": [
+          "menu"
+        ]
+      }
+    },
+    "/admin/menu/list": {
+      "get": {
+        "summary": "菜单列表",
+        "operationId": "MenuList",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/ListMenuResp"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "name",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "url",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "menu"
+        ]
+      }
+    },
+    "/admin/menu/update": {
+      "put": {
+        "summary": "菜单更新",
+        "operationId": "MenuUpdate",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {}
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/UpdateMenuReq"
+            }
+          }
+        ],
+        "tags": [
+          "menu"
+        ]
+      }
+    },
+    "/admin/project/add": {
+      "post": {
+        "summary": "项目新增",
+        "operationId": "ProjectAdd",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {}
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/addProjectReq"
+            }
+          }
+        ],
+        "tags": [
+          "project"
+        ]
+      }
+    },
+    "/admin/project/delete/{projectId}": {
+      "delete": {
+        "summary": "项目删除",
+        "operationId": "ProjectDelete",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {}
+          }
+        },
+        "parameters": [
+          {
+            "name": "projectId",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/DeleteProjectReq"
+            }
+          }
+        ],
+        "tags": [
+          "project"
+        ]
+      }
+    },
+    "/admin/project/list": {
+      "get": {
+        "summary": "项目列表",
+        "operationId": "ProjectList",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/ListProjectResp"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "current",
+            "in": "query",
+            "required": true,
+            "type": "integer",
+            "format": "int64",
+            "default": "1"
+          },
+          {
+            "name": "pageSize",
+            "in": "query",
+            "required": true,
+            "type": "integer",
+            "format": "int64",
+            "default": "15"
+          },
+          {
+            "name": "projectCn",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "projectEn",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "status",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "projectType",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "project"
+        ]
+      }
+    },
+    "/admin/project/update": {
+      "put": {
+        "summary": "项目更新",
+        "operationId": "ProjectUpdate",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {}
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/UpdateProjectReq"
+            }
+          }
+        ],
+        "tags": [
+          "project"
+        ]
+      }
+    },
+    "/admin/resource/add": {
+      "post": {
+        "summary": "资源新增",
+        "operationId": "ResourceAdd",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {}
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/AddResourceReq"
+            }
+          }
+        ],
+        "tags": [
+          "resource"
+        ]
+      }
+    },
+    "/admin/resource/batchDelete": {
+      "delete": {
+        "summary": "资源删除",
+        "operationId": "ResourceDelete",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {}
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/DeleteResourceReq"
+            }
+          }
+        ],
+        "tags": [
+          "resource"
+        ]
+      }
+    },
+    "/admin/resource/list": {
+      "get": {
+        "summary": "获取所有资源类型",
+        "operationId": "ResourceList",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/ListResourceResp"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "labelType",
+            "in": "query",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "resource"
+        ]
+      }
+    },
+    "/admin/resource/rsourceObjectValueList": {
+      "get": {
+        "summary": "根据标签条件查询所需资源",
+        "operationId": "ResourceObjectValueList",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/ResourceObjectValueListResp"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "current",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int64"
+          },
+          {
+            "name": "pageSize",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int64"
+          },
+          {
+            "name": "resourceEn",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "labelType",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "labelId",
+            "in": "query",
+            "required": true,
+            "type": "integer",
+            "format": "int64"
+          },
+          {
+            "name": "viewResourceEnName",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "viewResourceValue",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "viewRecycleType",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "resource"
+        ]
+      }
+    },
+    "/admin/role/add": {
+      "post": {
+        "summary": "角色新增",
+        "operationId": "RoleAdd",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {}
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/AddRoleReq"
+            }
+          }
+        ],
+        "tags": [
+          "role"
+        ]
+      }
+    },
+    "/admin/role/delete/{roleId}": {
+      "delete": {
+        "summary": "角色删除",
+        "operationId": "RoleDelete",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {}
+          }
+        },
+        "parameters": [
+          {
+            "name": "roleId",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/DeleteRoleReq"
+            }
+          }
+        ],
+        "tags": [
+          "role"
+        ]
+      }
+    },
+    "/admin/role/getRoleAssignmentUser/{roleId}": {
+      "get": {
+        "summary": "获取角色分配用户",
+        "operationId": "GetRoleAssignmentUser",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/GetRoleAssignmentUserResp"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "roleId",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "role"
+        ]
+      }
+    },
+    "/admin/role/list": {
+      "get": {
+        "summary": "角色列表",
+        "operationId": "RoleList",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/ListRoleResp"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "current",
+            "in": "query",
+            "required": true,
+            "type": "integer",
+            "format": "int64",
+            "default": "1"
+          },
+          {
+            "name": "pageSize",
+            "in": "query",
+            "required": true,
+            "type": "integer",
+            "format": "int64",
+            "default": "15"
+          },
+          {
+            "name": "name",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "role"
+        ]
+      }
+    },
+    "/admin/role/queryMenuByRoleId/{roleId}": {
+      "get": {
+        "summary": "根据角色id查询菜单",
+        "operationId": "QueryMenuByRoleId",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/RoleMenuResp"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "roleId",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "role"
+        ]
+      }
+    },
+    "/admin/role/roleAssignmentUser": {
+      "put": {
+        "summary": "更新角色分配用户",
+        "operationId": "RoleAssignmentUser",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {}
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/RoleAssignmentUserReq"
+            }
+          }
+        ],
+        "tags": [
+          "role"
+        ]
+      }
+    },
+    "/admin/role/update": {
+      "put": {
+        "summary": "角色更新",
+        "operationId": "RoleUpdate",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {}
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/UpdateRoleReq"
+            }
+          }
+        ],
+        "tags": [
+          "role"
+        ]
+      }
+    },
+    "/admin/role/updateRoleMenu": {
+      "put": {
+        "summary": "更新角色菜单",
+        "operationId": "UpdateRoleMenu",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {}
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/UpdateRoleMenuReq"
+            }
+          }
+        ],
+        "tags": [
+          "role"
+        ]
+      }
+    },
+    "/admin/search/article": {
+      "get": {
+        "summary": "全局搜索",
+        "operationId": "SearchArticle",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/SearchResp"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "keyword",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "search"
+        ]
+      }
+    },
+    "/admin/stgroup/add": {
+      "post": {
+        "summary": "策略组新增",
+        "operationId": "StgroupAdd",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {}
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/addStgroupReq"
+            }
+          }
+        ],
+        "tags": [
+          "stgroup"
+        ]
+      }
+    },
+    "/admin/stgroup/delete/{stgroupId}": {
+      "delete": {
+        "summary": "策略组删除",
+        "operationId": "StgroupDelete",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {}
+          }
+        },
+        "parameters": [
+          {
+            "name": "stgroupId",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/DeleteStgroupReq"
+            }
+          }
+        ],
+        "tags": [
+          "stgroup"
+        ]
+      }
+    },
+    "/admin/stgroup/edit/{stgroupId}": {
+      "get": {
+        "summary": "根据id获取策略组树形信息",
+        "operationId": "GetStgrouInfoTree",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/GetStgrouInfoTreeResp"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "stgroupId",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "stgroup"
+        ]
+      }
+    },
+    "/admin/stgroup/getDistributionConfig/{stgroupId}": {
+      "get": {
+        "summary": "获取策略相关信息根据id",
+        "operationId": "GetDistributionConfig",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/GetDistributionConfigResp"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "stgroupId",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "stgroup"
+        ]
+      }
+    },
+    "/admin/stgroup/list": {
+      "get": {
+        "summary": "策略组列表",
+        "operationId": "StgroupList",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/ListStgroupResp"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "current",
+            "in": "query",
+            "required": true,
+            "type": "integer",
+            "format": "int64",
+            "default": "1"
+          },
+          {
+            "name": "pageSize",
+            "in": "query",
+            "required": true,
+            "type": "integer",
+            "format": "int64",
+            "default": "15"
+          },
+          {
+            "name": "stName",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "stgroup"
+        ]
+      }
+    },
+    "/admin/stgroup/policyAssociatedUsers": {
+      "post": {
+        "summary": "策略关联用户或组提交",
+        "operationId": "PolicyAssociatedUsers",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {}
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "description": "关联用户或组",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/PolicyAssociatedUsersReq"
+            }
+          }
+        ],
+        "tags": [
+          "stgroup"
+        ]
+      }
+    },
+    "/admin/stgroup/update": {
+      "put": {
+        "summary": "策略组更新",
+        "operationId": "StgroupUpdate",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {}
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/UpdateStgroupReq"
+            }
+          }
+        ],
+        "tags": [
+          "stgroup"
+        ]
+      }
+    },
+    "/admin/strategy/list": {
+      "get": {
+        "summary": "策略列表",
+        "operationId": "strategyList",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/ListstrategyResp"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "stName",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "stLevel",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int64"
+          },
+          {
+            "name": "stPid",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int64"
+          },
+          {
+            "name": "stIsAuth",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int64"
+          }
+        ],
+        "tags": [
+          "strategy"
+        ]
+      }
+    },
+    "/admin/ugroup/add": {
+      "post": {
+        "summary": "用户组新增",
+        "operationId": "UgroupAdd",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {}
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/addUgroupReq"
+            }
+          }
+        ],
+        "tags": [
+          "ugroup"
+        ]
+      }
+    },
+    "/admin/ugroup/delete/{ugroupId}": {
+      "delete": {
+        "summary": "用户组删除",
+        "operationId": "UgroupDelete",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {}
+          }
+        },
+        "parameters": [
+          {
+            "name": "ugroupId",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/DeleteUgroupReq"
+            }
+          }
+        ],
+        "tags": [
+          "ugroup"
+        ]
+      }
+    },
+    "/admin/ugroup/getUgroupAssignmentPolicy/{ugroupId}": {
+      "get": {
+        "summary": "获取用户组分配策略",
+        "operationId": "GetUgroupAssignmentPolicy",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/GetUgroupAssignmentPolicyResp"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "ugroupId",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "ugroup"
+        ]
+      }
+    },
+    "/admin/ugroup/getUgroupAssignmentUser/{ugroupId}": {
+      "get": {
+        "summary": "获取用户组分配用户",
+        "operationId": "GetUgroupAssignmentUser",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/GetUgroupAssignmentUserResp"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "ugroupId",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "ugroup"
+        ]
+      }
+    },
+    "/admin/ugroup/list": {
+      "get": {
+        "summary": "用户组列表",
+        "operationId": "UgroupList",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/ListUgroupResp"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "current",
+            "in": "query",
+            "required": true,
+            "type": "integer",
+            "format": "int64",
+            "default": "1"
+          },
+          {
+            "name": "pageSize",
+            "in": "query",
+            "required": true,
+            "type": "integer",
+            "format": "int64",
+            "default": "15"
+          },
+          {
+            "name": "ugName",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "ugroup"
+        ]
+      }
+    },
+    "/admin/ugroup/ugroupAssignmentPolicy": {
+      "post": {
+        "summary": "用户组分配策略",
+        "operationId": "UgroupAssignmentPolicy",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {}
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/UgroupAssignmentPolicyReq"
+            }
+          }
+        ],
+        "tags": [
+          "ugroup"
+        ]
+      }
+    },
+    "/admin/ugroup/ugroupAssignmentUser": {
+      "put": {
+        "summary": "更新用户组分配用户",
+        "operationId": "UgroupAssignmentUser",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {}
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/UgroupAssignmentUserReq"
+            }
+          }
+        ],
+        "tags": [
+          "ugroup"
+        ]
+      }
+    },
+    "/admin/ugroup/update": {
+      "put": {
+        "summary": "用户组更新",
+        "operationId": "UgroupUpdate",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {}
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/UpdateUgroupReq"
+            }
+          }
+        ],
+        "tags": [
+          "ugroup"
+        ]
+      }
+    },
+    "/admin/user/add": {
+      "post": {
+        "summary": "用户新增",
+        "operationId": "UserAdd",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {}
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/addUserReq"
+            }
+          }
+        ],
+        "tags": [
+          "user"
+        ]
+      }
+    },
+    "/admin/user/currentUser": {
+      "get": {
+        "summary": "用户信息",
+        "operationId": "UserInfo",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/userInfoResp"
+            }
+          }
+        },
+        "tags": [
+          "user"
+        ]
+      }
+    },
+    "/admin/user/delete/{id}": {
+      "delete": {
+        "summary": "用户删除",
+        "operationId": "UserDelete",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {}
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/DeleteUserReq"
+            }
+          }
+        ],
+        "tags": [
+          "user"
+        ]
+      }
+    },
+    "/admin/user/edit/{userId}": {
+      "get": {
+        "summary": "根据id获取对应用户数据",
+        "operationId": "GetUserById",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/GetUserByIdResp"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "userId",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "user"
+        ]
+      }
+    },
+    "/admin/user/getRouters": {
+      "get": {
+        "summary": "获取个人路由信息",
+        "operationId": "GetRouters",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/GetRoutersResp"
+            }
+          }
+        },
+        "tags": [
+          "user"
+        ]
+      }
+    },
+    "/admin/user/getUserAssignmentPolicy/{userId}": {
+      "get": {
+        "summary": "获取用户已选策略",
+        "operationId": "GetUserAssignmentPolicy",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/GetUserAssignmentPolicyResp"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "userId",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "user"
+        ]
+      }
+    },
+    "/admin/user/list": {
+      "get": {
+        "summary": "用户列表",
+        "operationId": "UserList",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/ListUserResp"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "current",
+            "in": "query",
+            "required": true,
+            "type": "integer",
+            "format": "int64",
+            "default": "1"
+          },
+          {
+            "name": "pageSize",
+            "in": "query",
+            "required": true,
+            "type": "integer",
+            "format": "int64",
+            "default": "20"
+          },
+          {
+            "name": "id",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int64"
+          },
+          {
+            "name": "name",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "nickName",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "mobile",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "email",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "status",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "deptIds",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "projectIds",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "roleIds",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "ugroupIds",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "user"
+        ]
+      }
+    },
+    "/admin/user/login": {
+      "post": {
+        "summary": "用户登录",
+        "operationId": "UserLogin",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/loginResp"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/loginReq"
+            }
+          }
+        ],
+        "tags": [
+          "user"
+        ]
+      }
+    },
+    "/admin/user/logout": {
+      "post": {
+        "summary": "用户退出",
+        "operationId": "Logout",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {}
+          }
+        },
+        "tags": [
+          "user"
+        ]
+      }
+    },
+    "/admin/user/reSetPassword": {
+      "put": {
+        "summary": "重置用户密码",
+        "operationId": "ReSetPassword",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {}
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/ReSetPasswordReq"
+            }
+          }
+        ],
+        "tags": [
+          "user"
+        ]
+      }
+    },
+    "/admin/user/selectAllData": {
+      "get": {
+        "summary": "用户相关所有数据",
+        "operationId": "SelectAllData",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/SelectDataResp"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "current",
+            "in": "query",
+            "required": true,
+            "type": "integer",
+            "format": "int64",
+            "default": "1"
+          },
+          {
+            "name": "pageSize",
+            "in": "query",
+            "required": true,
+            "type": "integer",
+            "format": "int64",
+            "default": "20"
+          }
+        ],
+        "tags": [
+          "user"
+        ]
+      }
+    },
+    "/admin/user/update": {
+      "put": {
+        "summary": "用户更新",
+        "operationId": "UserUpdate",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {}
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/UpdateUserReq"
+            }
+          }
+        ],
+        "tags": [
+          "user"
+        ]
+      }
+    },
+    "/admin/user/updatePersonalData": {
+      "put": {
+        "summary": "修改个人用户相关信息",
+        "operationId": "UpdatePersonalData",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {}
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/UpdatePersonalReq"
+            }
+          }
+        ],
+        "tags": [
+          "user"
+        ]
+      }
+    },
+    "/admin/user/updatePersonalPasswordData": {
+      "put": {
+        "summary": "修改个人密码信息",
+        "operationId": "UpdatePersonalPasswordData",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {}
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/UpdatePersonalPasswordReq"
+            }
+          }
+        ],
+        "tags": [
+          "user"
+        ]
+      }
+    },
+    "/admin/user/updateUserStatus": {
+      "put": {
+        "summary": "更改用户状态",
+        "operationId": "UpdateUserStatus",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {}
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/UserStatusReq"
+            }
+          }
+        ],
+        "tags": [
+          "user"
+        ]
+      }
+    },
+    "/admin/user/userAssignmentPolicy": {
+      "post": {
+        "summary": "分配用户策略",
+        "operationId": "UserAssignmentPolicy",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {}
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/UserAssignmentPolicyReq"
+            }
+          }
+        ],
+        "tags": [
+          "user"
+        ]
+      }
+    },
+    "/admin/user/userBatchEditItems": {
+      "post": {
+        "summary": "批量分配（删除）用户项目",
+        "operationId": "UserBatchEditItems",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {}
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/UserBatchEditItemsReq"
+            }
+          }
+        ],
+        "tags": [
+          "user"
+        ]
+      }
+    }
+  },
+  "definitions": {
+    "AddDictReq": {
+      "type": "object",
+      "properties": {
+        "value": {
+          "type": "string",
+          "description": " 数据值"
+        },
+        "label": {
+          "type": "string",
+          "description": " 标签名"
+        },
+        "pid": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "types": {
+          "type": "string",
+          "description": " 类型"
+        },
+        "description": {
+          "type": "string",
+          "description": " 描述"
+        },
+        "sort": {
+          "type": "integer",
+          "format": "int64",
+          "description": " 排序（升序）"
+        }
+      },
+      "title": "AddDictReq",
+      "required": [
+        "value",
+        "label",
+        "pid",
+        "types"
+      ]
+    },
+    "AddResourceReq": {
+      "type": "object",
+      "properties": {
+        "resourceData": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/CommonResourceData"
+          }
+        }
+      },
+      "title": "AddResourceReq",
+      "required": [
+        "resourceData"
+      ]
+    },
+    "AddRoleReq": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string",
+          "description": " 角色名称"
+        },
+        "remark": {
+          "type": "string",
+          "description": " 备注"
+        }
+      },
+      "title": "AddRoleReq",
+      "required": [
+        "name",
+        "remark"
+      ]
+    },
+    "ArticleReq": {
+      "type": "object",
+      "properties": {
+        "viewDataContent": {
+          "type": "string"
+        },
+        "viewDataUrl": {
+          "type": "string"
+        },
+        "viewJsonId": {
+          "type": "string"
+        },
+        "viewTableName": {
+          "type": "string"
+        }
+      },
+      "title": "ArticleReq",
+      "required": [
+        "viewDataContent",
+        "viewDataUrl",
+        "viewJsonId",
+        "viewTableName"
+      ]
+    },
+    "CheckCaptchaReq": {
+      "type": "object",
+      "properties": {
+        "captchaType": {
+          "type": "string"
+        },
+        "clientUid": {
+          "type": "string"
+        },
+        "pointJson": {
+          "type": "string"
+        }
+      },
+      "title": "CheckCaptchaReq",
+      "required": [
+        "captchaType",
+        "clientUid",
+        "pointJson"
+      ]
+    },
+    "CommonResourceData": {
+      "type": "object",
+      "properties": {
+        "bindingId": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "labelId": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "resourceEn": {
+          "type": "string"
+        },
+        "projectId": {
+          "type": "integer",
+          "format": "int64"
+        }
+      },
+      "title": "CommonResourceData",
+      "required": [
+        "bindingId",
+        "labelId",
+        "resourceEn",
+        "projectId"
+      ]
+    },
+    "DeleteCompanyReq": {
+      "type": "object",
+      "title": "DeleteCompanyReq"
+    },
+    "DeleteDeptReq": {
+      "type": "object",
+      "title": "DeleteDeptReq"
+    },
+    "DeleteDictReq": {
+      "type": "object",
+      "title": "DeleteDictReq"
+    },
+    "DeleteLabelReq": {
+      "type": "object",
+      "title": "DeleteLabelReq"
+    },
+    "DeleteMenuReq": {
+      "type": "object",
+      "title": "DeleteMenuReq"
+    },
+    "DeleteProjectReq": {
+      "type": "object",
+      "title": "DeleteProjectReq"
+    },
+    "DeleteResourceReq": {
+      "type": "object",
+      "properties": {
+        "resourceData": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/CommonResourceData"
+          }
+        }
+      },
+      "title": "DeleteResourceReq",
+      "required": [
+        "resourceData"
+      ]
+    },
+    "DeleteRoleReq": {
+      "type": "object",
+      "title": "DeleteRoleReq"
+    },
+    "DeleteStgroupReq": {
+      "type": "object",
+      "title": "DeleteStgroupReq"
+    },
+    "DeleteUgroupReq": {
+      "type": "object",
+      "title": "DeleteUgroupReq"
+    },
+    "DeleteUserReq": {
+      "type": "object",
+      "title": "DeleteUserReq"
+    },
+    "DeptAllResp": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "value": {
+          "type": "string"
+        },
+        "title": {
+          "type": "string"
+        },
+        "parentId": {
+          "type": "integer",
+          "format": "int64"
+        }
+      },
+      "title": "DeptAllResp",
+      "required": [
+        "id",
+        "value",
+        "title",
+        "parentId"
+      ]
+    },
+    "DetailTerminalLogReq": {
+      "type": "object",
+      "properties": {
+        "file": {
+          "type": "string"
+        }
+      },
+      "title": "DetailTerminalLogReq"
+    },
+    "DetailTerminalLogResp": {
+      "type": "object",
+      "properties": {
+        "rows": {
+          "type": "string"
+        }
+      },
+      "title": "DetailTerminalLogResp",
+      "required": [
+        "rows"
+      ]
+    },
+    "DictGetByTypeReq": {
+      "type": "object",
+      "title": "DictGetByTypeReq"
+    },
+    "DownloadReq": {
+      "type": "object",
+      "properties": {
+        "action": {
+          "type": "string"
+        }
+      },
+      "title": "DownloadReq"
+    },
+    "FileUploadResp": {
+      "type": "object",
+      "properties": {
+        "file": {
+          "type": "string"
+        },
+        "filePath": {
+          "type": "string"
+        }
+      },
+      "title": "FileUploadResp",
+      "required": [
+        "file",
+        "filePath"
+      ]
+    },
+    "FilterList": {
+      "type": "object",
+      "properties": {
+        "label": {
+          "type": "string"
+        },
+        "value": {
+          "type": "string"
+        },
+        "types": {
+          "type": "string"
+        },
+        "children": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/FilterList"
+          }
+        }
+      },
+      "title": "FilterList"
+    },
+    "GetCaptchaResp": {
+      "type": "object",
+      "properties": {
+        "originalImageBase64": {
+          "type": "string"
+        },
+        "jigsawImageBase64": {
+          "type": "string"
+        },
+        "secretKey": {
+          "type": "string"
+        },
+        "clientUid": {
+          "type": "string"
+        }
+      },
+      "title": "GetCaptchaResp",
+      "required": [
+        "originalImageBase64",
+        "jigsawImageBase64",
+        "secretKey",
+        "clientUid"
+      ]
+    },
+    "GetDistributionConfigReq": {
+      "type": "object",
+      "title": "GetDistributionConfigReq"
+    },
+    "GetDistributionConfigResp": {
+      "type": "object",
+      "properties": {
+        "userChecked": {
+          "type": "array",
+          "items": {
+            "type": "integer",
+            "format": "int64"
+          }
+        },
+        "userGroupChecked": {
+          "type": "array",
+          "items": {
+            "type": "integer",
+            "format": "int64"
+          }
+        },
+        "userAllData": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/NewUserData"
+          }
+        },
+        "userGroupAllData": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/NewUserData"
+          }
+        }
+      },
+      "title": "GetDistributionConfigResp",
+      "required": [
+        "userChecked",
+        "userGroupChecked",
+        "userAllData",
+        "userGroupAllData"
+      ]
+    },
+    "GetRoleAssignmentUserReq": {
+      "type": "object",
+      "title": "GetRoleAssignmentUserReq"
+    },
+    "GetRoleAssignmentUserResp": {
+      "type": "object",
+      "properties": {
+        "userChecked": {
+          "type": "array",
+          "items": {
+            "type": "integer",
+            "format": "int64"
+          }
+        },
+        "userAllData": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/ListUserData"
+          }
+        }
+      },
+      "title": "GetRoleAssignmentUserResp",
+      "required": [
+        "userChecked",
+        "userAllData"
+      ]
+    },
+    "GetRoutersResp": {
+      "type": "object",
+      "properties": {
+        "rows": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/MenuNewVue"
+          }
+        }
+      },
+      "title": "GetRoutersResp",
+      "required": [
+        "rows"
+      ]
+    },
+    "GetStgrouInfoTreeReq": {
+      "type": "object",
+      "title": "GetStgrouInfoTreeReq"
+    },
+    "GetStgrouInfoTreeResp": {
+      "type": "object",
+      "properties": {
+        "rows": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/ListstrategyData"
+          }
+        },
+        "datas": {
+          "$ref": "#/definitions/ListStgroupData"
+        }
+      },
+      "title": "GetStgrouInfoTreeResp",
+      "required": [
+        "rows",
+        "datas"
+      ]
+    },
+    "GetUgroupAssignmentPolicyReq": {
+      "type": "object",
+      "title": "GetUgroupAssignmentPolicyReq"
+    },
+    "GetUgroupAssignmentPolicyResp": {
+      "type": "object",
+      "properties": {
+        "ugroupChecked": {
+          "type": "array",
+          "items": {
+            "type": "integer",
+            "format": "int64"
+          }
+        },
+        "ugroupAllData": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/ListStgroupData"
+          }
+        }
+      },
+      "title": "GetUgroupAssignmentPolicyResp",
+      "required": [
+        "ugroupChecked",
+        "ugroupAllData"
+      ]
+    },
+    "GetUgroupAssignmentUserReq": {
+      "type": "object",
+      "title": "GetUgroupAssignmentUserReq"
+    },
+    "GetUgroupAssignmentUserResp": {
+      "type": "object",
+      "properties": {
+        "userChecked": {
+          "type": "array",
+          "items": {
+            "type": "integer",
+            "format": "int64"
+          }
+        },
+        "userAllData": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/ListUserDataNew"
+          }
+        }
+      },
+      "title": "GetUgroupAssignmentUserResp",
+      "required": [
+        "userChecked",
+        "userAllData"
+      ]
+    },
+    "GetUserAssignmentPolicyReq": {
+      "type": "object",
+      "title": "GetUserAssignmentPolicyReq"
+    },
+    "GetUserAssignmentPolicyResp": {
+      "type": "object",
+      "properties": {
+        "userChecked": {
+          "type": "array",
+          "items": {
+            "type": "integer",
+            "format": "int64"
+          }
+        },
+        "userAllData": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/ListStgroupData"
+          }
+        }
+      },
+      "title": "GetUserAssignmentPolicyResp",
+      "required": [
+        "userChecked",
+        "userAllData"
+      ]
+    },
+    "GetUserByIdReq": {
+      "type": "object",
+      "title": "GetUserByIdReq"
+    },
+    "GetUserByIdResp": {
+      "type": "object",
+      "properties": {
+        "data": {
+          "$ref": "#/definitions/ListUserData"
+        },
+        "roleIds": {
+          "type": "array",
+          "items": {
+            "type": "integer",
+            "format": "int64"
+          }
+        },
+        "roles": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/RoleAllResp"
+          }
+        },
+        "ugroupIds": {
+          "type": "array",
+          "items": {
+            "type": "integer",
+            "format": "int64"
+          }
+        },
+        "ugroups": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/UgroupAllResp"
+          }
+        }
+      },
+      "title": "GetUserByIdResp",
+      "required": [
+        "roles",
+        "ugroups"
+      ]
+    },
+    "GetWordCaptchaResp": {
+      "type": "object",
+      "properties": {
+        "originalImageBase64": {
+          "type": "string"
+        },
+        "wordList": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "secretKey": {
+          "type": "string"
+        },
+        "clientUid": {
+          "type": "string"
+        }
+      },
+      "title": "GetWordCaptchaResp",
+      "required": [
+        "originalImageBase64",
+        "wordList",
+        "secretKey",
+        "clientUid"
+      ]
+    },
+    "ListCompanyData": {
+      "type": "object",
+      "properties": {
+        "companyId": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "companyCn": {
+          "type": "string"
+        },
+        "companyEn": {
+          "type": "string"
+        },
+        "supplyCompanyStatus": {
+          "type": "integer",
+          "format": "int64"
+        }
+      },
+      "title": "ListCompanyData",
+      "required": [
+        "companyId",
+        "companyCn",
+        "companyEn",
+        "supplyCompanyStatus"
+      ]
+    },
+    "ListCompanyReq": {
+      "type": "object",
+      "properties": {
+        "current": {
+          "type": "integer",
+          "format": "int64",
+          "default": "1"
+        },
+        "pageSize": {
+          "type": "integer",
+          "format": "int64",
+          "default": "15"
+        },
+        "companyCn": {
+          "type": "string"
+        },
+        "companyEn": {
+          "type": "string"
+        },
+        "supplyCompanyStatus": {
+          "type": "string"
+        }
+      },
+      "title": "ListCompanyReq",
+      "required": [
+        "current",
+        "pageSize"
+      ]
+    },
+    "ListCompanyResp": {
+      "type": "object",
+      "properties": {
+        "rows": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/ListCompanyData"
+          }
+        },
+        "total": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "filter": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/FilterList"
+          }
+        }
+      },
+      "title": "ListCompanyResp",
+      "required": [
+        "rows",
+        "total",
+        "filter"
+      ]
+    },
+    "ListDeptData": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "format": "int64",
+          "description": " 编号"
+        },
+        "name": {
+          "type": "string",
+          "description": " 机构名称"
+        },
+        "parentId": {
+          "type": "integer",
+          "format": "int64",
+          "description": " 上级机构ID，一级机构为0"
+        },
+        "orderNum": {
+          "type": "integer",
+          "format": "int64",
+          "description": " 排序"
+        },
+        "createBy": {
+          "type": "string",
+          "description": " 创建人"
+        },
+        "createTime": {
+          "type": "string",
+          "description": " 创建时间"
+        },
+        "lastUpdateBy": {
+          "type": "string",
+          "description": " 更新人"
+        },
+        "lastUpdateTime": {
+          "type": "string",
+          "description": " 更新时间"
+        }
+      },
+      "title": "ListDeptData",
+      "required": [
+        "id",
+        "name",
+        "parentId",
+        "orderNum",
+        "createBy",
+        "createTime",
+        "lastUpdateBy",
+        "lastUpdateTime"
+      ]
+    },
+    "ListDeptReq": {
+      "type": "object",
+      "properties": {
+        "current": {
+          "type": "integer",
+          "format": "int64",
+          "default": "1"
+        },
+        "pageSize": {
+          "type": "integer",
+          "format": "int64",
+          "default": "15"
+        },
+        "name": {
+          "type": "string"
+        },
+        "createBy": {
+          "type": "string"
+        }
+      },
+      "title": "ListDeptReq",
+      "required": [
+        "current",
+        "pageSize"
+      ]
+    },
+    "ListDeptResp": {
+      "type": "object",
+      "properties": {
+        "rows": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/ListDeptData"
+          }
+        },
+        "total": {
+          "type": "integer",
+          "format": "int64"
+        }
+      },
+      "title": "ListDeptResp",
+      "required": [
+        "rows",
+        "total"
+      ]
+    },
+    "ListDictData": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "format": "int64",
+          "description": " 编号"
+        },
+        "value": {
+          "type": "string",
+          "description": " 数据值"
+        },
+        "pid": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "label": {
+          "type": "string",
+          "description": " 标签名"
+        },
+        "types": {
+          "type": "string",
+          "description": " 类型"
+        },
+        "description": {
+          "type": "string",
+          "description": " 描述"
+        },
+        "sort": {
+          "type": "integer",
+          "format": "int64",
+          "description": " 排序（升序）"
+        }
+      },
+      "title": "ListDictData",
+      "required": [
+        "id",
+        "value",
+        "pid",
+        "label",
+        "types",
+        "description",
+        "sort"
+      ]
+    },
+    "ListDictReq": {
+      "type": "object",
+      "properties": {
+        "current": {
+          "type": "integer",
+          "format": "int64",
+          "default": "1"
+        },
+        "pageSize": {
+          "type": "integer",
+          "format": "int64",
+          "default": "15"
+        },
+        "types": {
+          "type": "string"
+        },
+        "pid": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "id": {
+          "type": "integer",
+          "format": "int64"
+        }
+      },
+      "title": "ListDictReq",
+      "required": [
+        "current",
+        "pageSize"
+      ]
+    },
+    "ListDictResp": {
+      "type": "object",
+      "properties": {
+        "rows": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/ListDictData"
+          }
+        },
+        "total": {
+          "type": "integer",
+          "format": "int64"
+        }
+      },
+      "title": "ListDictResp",
+      "required": [
+        "rows",
+        "total"
+      ]
+    },
+    "ListLabelData": {
+      "type": "object",
+      "properties": {
+        "labelId": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "labelName": {
+          "type": "string"
+        },
+        "labelValues": {
+          "type": "string"
+        },
+        "labelType": {
+          "type": "string"
+        },
+        "labelRemark": {
+          "type": "string"
+        },
+        "stopStatus": {
+          "type": "string"
+        }
+      },
+      "title": "ListLabelData",
+      "required": [
+        "labelId",
+        "labelName",
+        "labelValues",
+        "labelType",
+        "labelRemark",
+        "stopStatus"
+      ]
+    },
+    "ListLabelReq": {
+      "type": "object",
+      "properties": {
+        "current": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "pageSize": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "label_id": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "labelName": {
+          "type": "string"
+        },
+        "labelValues": {
+          "type": "string"
+        },
+        "labelType": {
+          "type": "string"
+        }
+      },
+      "title": "ListLabelReq"
+    },
+    "ListLabelResp": {
+      "type": "object",
+      "properties": {
+        "rows": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/ListLabelData"
+          }
+        },
+        "total": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "filter": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/FilterList"
+          }
+        }
+      },
+      "title": "ListLabelResp",
+      "required": [
+        "rows",
+        "filter"
+      ]
+    },
+    "ListLoginLogData": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "userName": {
+          "type": "string"
+        },
+        "status": {
+          "type": "string"
+        },
+        "ip": {
+          "type": "string"
+        },
+        "createTime": {
+          "type": "string"
+        }
+      },
+      "title": "ListLoginLogData",
+      "required": [
+        "id",
+        "userName",
+        "status",
+        "ip",
+        "createTime"
+      ]
+    },
+    "ListLoginLogReq": {
+      "type": "object",
+      "properties": {
+        "current": {
+          "type": "integer",
+          "format": "int64",
+          "default": "1"
+        },
+        "pageSize": {
+          "type": "integer",
+          "format": "int64",
+          "default": "15"
+        },
+        "dateRange": {
+          "type": "string"
+        },
+        "userName": {
+          "type": "string"
+        },
+        "status": {
+          "type": "string"
+        },
+        "ip": {
+          "type": "string"
+        }
+      },
+      "title": "ListLoginLogReq",
+      "required": [
+        "current",
+        "pageSize"
+      ]
+    },
+    "ListLoginLogResp": {
+      "type": "object",
+      "properties": {
+        "rows": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/ListLoginLogData"
+          }
+        },
+        "total": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "filter": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/FilterList"
+          }
+        }
+      },
+      "title": "ListLoginLogResp",
+      "required": [
+        "rows",
+        "total",
+        "filter"
+      ]
+    },
+    "ListMenuData": {
+      "type": "object",
+      "properties": {
+        "key": {
+          "type": "string",
+          "description": " 菜单名称"
+        },
+        "title": {
+          "type": "string",
+          "description": " 菜单名称"
+        },
+        "parentId": {
+          "type": "integer",
+          "format": "int64",
+          "description": " 父菜单ID，一级菜单为0"
+        },
+        "id": {
+          "type": "integer",
+          "format": "int64",
+          "description": " 父菜单ID，一级菜单为0"
+        },
+        "label": {
+          "type": "string",
+          "description": " 父菜单ID，一级菜单为0"
+        }
+      },
+      "title": "ListMenuData",
+      "required": [
+        "key",
+        "title",
+        "parentId",
+        "id",
+        "label"
+      ]
+    },
+    "ListMenuReq": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "url": {
+          "type": "string"
+        }
+      },
+      "title": "ListMenuReq"
+    },
+    "ListMenuResp": {
+      "type": "object",
+      "properties": {
+        "rows": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/ListtMenuData"
+          }
+        },
+        "total": {
+          "type": "integer",
+          "format": "int64"
+        }
+      },
+      "title": "ListMenuResp",
+      "required": [
+        "rows",
+        "total"
+      ]
+    },
+    "ListMenuTree": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "format": "int64",
+          "description": " 编号"
+        },
+        "path": {
+          "type": "string",
+          "description": " 菜单路径"
+        },
+        "name": {
+          "type": "string",
+          "description": " 菜单名称"
+        },
+        "parentId": {
+          "type": "integer",
+          "format": "int64",
+          "description": " 父菜单ID，一级菜单为0"
+        },
+        "icon": {
+          "type": "string",
+          "description": " 菜单图标"
+        }
+      },
+      "title": "ListMenuTree",
+      "required": [
+        "id",
+        "path",
+        "name",
+        "parentId",
+        "icon"
+      ]
+    },
+    "ListMenuTreeVue": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "parentId": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "title": {
+          "type": "string"
+        },
+        "path": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "icon": {
+          "type": "string"
+        },
+        "redirect": {
+          "type": "string"
+        },
+        "component": {
+          "type": "string"
+        },
+        "isShow": {
+          "type": "string"
+        },
+        "meta": {
+          "$ref": "#/definitions/MenuTreeMeta"
+        }
+      },
+      "title": "ListMenuTreeVue",
+      "required": [
+        "id",
+        "parentId",
+        "title",
+        "path",
+        "name",
+        "icon",
+        "redirect",
+        "component",
+        "isShow",
+        "meta"
+      ]
+    },
+    "ListProjectData": {
+      "type": "object",
+      "properties": {
+        "companyId": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "viewCompanyCn": {
+          "type": "string"
+        },
+        "viewCompanyEn": {
+          "type": "string"
+        },
+        "viewCompanyDelFlag": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "viewPrId": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "projectId": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "projectCn": {
+          "type": "string"
+        },
+        "projectEn": {
+          "type": "string"
+        },
+        "projectTeam": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "viewDeptName": {
+          "type": "string"
+        },
+        "projectType": {
+          "type": "string"
+        },
+        "projectTypeCn": {
+          "type": "string"
+        },
+        "groupQq": {
+          "type": "string"
+        },
+        "groupTypeCn": {
+          "type": "string"
+        },
+        "groupType": {
+          "type": "string"
+        },
+        "groupDevQq": {
+          "type": "string"
+        },
+        "delFlag": {
+          "type": "string"
+        }
+      },
+      "title": "ListProjectData",
+      "required": [
+        "companyId",
+        "viewCompanyCn",
+        "viewCompanyEn",
+        "viewCompanyDelFlag",
+        "viewPrId",
+        "projectId",
+        "projectCn",
+        "projectEn",
+        "projectTeam",
+        "viewDeptName",
+        "projectType",
+        "projectTypeCn",
+        "groupQq",
+        "groupTypeCn",
+        "groupType",
+        "groupDevQq",
+        "delFlag"
+      ]
+    },
+    "ListProjectReq": {
+      "type": "object",
+      "properties": {
+        "current": {
+          "type": "integer",
+          "format": "int64",
+          "default": "1"
+        },
+        "pageSize": {
+          "type": "integer",
+          "format": "int64",
+          "default": "15"
+        },
+        "projectCn": {
+          "type": "string"
+        },
+        "projectEn": {
+          "type": "string"
+        },
+        "status": {
+          "type": "string"
+        },
+        "projectType": {
+          "type": "string"
+        }
+      },
+      "title": "ListProjectReq",
+      "required": [
+        "current",
+        "pageSize"
+      ]
+    },
+    "ListProjectResp": {
+      "type": "object",
+      "properties": {
+        "rows": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/ListProjectData"
+          }
+        },
+        "total": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "filter": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/FilterList"
+          }
+        }
+      },
+      "title": "ListProjectResp",
+      "required": [
+        "rows",
+        "total",
+        "filter"
+      ]
+    },
+    "ListResourceList": {
+      "type": "object",
+      "properties": {
+        "label": {
+          "type": "string"
+        },
+        "value": {
+          "type": "string"
+        }
+      },
+      "title": "ListResourceList",
+      "required": [
+        "label",
+        "value"
+      ]
+    },
+    "ListResourceReq": {
+      "type": "object",
+      "properties": {
+        "labelType": {
+          "type": "string"
+        }
+      },
+      "title": "ListResourceReq",
+      "required": [
+        "labelType"
+      ]
+    },
+    "ListResourceResp": {
+      "type": "object",
+      "properties": {
+        "rows": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/ListResourceList"
+          }
+        }
+      },
+      "title": "ListResourceResp",
+      "required": [
+        "rows"
+      ]
+    },
+    "ListRoleData": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "format": "int64",
+          "description": " 编号"
+        },
+        "name": {
+          "type": "string",
+          "description": " 角色名称"
+        },
+        "remark": {
+          "type": "string",
+          "description": " 备注"
+        },
+        "createBy": {
+          "type": "string",
+          "description": " 创建人"
+        },
+        "createTime": {
+          "type": "string",
+          "description": " 创建时间"
+        },
+        "lastUpdateBy": {
+          "type": "string",
+          "description": " 更新人"
+        },
+        "lastUpdateTime": {
+          "type": "string",
+          "description": " 更新时间"
+        },
+        "label": {
+          "type": "string",
+          "description": " 编号"
+        },
+        "value": {
+          "type": "string",
+          "description": " 角色名称"
+        }
+      },
+      "title": "ListRoleData",
+      "required": [
+        "id",
+        "name",
+        "remark",
+        "createBy",
+        "createTime",
+        "lastUpdateBy",
+        "lastUpdateTime",
+        "label",
+        "value"
+      ]
+    },
+    "ListRoleReq": {
+      "type": "object",
+      "properties": {
+        "current": {
+          "type": "integer",
+          "format": "int64",
+          "default": "1"
+        },
+        "pageSize": {
+          "type": "integer",
+          "format": "int64",
+          "default": "15"
+        },
+        "name": {
+          "type": "string"
+        }
+      },
+      "title": "ListRoleReq",
+      "required": [
+        "current",
+        "pageSize"
+      ]
+    },
+    "ListRoleResp": {
+      "type": "object",
+      "properties": {
+        "rows": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/ListRoleData"
+          }
+        },
+        "total": {
+          "type": "integer",
+          "format": "int64"
+        }
+      },
+      "title": "ListRoleResp",
+      "required": [
+        "rows",
+        "total"
+      ]
+    },
+    "ListStgroupData": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "format": "int64",
+          "description": " 编号"
+        },
+        "stName": {
+          "type": "string",
+          "description": " 策略组名称"
+        },
+        "stJson": {
+          "type": "string",
+          "description": " 策略数据"
+        },
+        "stRemark": {
+          "type": "string",
+          "description": " 策略备注"
+        },
+        "createBy": {
+          "type": "string",
+          "description": " 创建人"
+        },
+        "createTime": {
+          "type": "string",
+          "description": " 创建时间"
+        },
+        "lastUpdateBy": {
+          "type": "string",
+          "description": " 更新人"
+        },
+        "lastUpdateTime": {
+          "type": "string",
+          "description": " 更新时间"
+        }
+      },
+      "title": "ListStgroupData",
+      "required": [
+        "id",
+        "stName",
+        "stJson",
+        "stRemark",
+        "createBy",
+        "createTime",
+        "lastUpdateBy",
+        "lastUpdateTime"
+      ]
+    },
+    "ListStgroupReq": {
+      "type": "object",
+      "properties": {
+        "current": {
+          "type": "integer",
+          "format": "int64",
+          "default": "1"
+        },
+        "pageSize": {
+          "type": "integer",
+          "format": "int64",
+          "default": "15"
+        },
+        "stName": {
+          "type": "string"
+        }
+      },
+      "title": "ListStgroupReq",
+      "required": [
+        "current",
+        "pageSize"
+      ]
+    },
+    "ListStgroupResp": {
+      "type": "object",
+      "properties": {
+        "rows": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/ListStgroupData"
+          }
+        },
+        "total": {
+          "type": "integer",
+          "format": "int64"
+        }
+      },
+      "title": "ListStgroupResp",
+      "required": [
+        "rows",
+        "total"
+      ]
+    },
+    "ListSysLogData": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "format": "int64",
+          "description": " 编号"
+        },
+        "userName": {
+          "type": "string",
+          "description": " 用户名"
+        },
+        "operation": {
+          "type": "string",
+          "description": " 用户操作"
+        },
+        "method": {
+          "type": "string",
+          "description": " 请求方法"
+        },
+        "params": {
+          "type": "string",
+          "description": " 请求参数"
+        },
+        "time": {
+          "type": "number",
+          "format": "float",
+          "description": " 执行时长(毫秒)"
+        },
+        "ip": {
+          "type": "string",
+          "description": " IP地址"
+        },
+        "createTime": {
+          "type": "string"
+        }
+      },
+      "title": "ListSysLogData",
+      "required": [
+        "id",
+        "userName",
+        "operation",
+        "method",
+        "params",
+        "time",
+        "ip",
+        "createTime"
+      ]
+    },
+    "ListSysLogReq": {
+      "type": "object",
+      "properties": {
+        "current": {
+          "type": "integer",
+          "format": "int64",
+          "default": "1"
+        },
+        "pageSize": {
+          "type": "integer",
+          "format": "int64",
+          "default": "15"
+        },
+        "userName": {
+          "type": "string"
+        },
+        "ip": {
+          "type": "string"
+        },
+        "dateRange": {
+          "type": "string"
+        }
+      },
+      "title": "ListSysLogReq",
+      "required": [
+        "current",
+        "pageSize"
+      ]
+    },
+    "ListSysLogResp": {
+      "type": "object",
+      "properties": {
+        "rows": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/ListSysLogData"
+          }
+        },
+        "total": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "filter": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/FilterList"
+          }
+        }
+      },
+      "title": "ListSysLogResp",
+      "required": [
+        "rows",
+        "total",
+        "filter"
+      ]
+    },
+    "ListTerminalData": {
+      "type": "object",
+      "properties": {
+        "label": {
+          "type": "string"
+        },
+        "children": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/ListTerminalData"
+          }
+        },
+        "value": {
+          "type": "string"
+        }
+      },
+      "title": "ListTerminalData",
+      "required": [
+        "label"
+      ]
+    },
+    "ListTerminalLogReq": {
+      "type": "object",
+      "properties": {
+        "dateRange": {
+          "type": "string"
+        }
+      },
+      "title": "ListTerminalLogReq"
+    },
+    "ListTerminalResp": {
+      "type": "object",
+      "properties": {
+        "rows": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/ListTerminalData"
+          }
+        }
+      },
+      "title": "ListTerminalResp",
+      "required": [
+        "rows"
+      ]
+    },
+    "ListUgroupData": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "format": "int64",
+          "description": " 编号"
+        },
+        "ugName": {
+          "type": "string",
+          "description": " 用户组名称"
+        },
+        "ugJson": {
+          "type": "string",
+          "description": " 备注"
+        },
+        "createBy": {
+          "type": "string",
+          "description": " 创建人"
+        },
+        "createTime": {
+          "type": "string",
+          "description": " 创建时间"
+        },
+        "lastUpdateBy": {
+          "type": "string",
+          "description": " 更新人"
+        },
+        "lastUpdateTime": {
+          "type": "string",
+          "description": " 更新时间"
+        }
+      },
+      "title": "ListUgroupData",
+      "required": [
+        "id",
+        "ugName",
+        "ugJson",
+        "createBy",
+        "createTime",
+        "lastUpdateBy",
+        "lastUpdateTime"
+      ]
+    },
+    "ListUgroupReq": {
+      "type": "object",
+      "properties": {
+        "current": {
+          "type": "integer",
+          "format": "int64",
+          "default": "1"
+        },
+        "pageSize": {
+          "type": "integer",
+          "format": "int64",
+          "default": "15"
+        },
+        "ugName": {
+          "type": "string"
+        }
+      },
+      "title": "ListUgroupReq",
+      "required": [
+        "current",
+        "pageSize"
+      ]
+    },
+    "ListUgroupResp": {
+      "type": "object",
+      "properties": {
+        "rows": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/ListUgroupData"
+          }
+        },
+        "total": {
+          "type": "integer",
+          "format": "int64"
+        }
+      },
+      "title": "ListUgroupResp",
+      "required": [
+        "rows",
+        "total"
+      ]
+    },
+    "ListUserData": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "format": "int64",
+          "description": " 编号"
+        },
+        "name": {
+          "type": "string",
+          "description": " 用户名"
+        },
+        "nickName": {
+          "type": "string",
+          "description": " 昵称"
+        },
+        "avatar": {
+          "type": "string",
+          "description": " 头像"
+        },
+        "password": {
+          "type": "string",
+          "description": " 密码"
+        },
+        "salt": {
+          "type": "string",
+          "description": " 加密盐"
+        },
+        "email": {
+          "type": "string",
+          "description": " 邮箱"
+        },
+        "mobile": {
+          "type": "string",
+          "description": " 手机号"
+        },
+        "status": {
+          "type": "integer",
+          "format": "int64",
+          "description": " 状态  0：禁用   1：正常"
+        },
+        "deptId": {
+          "type": "integer",
+          "format": "int64",
+          "description": " 机构ID"
+        },
+        "createBy": {
+          "type": "string",
+          "description": " 创建人"
+        },
+        "createTime": {
+          "type": "string",
+          "description": " 创建时间"
+        },
+        "lastUpdateBy": {
+          "type": "string",
+          "description": " 更新人"
+        },
+        "lastUpdateTime": {
+          "type": "string",
+          "description": " 更新时间"
+        },
+        "roleIds": {
+          "type": "string"
+        },
+        "roleName": {
+          "type": "string"
+        },
+        "deptName": {
+          "type": "string"
+        },
+        "ugroupIds": {
+          "type": "string"
+        },
+        "ugroupNames": {
+          "type": "string"
+        },
+        "projectIds": {
+          "type": "string"
+        }
+      },
+      "title": "ListUserData",
+      "required": [
+        "id",
+        "name",
+        "nickName",
+        "avatar",
+        "password",
+        "salt",
+        "email",
+        "mobile",
+        "status",
+        "deptId",
+        "createBy",
+        "createTime",
+        "lastUpdateBy",
+        "lastUpdateTime",
+        "roleIds",
+        "roleName",
+        "deptName",
+        "ugroupIds",
+        "ugroupNames",
+        "projectIds"
+      ]
+    },
+    "ListUserDataNew": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "stName": {
+          "type": "string"
+        }
+      },
+      "title": "ListUserDataNew",
+      "required": [
+        "id",
+        "stName"
+      ]
+    },
+    "ListUserReq": {
+      "type": "object",
+      "properties": {
+        "current": {
+          "type": "integer",
+          "format": "int64",
+          "default": "1"
+        },
+        "pageSize": {
+          "type": "integer",
+          "format": "int64",
+          "default": "20"
+        },
+        "id": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "name": {
+          "type": "string"
+        },
+        "nickName": {
+          "type": "string"
+        },
+        "mobile": {
+          "type": "string"
+        },
+        "email": {
+          "type": "string"
+        },
+        "status": {
+          "type": "string"
+        },
+        "deptIds": {
+          "type": "string"
+        },
+        "projectIds": {
+          "type": "string"
+        },
+        "roleIds": {
+          "type": "string"
+        },
+        "ugroupIds": {
+          "type": "string"
+        }
+      },
+      "title": "ListUserReq",
+      "required": [
+        "current",
+        "pageSize"
+      ]
+    },
+    "ListUserResp": {
+      "type": "object",
+      "properties": {
+        "rows": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/ListUserData"
+          }
+        },
+        "total": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "filter": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/FilterList"
+          }
+        }
+      },
+      "title": "ListUserResp",
+      "required": [
+        "rows",
+        "total",
+        "filter"
+      ]
+    },
+    "ListstrategyData": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "stName": {
+          "type": "string"
+        },
+        "stPid": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "stUrls": {
+          "type": "string"
+        },
+        "stLevel": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "stRemark": {
+          "type": "string"
+        },
+        "stIsAuth": {
+          "type": "integer",
+          "format": "int64"
+        }
+      },
+      "title": "ListstrategyData",
+      "required": [
+        "id",
+        "stName",
+        "stPid",
+        "stUrls",
+        "stLevel",
+        "stRemark"
+      ]
+    },
+    "ListstrategyReq": {
+      "type": "object",
+      "properties": {
+        "stName": {
+          "type": "string"
+        },
+        "stLevel": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "stPid": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "stIsAuth": {
+          "type": "integer",
+          "format": "int64"
+        }
+      },
+      "title": "ListstrategyReq"
+    },
+    "ListstrategyResp": {
+      "type": "object",
+      "properties": {
+        "rows": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/ListstrategyData"
+          }
+        }
+      },
+      "title": "ListstrategyResp",
+      "required": [
+        "rows"
+      ]
+    },
+    "ListtMenuData": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "key": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "title": {
+          "type": "string"
+        },
+        "parentId": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "url": {
+          "type": "string"
+        },
+        "perms": {
+          "type": "string"
+        },
+        "type": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "icon": {
+          "type": "string"
+        },
+        "orderNum": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "createBy": {
+          "type": "string"
+        },
+        "createTime": {
+          "type": "string"
+        },
+        "lastUpdateBy": {
+          "type": "string"
+        },
+        "lastUpdateTime": {
+          "type": "string"
+        },
+        "vuePath": {
+          "type": "string"
+        },
+        "vueComponent": {
+          "type": "string"
+        },
+        "vueIcon": {
+          "type": "string"
+        },
+        "vueRedirect": {
+          "type": "string"
+        },
+        "tableName": {
+          "type": "string"
+        },
+        "keepAlive": {
+          "type": "string"
+        },
+        "isShow": {
+          "type": "string"
+        }
+      },
+      "title": "ListtMenuData",
+      "required": [
+        "id",
+        "key",
+        "name",
+        "title",
+        "parentId",
+        "url",
+        "perms",
+        "type",
+        "icon",
+        "orderNum",
+        "createBy",
+        "createTime",
+        "lastUpdateBy",
+        "lastUpdateTime",
+        "vuePath",
+        "vueComponent",
+        "vueIcon",
+        "vueRedirect",
+        "tableName",
+        "keepAlive",
+        "isShow"
+      ]
+    },
+    "MenuNewVue": {
+      "type": "object",
+      "properties": {
+        "alwaysShow": {
+          "type": "boolean",
+          "format": "boolean"
+        },
+        "component": {
+          "type": "string"
+        },
+        "hidden": {
+          "type": "boolean",
+          "format": "boolean"
+        },
+        "name": {
+          "type": "string"
+        },
+        "path": {
+          "type": "string"
+        },
+        "redirect": {
+          "type": "string"
+        },
+        "meta": {
+          "$ref": "#/definitions/MetaVue"
+        },
+        "children": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/MenuNewVue"
+          }
+        }
+      },
+      "title": "MenuNewVue"
+    },
+    "MenuTreeMeta": {
+      "type": "object",
+      "properties": {
+        "title": {
+          "type": "string"
+        },
+        "icon": {
+          "type": "string"
+        },
+        "rank": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "keepAlive": {
+          "type": "string"
+        }
+      },
+      "title": "MenuTreeMeta",
+      "required": [
+        "title",
+        "icon",
+        "rank",
+        "keepAlive"
+      ]
+    },
+    "MetaVue": {
+      "type": "object",
+      "properties": {
+        "icon": {
+          "type": "string"
+        },
+        "link": {
+          "type": "string"
+        },
+        "noCache": {
+          "type": "string"
+        },
+        "title": {
+          "type": "string"
+        }
+      },
+      "title": "MetaVue"
+    },
+    "NewUserData": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "label": {
+          "type": "string"
+        }
+      },
+      "title": "NewUserData",
+      "required": [
+        "id",
+        "label"
+      ]
+    },
+    "PolicyAssociatedUsersReq": {
+      "type": "object",
+      "properties": {
+        "stgroupId": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "userChecked": {
+          "type": "string"
+        },
+        "userGroupChecked": {
+          "type": "string"
+        }
+      },
+      "title": "PolicyAssociatedUsersReq",
+      "required": [
+        "stgroupId",
+        "userChecked",
+        "userGroupChecked"
+      ]
+    },
+    "ReSetPasswordReq": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "newPassword": {
+          "type": "string",
+          "default": "123456"
+        }
+      },
+      "title": "ReSetPasswordReq",
+      "required": [
+        "id",
+        "newPassword"
+      ]
+    },
+    "ResourceObjectValueListData": {
+      "type": "object",
+      "properties": {
+        "viewResourceCnName": {
+          "type": "string"
+        },
+        "viewResourceEnName": {
+          "type": "string"
+        },
+        "viewResourceRemark": {
+          "type": "string"
+        },
+        "viewProjectId": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "viewPrimaryKey": {
+          "type": "string"
+        },
+        "viewPrimaryKeyValue": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "viewResourceType": {
+          "type": "string"
+        },
+        "viewResourceValue": {
+          "type": "string"
+        },
+        "viewDataContent": {
+          "type": "string"
+        },
+        "viewDataUrl": {
+          "type": "string"
+        },
+        "viewJsonId": {
+          "type": "string"
+        },
+        "viewTableName": {
+          "type": "string"
+        },
+        "viewShowCluster": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "viewShowFeature": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "viewShowInstall": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "viewShowOther": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "viewUniqueCluster": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "viewUniqueFeature": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "viewUniqueInstall": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "viewUniqueOther": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "viewSystemShow": {
+          "type": "integer",
+          "format": "int64"
+        }
+      },
+      "title": "ResourceObjectValueListData"
+    },
+    "ResourceObjectValueListReq": {
+      "type": "object",
+      "properties": {
+        "current": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "pageSize": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "resourceEn": {
+          "type": "string"
+        },
+        "labelType": {
+          "type": "string"
+        },
+        "labelId": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "viewResourceEnName": {
+          "type": "string"
+        },
+        "viewResourceValue": {
+          "type": "string"
+        },
+        "viewRecycleType": {
+          "type": "string"
+        }
+      },
+      "title": "ResourceObjectValueListReq",
+      "required": [
+        "labelId"
+      ]
+    },
+    "ResourceObjectValueListResp": {
+      "type": "object",
+      "properties": {
+        "rows": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/ResourceObjectValueListData"
+          }
+        },
+        "bindRows": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/ResourceObjectValueListData"
+          }
+        },
+        "allRows": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/ResourceObjectValueListData"
+          }
+        },
+        "total": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "filter": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/FilterList"
+          }
+        }
+      },
+      "title": "ResourceObjectValueListResp",
+      "required": [
+        "rows",
+        "bindRows",
+        "allRows",
+        "total",
+        "filter"
+      ]
+    },
+    "RoleAllResp": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "name": {
+          "type": "string"
+        },
+        "remark": {
+          "type": "string"
+        }
+      },
+      "title": "RoleAllResp",
+      "required": [
+        "id",
+        "name",
+        "remark"
+      ]
+    },
+    "RoleAssignmentUserReq": {
+      "type": "object",
+      "properties": {
+        "roleId": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "userChecked": {
+          "type": "string"
+        }
+      },
+      "title": "RoleAssignmentUserReq",
+      "required": [
+        "roleId",
+        "userChecked"
+      ]
+    },
+    "RoleMenuReq": {
+      "type": "object",
+      "title": "RoleMenuReq"
+    },
+    "RoleMenuResp": {
+      "type": "object",
+      "properties": {
+        "allData": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/ListMenuData"
+          }
+        },
+        "userData": {
+          "type": "array",
+          "items": {
+            "type": "integer",
+            "format": "int64"
+          }
+        }
+      },
+      "title": "RoleMenuResp",
+      "required": [
+        "allData",
+        "userData"
+      ]
+    },
+    "SearchReq": {
+      "type": "object",
+      "properties": {
+        "keyword": {
+          "type": "string"
+        }
+      },
+      "title": "SearchReq"
+    },
+    "SearchResp": {
+      "type": "object",
+      "properties": {
+        "rows": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/ArticleReq"
+          }
+        }
+      },
+      "title": "SearchResp",
+      "required": [
+        "rows"
+      ]
+    },
+    "SelectDataReq": {
+      "type": "object",
+      "properties": {
+        "current": {
+          "type": "integer",
+          "format": "int64",
+          "default": "1"
+        },
+        "pageSize": {
+          "type": "integer",
+          "format": "int64",
+          "default": "20"
+        }
+      },
+      "title": "SelectDataReq",
+      "required": [
+        "current",
+        "pageSize"
+      ]
+    },
+    "SelectDataResp": {
+      "type": "object",
+      "properties": {
+        "roleAll": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/RoleAllResp"
+          }
+        },
+        "deptAll": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/DeptAllResp"
+          }
+        },
+        "ugroupAll": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/UgroupAllResp"
+          }
+        }
+      },
+      "title": "SelectDataResp",
+      "required": [
+        "roleAll",
+        "deptAll",
+        "ugroupAll"
+      ]
+    },
+    "StrategyJson": {
+      "type": "object",
+      "properties": {
+        "access_urls": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      },
+      "title": "StrategyJson",
+      "required": [
+        "access_urls"
+      ]
+    },
+    "TreeselectResp": {
+      "type": "object",
+      "properties": {
+        "treeData": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/ListDeptData"
+          }
+        }
+      },
+      "title": "TreeselectResp",
+      "required": [
+        "treeData"
+      ]
+    },
+    "UgroupAllResp": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "name": {
+          "type": "string"
+        },
+        "remark": {
+          "type": "string"
+        }
+      },
+      "title": "UgroupAllResp",
+      "required": [
+        "id",
+        "name",
+        "remark"
+      ]
+    },
+    "UgroupAssignmentPolicyReq": {
+      "type": "object",
+      "properties": {
+        "ugroupId": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "ugroupChecked": {
+          "type": "string"
+        }
+      },
+      "title": "UgroupAssignmentPolicyReq",
+      "required": [
+        "ugroupId",
+        "ugroupChecked"
+      ]
+    },
+    "UgroupAssignmentUserReq": {
+      "type": "object",
+      "properties": {
+        "ugroupId": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "userChecked": {
+          "type": "string"
+        }
+      },
+      "title": "UgroupAssignmentUserReq",
+      "required": [
+        "ugroupId",
+        "userChecked"
+      ]
+    },
+    "UpdateCompanyReq": {
+      "type": "object",
+      "properties": {
+        "companyId": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "companyCn": {
+          "type": "string"
+        },
+        "companyEn": {
+          "type": "string"
+        }
+      },
+      "title": "UpdateCompanyReq",
+      "required": [
+        "companyId",
+        "companyCn",
+        "companyEn"
+      ]
+    },
+    "UpdateDeptReq": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "format": "int64",
+          "description": " 编号"
+        },
+        "name": {
+          "type": "string",
+          "description": " 机构名称"
+        },
+        "orderNum": {
+          "type": "integer",
+          "format": "int64",
+          "description": " 排序"
+        }
+      },
+      "title": "UpdateDeptReq",
+      "required": [
+        "id",
+        "name",
+        "orderNum"
+      ]
+    },
+    "UpdateDictReq": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "format": "int64",
+          "description": " 编号"
+        },
+        "value": {
+          "type": "string",
+          "description": " 数据值"
+        },
+        "pid": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "label": {
+          "type": "string",
+          "description": " 标签名"
+        },
+        "types": {
+          "type": "string",
+          "description": " 类型"
+        },
+        "description": {
+          "type": "string",
+          "description": " 描述"
+        },
+        "sort": {
+          "type": "integer",
+          "format": "int64",
+          "description": " 排序（升序）"
+        }
+      },
+      "title": "UpdateDictReq",
+      "required": [
+        "id",
+        "value",
+        "pid",
+        "label",
+        "types",
+        "description",
+        "sort"
+      ]
+    },
+    "UpdateLabelReq": {
+      "type": "object",
+      "properties": {
+        "labelId": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "labelName": {
+          "type": "string"
+        },
+        "labelValues": {
+          "type": "string"
+        },
+        "labelType": {
+          "type": "string"
+        },
+        "labelRemark": {
+          "type": "string"
+        }
+      },
+      "title": "UpdateLabelReq",
+      "required": [
+        "labelId",
+        "labelName",
+        "labelValues"
+      ]
+    },
+    "UpdateMenuReq": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "name": {
+          "type": "string"
+        },
+        "parentId": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "url": {
+          "type": "string"
+        },
+        "perms": {
+          "type": "string"
+        },
+        "type": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "icon": {
+          "type": "string"
+        },
+        "orderNum": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "vuePath": {
+          "type": "string"
+        },
+        "vueComponent": {
+          "type": "string"
+        },
+        "vueIcon": {
+          "type": "string"
+        },
+        "vueRedirect": {
+          "type": "string"
+        }
+      },
+      "title": "UpdateMenuReq",
+      "required": [
+        "id",
+        "name",
+        "parentId"
+      ]
+    },
+    "UpdatePersonalPasswordReq": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "oldPassword": {
+          "type": "string"
+        },
+        "newPassword": {
+          "type": "string"
+        },
+        "newPasswordRepeat": {
+          "type": "string"
+        }
+      },
+      "title": "UpdatePersonalPasswordReq",
+      "required": [
+        "id",
+        "oldPassword",
+        "newPassword",
+        "newPasswordRepeat"
+      ]
+    },
+    "UpdatePersonalReq": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "email": {
+          "type": "string"
+        },
+        "mobile": {
+          "type": "string"
+        },
+        "avatar": {
+          "type": "string"
+        },
+        "nickName": {
+          "type": "string"
+        }
+      },
+      "title": "UpdatePersonalReq",
+      "required": [
+        "id",
+        "email",
+        "mobile",
+        "avatar",
+        "nickName"
+      ]
+    },
+    "UpdateProjectReq": {
+      "type": "object",
+      "properties": {
+        "projectId": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "projectCn": {
+          "type": "string"
+        },
+        "projectEn": {
+          "type": "string"
+        },
+        "projectTeam": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "companyId": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "projectType": {
+          "type": "string"
+        },
+        "groupQq": {
+          "type": "string"
+        },
+        "groupType": {
+          "type": "string"
+        },
+        "groupDevQq": {
+          "type": "string"
+        }
+      },
+      "title": "UpdateProjectReq",
+      "required": [
+        "projectId",
+        "projectCn",
+        "projectEn"
+      ]
+    },
+    "UpdateRoleMenuReq": {
+      "type": "object",
+      "properties": {
+        "roleId": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "menuIds": {
+          "type": "array",
+          "items": {
+            "type": "integer",
+            "format": "int64"
+          }
+        }
+      },
+      "title": "UpdateRoleMenuReq",
+      "required": [
+        "roleId",
+        "menuIds"
+      ]
+    },
+    "UpdateRoleReq": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "format": "int64",
+          "description": " 编号"
+        },
+        "name": {
+          "type": "string",
+          "description": " 角色名称"
+        },
+        "remark": {
+          "type": "string",
+          "description": " 备注"
+        }
+      },
+      "title": "UpdateRoleReq",
+      "required": [
+        "id",
+        "name",
+        "remark"
+      ]
+    },
+    "UpdateStgroupReq": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "stName": {
+          "type": "string"
+        },
+        "stJson": {
+          "type": "string"
+        },
+        "stRemark": {
+          "type": "string"
+        }
+      },
+      "title": "UpdateStgroupReq",
+      "required": [
+        "id",
+        "stName",
+        "stJson",
+        "stRemark"
+      ]
+    },
+    "UpdateSupplyCompanyReq": {
+      "type": "object",
+      "title": "UpdateSupplyCompanyReq"
+    },
+    "UpdateUgroupReq": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "format": "int64",
+          "description": " 编号"
+        },
+        "ugName": {
+          "type": "string",
+          "description": " 用户组名称"
+        },
+        "ugJson": {
+          "type": "string",
+          "description": " 备注"
+        }
+      },
+      "title": "UpdateUgroupReq",
+      "required": [
+        "id",
+        "ugName",
+        "ugJson"
+      ]
+    },
+    "UpdateUserReq": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "email": {
+          "type": "string"
+        },
+        "mobile": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "nickName": {
+          "type": "string"
+        },
+        "deptId": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "roleIds": {
+          "type": "string"
+        },
+        "ugroupIds": {
+          "type": "string"
+        },
+        "projectIds": {
+          "type": "string"
+        },
+        "status": {
+          "type": "integer",
+          "format": "int64"
+        }
+      },
+      "title": "UpdateUserReq",
+      "required": [
+        "id",
+        "name",
+        "nickName",
+        "status"
+      ]
+    },
+    "UserAssignmentPolicyReq": {
+      "type": "object",
+      "properties": {
+        "userId": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "userChecked": {
+          "type": "string"
+        }
+      },
+      "title": "UserAssignmentPolicyReq",
+      "required": [
+        "userId",
+        "userChecked"
+      ]
+    },
+    "UserBatchEditItemsReq": {
+      "type": "object",
+      "properties": {
+        "userIds": {
+          "type": "string"
+        },
+        "projectIds": {
+          "type": "string"
+        },
+        "operate": {
+          "type": "string"
+        }
+      },
+      "title": "UserBatchEditItemsReq",
+      "required": [
+        "userIds",
+        "projectIds",
+        "operate"
+      ]
+    },
+    "UserStatusReq": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "status": {
+          "type": "integer",
+          "format": "int64"
+        }
+      },
+      "title": "UserStatusReq",
+      "required": [
+        "id",
+        "status"
+      ]
+    },
+    "addCompanyReq": {
+      "type": "object",
+      "properties": {
+        "companyCn": {
+          "type": "string"
+        },
+        "companyEn": {
+          "type": "string"
+        }
+      },
+      "title": "addCompanyReq",
+      "required": [
+        "companyCn",
+        "companyEn"
+      ]
+    },
+    "addDeptReq": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string",
+          "description": " 部门名称"
+        },
+        "orderNum": {
+          "type": "integer",
+          "format": "int64",
+          "description": " 排序"
+        }
+      },
+      "title": "addDeptReq",
+      "required": [
+        "name"
+      ]
+    },
+    "addLabelReq": {
+      "type": "object",
+      "properties": {
+        "labelName": {
+          "type": "string"
+        },
+        "labelValues": {
+          "type": "string"
+        },
+        "labelType": {
+          "type": "string"
+        },
+        "labelRemark": {
+          "type": "string"
+        }
+      },
+      "title": "addLabelReq",
+      "required": [
+        "labelName",
+        "labelValues"
+      ]
+    },
+    "addMenuReq": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "parentId": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "url": {
+          "type": "string"
+        },
+        "perms": {
+          "type": "string"
+        },
+        "type": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "icon": {
+          "type": "string"
+        },
+        "orderNum": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "vuePath": {
+          "type": "string"
+        },
+        "vueComponent": {
+          "type": "string"
+        },
+        "vueIcon": {
+          "type": "string"
+        },
+        "vueRedirect": {
+          "type": "string"
+        }
+      },
+      "title": "addMenuReq",
+      "required": [
+        "name"
+      ]
+    },
+    "addProjectReq": {
+      "type": "object",
+      "properties": {
+        "projectCn": {
+          "type": "string"
+        },
+        "projectEn": {
+          "type": "string"
+        },
+        "projectTeam": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "projectType": {
+          "type": "string"
+        },
+        "companyId": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "groupQq": {
+          "type": "string"
+        },
+        "groupType": {
+          "type": "string"
+        },
+        "groupDevQq": {
+          "type": "string"
+        }
+      },
+      "title": "addProjectReq",
+      "required": [
+        "projectCn",
+        "projectEn"
+      ]
+    },
+    "addStgroupReq": {
+      "type": "object",
+      "properties": {
+        "stName": {
+          "type": "string"
+        },
+        "stJson": {
+          "type": "string"
+        },
+        "stRemark": {
+          "type": "string"
+        }
+      },
+      "title": "addStgroupReq",
+      "required": [
+        "stName",
+        "stJson",
+        "stRemark"
+      ]
+    },
+    "addUgroupReq": {
+      "type": "object",
+      "properties": {
+        "ugName": {
+          "type": "string"
+        },
+        "ugJson": {
+          "type": "string"
+        }
+      },
+      "title": "addUgroupReq",
+      "required": [
+        "ugName",
+        "ugJson"
+      ]
+    },
+    "addUserReq": {
+      "type": "object",
+      "properties": {
+        "email": {
+          "type": "string"
+        },
+        "mobile": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "nickName": {
+          "type": "string"
+        },
+        "deptId": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "roleIds": {
+          "type": "string"
+        },
+        "ugroupIds": {
+          "type": "string"
+        },
+        "projectIds": {
+          "type": "string"
+        }
+      },
+      "title": "addUserReq",
+      "required": [
+        "name",
+        "nickName"
+      ]
+    },
+    "loginReq": {
+      "type": "object",
+      "properties": {
+        "username": {
+          "type": "string"
+        },
+        "password": {
+          "type": "string"
+        },
+        "captchaType": {
+          "type": "string"
+        },
+        "clientUid": {
+          "type": "string"
+        },
+        "pointJson": {
+          "type": "string"
+        }
+      },
+      "title": "loginReq",
+      "required": [
+        "username",
+        "password"
+      ]
+    },
+    "loginResp": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "username": {
+          "type": "string"
+        },
+        "token": {
+          "type": "string"
+        },
+        "accessExpire": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "refreshAfter": {
+          "type": "integer",
+          "format": "int64"
+        }
+      },
+      "title": "loginResp",
+      "required": [
+        "id",
+        "username",
+        "token",
+        "accessExpire",
+        "refreshAfter"
+      ]
+    },
+    "userInfoResp": {
+      "type": "object",
+      "properties": {
+        "avatar": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "profiles": {
+          "$ref": "#/definitions/ListUserData"
+        },
+        "userId": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "menuTreeVue": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/ListMenuTreeVue"
+          }
+        },
+        "webTitle": {
+          "type": "string"
+        }
+      },
+      "title": "userInfoResp",
+      "required": [
+        "avatar",
+        "name",
+        "profiles",
+        "userId",
+        "menuTreeVue",
+        "webTitle"
+      ]
+    }
+  },
+  "securityDefinitions": {
+    "apiKey": {
+      "type": "apiKey",
+      "description": "Enter JWT Bearer token **_only_**",
+      "name": "Authorization",
+      "in": "header"
+    }
+  }
+}

@@ -1,0 +1,103 @@
+syntax = "v1"
+
+info(
+	title: "计划队列信息"
+	desc: "计划队列信息"
+	author: "acool"
+)
+
+type (
+
+	AddTasksScheduleQueueReq {
+		*TasksScheduleQueueCommon
+	}
+
+	UpdateTasksScheduleQueueReq {
+		*TasksScheduleQueueCommon
+	}
+
+	DeleteTasksScheduleQueueReq {
+		TasksScheduleQueueId int64 `path:"TasksScheduleQueueId"`
+	}
+
+    GetTasksScheduleQueueReq {
+		TasksScheduleQueueId int64 `path:"TasksScheduleQueueId"`
+	}
+
+	TasksScheduleQueueCommon {
+        Id int64 `json:"id,optional"` 
+        ScheduleTitle string `json:"scheduleTitle,optional"` 
+        ScheduleStartTime int64 `json:"scheduleStartTime,optional"` 
+        ScheduleEndTime int64 `json:"scheduleEndTime,optional"` 
+        ScheduleStatus string `json:"scheduleStatus,optional"` 
+        ScheduleType string `json:"scheduleType,optional"` 
+        ScheduleRangeIds string `json:"scheduleRangeIds,optional"`  
+        ScheduleRemark string `json:"scheduleRemark,optional"` 
+	}
+
+	ListTasksScheduleQueueReq {
+		Current  int64  `form:"current,default=1"`
+		PageSize int64  `form:"pageSize,default=15"`
+		ScheduleStatus string `form:"scheduleStatus,optional"` 
+        ScheduleType string `form:"scheduleType,optional"` 
+		DateRange string `form:"dateRange,optional"`
+		ScheduleTitle string `form:"scheduleTitle,optional"`
+	}
+	ListTasksScheduleQueueResp {
+		Rows   []*ListTasksScheduleQueueData `json:"rows"`
+		Total  int64            `json:"total"`
+		Filter []*FilterList    `json:"filter"`
+	}
+	ListTasksScheduleQueueData {
+        Id int64 `json:"id"` 
+        ScheduleTitle string `json:"scheduleTitle"` 
+        ScheduleStartTime int64 `json:"scheduleStartTime"` 
+        ScheduleEndTime int64 `json:"scheduleEndTime"` 
+        ScheduleStatus string `json:"scheduleStatus"` 
+        ScheduleType string `json:"scheduleType"` 
+        ScheduleRangeIds string `json:"scheduleRangeIds"` 
+        SchedulePid int64 `json:"schedulePid"` 
+        ScheduleLogs string `json:"scheduleLogs"` 
+        ScheduleRemark string `json:"scheduleRemark"` 
+		ScheduleTypeMaps string `json:"scheduleTypeMaps"`
+		ScheduleCreateByName string `json:"scheduleCreateByName"`
+	}
+
+
+
+)
+
+@server(
+	group: tasksScheduleQueue
+	prefix: /taskMng/tasksScheduleQueue
+)
+service yunwei {
+
+	@doc(
+		summary:"计划队列新增"
+	)
+	@handler TasksScheduleQueueAdd
+	post /add (AddTasksScheduleQueueReq) returns()
+	@doc(
+		summary:"计划队列列表"
+	)
+	@handler TasksScheduleQueueList
+	get /list (ListTasksScheduleQueueReq) returns (ListTasksScheduleQueueResp)
+	@doc(
+		summary:"计划队列更新"
+	)
+	@handler TasksScheduleQueueUpdate
+	put /update (UpdateTasksScheduleQueueReq) returns ()
+	@doc(
+		summary:"计划队列删除"
+	)
+	@handler TasksScheduleQueueDelete
+	delete /delete/:TasksScheduleQueueId (DeleteTasksScheduleQueueReq) returns ()
+
+	@doc(
+		summary:"计划队列获取"
+	)
+	@handler TasksScheduleQueueGet
+	get /get/:TasksScheduleQueueId (GetTasksScheduleQueueReq) returns (ListTasksScheduleQueueData)
+
+}

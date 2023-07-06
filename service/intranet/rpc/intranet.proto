@@ -1,0 +1,667 @@
+syntax = "proto3";
+
+package intranetclient;
+
+option go_package = "./intranetclient";
+
+
+//InsideInstallPlan Start
+message AddInsideInstallPlanReq {
+  InsideInstallPlanCommon one =1;
+}
+
+message InsideInstallPlanCommonResp{
+  string pong=1;
+}
+
+message UpdateInsideInstallPlanReq {
+  InsideInstallPlanCommon one=1;
+}
+
+message DeleteInsideInstallPlanReq{
+  int64 InsideInstallPlanId=1;
+}
+
+message GetInsideInstallPlanReq{
+  int64 InsideInstallPlanId=1;
+}
+
+message InsideInstallPlanCommon{
+  int64 id = 1;
+  int64 projectId = 2;
+  int64 clusterId = 3;
+  string featureType = 4;
+  int64 sid = 5;
+  string serverTitle = 6;
+  string installStatus = 7;
+  int64 delFlag = 10;
+
+}
+
+message ListInsideInstallPlanReq{
+  int64 current=1;
+  int64 pageSize=2;
+}
+message ListInsideInstallPlanResp{
+  repeated ListInsideInstallPlanData rows=1;
+  int64 total=2;
+}
+message ListInsideInstallPlanData{
+  int64 id = 1;
+  int64 projectId = 2;
+  int64 clusterId = 3;
+  string featureType = 4;
+  int64 sid = 5;
+  string serverTitle = 6;
+  string installStatus = 7;
+  int64 delFlag = 10;
+  string projectCn=11;
+  string clusterCn=12;
+
+}
+//InsideInstallPlan End
+
+//InsideOperation Start
+message AddInsideOperationReq {
+  InsideOperationCommon one =1;
+}
+
+message InsideOperationCommonResp{
+  string pong=1;
+}
+
+message UpdateInsideOperationReq {
+  InsideOperationCommon one=1;
+}
+
+message DeleteInsideOperationReq{
+  int64 InsideOperationId=1;
+}
+
+message GetInsideOperationReq{
+  int64 InsideOperationId=1;
+}
+
+message InsideOperationCommon{
+  int64 id = 1;
+  int64 projectId = 2;
+  string operCn = 3;
+  string operType = 4;
+  int64 sort = 5;
+  int64 delFlag = 6;
+  string operEn=7;
+
+}
+
+message ListInsideOperationReq{
+  int64 current=1;
+  int64 pageSize=2;
+  int64 projectId = 3;
+  string operType = 4;
+}
+message ListInsideOperationResp{
+  repeated ListInsideOperationData rows=1;
+  int64 total=2;
+}
+message ListInsideOperationData{
+  int64 id = 1;
+  int64 projectId = 2;
+  string operCn = 3;
+  string operType = 4;
+  int64 sort = 5;
+  int64 delFlag = 6;
+  string operEn=7;
+  string projectCn=8;
+
+}
+//InsideOperation End
+//InsideProjectCluster Start
+message AddInsideProjectClusterReq {
+  InsideProjectClusterCommon one =1;
+}
+
+message InsideProjectClusterCommonResp{
+  string pong=1;
+}
+
+message UpdateInsideProjectClusterReq {
+  InsideProjectClusterCommon one=1;
+}
+
+message DeleteInsideProjectClusterReq{
+  int64 InsideProjectClusterId=1;
+}
+
+message GetInsideProjectClusterReq{
+  int64 InsideProjectClusterId=1;
+}
+
+message InsideProjectClusterCommon{
+  int64 id = 1;
+  int64 projectId = 2;
+  int64 clusterId = 3;
+
+}
+
+message ListInsideProjectClusterReq{
+  int64 current=1;
+  int64 pageSize=2;
+  int64 projectId = 3;
+  int64 clusterId = 4;
+}
+message ListInsideProjectClusterResp{
+  repeated ListInsideProjectClusterData rows=1;
+  int64 total=2;
+}
+message ListInsideProjectClusterData{
+  int64 id = 1;
+  int64 projectId = 2;
+  int64 clusterId = 3;
+  string projectCn = 4;
+  string clusterCn = 5;
+
+}
+//InsideProjectCluster End
+
+//InsideProxyHost Start
+message AddInsideProxyHostReq {
+  InsideProxyHostCommon one =1;
+}
+
+message InsideProxyHostCommonResp{
+  string pong=1;
+}
+
+message UpdateInsideProxyHostReq {
+  InsideProxyHostCommon one=1;
+}
+
+message DeleteInsideProxyHostReq{
+  int64 InsideProxyHostId=1;
+}
+
+message GetInsideProxyHostReq{
+  int64 InsideProxyHostId=1;
+}
+
+message InsideProxyHostCommon{
+  int64 id = 1;
+  int64 projectId = 2;
+  int64 hostId = 4;
+
+
+}
+
+message ListInsideProxyHostReq{
+  int64 current=1;
+  int64 pageSize=2;
+}
+message ListInsideProxyHostResp{
+  repeated ListInsideProxyHostData rows=1;
+  int64 total=2;
+}
+message ListInsideProxyHostData{
+  int64 id = 1;
+  int64 projectId = 2;
+  string hostIp = 3;
+  int64 hostPort = 4;
+  string dbUser = 5;
+  string dbPass = 6;
+  int64 dbPort = 7;
+  string hostName=8;
+  string projectCn=9;
+  string hostScriptPath=10;
+  int64 hostId=11;
+
+}
+//InsideProxyHost End
+
+//InsideServer Start
+message AddInsideServerReq {
+  InsideServerCommon one =1;
+}
+
+message InsideServerCommonResp{
+  string pong=1;
+}
+
+message UpdateInsideServerReq {
+  InsideServerCommon one=1;
+}
+
+message DeleteInsideServerReq{
+  int64 InsideServerId=1;
+}
+
+message GetInsideServerReq{
+  int64 InsideServerId=1;
+}
+
+message InsideServerCommon{
+  int64 id = 1;
+  int64 projectId = 2;
+  int64 clusterId = 3;
+  string featureType = 4;
+  int64 sort = 5;
+  string serverTitle = 6;
+  string serverPath = 7;
+  string serverDescDb = 9;
+  string domain = 10;
+  int64 delFlag = 11;
+  string buildType=12;
+
+
+}
+
+message ListInsideServerReq{
+  int64 current=1;
+  int64 pageSize=2;
+  int64 projectId = 5;
+  int64 clusterId = 3;
+  string featureType = 4;
+  string buildType=6;
+}
+message ListInsideServerResp{
+  repeated ListInsideServerData rows=1;
+  int64 total=2;
+}
+message ListInsideServerData{
+  int64 id = 1;
+  int64 projectId = 2;
+  int64 clusterId = 3;
+  string featureType = 4;
+  int64 sort = 5;
+  string serverTitle = 6;
+  string serverPath = 7;
+  string serverDescDb = 9;
+  string domain = 10;
+  int64 delFlag = 11;
+  string buildType=12;
+  string	projectCn=14;
+  string	clusterCn=13;
+
+}
+//InsideServer End
+
+//InsideTasks Start
+message AddInsideTasksReq {
+  InsideTasksCommon one =1;
+}
+
+message InsideTasksCommonResp{
+  string pong=1;
+}
+
+message UpdateInsideTasksReq {
+  InsideTasksCommon one=1;
+}
+
+message DeleteInsideTasksReq{
+  int64 InsideTasksId=1;
+}
+
+message GetInsideTasksReq{
+  int64 InsideTasksId=1;
+}
+
+message InsideTasksCommon{
+  int64 id = 1;
+  int64 projectId = 2;
+  int64 clusterId = 3;
+  string cmd = 4;
+  int64 startTime = 5;
+  int64 endTime = 7;
+  string status = 8;
+  int64 createBy = 9;
+  int64 delFlag = 10;
+  string tasksType=11;
+  int64 serverId = 12;
+  int64 versionId = 13;
+  string Version=14;
+  int64 operationId=15;
+
+}
+
+message ListInsideTasksReq{
+  int64 current=1;
+  int64 pageSize=2;
+  int64  projectId=3;
+  int64 clusterId=4;
+  int64 serverId=5;
+  int64 versionId=6;
+  string tasksType=7;
+  string projectIds=8;
+  string recentSubmit=9;
+  int64 tasksId=10;
+  string status=11;
+  string startTime=12;
+}
+message ListInsideTasksResp{
+  repeated ListInsideTasksData rows=1;
+  int64 total=2;
+}
+message ListInsideTasksData{
+  int64 id = 1;
+  int64 projectId = 2;
+  int64 clusterId = 3;
+  string cmd = 4;
+  int64 startTime = 5;
+  int64 endTime = 7;
+  string status = 8;
+  int64 createBy = 9;
+  int64 delFlag = 10;
+  string tasksType=11;
+  int64 serverId = 12;
+  int64 versionId = 13;
+  string	projectCn=14;
+  string	clusterCn=15;
+  string	serverTitle=16;
+  string	serverPath=17;
+  string	serverDescDb=19;
+  string	versionName=20;
+  string	versionData=21;
+  string	versionConf=22;
+  string	versionType=23;
+  string	operCn=24;
+  string	operEn=25;
+  string	operType=26;
+  string	nickName=27;
+  string version=28;
+  string projectEn=29;
+  int64 operationId=30;
+}
+
+message InsideTasksOperationReq{
+  int64 tasksId=1;
+  string operationType=2;
+}
+
+message InsideTasksOperationResp{
+  string pong=1;
+}
+
+//InsideTasks End
+
+//InsideTasksLogs Start
+message AddInsideTasksLogsReq {
+  InsideTasksLogsCommon one =1;
+}
+
+message InsideTasksLogsCommonResp{
+  string pong=1;
+}
+
+message UpdateInsideTasksLogsReq {
+  InsideTasksLogsCommon one=1;
+}
+
+message DeleteInsideTasksLogsReq{
+  int64 InsideTasksLogsId=1;
+}
+
+message GetInsideTasksLogsReq{
+  int64 InsideTasksLogsId=1;
+}
+
+message InsideTasksLogsCommon{
+  int64 id = 1;
+  int64 tasksId = 2;
+  string content = 3;
+
+}
+
+message ListInsideTasksLogsReq{
+  int64 current=1;
+  int64 pageSize=2;
+}
+message ListInsideTasksLogsResp{
+  repeated ListInsideTasksLogsData rows=1;
+  int64 total=2;
+}
+message ListInsideTasksLogsData{
+  int64 id = 1;
+  int64 tasksId = 2;
+  string content = 3;
+
+}
+//InsideTasksLogs End
+//InsideTasksPid Start
+message AddInsideTasksPidReq {
+  InsideTasksPidCommon one =1;
+}
+
+message InsideTasksPidCommonResp{
+  string pong=1;
+}
+
+message UpdateInsideTasksPidReq {
+  InsideTasksPidCommon one=1;
+}
+
+message DeleteInsideTasksPidReq{
+  int64 InsideTasksPidId=1;
+}
+
+message GetInsideTasksPidReq{
+  int64 InsideTasksPidId=1;
+}
+
+message InsideTasksPidCommon{
+  int64 id = 1;
+  int64 tasksId = 2;
+  int64 tasksPid = 3;
+
+}
+
+message ListInsideTasksPidReq{
+  int64 current=1;
+  int64 pageSize=2;
+}
+message ListInsideTasksPidResp{
+  repeated ListInsideTasksPidData rows=1;
+  int64 total=2;
+}
+message ListInsideTasksPidData{
+  int64 id = 1;
+  int64 tasksId = 2;
+  int64 tasksPid = 3;
+
+}
+//InsideTasksPid End
+//InsideVersion Start
+message AddInsideVersionReq {
+  InsideVersionCommon one =1;
+}
+
+message InsideVersionCommonResp{
+  string pong=1;
+}
+
+message UpdateInsideVersionReq {
+  InsideVersionCommon one=1;
+}
+
+message DeleteInsideVersionReq{
+  int64 InsideVersionId=1;
+}
+
+message GetInsideVersionReq{
+  int64 InsideVersionId=1;
+}
+
+message InsideVersionCommon{
+  int64 id = 1;
+  int64 projectId = 2;
+  int64 clusterId = 3;
+  string versionName = 4;
+  string versionData = 5;
+  string versionConf = 6;
+  string versionType = 7;
+  string sourceDb = 8;
+  int64 sort = 9;
+  int64 delFlag = 10;
+  string buildType=11;
+
+
+}
+
+message ListInsideVersionReq{
+  int64 current=1;
+  int64 pageSize=2;
+  int64 versionId=6;
+  int64 projectId = 3;
+  int64 clusterId = 4;
+  string buildType=5;
+
+}
+message ListInsideVersionResp{
+  repeated ListInsideVersionData rows=1;
+  int64 total=2;
+}
+message ListInsideVersionData{
+  int64 id = 1;
+  int64 projectId = 2;
+  int64 clusterId = 3;
+  string versionName = 4;
+  string versionData = 5;
+  string versionConf = 6;
+  string versionType = 7;
+  string sourceDb = 8;
+  int64 sort = 9;
+  int64 delFlag = 10;
+  string buildType=11;
+  string projectCn=12;
+  string clusterCn=13;
+
+}
+//InsideVersion End
+//InsideHostInfo Start
+message AddInsideHostInfoReq {
+  InsideHostInfoCommon one =1;
+}
+
+message InsideHostInfoCommonResp{
+  string pong=1;
+}
+
+message UpdateInsideHostInfoReq {
+  InsideHostInfoCommon one=1;
+}
+
+message DeleteInsideHostInfoReq{
+  int64 InsideHostInfoId=1;
+}
+
+message GetInsideHostInfoReq{
+  int64 InsideHostInfoId=1;
+}
+
+message InsideHostInfoCommon{
+  int64 id = 1;
+  string hostName = 2;
+  string hostIp = 3;
+  int64 hostPort = 4;
+  string dbUser = 5;
+  string dbPass = 6;
+  int64 dbPort = 7;
+  string hostScriptPath=8;
+
+}
+
+message ListInsideHostInfoReq{
+  int64 current=1;
+  int64 pageSize=2;
+}
+message ListInsideHostInfoResp{
+  repeated ListInsideHostInfoData rows=1;
+  int64 total=2;
+}
+message ListInsideHostInfoData{
+  int64 id = 1;
+  string hostName = 2;
+  string hostIp = 3;
+  int64 hostPort = 4;
+  string dbUser = 5;
+  string dbPass = 6;
+  int64 dbPort = 7;
+  string hostScriptPath=8;
+
+}
+//InsideHostInfo End
+
+service Intranet {
+  //InsideInstallPlan Rpc Start
+  rpc InsideInstallPlanAdd(AddInsideInstallPlanReq) returns(InsideInstallPlanCommonResp);
+  rpc InsideInstallPlanUpdate(UpdateInsideInstallPlanReq) returns (InsideInstallPlanCommonResp);
+  rpc InsideInstallPlanDelete(DeleteInsideInstallPlanReq) returns (InsideInstallPlanCommonResp);
+  rpc InsideInstallPlanGet(GetInsideInstallPlanReq) returns (ListInsideInstallPlanData);
+  rpc InsideInstallPlanList(ListInsideInstallPlanReq) returns (ListInsideInstallPlanResp);
+  //InsideInstallPlan Rpc End
+  //InsideOperation Rpc Start
+  rpc InsideOperationAdd(AddInsideOperationReq) returns(InsideOperationCommonResp);
+  rpc InsideOperationUpdate(UpdateInsideOperationReq) returns (InsideOperationCommonResp);
+  rpc InsideOperationDelete(DeleteInsideOperationReq) returns (InsideOperationCommonResp);
+  rpc InsideOperationGet(GetInsideOperationReq) returns (ListInsideOperationData);
+  rpc InsideOperationList(ListInsideOperationReq) returns (ListInsideOperationResp);
+  //InsideOperation Rpc End
+  //InsideProjectCluster Rpc Start
+  rpc InsideProjectClusterAdd(AddInsideProjectClusterReq) returns(InsideProjectClusterCommonResp);
+  rpc InsideProjectClusterUpdate(UpdateInsideProjectClusterReq) returns (InsideProjectClusterCommonResp);
+  rpc InsideProjectClusterDelete(DeleteInsideProjectClusterReq) returns (InsideProjectClusterCommonResp);
+  rpc InsideProjectClusterGet(GetInsideProjectClusterReq) returns (ListInsideProjectClusterData);
+  rpc InsideProjectClusterList(ListInsideProjectClusterReq) returns (ListInsideProjectClusterResp);
+  //InsideProjectCluster Rpc End
+  //InsideProxyHost Rpc Start
+  rpc InsideProxyHostAdd(AddInsideProxyHostReq) returns(InsideProxyHostCommonResp);
+  rpc InsideProxyHostUpdate(UpdateInsideProxyHostReq) returns (InsideProxyHostCommonResp);
+  rpc InsideProxyHostDelete(DeleteInsideProxyHostReq) returns (InsideProxyHostCommonResp);
+  rpc InsideProxyHostGet(GetInsideProxyHostReq) returns (ListInsideProxyHostData);
+  rpc InsideProxyHostList(ListInsideProxyHostReq) returns (ListInsideProxyHostResp);
+  //InsideProxyHost Rpc End
+
+  //InsideServer Rpc Start
+  rpc InsideServerAdd(AddInsideServerReq) returns(InsideServerCommonResp);
+  rpc InsideServerUpdate(UpdateInsideServerReq) returns (InsideServerCommonResp);
+  rpc InsideServerDelete(DeleteInsideServerReq) returns (InsideServerCommonResp);
+  rpc InsideServerGet(GetInsideServerReq) returns (ListInsideServerData);
+  rpc InsideServerList(ListInsideServerReq) returns (ListInsideServerResp);
+  //InsideServer Rpc End
+  //InsideTasks Rpc Start
+  rpc InsideTasksAdd(AddInsideTasksReq) returns(InsideTasksCommonResp);
+  rpc InsideTasksUpdate(UpdateInsideTasksReq) returns (InsideTasksCommonResp);
+  rpc InsideTasksDelete(DeleteInsideTasksReq) returns (InsideTasksCommonResp);
+  rpc InsideTasksGet(GetInsideTasksReq) returns (ListInsideTasksData);
+  rpc InsideTasksList(ListInsideTasksReq) returns (ListInsideTasksResp);
+  rpc InsideTasksOperation(InsideTasksOperationReq)returns(InsideTasksOperationResp);
+  //InsideTasks Rpc End
+  //InsideTasksLogs Rpc Start
+  rpc InsideTasksLogsAdd(AddInsideTasksLogsReq) returns(InsideTasksLogsCommonResp);
+  rpc InsideTasksLogsUpdate(UpdateInsideTasksLogsReq) returns (InsideTasksLogsCommonResp);
+  rpc InsideTasksLogsDelete(DeleteInsideTasksLogsReq) returns (InsideTasksLogsCommonResp);
+  rpc InsideTasksLogsGet(GetInsideTasksLogsReq) returns (ListInsideTasksLogsData);
+  rpc InsideTasksLogsList(ListInsideTasksLogsReq) returns (ListInsideTasksLogsResp);
+  //InsideTasksLogs Rpc End
+  //InsideTasksPid Rpc Start
+  rpc InsideTasksPidAdd(AddInsideTasksPidReq) returns(InsideTasksPidCommonResp);
+  rpc InsideTasksPidUpdate(UpdateInsideTasksPidReq) returns (InsideTasksPidCommonResp);
+  rpc InsideTasksPidDelete(DeleteInsideTasksPidReq) returns (InsideTasksPidCommonResp);
+  rpc InsideTasksPidGet(GetInsideTasksPidReq) returns (ListInsideTasksPidData);
+  rpc InsideTasksPidList(ListInsideTasksPidReq) returns (ListInsideTasksPidResp);
+  //InsideTasksPid Rpc End
+
+  //InsideVersion Rpc Start
+  rpc InsideVersionAdd(AddInsideVersionReq) returns(InsideVersionCommonResp);
+  rpc InsideVersionUpdate(UpdateInsideVersionReq) returns (InsideVersionCommonResp);
+  rpc InsideVersionDelete(DeleteInsideVersionReq) returns (InsideVersionCommonResp);
+  rpc InsideVersionGet(GetInsideVersionReq) returns (ListInsideVersionData);
+  rpc InsideVersionList(ListInsideVersionReq) returns (ListInsideVersionResp);
+  //InsideVersion Rpc End
+
+  //InsideHostInfo Rpc Start
+  rpc InsideHostInfoAdd(AddInsideHostInfoReq) returns(InsideHostInfoCommonResp);
+  rpc InsideHostInfoUpdate(UpdateInsideHostInfoReq) returns (InsideHostInfoCommonResp);
+  rpc InsideHostInfoDelete(DeleteInsideHostInfoReq) returns (InsideHostInfoCommonResp);
+  rpc InsideHostInfoGet(GetInsideHostInfoReq) returns (ListInsideHostInfoData);
+  rpc InsideHostInfoList(ListInsideHostInfoReq) returns (ListInsideHostInfoResp);
+  //InsideHostInfo Rpc End
+}

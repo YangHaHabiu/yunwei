@@ -1,0 +1,83 @@
+info(
+    desc: "公司信息"
+)
+
+type (
+
+    addCompanyReq struct {
+        CompanyCn string `json:"companyCn"`
+        CompanyEn string `json:"companyEn"`
+    }
+
+
+
+    ListCompanyReq struct {
+        Current int64 `form:"current,default=1"`
+        PageSize int64 `form:"pageSize,default=15"`
+        CompanyCn string `form:"companyCn,optional"`
+        CompanyEn string `form:"companyEn,optional"`
+        SupplyCompanyStatus string `form:"supplyCompanyStatus,optional"`
+    }
+    ListCompanyData struct {
+        CompanyId int64 `json:"companyId"`
+        CompanyCn string `json:"companyCn"`
+        CompanyEn string `json:"companyEn"`
+        SupplyCompanyStatus int64  `json:"supplyCompanyStatus"`
+    }
+    ListCompanyResp struct {
+        Rows []*ListCompanyData `json:"rows"`
+        Total int64 `json:"total"`
+        Filter   []*FilterList 	 `json:"filter"`
+    }
+    UpdateCompanyReq struct {
+        CompanyId int64 `json:"companyId"`
+        CompanyCn string `json:"companyCn"`
+        CompanyEn string `json:"companyEn"`
+    }
+
+
+
+    DeleteCompanyReq struct {
+        CompanyId int64 `path:"companyId"`
+    }
+
+    UpdateSupplyCompanyReq {
+        CompanyId     int64 `path:"companyId"`
+    }
+
+)
+
+
+@server(
+    group: company
+    prefix: /admin/company
+
+)
+service admin {
+    @doc(
+        summary:"公司新增"
+    )
+    @handler CompanyAdd
+    post /add (addCompanyReq) returns()
+    @doc(
+        summary:"公司列表"
+    )
+    @handler CompanyList
+    get /list (ListCompanyReq) returns (ListCompanyResp)
+    @doc(
+        summary:"公司更新"
+    )
+    @handler CompanyUpdate
+    put /update (UpdateCompanyReq) returns ()
+    @doc(
+        summary:"公司删除"
+    )
+    @handler CompanyDelete
+    delete /delete/:companyId (DeleteCompanyReq) returns ()
+
+    @doc(
+        summary:"出机方状态更新"
+    )
+    @handler UpdateSupplyCompany
+    put /updateSupplyCompany/:companyId(UpdateSupplyCompanyReq) returns ()
+}

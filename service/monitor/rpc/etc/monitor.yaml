@@ -1,0 +1,19 @@
+Name: monitor.rpc
+ListenOn: 127.0.0.1:9008
+Timeout: 30000
+
+
+Log:
+  Mode: file
+  Level: error
+
+#数据库
+DB:
+  DataSource: root:123456@tcp(10.10.88.229:3307)/ywadmin_v3?charset=utf8mb4&parseTime=true&loc=Asia%2FShanghai
+
+#密码相关
+KeyDependency:
+  #应用名
+  AppKey: "demo"
+  #密码
+  SecretCode: "123456"

@@ -1,0 +1,132 @@
+info(
+    desc: "用户组信息"
+
+)
+
+type (
+
+    addUgroupReq struct {
+        UgName string `json:"ugName"`
+        UgJson string `json:"ugJson"`
+    }
+
+    ListUgroupReq struct {
+        Current int64 `form:"current,default=1"`
+        PageSize int64 `form:"pageSize,default=15"`
+        UgName string `form:"ugName,optional "`
+    }
+    ListUgroupData struct {
+        Id int64 `json:"id"`                                // 编号
+        UgName string `json:"ugName"`                           // 用户组名称
+        UgJson string `json:"ugJson"`                       // 备注
+        CreateBy string `json:"createBy"`                   // 创建人
+        CreateTime string `json:"createTime"`               // 创建时间
+        LastUpdateBy string `json:"lastUpdateBy"`           // 更新人
+        LastUpdateTime string `json:"lastUpdateTime"`       // 更新时间
+    }
+    ListUgroupResp struct {
+        Rows []*ListUgroupData `json:"rows"`
+        Total int64 `json:"total"`
+    }
+    UpdateUgroupReq struct {
+        Id int64 `json:"id"`                               // 编号
+        UgName string `json:"ugName"`                           // 用户组名称
+        UgJson string `json:"ugJson"`                       // 备注
+    }
+
+    DeleteUgroupReq struct {
+        UgroupId int64 `path:"ugroupId"`
+    }
+
+    GetUgroupAssignmentPolicyReq{
+        UgroupId int64 `path:"ugroupId"`
+    }
+    GetUgroupAssignmentPolicyResp{
+        UgroupChecked []int64 `json:"ugroupChecked"`
+        UgroupAllData []*ListStgroupData `json:"ugroupAllData"`
+    }
+
+    UgroupAssignmentPolicyReq{
+        UgroupId int64 `json:"ugroupId"`
+        UgroupChecked string `json:"ugroupChecked"`
+    }
+
+    GetUgroupAssignmentUserReq{
+        UgroupId int64 `path:"ugroupId"`
+    }
+
+    GetUgroupAssignmentUserResp{
+        UserChecked []int64 `json:"userChecked"`
+        UserAllData []*ListUserDataNew `json:"userAllData"`
+    }
+
+    ListUserDataNew struct {
+        Id int64 `json:"id"`
+        StName string `json:"stName"`
+    }
+
+
+
+    UgroupAssignmentUserReq{
+        UgroupId int64 `json:"ugroupId"`
+        UserChecked string `json:"userChecked"`
+    }
+
+
+)
+
+@server(
+
+    group: ugroup
+    prefix: /admin/ugroup
+
+)
+service admin {
+    @doc(
+        summary:"用户组新增"
+    )
+    @handler UgroupAdd
+    post /add (addUgroupReq) returns ()
+    @doc(
+        summary:"用户组列表"
+    )
+    @handler UgroupList
+    get /list (ListUgroupReq) returns (ListUgroupResp)
+    @doc(
+        summary:"用户组更新"
+    )
+    @handler UgroupUpdate
+    put /update (UpdateUgroupReq) returns ()
+    @doc(
+        summary:"用户组删除"
+    )
+    @handler UgroupDelete
+    delete /delete/:ugroupId (DeleteUgroupReq) returns ()
+
+    @doc (
+        summary :"获取用户组分配策略"
+    )
+    @handler GetUgroupAssignmentPolicy
+    get /getUgroupAssignmentPolicy/:ugroupId(GetUgroupAssignmentPolicyReq)  returns(GetUgroupAssignmentPolicyResp)
+
+    @doc (
+        summary :"用户组分配策略"
+    )
+    @handler UgroupAssignmentPolicy
+    post /ugroupAssignmentPolicy(UgroupAssignmentPolicyReq)  returns()
+
+    @doc (
+        summary :"获取用户组分配用户"
+    )
+    @handler GetUgroupAssignmentUser
+    get /getUgroupAssignmentUser/:ugroupId(GetUgroupAssignmentUserReq)  returns(GetUgroupAssignmentUserResp)
+
+    @doc (
+        summary :"更新用户组分配用户"
+    )
+    @handler UgroupAssignmentUser
+    put /ugroupAssignmentUser(UgroupAssignmentUserReq)  returns()
+
+
+
+}

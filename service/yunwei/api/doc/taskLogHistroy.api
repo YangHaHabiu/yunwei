@@ -1,0 +1,65 @@
+syntax = "v1"
+
+info(
+	title: "任务日志信息"
+	desc: "任务日志信息"
+)
+
+type (
+
+
+
+	DetailTaskLogHistroyReq {
+		TaskId int64 `path:"taskId"`
+	}
+
+
+	DetailTaskLogHistroyResp {
+		Id int64 `json:"id"`
+		TasksId int64 `json:"tasksId"`
+		TasksLogs string `json:"tasksLogs"`
+		TasksTime int64 `json:"tasksTime"`
+	}
+
+
+
+	ListTaskLogHistroyReq {
+		TaskId int64  `form:"taskId"`
+	}
+	ListTaskLogHistroyResp {
+		Rows   ListTaskLogHistroyDataJson `json:"rows"`
+	}
+
+	ListTaskLogHistroyDataJson{
+		LogInfo   []*ListTaskLogHistroyData `json:"log_info"`
+	}
+
+
+	ListTaskLogHistroyData {
+		Label interface{} `json:"label"`
+		IsOpen int64 `json:"is_open,omitempty"`
+		children []*ListTaskLogHistroyData `json:"children,omitempty"`
+		TasksId int64  `json:"tasks_id,omitempty"`
+		Value int64 `json:"value,omitempty"`
+	}
+
+
+)
+
+@server(
+	group: taskLogHistroy
+	prefix: /taskMng/taskLogHistroy
+)
+service yunwei {
+	@doc(
+		summary:"任务历史日志列表"
+	)
+	@handler TaskLogHistroyList
+	get /list (ListTaskLogHistroyReq) returns (ListTaskLogHistroyResp)
+
+	@doc(
+		summary:"任务历史日志详情"
+	)
+	@handler TaskLogHistroyDetail
+	get /detail/:taskId (DetailTaskLogHistroyReq) returns (DetailTaskLogHistroyResp)
+}
